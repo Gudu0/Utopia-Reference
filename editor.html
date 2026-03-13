@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Utopia: Origin Notes - JSON Maker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-row">
+      <div>
+        <h1>JSON Maker</h1>
+        <p class="subtitle">Add recipes and download an updated data.json</p>
+      </div>
+
+      <nav class="top-nav">
+        <a href="index.html" class="nav-link">Reference</a>
+        <a href="editor.html" class="nav-link current">JSON Maker</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="editor-layout">
+    <section class="panel">
+      <h2>Recipe Entry</h2>
+      <p class="small-note">
+        This page updates a working copy in your browser. It cannot save directly to GitHub Pages,
+        so after adding recipes you download the updated <code>data.json</code> and replace the repo file.
+      </p>
+
+      <form id="recipe-form" class="form-grid">
+        <div class="field">
+          <label for="station-select">Station</label>
+          <select id="station-select"></select>
+        </div>
+
+        <div id="new-station-fields" class="section-box hidden">
+          <div class="field">
+            <label for="new-station-name">New Station Name</label>
+            <input id="new-station-name" type="text" placeholder="Handcraft" />
+          </div>
+          <div class="field">
+            <label for="new-station-id">New Station ID (optional)</label>
+            <input id="new-station-id" type="text" placeholder="handcraft" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="category-select">Category</label>
+          <select id="category-select"></select>
+        </div>
+
+        <div id="new-category-fields" class="section-box hidden">
+          <div class="field">
+            <label for="new-category-name">New Category Name</label>
+            <input id="new-category-name" type="text" placeholder="Basic" />
+          </div>
+          <div class="field">
+            <label for="new-category-id">New Category ID (optional)</label>
+            <input id="new-category-id" type="text" placeholder="basic" />
+          </div>
+        </div>
+
+        <div class="section-box">
+          <div class="field">
+            <label for="output-name">Output Name</label>
+            <input id="output-name" type="text" placeholder="Stone Pickaxe" />
+          </div>
+
+          <div class="field">
+            <label for="recipe-id">Recipe ID (optional)</label>
+            <input id="recipe-id" type="text" placeholder="stone-pickaxe" />
+          </div>
+
+          <div class="field">
+            <label for="output-amount">Output Amount</label>
+            <input id="output-amount" type="number" min="1" value="1" />
+          </div>
+
+          <div class="field">
+            <label for="notes">Notes (optional)</label>
+            <textarea id="notes" rows="3" placeholder="Any quick notes here"></textarea>
+          </div>
+        </div>
+
+        <div class="section-box">
+          <h3>Ingredients</h3>
+          <div id="ingredient-list" class="ingredient-list"></div>
+          <div class="button-row">
+            <button type="button" class="btn" id="add-ingredient-btn">Add Ingredient</button>
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button type="submit" class="btn primary">Add Recipe To Working Data</button>
+          <button type="button" class="btn" id="reset-working-data-btn">Reset Working Data</button>
+        </div>
+
+        <div id="status-box" class="status-box"></div>
+      </form>
+    </section>
+
+    <section class="panel">
+      <h2>Updated data.json</h2>
+
+      <div class="button-row">
+        <button type="button" class="btn" id="copy-json-btn">Copy JSON</button>
+        <button type="button" class="btn" id="download-json-btn">Download data.json</button>
+      </div>
+
+      <textarea id="json-output" class="code-output" spellcheck="false"></textarea>
+    </section>
+  </main>
+
+  <script src="editor.js"></script>
+</body>
+</html>
