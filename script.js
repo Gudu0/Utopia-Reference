@@ -1,82 +1,40 @@
-const data = {
-  stations: [
-    {
-      id: "handcraft",
-      name: "Handcraft",
-      categories: [
-        {
-          id: "basic",
-          name: "Basic",
-          recipes: [
-            {
-              id: "stone-pickaxe",
-              outputName: "Stone Pickaxe",
-              outputAmount: 1,
-              ingredients: [
-                { itemName: "Stone", amount: 3 },
-                { itemName: "Wood", amount: 2 }
-              ],
-              notes: "Example starter recipe."
-            }
-          ]
-        }
-      ]
-    },
-    {
-      id: "campfire",
-      name: "Campfire",
-      categories: [
-        {
-          id: "food",
-          name: "Food",
-          recipes: [
-            {
-              id: "cooked-meat",
-              outputName: "Cooked Meat",
-              outputAmount: 1,
-              ingredients: [
-                { itemName: "Raw Meat", amount: 1 }
-              ],
-              notes: ""
-            }
-          ]
-        }
-      ]
-    },
-    {
-      id: "workbench",
-      name: "Work Bench",
-      categories: [
-        {
-          id: "facility",
-          name: "Facility",
-          recipes: [
-            {
-              id: "work-bench",
-              outputName: "Work Bench",
-              outputAmount: 1,
-              ingredients: [
-                { itemName: "Wood", amount: 20 }
-              ],
-              notes: "Taken from your screenshot example."
-            }
-          ]
-        }
-      ]
-    }
-  ]
-};
-
 const stationListEl = document.getElementById("station-list");
 const contentEl = document.getElementById("content");
 const contentHeaderEl = document.getElementById("content-header");
 
-function init() {
-  renderStationButtons();
+let data = { stations: [] };
+
+async function init() {
+  try {
+    const response = await fetch("data.json", { cache: "no-store" });
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    data = await response.json();
+    renderStationButtons();
+  } catch (error) {
+    contentHeaderEl.innerHTML = `
+      <h2>Could not load data</h2>
+      <p class="muted">Check that data.json exists and is valid JSON.</p>
+    `;
+    contentEl.innerHTML = "";
+    console.error(error);
+  }
 }
 
 function renderStationButtons() {
   stationListEl.innerHTML = "";
+
+  if (!Array.isArray(data.stations) || data.stations.length === 0) {
+    stationListEl.innerHTML = `<p class="muted">No stations yet.</p>`;
+    contentHeaderEl.innerHTML = `
+      <h2>No data yet</h2>
+      <p class="muted">Use the JSON Maker page to add recipes.</p>
+    `;
+    contentEl.innerHTML = "";
+    return;
+  }
 
   data.stations.forEach((station, index) => {
     const button = document.createElement("button");
@@ -105,18 +63,29 @@ function renderStation(stationId) {
   const station = data.stations.find(s => s.id === stationId);
   if (!station) return;
 
+  const categoryCount = Array.isArray(station.categories) ? station.categories.length : 0;
+
   contentHeaderEl.innerHTML = `
     <h2>${escapeHtml(station.name)}</h2>
-    <p class="muted">${station.categories.length} categor${station.categories.length === 1 ? "y" : "ies"}</p>
+    <p class="muted">${categoryCount} categor${categoryCount === 1 ? "y" : "ies"}</p>
   `;
 
   contentEl.innerHTML = "";
+
+  if (!station.categories || station.categories.length === 0) {
+    contentEl.innerHTML = `<p class="muted">No categories yet for this station.</p>`;
+    return;
+  }
 
   station.categories.forEach(category => {
     const block = document.createElement("section");
     block.className = "category-block";
 
-    const recipeCards = category.recipes.map(renderRecipeCard).join("");
+    let recipeCards = `<p class="muted">No recipes yet.</p>`;
+
+    if (Array.isArray(category.recipes) && category.recipes.length > 0) {
+      recipeCards = category.recipes.map(renderRecipeCard).join("");
+    }
 
     block.innerHTML = `
       <h3 class="category-title">${escapeHtml(category.name)}</h3>
@@ -130,11 +99,11 @@ function renderStation(stationId) {
 }
 
 function renderRecipeCard(recipe) {
-  const ingredientsHtml = recipe.ingredients
-    .map(ingredient => {
-      return `<li>${escapeHtml(ingredient.itemName)} x${ingredient.amount}</li>`;
-    })
-    .join("");
+  const ingredientsHtml = Array.isArray(recipe.ingredients)
+    ? recipe.ingredients.map(ingredient => {
+        return `<li>${escapeHtml(ingredient.itemName)} x${ingredient.amount}</li>`;
+      }).join("")
+    : "";
 
   const notesHtml = recipe.notes
     ? `<p class="recipe-meta">Notes: ${escapeHtml(recipe.notes)}</p>`
@@ -142,7 +111,7 @@ function renderRecipeCard(recipe) {
 
   return `
     <article class="recipe-card">
-      <h4>${escapeHtml(recipe.outputName)} x${recipe.outputAmount}</h4>
+      <h4>${escapeHtml(recipe.outputName)} x${recipe.outputAmount ?? 1}</h4>
       <p class="recipe-meta">Ingredients:</p>
       <ul>${ingredientsHtml}</ul>
       ${notesHtml}
