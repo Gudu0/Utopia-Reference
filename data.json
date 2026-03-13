@@ -437,6 +437,564 @@
                     }
                   ],
                   "notes": ""
+                },
+                {
+                  "id": "kittyhouse",
+                  "outputName": "Kitty House",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "cloudembroideredsilk",
+                      "amount": 30
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "petcatcamera",
+                  "outputName": "Pet Cat Camera",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "deep-seasteelbar",
+                      "amount": 50
+                    },
+                    {
+                      "itemName": "resin",
+                      "amount": 50
+                    },
+                    {
+                      "itemName": "glass",
+                      "amount": 100
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "petcattripod",
+                  "outputName": "Pet Cat Tripod",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "obsidian",
+                      "amount": 100
+                    },
+                    {
+                      "itemName": "resin",
+                      "amount": 100
+                    },
+                    {
+                      "itemName": "crystalbranches",
+                      "amount": 100
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "petcatbamboodragonfly",
+                  "outputName": "Pet Cat Bamboo Dragonfly",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "whirlwindgrass",
+                      "amount": 10
+                    },
+                    {
+                      "itemName": "hikalialloy",
+                      "amount": 10
+                    },
+                    {
+                      "itemName": "resin",
+                      "amount": 100
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "spiritpotion",
+                  "outputName": "Spirit Potion",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "orb",
+                      "amount": 10
+                    },
+                    {
+                      "itemName": "magnet",
+                      "amount": 10
+                    },
+                    {
+                      "itemName": "wisp",
+                      "amount": 10
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "exchangepetcage",
+                  "outputName": "Exchange Pet Cage",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "wood",
+                      "amount": 10
+                    },
+                    {
+                      "itemName": "orb",
+                      "amount": 25
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "exchangemountcage",
+                  "outputName": "Exchange Mount Cage",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "wood",
+                      "amount": 10
+                    },
+                    {
+                      "itemName": "orb",
+                      "amount": 25
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "mountsaddle",
+                  "outputName": "Mount Saddle",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "wood",
+                      "amount": 10
+                    },
+                    {
+                      "itemName": "leather",
+                      "amount": 1
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "collar",
+                  "outputName": "Collar",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "leather",
+                      "amount": 1
+                    },
+                    {
+                      "itemName": "ironbar",
+                      "amount": 1
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "snare",
+                  "outputName": "Snare",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "stone",
+                      "amount": 10
+                    },
+                    {
+                      "itemName": "wood",
+                      "amount": 5
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "mountcage",
+                  "outputName": "Mount Cage",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "wood",
+                      "amount": 10
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "petcage",
+                  "outputName": "Pet Cage",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "wood",
+                      "amount": 10
+                    }
+                  ],
+                  "description": ""
+                }
+              ]
+            },
+            {
+              "id": "finefeed",
+              "name": "Fine Feed",
+              "recipes": [
+                {
+                  "id": "finelavadragonfeed",
+                  "outputName": "Fine Lava Dragon Feed",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "dragonfeed",
+                      "amount": 81
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "finetigerskinsharkfeed",
+                  "outputName": "Fine Tigerskin Shark Feed",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "tigerskinsharkfeed",
+                      "amount": 101
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "finedarkpurplesharkfeed",
+                  "outputName": "Fine Dark Purple Shark Feed",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "darkpurplesharkfeed",
+                      "amount": 101
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "finesleepingfiercesharkfeed",
+                  "outputName": "Fine Sleeping Fierce Shark Feed",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "sleepingfiercesharkfeed",
+                      "amount": 111
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "fineprismshellturtlefeed",
+                  "outputName": "Fine Prismshell Turtle Feed",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "prismshellturtlefeed",
+                      "amount": 80
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "fineunicornfeed",
+                  "outputName": "Fine Unicorn Feed",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "unicornfeed",
+                      "amount": 101
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "finecyanbirdfeed",
+                  "outputName": "Fine Cyan Bird Feed",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "cyanbirdfeed",
+                      "amount": 101
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "fineraptorgriffinfeed",
+                  "outputName": "Fine Raptor Griffin Feed",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "griffinfeed",
+                      "amount": 101
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "fineicebirdfeed",
+                  "outputName": "Fine Ice Bird Feed",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "icebirdfeed",
+                      "amount": 101
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "finedarktrexfeed",
+                  "outputName": "Fine Dark T-Rex Feed",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "darkt-rexfeed",
+                      "amount": 51
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "finesagewhitemonkeyfeed",
+                  "outputName": "Fine Sage White Monkey Feed",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "sagewhitemonkeyfeed",
+                      "amount": 100
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "fineancientalligatorfeed",
+                  "outputName": "Fine Ancient Alligator Feed",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "ancientalligatorfeed",
+                      "amount": 51
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "finenorthrendbonedragonfeed",
+                  "outputName": "Fine Northrend Bone Dragon Feed",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "northrendbonedragonfeed",
+                      "amount": 91
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "fineseaalligatordragonfeed",
+                  "outputName": "Fine Sea Alligator Dragon Feed",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "seaalligatordragonfeed",
+                      "amount": 90
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "finerunedragonfeed",
+                  "outputName": "Fine Rune Dragon Feed",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "runedragonfeed",
+                      "amount": 90
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "fineminesourcescorpionfeed",
+                  "outputName": "Fine Minesource Scorpion Feed",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "giantminesourcescorpionfeed",
+                      "amount": 90
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "findsandscorpionfeed",
+                  "outputName": "Find Sand Scorpion Feed",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "sandscorpionfeed",
+                      "amount": 90
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "finemaahesfeed",
+                  "outputName": "Fine Maahes Feed",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "maahesfeed",
+                      "amount": 90
+                    }
+                  ],
+                  "description": ""
+                }
+              ]
+            },
+            {
+              "id": "hearthtribe",
+              "name": "Hearth & Tribe",
+              "recipes": [
+                {
+                  "id": "hearthcornerstone",
+                  "outputName": "Hearth Cornerstone",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "stone",
+                      "amount": 70
+                    },
+                    {
+                      "itemName": "wood",
+                      "amount": 70
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "hearthteleporter",
+                  "outputName": "Hearth Teleporter",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "leather",
+                      "amount": 10
+                    },
+                    {
+                      "itemName": "coal",
+                      "amount": 10
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "hearthstone",
+                  "outputName": "Hearthstone",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "stone",
+                      "amount": 30
+                    },
+                    {
+                      "itemName": "orb",
+                      "amount": 5
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "sealedremainscrystal",
+                  "outputName": "Sealed Remains Crystal",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "steamstone",
+                      "amount": 100
+                    },
+                    {
+                      "itemName": "silverore",
+                      "amount": 100
+                    },
+                    {
+                      "itemName": "wood",
+                      "amount": 100
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "tribemover",
+                  "outputName": "Tribe Mover",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "stone",
+                      "amount": 500
+                    },
+                    {
+                      "itemName": "wood",
+                      "amount": 500
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "tribeisland",
+                  "outputName": "Tribe Island",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "steamstone",
+                      "amount": 100
+                    },
+                    {
+                      "itemName": "coal",
+                      "amount": 100
+                    }
+                  ],
+                  "description": ""
+                },
+                {
+                  "id": "antigravitycrystal",
+                  "outputName": "Antigravity Crystal",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "antigravitycrystalpiece",
+                      "amount": 20
+                    }
+                  ],
+                  "description": ""
+                }
+              ]
+            },
+            {
+              "id": "fishingtackle",
+              "name": "Fishing Tackle",
+              "recipes": [
+                {
+                  "id": "brandnewtypeofbait",
+                  "outputName": "Brand-new Type of Bait",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "carp",
+                      "amount": 5
+                    },
+                    {
+                      "itemName": "wheat",
+                      "amount": 1
+                    }
+                  ],
+                  "description": ""
                 }
               ]
             }
