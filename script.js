@@ -159,8 +159,10 @@ function renderRecipeCard(recipe) {
       }).join("")
     : "";
 
-  const notesHtml = recipe.notes
-    ? `<p class="recipe-meta">Notes: ${escapeHtml(recipe.notes)}</p>`
+  const description = recipe.description ?? recipe.notes ?? "";
+
+  const descriptionHtml = description
+    ? `<p class="recipe-meta">Description: ${escapeHtml(description)}</p>`
     : "";
 
   return `
@@ -168,7 +170,7 @@ function renderRecipeCard(recipe) {
       <h4>${escapeHtml(recipe.outputName)} x${recipe.outputAmount ?? 1}</h4>
       <p class="recipe-meta">Ingredients:</p>
       <ul>${ingredientsHtml}</ul>
-      ${notesHtml}
+      ${descriptionHtml}
     </article>
   `;
 }
