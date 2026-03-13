@@ -88,7 +88,31 @@ body {
   flex-direction: column;
   gap: 10px;
 }
+.tab-list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
 
+.tab-button {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.tab-button:hover {
+  border-color: var(--accent);
+}
+
+.tab-button.active {
+  border-color: var(--accent);
+  outline: 1px solid var(--accent);
+}
 .station-button {
   width: 100%;
   text-align: left;
