@@ -25,8 +25,8 @@
     <section class="panel">
       <h2>Recipe Entry</h2>
       <p class="small-note">
-        This page updates a working copy in your browser. It cannot save directly to GitHub Pages,
-        so after adding recipes you download the updated <code>data.json</code> and replace the repo file.
+        This updates a working copy in your browser. After adding recipes,
+        download the updated <code>data.json</code> and replace the repo file.
       </p>
 
       <form id="recipe-form" class="form-grid">
@@ -38,11 +38,27 @@
         <div id="new-station-fields" class="section-box hidden">
           <div class="field">
             <label for="new-station-name">New Station Name</label>
-            <input id="new-station-name" type="text" placeholder="Handcraft" />
+            <input id="new-station-name" type="text" placeholder="Hand" />
           </div>
           <div class="field">
             <label for="new-station-id">New Station ID (optional)</label>
-            <input id="new-station-id" type="text" placeholder="handcraft" />
+            <input id="new-station-id" type="text" placeholder="hand" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="tab-select">Tab</label>
+          <select id="tab-select"></select>
+        </div>
+
+        <div id="new-tab-fields" class="section-box hidden">
+          <div class="field">
+            <label for="new-tab-name">New Tab Name</label>
+            <input id="new-tab-name" type="text" placeholder="Weapon" />
+          </div>
+          <div class="field">
+            <label for="new-tab-id">New Tab ID (optional)</label>
+            <input id="new-tab-id" type="text" placeholder="weapon" />
           </div>
         </div>
 
@@ -54,23 +70,23 @@
         <div id="new-category-fields" class="section-box hidden">
           <div class="field">
             <label for="new-category-name">New Category Name</label>
-            <input id="new-category-name" type="text" placeholder="Basic" />
+            <input id="new-category-name" type="text" placeholder="Wooden Weapon" />
           </div>
           <div class="field">
             <label for="new-category-id">New Category ID (optional)</label>
-            <input id="new-category-id" type="text" placeholder="basic" />
+            <input id="new-category-id" type="text" placeholder="woodenweapon" />
           </div>
         </div>
 
         <div class="section-box">
           <div class="field">
             <label for="output-name">Output Name</label>
-            <input id="output-name" type="text" placeholder="Stone Pickaxe" />
+            <input id="output-name" type="text" placeholder="Wood Axe" />
           </div>
 
           <div class="field">
             <label for="recipe-id">Recipe ID (optional)</label>
-            <input id="recipe-id" type="text" placeholder="stone-pickaxe" />
+            <input id="recipe-id" type="text" placeholder="woodaxe" />
           </div>
 
           <div class="field">
