@@ -1,11 +1,15 @@
 const stationSelect = document.getElementById("station-select");
+const tabSelect = document.getElementById("tab-select");
 const categorySelect = document.getElementById("category-select");
 
 const newStationFields = document.getElementById("new-station-fields");
+const newTabFields = document.getElementById("new-tab-fields");
 const newCategoryFields = document.getElementById("new-category-fields");
 
 const newStationNameInput = document.getElementById("new-station-name");
 const newStationIdInput = document.getElementById("new-station-id");
+const newTabNameInput = document.getElementById("new-tab-name");
+const newTabIdInput = document.getElementById("new-tab-id");
 const newCategoryNameInput = document.getElementById("new-category-name");
 const newCategoryIdInput = document.getElementById("new-category-id");
 
@@ -37,6 +41,7 @@ async function init() {
 
 function wireEvents() {
   stationSelect.addEventListener("change", onStationChange);
+  tabSelect.addEventListener("change", onTabChange);
   categorySelect.addEventListener("change", onCategoryChange);
   addIngredientBtn.addEventListener("click", () => addIngredientRow());
   copyJsonBtn.addEventListener("click", copyJson);
@@ -95,8 +100,55 @@ function populateStationSelect(selectedValue = "") {
   onStationChange();
 }
 
+function populateTabSelect(selectedValue = "") {
+  const stationValue = stationSelect.value;
+
+  tabSelect.innerHTML = "";
+
+  if (!stationValue) {
+    tabSelect.innerHTML = `<option value="">Select station first</option>`;
+    newTabFields.classList.add("hidden");
+    populateCategorySelect();
+    return;
+  }
+
+  if (stationValue === "__new__") {
+    tabSelect.innerHTML = `<option value="__new__">Create new tab</option>`;
+    tabSelect.value = "__new__";
+    newTabFields.classList.remove("hidden");
+    populateCategorySelect();
+    return;
+  }
+
+  const station = workingData.stations.find(s => s.id === stationValue);
+  const tabs = station?.tabs ?? [];
+
+  tabSelect.innerHTML = `<option value="">Select tab</option>`;
+
+  for (const tab of tabs) {
+    tabSelect.insertAdjacentHTML(
+      "beforeend",
+      `<option value="${escapeHtmlAttr(tab.id)}">${escapeHtmlText(tab.name)}</option>`
+    );
+  }
+
+  tabSelect.insertAdjacentHTML(
+    "beforeend",
+    `<option value="__new__">+ Create new tab</option>`
+  );
+
+  if (selectedValue) {
+    tabSelect.value = selectedValue;
+  } else if (tabs.length > 0) {
+    tabSelect.value = tabs[0].id;
+  }
+
+  onTabChange();
+}
+
 function populateCategorySelect(selectedValue = "") {
   const stationValue = stationSelect.value;
+  const tabValue = tabSelect.value;
 
   categorySelect.innerHTML = "";
 
@@ -106,7 +158,13 @@ function populateCategorySelect(selectedValue = "") {
     return;
   }
 
-  if (stationValue === "__new__") {
+  if (!tabValue) {
+    categorySelect.innerHTML = `<option value="">Select tab first</option>`;
+    newCategoryFields.classList.add("hidden");
+    return;
+  }
+
+  if (stationValue === "__new__" || tabValue === "__new__") {
     categorySelect.innerHTML = `<option value="__new__">Create new category</option>`;
     categorySelect.value = "__new__";
     newCategoryFields.classList.remove("hidden");
@@ -114,7 +172,8 @@ function populateCategorySelect(selectedValue = "") {
   }
 
   const station = workingData.stations.find(s => s.id === stationValue);
-  const categories = station?.categories ?? [];
+  const tab = station?.tabs?.find(t => t.id === tabValue);
+  const categories = tab?.categories ?? [];
 
   categorySelect.innerHTML = `<option value="">Select category</option>`;
 
@@ -142,6 +201,12 @@ function populateCategorySelect(selectedValue = "") {
 function onStationChange() {
   const isNewStation = stationSelect.value === "__new__";
   newStationFields.classList.toggle("hidden", !isNewStation);
+  populateTabSelect();
+}
+
+function onTabChange() {
+  const isNewTab = tabSelect.value === "__new__";
+  newTabFields.classList.toggle("hidden", !isNewTab);
   populateCategorySelect();
 }
 
@@ -157,7 +222,7 @@ function addIngredientRow(itemName = "", amount = 1) {
   row.innerHTML = `
     <div class="field">
       <label>Ingredient Name</label>
-      <input type="text" class="ingredient-name" placeholder="Wood" value="${escapeHtmlAttr(itemName)}" />
+      <input type="text" class="ingredient-name" placeholder="wood" value="${escapeHtmlAttr(itemName)}" />
     </div>
 
     <div class="field">
@@ -187,6 +252,7 @@ function onRecipeSubmit(event) {
     updateJsonPreview();
 
     populateStationSelect(entry.stationId);
+    populateTabSelect(entry.tabId);
     populateCategorySelect(entry.categoryId);
     clearRecipeFields();
 
@@ -216,6 +282,28 @@ function collectFormData() {
     stationName = station.name;
   }
 
+  let tabId = "";
+  let tabName = "";
+
+  if (tabSelect.value === "__new__") {
+    tabName = clean(newTabNameInput.value);
+    tabId = clean(newTabIdInput.value) || slugify(tabName);
+
+    if (!tabName) {
+      throw new Error("New tab name is required.");
+    }
+  } else {
+    const station = workingData.stations.find(s => s.id === stationId);
+    const tab = station?.tabs?.find(t => t.id === tabSelect.value);
+
+    if (!tab) {
+      throw new Error("Pick a tab.");
+    }
+
+    tabId = tab.id;
+    tabName = tab.name;
+  }
+
   let categoryId = "";
   let categoryName = "";
 
@@ -228,7 +316,8 @@ function collectFormData() {
     }
   } else {
     const station = workingData.stations.find(s => s.id === stationId);
-    const category = station?.categories?.find(c => c.id === categorySelect.value);
+    const tab = station?.tabs?.find(t => t.id === tabId);
+    const category = tab?.categories?.find(c => c.id === categorySelect.value);
 
     if (!category) {
       throw new Error("Pick a category.");
@@ -260,6 +349,8 @@ function collectFormData() {
   return {
     stationId,
     stationName,
+    tabId,
+    tabName,
     categoryId,
     categoryName,
     recipe: {
@@ -305,16 +396,31 @@ function addRecipeToWorkingData(entry) {
     station = {
       id: entry.stationId,
       name: entry.stationName,
-      categories: []
+      tabs: []
     };
     workingData.stations.push(station);
   }
 
-  if (!Array.isArray(station.categories)) {
-    station.categories = [];
+  if (!Array.isArray(station.tabs)) {
+    station.tabs = [];
   }
 
-  let category = station.categories.find(c => c.id === entry.categoryId);
+  let tab = station.tabs.find(t => t.id === entry.tabId);
+
+  if (!tab) {
+    tab = {
+      id: entry.tabId,
+      name: entry.tabName,
+      categories: []
+    };
+    station.tabs.push(tab);
+  }
+
+  if (!Array.isArray(tab.categories)) {
+    tab.categories = [];
+  }
+
+  let category = tab.categories.find(c => c.id === entry.categoryId);
 
   if (!category) {
     category = {
@@ -322,7 +428,7 @@ function addRecipeToWorkingData(entry) {
       name: entry.categoryName,
       recipes: []
     };
-    station.categories.push(category);
+    tab.categories.push(category);
   }
 
   if (!Array.isArray(category.recipes)) {
@@ -408,7 +514,7 @@ function clean(value) {
 function slugify(value) {
   return clean(value)
     .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/[^a-z0-9]+/g, "")
     .replace(/^-+|-+$/g, "");
 }
 
