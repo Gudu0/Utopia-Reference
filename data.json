@@ -105,6 +105,342 @@
               ]
             }
           ]
+        },
+        {
+          "id": "items",
+          "name": "Items",
+          "categories": [
+            {
+              "id": "craftmaterial",
+              "name": "Craft Material",
+              "recipes": [
+                {
+                  "id": "fineduckdown",
+                  "outputName": "Fine Duck Down",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "duckfeather",
+                      "amount": 50
+                    }
+                  ],
+                  "notes": ""
+                },
+                {
+                  "id": "linen",
+                  "outputName": "Linen",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "plantfiber",
+                      "amount": 2
+                    }
+                  ],
+                  "notes": ""
+                },
+                {
+                  "id": "cotton",
+                  "outputName": "Cotton",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "cotton",
+                      "amount": 5
+                    }
+                  ],
+                  "notes": ""
+                },
+                {
+                  "id": "woolfabric",
+                  "outputName": "Wool Fabric",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "wool",
+                      "amount": 5
+                    }
+                  ],
+                  "notes": ""
+                },
+                {
+                  "id": "silkfabric",
+                  "outputName": "Silk Fabric",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "silk",
+                      "amount": 5
+                    }
+                  ],
+                  "notes": ""
+                },
+                {
+                  "id": "leather",
+                  "outputName": "Leather",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "hide",
+                      "amount": 2
+                    }
+                  ],
+                  "notes": ""
+                },
+                {
+                  "id": "woodplank",
+                  "outputName": "Wood Plank",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "wood",
+                      "amount": 5
+                    },
+                    {
+                      "itemName": "resin",
+                      "amount": 1
+                    }
+                  ],
+                  "notes": ""
+                },
+                {
+                  "id": "silkthread",
+                  "outputName": "Silk Thread",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "silk",
+                      "amount": 3
+                    }
+                  ],
+                  "notes": ""
+                },
+                {
+                  "id": "cloudembroideredsilk",
+                  "outputName": "Cloud Embroidered Silk",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "cloudsilk",
+                      "amount": 5
+                    }
+                  ],
+                  "notes": ""
+                },
+                {
+                  "id": "plantfiberx3",
+                  "outputName": "Plant Fiber X 3",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "seaweed",
+                      "amount": 10
+                    }
+                  ],
+                  "notes": "maybe this amount is wrong"
+                }
+              ]
+            },
+            {
+              "id": "functionalitems",
+              "name": "Functional Items",
+              "recipes": [
+                {
+                  "id": "basket",
+                  "outputName": "Basket",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "straw",
+                      "amount": 20
+                    },
+                    {
+                      "itemName": "plantfiber",
+                      "amount": 50
+                    }
+                  ],
+                  "notes": ""
+                },
+                {
+                  "id": "dye",
+                  "outputName": "Dye",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "redflower",
+                      "amount": 15
+                    },
+                    {
+                      "itemName": "greenflower",
+                      "amount": 15
+                    },
+                    {
+                      "itemName": "blueflower",
+                      "amount": 15
+                    }
+                  ],
+                  "notes": ""
+                },
+                {
+                  "id": "soappowder",
+                  "outputName": "Soap Poweder",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "leaf",
+                      "amount": 10
+                    },
+                    {
+                      "itemName": "wisp",
+                      "amount": 1
+                    },
+                    {
+                      "itemName": "whiteflower",
+                      "amount": 10
+                    }
+                  ],
+                  "notes": ""
+                },
+                {
+                  "id": "lockpick-iron",
+                  "outputName": "Lockpick - Iron",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "ironbar",
+                      "amount": 10
+                    }
+                  ],
+                  "notes": ""
+                },
+                {
+                  "id": "lockpick-silver",
+                  "outputName": "Lockpick - Silver",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "silverbar",
+                      "amount": 10
+                    }
+                  ],
+                  "notes": ""
+                },
+                {
+                  "id": "lockpick-gold",
+                  "outputName": "Lockpick - Gold",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "goldbar",
+                      "amount": 10
+                    }
+                  ],
+                  "notes": ""
+                },
+                {
+                  "id": "camera",
+                  "outputName": "Camera",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "ironbar",
+                      "amount": 5
+                    },
+                    {
+                      "itemName": "lightningenchantstone1",
+                      "amount": 1
+                    },
+                    {
+                      "itemName": "glass",
+                      "amount": 5
+                    }
+                  ],
+                  "notes": ""
+                },
+                {
+                  "id": "drone",
+                  "outputName": "Drone",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "ironbar",
+                      "amount": 20
+                    },
+                    {
+                      "itemName": "steamstone",
+                      "amount": 2
+                    },
+                    {
+                      "itemName": "glass",
+                      "amount": 10
+                    }
+                  ],
+                  "notes": ""
+                },
+                {
+                  "id": "mysteriouscommunicationsdevice",
+                  "outputName": "Mysterious Communications Device",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "rubber",
+                      "amount": 1
+                    },
+                    {
+                      "itemName": "wood",
+                      "amount": 1
+                    }
+                  ],
+                  "notes": ""
+                },
+                {
+                  "id": "waterskin",
+                  "outputName": "Waterskin",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "leather",
+                      "amount": 2
+                    }
+                  ],
+                  "notes": ""
+                },
+                {
+                  "id": "dice",
+                  "outputName": "Dice",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "refinedrubber",
+                      "amount": 1
+                    },
+                    {
+                      "itemName": "wolffang",
+                      "amount": 1
+                    }
+                  ],
+                  "notes": ""
+                }
+              ]
+            },
+            {
+              "id": "companions&mounts",
+              "name": "Companions & Mounts",
+              "recipes": [
+                {
+                  "id": "premiumpetfood",
+                  "outputName": "Premium Pet Food",
+                  "outputAmount": 1,
+                  "ingredients": [
+                    {
+                      "itemName": "advpetfood",
+                      "amount": 100
+                    }
+                  ],
+                  "notes": ""
+                }
+              ]
+            }
+          ]
         }
       ]
     }
