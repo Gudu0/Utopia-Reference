@@ -3,7 +3,104 @@
     {
       "id": "hand",
       "name": "Hand",
-      "categories": []
+      "categories": [
+        {
+          "id": "woodenweapon",
+          "name": "Wooden Weapon",
+          "recipes": [
+            {
+              "id": "woodaxe",
+              "outputName": "Wood Axe",
+              "outputAmount": 1,
+              "ingredients": [
+                {
+                  "itemName": "wood",
+                  "amount": 5
+                }
+              ],
+              "notes": ""
+            },
+            {
+              "id": "woodpick",
+              "outputName": "Wood Pick",
+              "outputAmount": 1,
+              "ingredients": [
+                {
+                  "itemName": "wood",
+                  "amount": 15
+                }
+              ],
+              "notes": ""
+            },
+            {
+              "id": "woodclub",
+              "outputName": "Wood Club",
+              "outputAmount": 1,
+              "ingredients": [
+                {
+                  "itemName": "wood",
+                  "amount": 20
+                }
+              ],
+              "notes": ""
+            },
+            {
+              "id": "woodbow",
+              "outputName": "Wood Bow",
+              "outputAmount": 1,
+              "ingredients": [
+                {
+                  "itemName": "wood",
+                  "amount": 20
+                },
+                {
+                  "itemName": "tendon",
+                  "amount": 1
+                }
+              ],
+              "notes": ""
+            }
+          ]
+        },
+        {
+          "id": "magic",
+          "name": "Magic",
+          "recipes": [
+            {
+              "id": "wand",
+              "outputName": "Wand",
+              "outputAmount": 1,
+              "ingredients": [
+                {
+                  "itemName": "wood",
+                  "amount": 10
+                },
+                {
+                  "itemName": "magnet",
+                  "amount": 1
+                }
+              ],
+              "notes": ""
+            },
+            {
+              "id": "theguidebook",
+              "outputName": "The guidebook",
+              "outputAmount": 1,
+              "ingredients": [
+                {
+                  "itemName": "orb",
+                  "amount": 10
+                },
+                {
+                  "itemName": "plantfiber",
+                  "amount": 20
+                }
+              ],
+              "notes": "guidebook is lowercase ingame for some reason"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
