@@ -16,7 +16,7 @@ const newCategoryIdInput = document.getElementById("new-category-id");
 const outputNameInput = document.getElementById("output-name");
 const recipeIdInput = document.getElementById("recipe-id");
 const outputAmountInput = document.getElementById("output-amount");
-const notesInput = document.getElementById("notes");
+const descriptionInput = document.getElementById("description");
 
 const ingredientListEl = document.getElementById("ingredient-list");
 const jsonOutputEl = document.getElementById("json-output");
@@ -344,7 +344,7 @@ function collectFormData() {
     throw new Error("Add at least one ingredient.");
   }
 
-  const notes = clean(notesInput.value);
+  const description = clean(descriptionInput.value);
 
   return {
     stationId,
@@ -358,7 +358,7 @@ function collectFormData() {
       outputName,
       outputAmount,
       ingredients,
-      notes
+      description
     }
   };
 }
@@ -456,7 +456,7 @@ function clearRecipeFields() {
   outputNameInput.value = "";
   recipeIdInput.value = "";
   outputAmountInput.value = "1";
-  notesInput.value = "";
+  descriptionInput.value = "";
 
   ingredientListEl.innerHTML = "";
   addIngredientRow();
