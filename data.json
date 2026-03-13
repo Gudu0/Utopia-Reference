@@ -1,0 +1,9 @@
+{
+  "stations": [
+    {
+      "id": "hand",
+      "name": "Hand",
+      "categories": []
+    }
+  ]
+}
