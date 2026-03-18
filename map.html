@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Utopia: Origin Notes - Map</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Leaflet CSS from CDN - no install needed -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <style>
+    /* Map page overrides - keeps the header/nav but gives the rest to the map layout */
+
+    /* Prevent the main container from scrolling the page; map fills remaining height */
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .map-layout {
+      display: flex;
+      height: calc(100vh - 70px); /* 70px = approx header height; tweak if needed */
+      overflow: hidden;
+    }
+
+    /* ── Sidebar ── */
+    .map-sidebar {
+      width: 260px;
+      min-width: 200px;
+      max-width: 320px;
+      background: var(--panel-bg, #1e1e2e);
+      border-right: 1px solid var(--border, #333);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      padding: 12px;
+      gap: 12px;
+      flex-shrink: 0;
+      z-index: 1000;
+    }
+
+    .map-sidebar h3 {
+      margin: 0 0 6px 0;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted, #888);
+    }
+
+    .search-input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 7px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border, #444);
+      background: var(--input-bg, #2a2a3e);
+      color: var(--text, #eee);
+      font-size: 0.9rem;
+    }
+
+    .search-input::placeholder {
+      color: var(--muted, #666);
+    }
+
+    .filter-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .filter-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 0.88rem;
+    }
+
+    .filter-item input[type="checkbox"] {
+      accent-color: var(--accent, #7c6af7);
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+    }
+
+    .type-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .result-count {
+      font-size: 0.78rem;
+      color: var(--muted, #888);
+      margin-top: 4px;
+    }
+
+    /* Island filter dropdown */
+    .island-select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 7px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border, #444);
+      background: var(--input-bg, #2a2a3e);
+      color: var(--text, #eee);
+      font-size: 0.88rem;
+    }
+
+    /* ── Map container ── */
+    #map {
+      flex: 1;
+      background: #111;
+    }
+
+    /* ── Leaflet popup styling to match site theme ── */
+    .leaflet-popup-content-wrapper {
+      background: var(--panel-bg, #1e1e2e);
+      color: var(--text, #eee);
+      border: 1px solid var(--border, #444);
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    }
+
+    .leaflet-popup-tip {
+      background: var(--panel-bg, #1e1e2e);
+    }
+
+    .leaflet-popup-content {
+      margin: 10px 14px;
+      font-size: 0.88rem;
+      line-height: 1.5;
+    }
+
+    .popup-name {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+
+    .popup-type {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted, #888);
+      margin-bottom: 4px;
+    }
+
+    .popup-island {
+      color: var(--muted, #aaa);
+      font-size: 0.82rem;
+    }
+
+    .popup-notes {
+      margin-top: 6px;
+      font-style: italic;
+      color: var(--muted, #aaa);
+      font-size: 0.82rem;
+    }
+
+    /* ── No-map placeholder shown before image is configured ── */
+    #map-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      background: #111;
+      color: #666;
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 40px;
+      line-height: 1.7;
+    }
+
+    /* ── Mobile: sidebar collapses to a drawer ── */
+    .sidebar-toggle {
+      display: none;
+      position: fixed;
+      bottom: 16px;
+      right: 16px;
+      z-index: 2000;
+      background: var(--accent, #7c6af7);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    @media (max-width: 640px) {
+      .map-sidebar {
+        position: fixed;
+        top: 70px;
+        left: 0;
+        bottom: 0;
+        z-index: 1500;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+        width: 85vw;
+        max-width: 300px;
+      }
+
+      .map-sidebar.open {
+        transform: translateX(0);
+      }
+
+      .sidebar-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .map-layout {
+        height: calc(100vh - 70px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-row">
+      <div>
+        <h1>Utopia: Origin Notes</h1>
+        <p class="subtitle">Resource Map</p>
+      </div>
+      <nav class="top-nav">
+        <a href="index.html" class="nav-link">Reference</a>
+        <a href="map.html" class="nav-link current">Map</a>
+        <a href="editor.html" class="nav-link">JSON Maker</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="map-layout">
+
+    <!-- ── Sidebar: search + filters ── -->
+    <aside class="map-sidebar" id="sidebar">
+      <div>
+        <h3>Search</h3>
+        <input
+          class="search-input"
+          id="search-input"
+          type="text"
+          placeholder="e.g. Iron Ore, Wolf…"
+          autocomplete="off"
+        />
+        <div class="result-count" id="result-count"></div>
+      </div>
+
+      <div>
+        <h3>Island</h3>
+        <select class="island-select" id="island-select">
+          <option value="all">All Islands</option>
+          <!-- populated by map.js -->
+        </select>
+      </div>
+
+      <div>
+        <h3>Resource Type</h3>
+        <div class="filter-list" id="filter-list">
+          <!-- populated by map.js based on types found in map-nodes.json -->
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── Map ── -->
+    <div id="map"></div>
+
+  </div>
+
+  <!-- Mobile sidebar toggle button -->
+  <button class="sidebar-toggle" id="sidebar-toggle" title="Toggle filters">⚙</button>
+
+  <!-- Leaflet JS from CDN -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="map.js"></script>
+
+</body>
+</html>
