@@ -188,15 +188,15 @@ map.on('mouseout', function () {
 
 function makeIcon(type) {
   const cfg   = TYPE_CONFIG[type] || TYPE_CONFIG.other;
-  const svg   = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-    <circle cx="9" cy="9" r="7" fill="${cfg.color}" stroke="#222" stroke-width="1.5"/>
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10">
+    <circle cx="5" cy="5" r="4" fill="${cfg.color}" stroke="#111" stroke-width="1"/>
   </svg>`;
   return L.divIcon({
     html:        svg,
     className:   '',
-    iconSize:    [18, 18],
-    iconAnchor:  [9,  9],
-    popupAnchor: [0, -10],
+    iconSize:    [10, 10],
+    iconAnchor:  [5,  5],
+    popupAnchor: [0, -7],
   });
 }
 
