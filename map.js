@@ -21,10 +21,10 @@
 // ── CONFIG ───────────────────────────────────────────────────
 
 const MAP_IMAGE  = "images/Beia_map_TEMPORARY.png";   // e.g. 'images/beia-map.jpg' — null = grid placeholder
-const GAME_MIN_X = 0;
-const GAME_MIN_Y = 0;
-const GAME_MAX_X = 20000; // update once you know the real world edge
-const GAME_MAX_Y = 20000;
+const GAME_MIN_X = 19;
+const GAME_MIN_Y = 18;
+const GAME_MAX_X = 19980; // update once you know the real world edge
+const GAME_MAX_Y = 19981;
 
 // ── TYPE COLORS ───────────────────────────────────────────────
 
