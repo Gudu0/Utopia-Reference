@@ -7,5 +7,14 @@
     "notes": "Replace x/y with real in-game coordinates",
     "x": 3200,
     "y": 4100
+  },
+  {
+    "id": 2,
+    "name": "my base",
+    "type": "coord",
+    "island": "Joy Valley",
+    "notes": "test",
+    "x": 5620,
+    "y": 11680
   }
 ]
