@@ -53,15 +53,14 @@ let searchText   = '';
 //  upward. Game Y=0 is at the top, so we invert it.
 //  If markers appear vertically mirrored when you add a real
 //  map image, just swap to:  return [gy, gx];
-
+//  COMMENT IS OUTDATED, PLEASE FIX
 function gameToLatLng(gx, gy) {
-  return [GAME_MAX_Y - gy, gx];
+  return [gy, gx];  // Y maps directly — increases upward in both systems
 }
-
 function latLngToGame(latlng) {
   return {
     x: Math.round(latlng.lng),
-    y: Math.round(GAME_MAX_Y - latlng.lat),
+    y: Math.round(latlng.lat),
   };
 }
 
