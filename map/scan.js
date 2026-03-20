@@ -9,10 +9,11 @@
 //  thumbnail in each result row to see what OCR is seeing.
 // ============================================================
 
-const CROP_X = 130;  // pixels from left edge of screenshot
-const CROP_Y = 195;  // pixels from top edge
-const CROP_W = 230;  // width of crop region
-const CROP_H =  55;  // height of crop region
+
+const CROP_X = 185;  // was 130  // pixels from left edge of screenshot
+const CROP_Y = 225;  // was 195  // pixels from top edge
+const CROP_W = 185;  // was 230  // width of crop region
+const CROP_H =  30;  // was 55  // height of crop region
 const SCALE  =   3;  // upscale before OCR — sharpens small text
 
 let scanResults    = [];
