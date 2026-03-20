@@ -20,7 +20,7 @@
 
 // ── CONFIG ───────────────────────────────────────────────────
 
-const MAP_IMAGE  = null;   // e.g. 'images/beia-map.jpg' — null = grid placeholder
+const MAP_IMAGE  = images/beia_map_TEMPORARY;   // e.g. 'images/beia-map.jpg' — null = grid placeholder
 const GAME_MIN_X = 0;
 const GAME_MIN_Y = 0;
 const GAME_MAX_X = 20000; // update once you know the real world edge
