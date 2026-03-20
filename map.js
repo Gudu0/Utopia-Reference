@@ -68,9 +68,9 @@ function latLngToGame(latlng) {
 
 const map = L.map('map', {
   crs:     L.CRS.Simple,
-  minZoom: -5,
-  maxZoom:  4,
-  zoomSnap: 0.2,
+  minZoom: -4,
+  maxZoom:  3,
+  zoomSnap: 0.5,
 });
 
 const worldBounds = [
