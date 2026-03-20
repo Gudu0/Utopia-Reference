@@ -104,22 +104,23 @@
     .popup-notes { margin-top: 6px; font-style: italic; color: var(--muted, #aaa); font-size: 0.82rem; }
 
     /* ── Node editor popout (right side) ── */
+    /* REPLACE WITH: */
     .editor-panel {
-      position: absolute;
-      top: 0; right: 0; bottom: 0;
-      width: 300px;
+      width: 0;
+      min-width: 0;
       background: var(--panel-bg, #1e1e2e);
-      border-left: 1px solid var(--border, #333);
+      border-left: 0px solid var(--border, #333);
       display: flex;
       flex-direction: column;
-      z-index: 1500;
-      transform: translateX(100%);
-      transition: transform 0.25s ease;
+      flex-shrink: 0;
       overflow: hidden;
+      transition: width 0.25s ease, border-width 0.25s ease;
+      position: relative;
     }
-
+    
     .editor-panel.open {
-      transform: translateX(0);
+      width: 300px;
+      border-left-width: 1px;
     }
 
     /* Tab that sticks out to the left of the panel */
