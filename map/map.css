@@ -1,1 +1,303 @@
+/* ============================================================
+   map.css — Utopia: Origin Notes
+   Covers both base site styles and map page styles.
+   ============================================================ */
 
+/* ── Base ─────────────────────────────────────────────────── */
+
+:root {
+  --bg:       #10161d;
+  --panel:    #18212b;
+  --panel-2:  #202c38;
+  --text:     #e8eef5;
+  --muted:    #9fb0c2;
+  --accent:   #6fcf97;
+  --border:   #2d3c4c;
+  --danger:   #d06b6b;
+
+  /* aliases */
+  --panel-bg: #18212b;
+  --input-bg: #202c38;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ── Header ──────────────────────────────────────────────── */
+
+.site-header {
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.site-header h1 { margin: 0 0 4px; font-size: 1.6rem; }
+.subtitle { margin: 0; color: var(--muted); font-size: 0.9rem; }
+
+/* ── Nav ─────────────────────────────────────────────────── */
+
+.top-nav { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+.nav-link {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--text);
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.nav-link.current,
+.nav-link:hover { border-color: var(--accent); }
+
+/* ── Shared button ───────────────────────────────────────── */
+
+.btn {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.88rem;
+}
+.btn:hover { border-color: var(--accent); }
+.btn.primary { border-color: var(--accent); }
+
+/* ── Map page layout ─────────────────────────────────────── */
+
+html, body { height: 100%; overflow: hidden; }
+
+.map-layout {
+  display: flex;
+  height: calc(100vh - 76px); /* matches header height — adjust if header changes */
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Left sidebar ────────────────────────────────────────── */
+
+.map-sidebar {
+  width: 220px;
+  min-width: 180px;
+  background: var(--panel-bg);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding: 12px;
+  gap: 12px;
+  flex-shrink: 0;
+  z-index: 1000;
+}
+
+.map-sidebar h3 {
+  margin: 0 0 6px 0;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.search-input, .island-select {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 7px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--input-bg);
+  color: var(--text);
+  font-size: 0.88rem;
+  font: inherit;
+}
+.search-input { font-size: 0.88rem; }
+.search-input::placeholder { color: var(--muted); }
+
+.filter-list { display: flex; flex-direction: column; gap: 6px; }
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 0.88rem;
+}
+
+.filter-item input[type="checkbox"] {
+  accent-color: var(--accent);
+  width: 15px; height: 15px;
+  cursor: pointer;
+}
+
+.type-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.result-count {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+/* ── Map ─────────────────────────────────────────────────── */
+
+#map { flex: 1; background: #111; }
+
+/* ── Leaflet popup theme ─────────────────────────────────── */
+
+.leaflet-popup-content-wrapper {
+  background: var(--panel-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+}
+.leaflet-popup-tip        { background: var(--panel-bg); }
+.leaflet-popup-content    { margin: 10px 14px; font-size: 0.88rem; line-height: 1.5; }
+.popup-name               { font-weight: 600; font-size: 1rem; margin-bottom: 4px; }
+.popup-type               { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+.popup-island             { color: var(--muted); font-size: 0.82rem; }
+.popup-notes              { margin-top: 6px; font-style: italic; color: var(--muted); font-size: 0.82rem; }
+
+/* ── Mobile sidebar toggle ───────────────────────────────── */
+
+.sidebar-toggle {
+  display: none;
+  position: fixed; bottom: 16px; right: 16px;
+  z-index: 2000;
+  background: var(--accent); color: white;
+  border: none; border-radius: 50%;
+  width: 48px; height: 48px;
+  font-size: 1.3rem; cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+
+@media (max-width: 640px) {
+  .map-layout { height: calc(100vh - 76px); }
+
+  .map-sidebar {
+    position: fixed; top: 76px; left: 0; bottom: 0;
+    z-index: 1500;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    width: 85vw; max-width: 300px;
+  }
+  .map-sidebar.open { transform: translateX(0); }
+  .sidebar-toggle { display: flex; align-items: center; justify-content: center; }
+}
+
+/* ── Modal tabs ──────────────────────────────────────────── */
+
+.modal-tabs {
+  display: flex;
+  border-bottom: 1px solid #2d3c4c;
+  flex-shrink: 0;
+}
+
+.modal-tab {
+  flex: 1; padding: 10px;
+  background: none; border: none;
+  color: var(--muted); font: inherit; font-size: 0.82rem;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+}
+.modal-tab.active { color: var(--text); border-bottom-color: var(--accent); }
+.modal-tab:hover  { color: var(--text); }
+
+.modal-pane {
+  display: none;
+  overflow-y: auto;
+  padding: 14px;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.modal-pane.active { display: flex; }
+
+/* ── Scan tab ────────────────────────────────────────────── */
+
+.scan-drop-zone {
+  border: 2px dashed var(--border); border-radius: 8px;
+  padding: 20px; text-align: center; cursor: pointer;
+  color: var(--muted); font-size: 0.85rem; line-height: 1.6;
+  transition: border-color 0.15s, background 0.15s;
+}
+.scan-drop-zone:hover,
+.scan-drop-zone.dragover {
+  border-color: var(--accent);
+  background: rgba(111,207,151,0.05);
+}
+
+.scan-results  { display: flex; flex-direction: column; gap: 6px; }
+
+.scan-result-row {
+  display: grid;
+  grid-template-columns: 1fr 90px 32px;
+  gap: 6px; align-items: center;
+  background: var(--panel-2); border-radius: 6px; padding: 6px 8px;
+}
+
+.scan-result-coords  { font-family: monospace; font-size: 0.8rem; color: var(--accent); }
+.scan-result-status  { font-size: 0.72rem; color: var(--muted); }
+
+.scan-add-btn {
+  background: none; border: 1px solid var(--border); border-radius: 4px;
+  color: var(--muted); cursor: pointer; font-size: 0.8rem; padding: 3px 6px;
+}
+.scan-add-btn:hover { border-color: var(--accent); color: var(--accent); }
+.scan-add-btn.added { color: var(--accent); border-color: var(--accent); opacity: 0.5; cursor: default; }
+
+.scan-thumb {
+  width: 40px; height: 24px; object-fit: cover; border-radius: 3px;
+  border: 1px solid var(--border); flex-shrink: 0;
+}
+
+.scan-progress {
+  font-size: 0.78rem; color: var(--muted); text-align: center; min-height: 18px;
+}
+
+/* ── Modal shared field style ────────────────────────────── */
+
+.mf { display: flex; flex-direction: column; gap: 4px; }
+
+.mf label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.mf input, .mf select, .mf textarea {
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 7px 10px;
+  font: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+.mf textarea { resize: vertical; }
