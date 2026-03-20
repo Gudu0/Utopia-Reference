@@ -170,13 +170,20 @@ function addFromScan(idx, btn) {
   const type   = document.getElementById('scan-type').value;
   const island = document.getElementById('scan-island').value;
 
-  if (!name)   { alert('Pick a resource name first.'); return; }
-  if (!island) { alert('Pick an island first.'); return; }
+  if (!name)   { showScanStatus('Pick a resource name first.'); return; }
+  if (!island) { showScanStatus('Pick an island first.'); return; }
 
-  // addNode is defined in editor.js and available globally
   addNode({ name, type, island, notes: '', x: result.coords.x, y: result.coords.y });
   result.added = true;
   if (btn) { btn.textContent = '✓'; btn.classList.add('added'); btn.disabled = true; }
+}
+
+function showScanStatus(msg) {
+  const el = document.getElementById('scan-progress');
+  if (!el) return;
+  el.textContent  = msg;
+  el.style.color  = '#e57373';
+  setTimeout(() => { el.textContent = ''; el.style.color = ''; }, 3000);
 }
 
 // ── Add all results at once ──────────────────────────────────
