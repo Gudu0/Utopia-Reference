@@ -2,31 +2,31 @@
 //  map.js  —  Utopia: Origin Resource Map
 // ============================================================
 //
-//  SETUP CHECKLIST (read before using):
+//  COORDINATE SYSTEM:
+//    Nodes use game coordinates directly — the (X, Y) pair
+//    shown on your in-game minimap. Just read them off the
+//    screen and paste into map-nodes.json.
 //
-//  1. Put your Beia world map image anywhere in the repo,
-//     e.g. create an "images/" folder and put it there.
-//     Update MAP_IMAGE and MAP_WIDTH / MAP_HEIGHT below.
+//  MAP IMAGE (optional):
+//    Set MAP_IMAGE to your image path when you have one.
+//    Set MAP_IMAGE = null to use the grid placeholder instead.
+//    Set GAME_MAX_X / GAME_MAX_Y to the real world bounds
+//    once you know them (explore to the corners to find out).
 //
-//  2. Coordinates in map-nodes.json use PIXEL positions
-//     measured from the TOP-LEFT of your map image.
-//     (x = pixels from left edge, y = pixels from top edge)
-//     Use any image viewer or browser devtools to find them.
-//
-//  3. After you have a real image, run the page locally
-//     (e.g. `npx serve .` or VS Code Live Server) and click
-//     anywhere on the map — the console will log the pixel
-//     coords so you can copy them into map-nodes.json.
+//  The coordinate display in the bottom-right of the map
+//  shows live game coords as you move your mouse — no
+//  browser console needed.
 // ============================================================
 
-// ── CONFIG — edit these to match your map image ─────────────
+// ── CONFIG ───────────────────────────────────────────────────
 
-const MAP_IMAGE  = 'images/beia-map.jpg'; // path to your map image file
-const MAP_WIDTH  = 1600;                  // pixel width  of the image
-const MAP_HEIGHT = 1200;                  // pixel height of the image
+const MAP_IMAGE  = null;   // e.g. 'images/beia-map.jpg' — null = grid placeholder
+const GAME_MIN_X = 0;
+const GAME_MIN_Y = 0;
+const GAME_MAX_X = 20000; // update once you know the real world edge
+const GAME_MAX_Y = 20000;
 
-// ── TYPE COLORS — add/change as you like ────────────────────
-// Keys must match the "type" values used in map-nodes.json
+// ── TYPE COLORS ───────────────────────────────────────────────
 
 const TYPE_CONFIG = {
   mineral:  { color: '#a0a0c0', label: 'Mineral'  },
@@ -39,85 +39,189 @@ const TYPE_CONFIG = {
   other:    { color: '#b0b0b0', label: 'Other'     },
 };
 
-// ── STATE ────────────────────────────────────────────────────
+// ── STATE ─────────────────────────────────────────────────────
 
-let allNodes    = [];   // all nodes loaded from map-nodes.json
-let allMarkers  = [];   // parallel array of Leaflet markers
-let activeTypes = new Set(Object.keys(TYPE_CONFIG)); // all on by default
+let allNodes     = [];
+let allMarkers   = [];
+let activeTypes  = new Set(Object.keys(TYPE_CONFIG));
 let activeIsland = 'all';
 let searchText   = '';
 
-// ── LEAFLET MAP SETUP ────────────────────────────────────────
+// ── COORDINATE CONVERSION ─────────────────────────────────────
+//
+//  Leaflet CRS.Simple uses [lat, lng] where lat increases
+//  upward. Game Y=0 is at the top, so we invert it.
+//  If markers appear vertically mirrored when you add a real
+//  map image, just swap to:  return [gy, gx];
 
-// CRS.Simple tells Leaflet this is a flat image, not a globe
+function gameToLatLng(gx, gy) {
+  return [GAME_MAX_Y - gy, gx];
+}
+
+function latLngToGame(latlng) {
+  return {
+    x: Math.round(latlng.lng),
+    y: Math.round(GAME_MAX_Y - latlng.lat),
+  };
+}
+
+// ── LEAFLET MAP ───────────────────────────────────────────────
+
 const map = L.map('map', {
-  crs: L.CRS.Simple,
-  minZoom: -3,
-  maxZoom:  2,
+  crs:     L.CRS.Simple,
+  minZoom: -4,
+  maxZoom:  3,
   zoomSnap: 0.5,
 });
 
-// Leaflet CRS.Simple uses [y, x] and y=0 is at the BOTTOM.
-// Our node coords are pixel [x, y] from the TOP-LEFT.
-// imgToLatLng() converts between the two systems.
-function imgToLatLng(x, y) {
-  return [MAP_HEIGHT - y, x];
+const worldBounds = [
+  [0,          GAME_MIN_X],
+  [GAME_MAX_Y, GAME_MAX_X],
+];
+
+if (MAP_IMAGE) {
+  L.imageOverlay(MAP_IMAGE, worldBounds).addTo(map);
+} else {
+  drawGridPlaceholder();
 }
 
-// Image bounds in Leaflet's coordinate system
-const imageBounds = [[0, 0], [MAP_HEIGHT, MAP_WIDTH]];
+map.fitBounds(worldBounds);
 
-// Add the map image as a Leaflet image overlay
-L.imageOverlay(MAP_IMAGE, imageBounds).addTo(map);
-map.fitBounds(imageBounds);
+// ── GRID PLACEHOLDER ──────────────────────────────────────────
+//  Shown when MAP_IMAGE is null. Draws a labeled coordinate
+//  grid so nodes are still visually positioned correctly.
 
-// Log click coordinates to the console — useful for placing nodes
-map.on('click', function (e) {
-  const x = Math.round(e.latlng.lng);
-  const y = Math.round(MAP_HEIGHT - e.latlng.lat);
-  console.log(`Clicked: x=${x}, y=${y}`);
+function drawGridPlaceholder() {
+  // Background
+  L.rectangle(worldBounds, {
+    color:       '#3a3a4a',
+    weight:      1,
+    fillColor:   '#1a1a2a',
+    fillOpacity: 1,
+  }).addTo(map);
+
+  const step = 2000;
+
+  for (let gx = GAME_MIN_X; gx <= GAME_MAX_X; gx += step) {
+    L.polyline([gameToLatLng(gx, GAME_MIN_Y), gameToLatLng(gx, GAME_MAX_Y)], {
+      color:   '#2e2e3e',
+      weight:  gx % 10000 === 0 ? 2 : 1,
+      opacity: 0.9,
+    }).addTo(map);
+
+    if (gx % 4000 === 0) {
+      L.marker(gameToLatLng(gx, GAME_MAX_Y - 500), {
+        icon: L.divIcon({
+          html:       `<span style="color:#555;font-size:10px;white-space:nowrap">${gx}</span>`,
+          className:  '',
+          iconAnchor: [0, 0],
+        }),
+      }).addTo(map);
+    }
+  }
+
+  for (let gy = GAME_MIN_Y; gy <= GAME_MAX_Y; gy += step) {
+    L.polyline([gameToLatLng(GAME_MIN_X, gy), gameToLatLng(GAME_MAX_X, gy)], {
+      color:   '#2e2e3e',
+      weight:  gy % 10000 === 0 ? 2 : 1,
+      opacity: 0.9,
+    }).addTo(map);
+
+    if (gy % 4000 === 0) {
+      L.marker(gameToLatLng(GAME_MIN_X + 150, gy), {
+        icon: L.divIcon({
+          html:       `<span style="color:#555;font-size:10px;white-space:nowrap">${gy}</span>`,
+          className:  '',
+          iconAnchor: [0, 8],
+        }),
+      }).addTo(map);
+    }
+  }
+
+  // Center label
+  L.marker(gameToLatLng(GAME_MAX_X / 2, GAME_MAX_Y / 2), {
+    icon: L.divIcon({
+      html:       `<span style="color:#444;font-size:13px;white-space:nowrap">map image not loaded — grid placeholder</span>`,
+      className:  '',
+      iconAnchor: [170, 8],
+    }),
+  }).addTo(map);
+}
+
+// ── ON-SCREEN COORDINATE DISPLAY ─────────────────────────────
+//  Live game-coord readout in the bottom-right corner.
+//  Replaces the need for the browser console entirely.
+
+const coordDisplay = L.control({ position: 'bottomright' });
+coordDisplay.onAdd = function () {
+  const div = L.DomUtil.create('div');
+  div.style.cssText = [
+    'background:rgba(20,20,30,0.88)',
+    'color:#ccc',
+    'font-size:12px',
+    'font-family:monospace',
+    'padding:5px 10px',
+    'border-radius:6px',
+    'border:1px solid #333',
+    'pointer-events:none',
+    'min-width:150px',
+    'text-align:right',
+    'letter-spacing:0.03em',
+  ].join(';');
+  div.innerHTML = 'hover for coords';
+  this._div = div;
+  return div;
+};
+coordDisplay.addTo(map);
+
+map.on('mousemove', function (e) {
+  const g = latLngToGame(e.latlng);
+  const x = Math.max(GAME_MIN_X, Math.min(GAME_MAX_X, g.x));
+  const y = Math.max(GAME_MIN_Y, Math.min(GAME_MAX_Y, g.y));
+  coordDisplay._div.innerHTML = `(${x},&nbsp;${y})`;
 });
 
-// ── MARKER CREATION ──────────────────────────────────────────
+map.on('mouseout', function () {
+  coordDisplay._div.innerHTML = 'hover for coords';
+});
+
+// ── MARKER CREATION ───────────────────────────────────────────
 
 function makeIcon(type) {
   const cfg   = TYPE_CONFIG[type] || TYPE_CONFIG.other;
-  const color = cfg.color;
-
-  // SVG circle as the marker — no image files needed
-  const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
-      <circle cx="9" cy="9" r="7" fill="${color}" stroke="#222" stroke-width="1.5"/>
-    </svg>`;
-
+  const svg   = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+    <circle cx="9" cy="9" r="7" fill="${cfg.color}" stroke="#222" stroke-width="1.5"/>
+  </svg>`;
   return L.divIcon({
-    html:      svg,
-    className: '',          // clear Leaflet's default white box
-    iconSize:  [18, 18],
-    iconAnchor:[9, 9],
-    popupAnchor:[0, -10],
+    html:        svg,
+    className:   '',
+    iconSize:    [18, 18],
+    iconAnchor:  [9,  9],
+    popupAnchor: [0, -10],
   });
 }
 
 function makePopupHTML(node) {
-  const typeCfg = TYPE_CONFIG[node.type] || TYPE_CONFIG.other;
-  const notes   = node.notes ? `<div class="popup-notes">${node.notes}</div>` : '';
+  const cfg   = TYPE_CONFIG[node.type] || TYPE_CONFIG.other;
+  const notes = node.notes ? `<div class="popup-notes">${node.notes}</div>` : '';
   return `
     <div class="popup-name">${node.name}</div>
-    <div class="popup-type" style="color:${typeCfg.color}">${typeCfg.label}</div>
+    <div class="popup-type" style="color:${cfg.color}">${cfg.label}</div>
     <div class="popup-island">📍 ${node.island}</div>
+    <div style="font-size:0.78rem;color:#888;margin-top:2px;font-family:monospace">
+      (${node.x}, ${node.y})
+    </div>
     ${notes}
   `;
 }
 
-// ── FILTER / SEARCH LOGIC ────────────────────────────────────
+// ── FILTER / SEARCH ───────────────────────────────────────────
 
 function updateVisibility() {
   let visible = 0;
 
   allNodes.forEach((node, i) => {
-    const marker = allMarkers[i];
-
+    const marker      = allMarkers[i];
     const typeMatch   = activeTypes.has(node.type || 'other');
     const islandMatch = activeIsland === 'all' || node.island === activeIsland;
     const searchMatch = searchText === ''
@@ -125,58 +229,48 @@ function updateVisibility() {
       || (node.island || '').toLowerCase().includes(searchText)
       || (node.notes  || '').toLowerCase().includes(searchText);
 
-    if (typeMatch && islandMatch && searchMatch) {
-      marker.addTo(map);
-      visible++;
-    } else {
-      marker.remove();
-    }
+    if (typeMatch && islandMatch && searchMatch) { marker.addTo(map); visible++; }
+    else                                         { marker.remove();              }
   });
 
-  const countEl = document.getElementById('result-count');
-  if (countEl) {
-    countEl.textContent = `${visible} of ${allNodes.length} nodes shown`;
-  }
+  const el = document.getElementById('result-count');
+  if (el) el.textContent = `${visible} of ${allNodes.length} nodes shown`;
 }
 
-// ── SIDEBAR UI BUILDING ──────────────────────────────────────
+// ── SIDEBAR UI ────────────────────────────────────────────────
 
 function buildTypeFilters(types) {
   const list = document.getElementById('filter-list');
   if (!list) return;
   list.innerHTML = '';
 
-  // Sort types so known ones come first in TYPE_CONFIG order
+  const order  = Object.keys(TYPE_CONFIG);
   const sorted = [...types].sort((a, b) => {
-    const keys = Object.keys(TYPE_CONFIG);
-    return (keys.indexOf(a) ?? 99) - (keys.indexOf(b) ?? 99);
+    return (order.indexOf(a) ?? 99) - (order.indexOf(b) ?? 99);
   });
 
   sorted.forEach(type => {
-    const cfg   = TYPE_CONFIG[type] || TYPE_CONFIG.other;
-    const item  = document.createElement('label');
+    const cfg  = TYPE_CONFIG[type] || TYPE_CONFIG.other;
+    const item = document.createElement('label');
     item.className = 'filter-item';
 
-    const cb    = document.createElement('input');
-    cb.type     = 'checkbox';
-    cb.checked  = true;
+    const cb        = document.createElement('input');
+    cb.type         = 'checkbox';
+    cb.checked      = true;
     cb.dataset.type = type;
-
     cb.addEventListener('change', () => {
       if (cb.checked) activeTypes.add(type);
       else            activeTypes.delete(type);
       updateVisibility();
     });
 
-    const dot   = document.createElement('span');
-    dot.className = 'type-dot';
-    dot.style.background = cfg.color;
-
-    const label = document.createTextNode(cfg.label);
+    const dot              = document.createElement('span');
+    dot.className          = 'type-dot';
+    dot.style.background   = cfg.color;
 
     item.appendChild(cb);
     item.appendChild(dot);
-    item.appendChild(label);
+    item.appendChild(document.createTextNode(cfg.label));
     list.appendChild(item);
   });
 }
@@ -184,21 +278,19 @@ function buildTypeFilters(types) {
 function buildIslandFilter(islands) {
   const sel = document.getElementById('island-select');
   if (!sel) return;
-
   [...islands].sort().forEach(island => {
-    const opt = document.createElement('option');
+    const opt       = document.createElement('option');
     opt.value       = island;
     opt.textContent = island;
     sel.appendChild(opt);
   });
-
   sel.addEventListener('change', () => {
     activeIsland = sel.value;
     updateVisibility();
   });
 }
 
-// ── LOAD NODES FROM JSON ─────────────────────────────────────
+// ── LOAD NODES ────────────────────────────────────────────────
 
 async function loadNodes() {
   let data;
@@ -221,21 +313,19 @@ async function loadNodes() {
     typesFound.add(type);
     if (node.island) islandsFound.add(node.island);
 
-    const latlng = imgToLatLng(node.x, node.y);
-    const marker = L.marker(latlng, { icon: makeIcon(type) });
+    const marker = L.marker(gameToLatLng(node.x, node.y), { icon: makeIcon(type) });
     marker.bindPopup(makePopupHTML(node));
     marker.addTo(map);
-
     allMarkers.push(marker);
   });
 
   buildTypeFilters(typesFound);
   buildIslandFilter(islandsFound);
-  activeTypes = new Set(typesFound); // start with all types active
+  activeTypes = new Set(typesFound);
   updateVisibility();
 }
 
-// ── SEARCH INPUT ─────────────────────────────────────────────
+// ── SEARCH ────────────────────────────────────────────────────
 
 const searchInput = document.getElementById('search-input');
 if (searchInput) {
@@ -245,24 +335,17 @@ if (searchInput) {
   });
 }
 
-// ── MOBILE SIDEBAR TOGGLE ────────────────────────────────────
+// ── MOBILE SIDEBAR TOGGLE ─────────────────────────────────────
 
-const sidebar       = document.getElementById('sidebar');
-const toggleBtn     = document.getElementById('sidebar-toggle');
-
+const sidebar   = document.getElementById('sidebar');
+const toggleBtn = document.getElementById('sidebar-toggle');
 if (toggleBtn && sidebar) {
-  toggleBtn.addEventListener('click', () => {
-    sidebar.classList.toggle('open');
-  });
-
-  // Close sidebar when user clicks the map on mobile
+  toggleBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
   map.on('click', () => {
-    if (window.innerWidth <= 640) {
-      sidebar.classList.remove('open');
-    }
+    if (window.innerWidth <= 640) sidebar.classList.remove('open');
   });
 }
 
-// ── KICK THINGS OFF ──────────────────────────────────────────
+// ── GO ────────────────────────────────────────────────────────
 
 loadNodes();
