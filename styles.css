@@ -7,6 +7,10 @@
   --accent: #6fcf97;
   --border: #2d3c4c;
   --danger: #d06b6b;
+
+    /* aliases used by map.html */
+  --panel-bg: #18212b;
+  --input-bg: #202c38;
 }
 
 * {
