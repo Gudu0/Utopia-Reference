@@ -1,490 +1,402 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Utopia: Origin Notes - Map</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <style>
-      html, body {
-      height: 100%;
-      overflow: hidden;
-      }
-      .map-layout {
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Utopia: Origin Notes - Map</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    html, body { height: 100%; overflow: hidden; }
+
+    .map-layout {
       display: flex;
       height: calc(100vh - 110px);
       overflow: hidden;
       position: relative;
-      }
-      /* ── Left sidebar: filters ── */
-      .map-sidebar {
-      width: 220px;
-      min-width: 180px;
+    }
+
+    .map-sidebar {
+      width: 220px; min-width: 180px;
       background: var(--panel-bg, #1e1e2e);
       border-right: 1px solid var(--border, #333);
-      display: flex;
-      flex-direction: column;
-      overflow-y: auto;
-      padding: 12px;
-      gap: 12px;
-      flex-shrink: 0;
-      z-index: 1000;
-      }
-      .map-sidebar h3 {
-      margin: 0 0 6px 0;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+      display: flex; flex-direction: column;
+      overflow-y: auto; padding: 12px; gap: 12px;
+      flex-shrink: 0; z-index: 1000;
+    }
+    .map-sidebar h3 {
+      margin: 0 0 6px 0; font-size: 0.85rem;
+      text-transform: uppercase; letter-spacing: 0.05em;
       color: var(--muted, #888);
-      }
-      .search-input, .island-select {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 7px 10px;
-      border-radius: 6px;
-      border: 1px solid var(--border, #444);
-      background: var(--input-bg, #2a2a3e);
-      color: var(--text, #eee);
+    }
+    .search-input, .island-select {
+      width: 100%; box-sizing: border-box; padding: 7px 10px;
+      border-radius: 6px; border: 1px solid var(--border, #444);
+      background: var(--input-bg, #2a2a3e); color: var(--text, #eee);
       font-size: 0.88rem;
-      }
-      .search-input::placeholder { color: var(--muted, #666); }
-      .filter-list { display: flex; flex-direction: column; gap: 6px; }
-      .filter-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-      font-size: 0.88rem;
-      }
-      .filter-item input[type="checkbox"] {
-      accent-color: var(--accent, #7c6af7);
-      width: 15px; height: 15px;
-      cursor: pointer;
-      }
-      .type-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      display: inline-block;
-      flex-shrink: 0;
-      }
-      .result-count {
-      font-size: 0.78rem;
-      color: var(--muted, #888);
-      margin-top: 4px;
-      }
-      /* ── Map ── */
-      #map { flex: 1; background: #111; }
-      /* ── Leaflet popup theme ── */
-      .leaflet-popup-content-wrapper {
-      background: var(--panel-bg, #1e1e2e);
-      color: var(--text, #eee);
-      border: 1px solid var(--border, #444);
-      border-radius: 8px;
+    }
+    .search-input::placeholder { color: var(--muted, #666); }
+    .filter-list { display: flex; flex-direction: column; gap: 6px; }
+    .filter-item { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.88rem; }
+    .filter-item input[type="checkbox"] { accent-color: var(--accent, #7c6af7); width: 15px; height: 15px; cursor: pointer; }
+    .type-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+    .result-count { font-size: 0.78rem; color: var(--muted, #888); margin-top: 4px; }
+
+    #map { flex: 1; background: #111; }
+
+    .leaflet-popup-content-wrapper {
+      background: var(--panel-bg, #1e1e2e); color: var(--text, #eee);
+      border: 1px solid var(--border, #444); border-radius: 8px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.5);
-      }
-      .leaflet-popup-tip { background: var(--panel-bg, #1e1e2e); }
-      .leaflet-popup-content { margin: 10px 14px; font-size: 0.88rem; line-height: 1.5; }
-      .popup-name { font-weight: 600; font-size: 1rem; margin-bottom: 4px; }
-      .popup-type { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
-      .popup-island { color: var(--muted, #aaa); font-size: 0.82rem; }
-      .popup-notes { margin-top: 6px; font-style: italic; color: var(--muted, #aaa); font-size: 0.82rem; }
-      /* ── Node editor popout (right side) ── */
-      /* REPLACE WITH: */
-      .editor-panel {
-      width: 0;
-      min-width: 0;
-      background: var(--panel-bg, #1e1e2e);
-      border-left: 0px solid var(--border, #333);
-      display: flex;
-      flex-direction: column;
-      flex-shrink: 0;
-      overflow: hidden;
-      transition: width 0.25s ease, border-width 0.25s ease;
-      position: relative;
-      }
-      .editor-panel.open {
-      width: 300px;
-      border-left-width: 1px;
-      }
-      /* Tab that sticks out to the left of the panel */
-      .editor-tab {
-      position: absolute;
-      top: 50%;
-      left: -33px;
-      transform: translateY(-50%);
-      width: 32px;
-      background: var(--panel-bg, #1e1e2e);
-      border: 1px solid var(--border, #333);
-      border-right: none;
-      border-radius: 6px 0 0 6px;
-      cursor: pointer;
-      padding: 10px 6px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 3px;
-      z-index: 1600;
-      color: var(--muted, #aaa);
-      font-size: 0.65rem;
-      text-align: center;
-      line-height: 1.3;
-      letter-spacing: 0.03em;
-      user-select: none;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      }
-      .editor-tab:hover { color: var(--text, #eee); }
-      .editor-tab-icon {
-      font-size: 1rem;
-      writing-mode: horizontal-tb;
-      margin-bottom: 4px;
-      }
-      /* Panel header */
-      .editor-panel-header {
-      padding: 12px 14px 10px;
-      border-bottom: 1px solid var(--border, #333);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-shrink: 0;
-      }
-      .editor-panel-header h3 {
-      margin: 0;
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--muted, #888);
-      }
-      /* Scrollable form area */
-      .editor-panel-body {
-      flex: 1;
-      overflow-y: auto;
-      padding: 12px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      }
-      .editor-field {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      }
-      .editor-field label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--muted, #888);
-      }
-      .editor-field input,
-      .editor-field select,
-      .editor-field textarea {
-      padding: 7px 10px;
-      border-radius: 6px;
-      border: 1px solid var(--border, #444);
-      background: var(--input-bg, #2a2a3e);
-      color: var(--text, #eee);
-      font-size: 0.88rem;
-      width: 100%;
-      box-sizing: border-box;
-      }
-      .editor-field textarea {
-      resize: vertical;
-      min-height: 56px;
-      font-family: inherit;
-      }
-      .coord-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      }
-      .editor-btn {
-      padding: 8px 12px;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      font-size: 0.88rem;
-      font-weight: 600;
-      }
-      .editor-btn.primary {
-      background: var(--accent, #7c6af7);
-      color: white;
-      width: 100%;
-      }
-      .editor-btn.primary:hover { opacity: 0.88; }
-      .editor-btn.small {
-      background: var(--input-bg, #2a2a3e);
-      color: var(--muted, #aaa);
-      border: 1px solid var(--border, #444);
-      font-size: 0.78rem;
-      padding: 5px 10px;
-      }
-      .editor-btn.small:hover { color: var(--text, #eee); }
-      /* Status message */
-      .editor-status {
-      font-size: 0.8rem;
-      color: #6abf69;
-      min-height: 18px;
-      text-align: center;
-      }
-      /* JSON output */
-      .json-output {
-      background: var(--input-bg, #2a2a3e);
-      border: 1px solid var(--border, #444);
-      border-radius: 6px;
-      padding: 10px;
-      font-family: monospace;
-      font-size: 0.75rem;
-      color: var(--text, #ddd);
-      white-space: pre;
-      overflow-x: auto;
-      max-height: 220px;
-      overflow-y: auto;
-      line-height: 1.5;
-      }
-      /* Node preview list */
-      .node-preview-list {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      max-height: 160px;
-      overflow-y: auto;
-      }
-      .node-preview-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.8rem;
-      padding: 4px 6px;
-      border-radius: 4px;
-      background: var(--input-bg, #2a2a3e);
-      }
-      .node-preview-item .dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      }
-      .node-preview-name { flex: 1; color: var(--text, #eee); }
-      .node-preview-coords { color: var(--muted, #777); font-family: monospace; font-size: 0.72rem; }
-      .node-preview-remove {
-      background: none;
-      border: none;
-      color: var(--muted, #666);
-      cursor: pointer;
-      font-size: 0.9rem;
-      padding: 0 2px;
-      line-height: 1;
-      }
-      .node-preview-remove:hover { color: #e57373; }
-      /* Section divider */
-      .section-divider {
-      border: none;
-      border-top: 1px solid var(--border, #333);
-      margin: 4px 0;
-      }
-      /* Mobile */
-      .sidebar-toggle {
-      display: none;
-      position: fixed;
-      bottom: 16px;
-      right: 16px;
-      z-index: 2000;
-      background: var(--accent, #7c6af7);
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 48px; height: 48px;
-      font-size: 1.3rem;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
-      }
-      @media (max-width: 640px) {
+    }
+    .leaflet-popup-tip { background: var(--panel-bg, #1e1e2e); }
+    .leaflet-popup-content { margin: 10px 14px; font-size: 0.88rem; line-height: 1.5; }
+    .popup-name { font-weight: 600; font-size: 1rem; margin-bottom: 4px; }
+    .popup-type { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .popup-island { color: var(--muted, #aaa); font-size: 0.82rem; }
+    .popup-notes { margin-top: 6px; font-style: italic; color: var(--muted, #aaa); font-size: 0.82rem; }
+
+    .sidebar-toggle {
+      display: none; position: fixed; bottom: 16px; right: 16px;
+      z-index: 2000; background: var(--accent, #7c6af7); color: white;
+      border: none; border-radius: 50%; width: 48px; height: 48px;
+      font-size: 1.3rem; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    @media (max-width: 640px) {
       .map-sidebar {
-      position: fixed;
-      top: 70px; left: 0; bottom: 0;
-      z-index: 1500;
-      transform: translateX(-100%);
-      transition: transform 0.25s ease;
-      width: 85vw; max-width: 300px;
+        position: fixed; top: 110px; left: 0; bottom: 0; z-index: 1500;
+        transform: translateX(-100%); transition: transform 0.25s ease;
+        width: 85vw; max-width: 300px;
       }
       .map-sidebar.open { transform: translateX(0); }
       .sidebar-toggle { display: flex; align-items: center; justify-content: center; }
-      .editor-panel { width: 90vw; }
-      }
-    </style>
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="header-row">
-        <div>
-          <h1>Utopia: Origin Notes</h1>
-          <p class="subtitle">Resource Map</p>
-        </div>
-        <nav class="top-nav">
-          <a href="index.html" class="nav-link">Reference</a>
-          <a href="map.html" class="nav-link current">Map</a>
-          <a href="editor.html" class="nav-link">JSON Maker</a>
-          <button class="nav-link" id="node-editor-btn">+ Node</button>
-        </nav>
+    }
+
+    /* ── Modal tabs ── */
+    .modal-tabs {
+      display: flex;
+      border-bottom: 1px solid #2d3c4c;
+      flex-shrink: 0;
+    }
+    .modal-tab {
+      flex: 1; padding: 10px; background: none; border: none;
+      color: #9fb0c2; font: inherit; font-size: 0.82rem;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      cursor: pointer; border-bottom: 2px solid transparent;
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .modal-tab.active { color: #e8eef5; border-bottom-color: #6fcf97; }
+    .modal-tab:hover { color: #e8eef5; }
+
+    .modal-pane { display: none; overflow-y: auto; padding: 14px; flex-direction: column; gap: 10px; flex: 1; }
+    .modal-pane.active { display: flex; }
+
+    /* ── Scan tab ── */
+    .scan-drop-zone {
+      border: 2px dashed #2d3c4c; border-radius: 8px;
+      padding: 20px; text-align: center; cursor: pointer;
+      color: #9fb0c2; font-size: 0.85rem; line-height: 1.6;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .scan-drop-zone:hover, .scan-drop-zone.dragover {
+      border-color: #6fcf97; background: rgba(111,207,151,0.05);
+    }
+    .scan-results { display: flex; flex-direction: column; gap: 6px; }
+    .scan-result-row {
+      display: grid;
+      grid-template-columns: 1fr 90px 32px;
+      gap: 6px; align-items: center;
+      background: #202c38; border-radius: 6px; padding: 6px 8px;
+    }
+    .scan-result-coords {
+      font-family: monospace; font-size: 0.8rem; color: #6fcf97;
+    }
+    .scan-result-status { font-size: 0.72rem; color: #9fb0c2; }
+    .scan-add-btn {
+      background: none; border: 1px solid #2d3c4c; border-radius: 4px;
+      color: #9fb0c2; cursor: pointer; font-size: 0.8rem; padding: 3px 6px;
+    }
+    .scan-add-btn:hover { border-color: #6fcf97; color: #6fcf97; }
+    .scan-add-btn.added { color: #6fcf97; border-color: #6fcf97; opacity: 0.5; cursor: default; }
+    .scan-thumb {
+      width: 40px; height: 24px; object-fit: cover; border-radius: 3px;
+      border: 1px solid #2d3c4c; flex-shrink: 0;
+    }
+    .scan-progress {
+      font-size: 0.78rem; color: #9fb0c2; text-align: center; min-height: 18px;
+    }
+
+    /* ── shared field style used in both panes ── */
+    .mf { display: flex; flex-direction: column; gap: 4px; }
+    .mf label { font-size: 0.78rem; text-transform: uppercase; color: #9fb0c2; }
+    .mf input, .mf select, .mf textarea {
+      background: #202c38; color: #e8eef5; border: 1px solid #2d3c4c;
+      border-radius: 6px; padding: 7px 10px; font: inherit;
+      width: 100%; box-sizing: border-box;
+    }
+    .mf textarea { resize: vertical; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-row">
+      <div>
+        <h1>Utopia: Origin Notes</h1>
+        <p class="subtitle">Resource Map</p>
       </div>
-    </header>
-    <div class="map-layout">
-      <!-- ── Left sidebar: filters ── -->
-      <aside class="map-sidebar" id="sidebar">
-        <div>
-          <h3>Search</h3>
-          <input class="search-input" id="search-input" type="text"
-            placeholder="e.g. Iron Ore, Wolf…" autocomplete="off" />
-          <div class="result-count" id="result-count"></div>
+      <nav class="top-nav">
+        <a href="index.html" class="nav-link">Reference</a>
+        <a href="map.html" class="nav-link current">Map</a>
+        <a href="editor.html" class="nav-link">JSON Maker</a>
+        <button class="nav-link" id="node-editor-btn">+ Node</button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="map-layout">
+    <aside class="map-sidebar" id="sidebar">
+      <div>
+        <h3>Search</h3>
+        <input class="search-input" id="search-input" type="text"
+          placeholder="e.g. Iron Mine, Wolf…" autocomplete="off" />
+        <div class="result-count" id="result-count"></div>
+      </div>
+      <div>
+        <h3>Island</h3>
+        <select class="island-select" id="island-select">
+          <option value="all">All Islands</option>
+        </select>
+      </div>
+      <div>
+        <h3>Resource Type</h3>
+        <div class="filter-list" id="filter-list"></div>
+      </div>
+    </aside>
+
+    <div id="map"></div>
+  </div>
+
+  <button class="sidebar-toggle" id="sidebar-toggle" title="Toggle filters">⚙</button>
+
+  <!-- ══════════════════════════════════════════════════════════
+       NODE EDITOR MODAL
+  ══════════════════════════════════════════════════════════ -->
+  <div id="editor-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.65);z-index:3000;align-items:center;justify-content:center;">
+    <div style="background:#18212b;border:1px solid #2d3c4c;border-radius:12px;width:380px;max-height:92vh;display:flex;flex-direction:column;overflow:hidden;">
+
+      <!-- Header -->
+      <div style="padding:12px 16px;border-bottom:1px solid #2d3c4c;display:flex;justify-content:space-between;align-items:center;flex-shrink:0">
+        <span style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:#9fb0c2">Add Node</span>
+        <button id="close-modal-btn" style="background:none;border:none;color:#9fb0c2;font-size:1.2rem;cursor:pointer">✕</button>
+      </div>
+
+      <!-- Tabs -->
+      <div class="modal-tabs">
+        <button class="modal-tab active" data-pane="pane-manual">✏️ Manual</button>
+        <button class="modal-tab" data-pane="pane-scan">📷 Scan Screenshots</button>
+        <button class="modal-tab" data-pane="pane-output">📋 Output</button>
+      </div>
+
+      <!-- ── PANE 1: Manual entry ── -->
+      <div class="modal-pane active" id="pane-manual">
+
+        <button class="btn" id="load-existing-btn">Load existing map-nodes.json</button>
+        <div id="load-existing-area" style="display:none;flex-direction:column;gap:6px">
+          <textarea id="existing-json-input" rows="3"
+            style="width:100%;box-sizing:border-box;background:#202c38;color:#e8eef5;border:1px solid #2d3c4c;border-radius:6px;padding:8px;font:inherit;resize:vertical"
+            placeholder='[{"id":1,...}]'></textarea>
+          <button class="btn" id="confirm-load-btn">Load</button>
         </div>
-        <div>
-          <h3>Island</h3>
-          <select class="island-select" id="island-select">
-            <option value="all">All Islands</option>
+
+        <div class="mf">
+          <label>Type</label>
+          <select id="node-type"></select>
+        </div>
+
+        <div class="mf">
+          <label>Resource Name</label>
+          <select id="node-name"></select>
+          <input id="node-name-manual" type="text" placeholder="Type resource name…"
+            autocomplete="off" style="display:none;margin-top:6px;background:#202c38;color:#e8eef5;border:1px solid #2d3c4c;border-radius:6px;padding:7px 10px;font:inherit;width:100%;box-sizing:border-box" />
+        </div>
+
+        <div class="mf">
+          <label>Island</label>
+          <select id="node-island">
+            <option value="">— select island —</option>
+            <option>Bone Mountains</option><option>Cape Forest</option>
+            <option>Dragon Tree Island</option><option>Elaine Grand Desert</option>
+            <option>Fragrant Plains</option><option>Goldvalley Prairie</option>
+            <option>Herder Plains</option><option>Iridescent Forest</option>
+            <option>Iridescent Valley</option><option>Jade Prairie</option>
+            <option>Joy River Valley</option><option>Lalu Volcano</option>
+            <option>Leaf Fall Mountains</option><option>Mirage Desert</option>
+            <option>Natanz Island</option><option>Noons Sky Islands</option>
+            <option>Northrend</option><option>Old Bread Island</option>
+            <option>Old Mornmist Forest</option><option>Old Platinum Bay</option>
+            <option>Old Travelers Hill</option><option>Old Tulip Plains</option>
+            <option>Shadesnow Mountain</option><option>Silvermoon Hills</option>
+            <option>Sleeping Sea</option><option>Solitude Mountain</option>
+            <option>Springday Coast</option><option>Sunset Island</option>
+            <option>Mount Beia</option><option>The City of Hope - Ceylens</option>
+            <option>Twilight Foothills</option><option>Valhalla</option>
+            <option>Wilds of Duguang</option>
           </select>
         </div>
-        <div>
-          <h3>Resource Type</h3>
-          <div class="filter-list" id="filter-list"></div>
+
+        <div style="display:flex;gap:8px">
+          <div class="mf" style="flex:1"><label>X</label>
+            <input id="node-x" type="number" placeholder="X" /></div>
+          <div class="mf" style="flex:1"><label>Y</label>
+            <input id="node-y" type="number" placeholder="Y" /></div>
         </div>
-      </aside>
-      <!-- ── Map ── -->
-      <div id="map"></div>
-      
-      <!-- ── Node editor modal ── -->
-    <div id="editor-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:3000;align-items:center;justify-content:center;">
-      <div style="background:#18212b;border:1px solid #2d3c4c;border-radius:12px;width:340px;max-height:90vh;display:flex;flex-direction:column;overflow:hidden;">
-        <div style="padding:12px 16px;border-bottom:1px solid #2d3c4c;display:flex;justify-content:space-between;align-items:center">
-          <span style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:#9fb0c2">Add Node</span>
-          <button id="close-modal-btn" style="background:none;border:none;color:#9fb0c2;font-size:1.2rem;cursor:pointer">✕</button>
+
+        <div class="mf">
+          <label>Notes (optional)</label>
+          <textarea id="node-notes" rows="2" placeholder="Respawns quickly, guarded, etc."></textarea>
         </div>
-        <div style="overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px">
-          <button class="btn" id="load-existing-btn">Load existing map-nodes.json</button>
-          <div id="load-existing-area" style="display:none;flex-direction:column;gap:6px">
-            <textarea id="existing-json-input" rows="3" style="width:100%;box-sizing:border-box;background:#202c38;color:#e8eef5;border:1px solid #2d3c4c;border-radius:6px;padding:8px;font:inherit;resize:vertical" placeholder='[{"id":1,...}]'></textarea>
-            <button class="btn" id="confirm-load-btn">Load</button>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:4px">
-            <label style="font-size:0.78rem;text-transform:uppercase;color:#9fb0c2">Resource Name</label>
-            <select id="node-name" style="background:#202c38;color:#e8eef5;border:1px solid #2d3c4c;border-radius:6px;padding:7px 10px;font:inherit;width:100%;box-sizing:border-box"></select>
-            <input id="node-name-manual" type="text" placeholder="Type resource name..." autocomplete="off" style="display:none;background:#202c38;color:#e8eef5;border:1px solid #2d3c4c;border-radius:6px;padding:7px 10px;font:inherit;width:100%;box-sizing:border-box;margin-top:6px" /></div>
-          <div style="display:flex;flex-direction:column;gap:4px">
-            <label style="font-size:0.78rem;text-transform:uppercase;color:#9fb0c2">Type</label>
-            <select id="node-type" style="background:#202c38;color:#e8eef5;border:1px solid #2d3c4c;border-radius:6px;padding:7px 10px;font:inherit;width:100%;box-sizing:border-box">
-              <option value="mineral">Mineral</option>
-              <option value="food">Food</option>
-              <option value="wood">Wood</option>
-              <option value="plant">Plant</option>
-              <option value="creature">Creature</option>
-              <option value="chest">Chest</option>
-              <option value="fishing">Fishing</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:4px">
-            <label style="font-size:0.78rem;text-transform:uppercase;color:#9fb0c2">Island</label>
-            <select id="node-island" style="background:#202c38;color:#e8eef5;border:1px solid #2d3c4c;border-radius:6px;padding:7px 10px;font:inherit;width:100%;box-sizing:border-box">
-              <option value="">— select island —</option>
-              <option>Bone Mountains</option><option>Cape Forest</option>
-              <option>Dragon Tree Island</option><option>Elaine Grand Desert</option>
-              <option>Fragrant Plains</option><option>Goldvalley Prairie</option>
-              <option>Herder Plains</option><option>Iridescent Forest</option>
-              <option>Iridescent Valley</option><option>Jade Prairie</option>
-              <option>Joy River Valley</option><option>Lalu Volcano</option>
-              <option>Leaf Fall Mountains</option><option>Mirage Desert</option>
-              <option>Natanz Island</option><option>Noons Sky Islands</option>
-              <option>Northrend</option><option>Old Bread Island</option>
-              <option>Old Mornmist Forest</option><option>Old Platinum Bay</option>
-              <option>Old Travelers Hill</option><option>Old Tulip Plains</option>
-              <option>Shadesnow Mountain</option><option>Silvermoon Hills</option>
-              <option>Sleeping Sea</option><option>Solitude Mountain</option>
-              <option>Springday Coast</option><option>Sunset Island</option>
-              <option>Mount Beia</option><option>The City of Hope - Ceylens</option>
-              <option>Twilight Foothills</option><option>Valhalla</option>
-              <option>Wilds of Duguang</option>
-            </select>
-          </div>
-          <div style="display:flex;gap:8px">
-            <div style="flex:1;display:flex;flex-direction:column;gap:4px">
-              <label style="font-size:0.78rem;text-transform:uppercase;color:#9fb0c2">X</label>
-              <input id="node-x" type="number" placeholder="X" style="background:#202c38;color:#e8eef5;border:1px solid #2d3c4c;border-radius:6px;padding:7px 10px;font:inherit;width:100%;box-sizing:border-box" />
-            </div>
-            <div style="flex:1;display:flex;flex-direction:column;gap:4px">
-              <label style="font-size:0.78rem;text-transform:uppercase;color:#9fb0c2">Y</label>
-              <input id="node-y" type="number" placeholder="Y" style="background:#202c38;color:#e8eef5;border:1px solid #2d3c4c;border-radius:6px;padding:7px 10px;font:inherit;width:100%;box-sizing:border-box" />
-            </div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:4px">
-            <label style="font-size:0.78rem;text-transform:uppercase;color:#9fb0c2">Notes (optional)</label>
-            <textarea id="node-notes" rows="2" style="background:#202c38;color:#e8eef5;border:1px solid #2d3c4c;border-radius:6px;padding:7px 10px;font:inherit;width:100%;box-sizing:border-box;resize:vertical" placeholder="Respawns quickly, guarded, etc."></textarea>
-          </div>
-          <button id="add-node-btn" class="btn" style="border-color:#6fcf97;width:100%;font-weight:600">Add Node</button>
-          <div id="editor-status" style="font-size:0.8rem;min-height:18px;text-align:center;color:#6fcf97"></div>
-          <hr style="border:none;border-top:1px solid #2d3c4c;margin:4px 0" />
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <span style="font-size:0.78rem;text-transform:uppercase;color:#9fb0c2">This session (<span id="node-count">0</span>)</span>
-            <button class="btn" id="copy-json-btn" style="font-size:0.78rem;padding:4px 10px">Copy JSON</button>
-          </div>
-          <div id="node-preview-list" style="display:flex;flex-direction:column;gap:4px;max-height:120px;overflow-y:auto"></div>
-          <hr style="border:none;border-top:1px solid #2d3c4c;margin:4px 0" />
-          <pre id="json-output" style="background:#202c38;border:1px solid #2d3c4c;border-radius:6px;padding:10px;font-size:0.72rem;color:#e8eef5;white-space:pre;overflow:auto;max-height:160px;margin:0">[ ]</pre>
-          <div style="font-size:0.72rem;color:#9fb0c2">Copy JSON then replace <code>map-nodes.json</code> in your repo.</div>
-        </div>
+
+        <button id="add-node-btn" class="btn" style="border-color:#6fcf97;width:100%;font-weight:600">Add Node</button>
+        <div id="editor-status" style="font-size:0.8rem;min-height:18px;text-align:center;color:#6fcf97"></div>
       </div>
+
+      <!-- ── PANE 2: Screenshot scan ── -->
+      <div class="modal-pane" id="pane-scan">
+
+        <div style="font-size:0.8rem;color:#9fb0c2;line-height:1.6">
+          Drop screenshots from your camera roll here. The scanner reads the
+          coordinate text under your minimap (<code>No.3Archipelago / X, Y</code>)
+          automatically using OCR. Then pick the resource type/island and add them all.
+        </div>
+
+        <!-- Drop zone -->
+        <div class="scan-drop-zone" id="scan-drop-zone">
+          📁 Drop screenshots here or click to pick files
+          <input type="file" id="scan-file-input" accept="image/*" multiple
+            style="display:none" />
+        </div>
+
+        <!-- Island + type for batch (applied to all scanned results) -->
+        <div class="mf">
+          <label>Type (applied to all below)</label>
+          <select id="scan-type"></select>
+        </div>
+        <div class="mf">
+          <label>Resource Name (applied to all below)</label>
+          <select id="scan-name"></select>
+          <input id="scan-name-manual" type="text" placeholder="Type resource name…"
+            autocomplete="off" style="display:none;margin-top:6px;background:#202c38;color:#e8eef5;border:1px solid #2d3c4c;border-radius:6px;padding:7px 10px;font:inherit;width:100%;box-sizing:border-box" />
+        </div>
+        <div class="mf">
+          <label>Island (applied to all below)</label>
+          <select id="scan-island">
+            <option value="">— select island —</option>
+            <option>Bone Mountains</option><option>Cape Forest</option>
+            <option>Dragon Tree Island</option><option>Elaine Grand Desert</option>
+            <option>Fragrant Plains</option><option>Goldvalley Prairie</option>
+            <option>Herder Plains</option><option>Iridescent Forest</option>
+            <option>Iridescent Valley</option><option>Jade Prairie</option>
+            <option>Joy River Valley</option><option>Lalu Volcano</option>
+            <option>Leaf Fall Mountains</option><option>Mirage Desert</option>
+            <option>Natanz Island</option><option>Noons Sky Islands</option>
+            <option>Northrend</option><option>Old Bread Island</option>
+            <option>Old Mornmist Forest</option><option>Old Platinum Bay</option>
+            <option>Old Travelers Hill</option><option>Old Tulip Plains</option>
+            <option>Shadesnow Mountain</option><option>Silvermoon Hills</option>
+            <option>Sleeping Sea</option><option>Solitude Mountain</option>
+            <option>Springday Coast</option><option>Sunset Island</option>
+            <option>Mount Beia</option><option>The City of Hope - Ceylens</option>
+            <option>Twilight Foothills</option><option>Valhalla</option>
+            <option>Wilds of Duguang</option>
+          </select>
+        </div>
+
+        <div class="scan-progress" id="scan-progress"></div>
+
+        <!-- Results list -->
+        <div class="scan-results" id="scan-results"></div>
+
+        <!-- Add all button -->
+        <button id="scan-add-all-btn" class="btn" style="border-color:#6fcf97;width:100%;font-weight:600;display:none">
+          Add All to Session
+        </button>
+
+      </div>
+
+      <!-- ── PANE 3: Output ── -->
+      <div class="modal-pane" id="pane-output">
+
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:0.78rem;text-transform:uppercase;color:#9fb0c2">
+            Session (<span id="node-count">0</span> nodes)
+          </span>
+          <button class="btn" id="copy-json-btn" style="font-size:0.78rem;padding:4px 10px">Copy JSON</button>
+        </div>
+
+        <div id="node-preview-list" style="display:flex;flex-direction:column;gap:4px;max-height:160px;overflow-y:auto">
+          <div style="font-size:0.78rem;color:#9fb0c2">No nodes yet.</div>
+        </div>
+
+        <hr style="border:none;border-top:1px solid #2d3c4c;margin:4px 0" />
+
+        <pre id="json-output" style="background:#202c38;border:1px solid #2d3c4c;border-radius:6px;padding:10px;font-size:0.72rem;color:#e8eef5;white-space:pre;overflow:auto;max-height:200px;margin:0">[ ]</pre>
+        <div style="font-size:0.72rem;color:#9fb0c2">
+          Copy JSON → replace <code>map-nodes.json</code> in your repo.
+        </div>
+
+      </div>
+
     </div>
-    </div>
-    <button class="sidebar-toggle" id="sidebar-toggle" title="Toggle filters">⚙</button>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="map.js"></script>
-    <script>
+  </div>
+
+  <!-- Tesseract OCR (loaded lazily when scan tab is first used) -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="map.js"></script>
+  <script>
   // ============================================================
   //  RESOURCE LIST — edit this to add/remove resource names
-  //  Add new types by adding a new key with an array of names.
-  //  Names appear in the dropdown when that type is selected.
   // ============================================================
   const RESOURCE_LIST = {
     mineral: [
       'Iron Mine', 'Stone Mine', 'Silver Mine', 'Gold Mine',
       'Crystal Mine', 'Obsidian Mine', 'Fire Magic Mine',
+      'Coal Mine', 'Steam Stone Mine',
     ],
     food: [
       'Blueberry Bush', 'Strawberry Bush', 'Blackberry Bush',
       'Grapes', 'Soybean', 'Chilli', 'Watermelon',
-      'Coconut', 'Wheat', 'Pepper', 
+      'Coconut', 'Wheat', 'Pepper', 'Mushroom',
     ],
     tree: [
       'Oak Tree', 'Pine Tree', 'Ancient Tree',
       'Rubber Tree', 'Crystal Branch Tree',
     ],
-    plant: [
-      
-    ],
-    creature: [
-      
-    ],
+    plant: [],
+    creature: [],
     chest: [
       'Silver Chest', 'Gold Chest', 'Relic Chest', 'Treasure Chest',
     ],
+    fishing: ['Fishing Spot'],
+    other:   [],
   };
 
   // ============================================================
-  //  TYPE COLORS — must have an entry for every key above
+  //  TYPE COLORS
   // ============================================================
   const TYPE_COLORS = {
-    mineral:  '#a0a0c0',
-    food:     '#6abf69',
-    tree:     '#8d6e3f',
-    plant:    '#4caf50',
-    creature: '#e57373',
-    chest:    '#ffd54f',
-    other:    '#b0b0b0',
+    mineral: '#a0a0c0', food: '#6abf69', tree: '#8d6e3f',
+    plant: '#4caf50', creature: '#e57373', chest: '#ffd54f',
+    fishing: '#4fc3f7', other: '#b0b0b0',
   };
 
+  // ── state ────────────────────────────────────────────────────
   let workingNodes = [], nextId = 1;
+  let tesseractReady = false, tesseractWorker = null;
 
+  // ── modal open/close ─────────────────────────────────────────
   const modal = document.getElementById('editor-modal');
-
-  function openModal()  { modal.style.display = 'flex'; document.getElementById('node-name').focus(); }
+  function openModal()  { modal.style.display = 'flex'; }
   function closeModal() { modal.style.display = 'none'; }
 
   document.getElementById('node-editor-btn').addEventListener('click', openModal);
@@ -495,58 +407,64 @@
     if (e.key === 'Escape') closeModal();
   });
 
-  // ── Populate type dropdown from RESOURCE_LIST keys ──────────
-  const typeSelect = document.getElementById('node-type');
-  typeSelect.innerHTML = '';
-  Object.keys(RESOURCE_LIST).forEach(type => {
-    const opt = document.createElement('option');
-    opt.value = type;
-    opt.textContent = type.charAt(0).toUpperCase() + type.slice(1);
-    typeSelect.appendChild(opt);
+  // ── tab switching ─────────────────────────────────────────────
+  document.querySelectorAll('.modal-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.modal-pane').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.pane).classList.add('active');
+      // Lazy-load Tesseract when scan tab is first opened
+      if (tab.dataset.pane === 'pane-scan' && !tesseractReady) initTesseract();
+    });
   });
 
-  // ── Name dropdown: rebuilds when type changes ────────────────
-  function rebuildNameDropdown() {
-    const type  = typeSelect.value;
-    const names = RESOURCE_LIST[type] || [];
-    const sel   = document.getElementById('node-name');
+  // ── build type dropdowns ──────────────────────────────────────
+  function buildTypeSelect(selectId, nameSelectId, nameManualId) {
+    const sel = document.getElementById(selectId);
     sel.innerHTML = '';
-
-    names.forEach(name => {
+    Object.keys(RESOURCE_LIST).forEach(type => {
       const opt = document.createElement('option');
-      opt.value = name;
-      opt.textContent = name;
+      opt.value = type;
+      opt.textContent = type.charAt(0).toUpperCase() + type.slice(1);
       sel.appendChild(opt);
     });
+    sel.addEventListener('change', () => rebuildNameSelect(sel.value, nameSelectId, nameManualId));
+    rebuildNameSelect(sel.value, nameSelectId, nameManualId);
+  }
 
-    // Always offer a manual entry option at the bottom
+  function rebuildNameSelect(type, nameSelectId, nameManualId) {
+    const names = RESOURCE_LIST[type] || [];
+    const sel   = document.getElementById(nameSelectId);
+    sel.innerHTML = '';
+    names.forEach(n => {
+      const o = document.createElement('option');
+      o.value = o.textContent = n;
+      sel.appendChild(o);
+    });
     const other = document.createElement('option');
-    other.value = '__other__';
-    other.textContent = '— type manually —';
+    other.value = '__other__'; other.textContent = '— type manually —';
     sel.appendChild(other);
-
     sel.dispatchEvent(new Event('change'));
   }
 
-  typeSelect.addEventListener('change', rebuildNameDropdown);
+  function wireManualInput(nameSelectId, nameManualId) {
+    document.getElementById(nameSelectId).addEventListener('change', function() {
+      document.getElementById(nameManualId).style.display =
+        this.value === '__other__' ? 'block' : 'none';
+    });
+  }
 
-  // ── Show/hide manual text input ──────────────────────────────
-  document.getElementById('node-name').addEventListener('change', function() {
-    const manualInput = document.getElementById('node-name-manual');
-    if (this.value === '__other__') {
-      manualInput.style.display = 'block';
-      manualInput.focus();
-    } else {
-      manualInput.style.display = 'none';
-    }
-  });
+  buildTypeSelect('node-type', 'node-name', 'node-name-manual');
+  wireManualInput('node-name', 'node-name-manual');
+  buildTypeSelect('scan-type', 'scan-name', 'scan-name-manual');
+  wireManualInput('scan-name', 'scan-name-manual');
 
-  // ── Load existing ────────────────────────────────────────────
+  // ── load existing ─────────────────────────────────────────────
   document.getElementById('load-existing-btn').addEventListener('click', () => {
     const a = document.getElementById('load-existing-area');
     a.style.display = a.style.display === 'none' ? 'flex' : 'none';
   });
-
   document.getElementById('confirm-load-btn').addEventListener('click', () => {
     try {
       const parsed = JSON.parse(document.getElementById('existing-json-input').value.trim());
@@ -560,13 +478,13 @@
     } catch { showStatus('Invalid JSON.', true); }
   });
 
-  // ── Add node ─────────────────────────────────────────────────
+  // ── manual add ───────────────────────────────────────────────
   document.getElementById('add-node-btn').addEventListener('click', () => {
-    const nameSelect = document.getElementById('node-name');
-    const name = nameSelect.value === '__other__'
+    const nameEl = document.getElementById('node-name');
+    const name   = nameEl.value === '__other__'
       ? document.getElementById('node-name-manual').value.trim()
-      : nameSelect.value;
-    const type   = typeSelect.value;
+      : nameEl.value;
+    const type   = document.getElementById('node-type').value;
     const island = document.getElementById('node-island').value;
     const x      = parseInt(document.getElementById('node-x').value, 10);
     const y      = parseInt(document.getElementById('node-y').value, 10);
@@ -576,13 +494,12 @@
     if (!island)             return showStatus('Select an island.', true);
     if (isNaN(x)||isNaN(y)) return showStatus('X and Y required.', true);
 
-    workingNodes.push({ id: nextId++, name, type, island, notes, x, y });
+    addNode({ name, type, island, notes, x, y });
     document.getElementById('node-x').value     = '';
     document.getElementById('node-y').value     = '';
     document.getElementById('node-notes').value = '';
     document.getElementById('node-x').focus();
     showStatus(`Added: ${name} (${x}, ${y})`);
-    refreshOutput();
   });
 
   ['node-x','node-y'].forEach(id => {
@@ -591,7 +508,12 @@
     });
   });
 
-  // ── Refresh output + preview ─────────────────────────────────
+  function addNode(fields) {
+    workingNodes.push({ id: nextId++, ...fields });
+    refreshOutput();
+  }
+
+  // ── output / preview ─────────────────────────────────────────
   function refreshOutput() {
     document.getElementById('json-output').textContent = JSON.stringify(workingNodes, null, 2);
     document.getElementById('node-count').textContent  = workingNodes.length;
@@ -601,7 +523,7 @@
       return;
     }
     list.innerHTML = '';
-    [...workingNodes].reverse().slice(0,20).forEach(node => {
+    [...workingNodes].reverse().slice(0,30).forEach(node => {
       const color = TYPE_COLORS[node.type] || '#b0b0b0';
       const d = document.createElement('div');
       d.style.cssText = 'display:flex;align-items:center;gap:8px;font-size:0.8rem;padding:4px 6px;border-radius:4px;background:#202c38';
@@ -619,7 +541,6 @@
     });
   }
 
-  // ── Copy JSON ─────────────────────────────────────────────────
   document.getElementById('copy-json-btn').addEventListener('click', () => {
     navigator.clipboard.writeText(document.getElementById('json-output').textContent)
       .then(() => showStatus('Copied!'))
@@ -629,19 +550,217 @@
       });
   });
 
-  // ── Status ───────────────────────────────────────────────────
-  let t;
+  let statusTimer;
   function showStatus(msg, err=false) {
     const el = document.getElementById('editor-status');
-    el.textContent = msg;
-    el.style.color = err ? '#e57373' : '#6fcf97';
-    clearTimeout(t);
-    t = setTimeout(() => el.textContent = '', 3000);
+    el.textContent = msg; el.style.color = err ? '#e57373' : '#6fcf97';
+    clearTimeout(statusTimer);
+    statusTimer = setTimeout(() => el.textContent='', 3000);
+  }
+
+  // ══════════════════════════════════════════════════════════════
+  //  SCREENSHOT SCAN TAB
+  // ══════════════════════════════════════════════════════════════
+
+  // The coordinate text in your screenshots is always in the same spot:
+  // under the minimap circle, roughly the top-left of the image.
+  // We crop just that region before running OCR — much faster and
+  // more accurate than scanning the whole image.
+  //
+  // These values are tuned for iPhone screenshots (1536×720).
+  // If you get bad reads, adjust CROP_* to match your device.
+  // The debug thumbnail in each result row shows exactly what
+  // region was cropped so you can see what OCR is working with.
+
+  const CROP_X      = 130;   // pixels from left edge
+  const CROP_Y      = 195;   // pixels from top edge
+  const CROP_W      = 230;   // width of crop region
+  const CROP_H      =  55;   // height of crop region
+  const SCALE       =   3;   // upscale factor before OCR (sharpens small text)
+
+  let scanResults = [];   // { imgUrl, coords, added }
+
+  // Drop zone wiring
+  const dropZone  = document.getElementById('scan-drop-zone');
+  const fileInput = document.getElementById('scan-file-input');
+
+  dropZone.addEventListener('click', () => fileInput.click());
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault(); dropZone.classList.remove('dragover');
+    handleFiles([...e.dataTransfer.files]);
+  });
+  fileInput.addEventListener('change', () => handleFiles([...fileInput.files]));
+
+  async function handleFiles(files) {
+    const images = files.filter(f => f.type.startsWith('image/'));
+    if (!images.length) return;
+    if (!tesseractReady) {
+      setScanProgress('Loading OCR engine… (first time only, ~5s)');
+      await initTesseract();
+    }
+    setScanProgress(`Scanning ${images.length} image${images.length>1?'s':''}…`);
+    for (let i = 0; i < images.length; i++) {
+      setScanProgress(`Scanning ${i+1} / ${images.length}…`);
+      await scanImage(images[i]);
+    }
+    setScanProgress(`Done — ${scanResults.length} result${scanResults.length!==1?'s':''}.`);
+    document.getElementById('scan-add-all-btn').style.display =
+      scanResults.length ? 'block' : 'none';
+  }
+
+  async function scanImage(file) {
+    return new Promise(resolve => {
+      const reader = new FileReader();
+      reader.onload = async e => {
+        const img = new Image();
+        img.onload = async () => {
+          // Crop the coord region and upscale for better OCR
+          const canvas = document.createElement('canvas');
+          canvas.width  = CROP_W * SCALE;
+          canvas.height = CROP_H * SCALE;
+          const ctx = canvas.getContext('2d');
+          // White background helps OCR on light text
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.imageSmoothingEnabled = false;
+          ctx.drawImage(img,
+            CROP_X, CROP_Y, CROP_W, CROP_H,
+            0, 0, CROP_W * SCALE, CROP_H * SCALE
+          );
+
+          const thumbUrl = canvas.toDataURL('image/png');
+
+          // Run OCR
+          let coords = null;
+          try {
+            const { data: { text } } = await tesseractWorker.recognize(canvas);
+            coords = parseCoords(text);
+          } catch(err) { /* OCR failed for this image */ }
+
+          const result = { thumbUrl, coords, added: false, file: file.name };
+          scanResults.push(result);
+          renderScanResult(result, scanResults.length - 1);
+          resolve();
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function parseCoords(text) {
+    // Look for two numbers separated by comma or space, e.g. "5621, 11690"
+    // Tesseract sometimes reads commas as periods or adds spaces — be flexible
+    const cleaned = text.replace(/[^\d,.\s]/g, ' ').trim();
+    const match = cleaned.match(/(\d{2,6})[,.\s]+(\d{2,6})/);
+    if (!match) return null;
+    const x = parseInt(match[1], 10);
+    const y = parseInt(match[2], 10);
+    // Sanity check against world bounds
+    if (x < 0 || x > 25000 || y < 0 || y > 25000) return null;
+    return { x, y };
+  }
+
+  function renderScanResult(result, idx) {
+    const list = document.getElementById('scan-results');
+    const row  = document.createElement('div');
+    row.className   = 'scan-result-row';
+    row.dataset.idx = idx;
+
+    const coordText = result.coords
+      ? `(${result.coords.x}, ${result.coords.y})`
+      : '⚠ not found';
+    const coordColor = result.coords ? '#6fcf97' : '#e57373';
+
+    row.innerHTML = `
+      <div style="display:flex;align-items:center;gap:8px;min-width:0">
+        <img class="scan-thumb" src="${result.thumbUrl}" title="OCR crop region" />
+        <div style="min-width:0">
+          <div class="scan-result-coords" style="color:${coordColor}">${coordText}</div>
+          <div class="scan-result-status" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${result.file}</div>
+        </div>
+      </div>
+      ${result.coords ? `<button class="scan-add-btn" data-idx="${idx}">Add</button>` : '<span style="font-size:0.72rem;color:#e57373">edit manually</span>'}
+    `;
+
+    // Individual add button
+    const addBtn = row.querySelector('.scan-add-btn');
+    if (addBtn) {
+      addBtn.addEventListener('click', () => addFromScan(idx, addBtn));
+    }
+
+    list.appendChild(row);
+  }
+
+  function addFromScan(idx, btn) {
+    const result = scanResults[idx];
+    if (!result || result.added || !result.coords) return;
+
+    const nameEl   = document.getElementById('scan-name');
+    const name     = nameEl.value === '__other__'
+      ? document.getElementById('scan-name-manual').value.trim()
+      : nameEl.value;
+    const type     = document.getElementById('scan-type').value;
+    const island   = document.getElementById('scan-island').value;
+
+    if (!name)   return alert('Pick a resource name first.');
+    if (!island) return alert('Pick an island first.');
+
+    addNode({ name, type, island, notes: '', x: result.coords.x, y: result.coords.y });
+    result.added = true;
+    if (btn) { btn.textContent = '✓'; btn.classList.add('added'); btn.disabled = true; }
+  }
+
+  document.getElementById('scan-add-all-btn').addEventListener('click', () => {
+    let added = 0;
+    scanResults.forEach((result, idx) => {
+      if (result.added || !result.coords) return;
+      const row    = document.querySelector(`.scan-result-row[data-idx="${idx}"]`);
+      const addBtn = row ? row.querySelector('.scan-add-btn') : null;
+      addFromScan(idx, addBtn);
+      added++;
+    });
+    if (added) showStatus(`Added ${added} nodes from scans.`);
+    // Switch to output tab
+    document.querySelector('[data-pane="pane-output"]').click();
+  });
+
+  // ── Tesseract init ────────────────────────────────────────────
+  async function initTesseract() {
+    if (tesseractReady) return;
+    // Load Tesseract from CDN if not already loaded
+    if (!window.Tesseract) {
+      await new Promise((resolve, reject) => {
+        const s = document.createElement('script');
+        s.src = 'https://unpkg.com/tesseract.js@5/dist/tesseract.min.js';
+        s.onload = resolve; s.onerror = reject;
+        document.head.appendChild(s);
+      });
+    }
+    tesseractWorker = await Tesseract.createWorker('eng', 1, {
+      // Restrict to digits, comma, space — speeds up OCR significantly
+      tessedit_char_whitelist: '0123456789, ',
+    });
+    tesseractReady = true;
+    setScanProgress('OCR engine ready.');
+    setTimeout(() => setScanProgress(''), 2000);
+  }
+
+  function setScanProgress(msg) {
+    document.getElementById('scan-progress').textContent = msg;
+  }
+
+  // ── Mobile sidebar ────────────────────────────────────────────
+  const sidebar   = document.getElementById('sidebar');
+  const toggleBtn = document.getElementById('sidebar-toggle');
+  if (toggleBtn && sidebar) {
+    toggleBtn.addEventListener('click', () => sidebar.classList.toggle('open'));
   }
 
   // ── Init ─────────────────────────────────────────────────────
-  rebuildNameDropdown();
   refreshOutput();
-</script>
-  </body>
+  </script>
+</body>
 </html>
