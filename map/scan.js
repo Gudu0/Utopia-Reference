@@ -190,18 +190,25 @@ function showScanStatus(msg) {
 const addAllBtn = document.getElementById('scan-add-all-btn');
 if (addAllBtn) {
   addAllBtn.addEventListener('click', () => {
+    const island = document.getElementById('scan-island').value;
+    if (!island) { showScanStatus('Pick an island first.'); return; }
+
     let added = 0;
     scanResults.forEach((result, idx) => {
       if (result.added || !result.coords) return;
-      const row    = document.querySelector(`.scan-result-row[data-idx="${idx}"]`);
-      const btn    = row ? row.querySelector('.scan-add-btn') : null;
+      const row = document.querySelector(`.scan-result-row[data-idx="${idx}"]`);
+      const btn = row ? row.querySelector('.scan-add-btn') : null;
       addFromScan(idx, btn);
       added++;
     });
-    if (added) showStatus(`Added ${added} nodes from scans.`);
-    // Switch to output tab
-    const outputTab = document.querySelector('[data-pane="pane-output"]');
-    if (outputTab) outputTab.click();
+
+    if (added) {
+      showStatus(`Added ${added} nodes from scans.`);
+      const outputTab = document.querySelector('[data-pane="pane-output"]');
+      if (outputTab) outputTab.click();
+    } else {
+      showScanStatus('Nothing to add — check island and name are selected.');
+    }
   });
 }
 
