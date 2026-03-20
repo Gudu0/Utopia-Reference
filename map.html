@@ -366,8 +366,8 @@
           </div>
           <div style="display:flex;flex-direction:column;gap:4px">
             <label style="font-size:0.78rem;text-transform:uppercase;color:#9fb0c2">Resource Name</label>
-            <input id="node-name" type="text" placeholder="Iron Ore" autocomplete="off" style="background:#202c38;color:#e8eef5;border:1px solid #2d3c4c;border-radius:6px;padding:7px 10px;font:inherit;width:100%;box-sizing:border-box" />
-          </div>
+            <select id="node-name" style="background:#202c38;color:#e8eef5;border:1px solid #2d3c4c;border-radius:6px;padding:7px 10px;font:inherit;width:100%;box-sizing:border-box"></select>
+            <input id="node-name-manual" type="text" placeholder="Type resource name..." autocomplete="off" style="display:none;background:#202c38;color:#e8eef5;border:1px solid #2d3c4c;border-radius:6px;padding:7px 10px;font:inherit;width:100%;box-sizing:border-box;margin-top:6px" /></div>
           <div style="display:flex;flex-direction:column;gap:4px">
             <label style="font-size:0.78rem;text-transform:uppercase;color:#9fb0c2">Type</label>
             <select id="node-type" style="background:#202c38;color:#e8eef5;border:1px solid #2d3c4c;border-radius:6px;padding:7px 10px;font:inherit;width:100%;box-sizing:border-box">
@@ -437,103 +437,222 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="map.js"></script>
     <script>
-      const TYPE_COLORS = {
-        mineral:'#a0a0c0',food:'#6abf69',wood:'#8d6e3f',
-        plant:'#4caf50',creature:'#e57373',chest:'#ffd54f',
-        fishing:'#4fc3f7',other:'#b0b0b0',
-      };
-      let workingNodes = [], nextId = 1;
-      
-      const modal = document.getElementById('editor-modal');
-      
-      function openModal()  { modal.style.display = 'flex'; document.getElementById('node-name').focus(); }
-      function closeModal() { modal.style.display = 'none'; }
-      
-      document.getElementById('node-editor-btn').addEventListener('click', openModal);
-      document.getElementById('close-modal-btn').addEventListener('click', closeModal);
-      modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-      document.addEventListener('keydown', e => {
-        if (e.key === 'n' && !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) openModal();
-        if (e.key === 'Escape') closeModal();
-      });
-      
-      document.getElementById('load-existing-btn').addEventListener('click', () => {
-        const a = document.getElementById('load-existing-area');
-        a.style.display = a.style.display === 'none' ? 'flex' : 'none';
-      });
-      
-      document.getElementById('confirm-load-btn').addEventListener('click', () => {
-        try {
-          const parsed = JSON.parse(document.getElementById('existing-json-input').value.trim());
-          if (!Array.isArray(parsed)) throw new Error();
-          workingNodes = parsed;
-          nextId = parsed.reduce((m,n) => Math.max(m, n.id||0), 0) + 1;
-          document.getElementById('load-existing-area').style.display = 'none';
-          document.getElementById('existing-json-input').value = '';
-          showStatus(`Loaded ${parsed.length} nodes.`);
-          refreshOutput();
-        } catch { showStatus('Invalid JSON.', true); }
-      });
-      
-      document.getElementById('add-node-btn').addEventListener('click', () => {
-        const name   = document.getElementById('node-name').value.trim();
-        const type   = document.getElementById('node-type').value;
-        const island = document.getElementById('node-island').value;
-        const x      = parseInt(document.getElementById('node-x').value, 10);
-        const y      = parseInt(document.getElementById('node-y').value, 10);
-        const notes  = document.getElementById('node-notes').value.trim();
-        if (!name)               return showStatus('Name required.', true);
-        if (!island)             return showStatus('Select an island.', true);
-        if (isNaN(x)||isNaN(y)) return showStatus('X and Y required.', true);
-        workingNodes.push({ id: nextId++, name, type, island, notes, x, y });
-        document.getElementById('node-name').value  = '';
-        document.getElementById('node-x').value     = '';
-        document.getElementById('node-y').value     = '';
-        document.getElementById('node-notes').value = '';
-        document.getElementById('node-name').focus();
-        showStatus(`Added: ${name} (${x}, ${y})`);
+  // ============================================================
+  //  RESOURCE LIST — edit this to add/remove resource names
+  //  Add new types by adding a new key with an array of names.
+  //  Names appear in the dropdown when that type is selected.
+  // ============================================================
+  const RESOURCE_LIST = {
+    mineral: [
+      'Iron Mine', 'Stone Mine', 'Silver Mine', 'Gold Mine',
+      'Crystal Mine', 'Obsidian Mine', 'Fire Magic Mine',
+      'Coal Mine', 'Steam Stone Mine',
+    ],
+    food: [
+      'Blueberry Bush', 'Strawberry Bush', 'Blackberry Bush',
+      'Grapes', 'Soybean', 'Chilli', 'Watermelon',
+      'Coconut', 'Wheat', 'Pepper', 'Mushroom',
+      'Green Carp', 'Red Carp', 'Geoduck', 'Hairy Crab',
+    ],
+    tree: [
+      'Oak Tree', 'Pine Tree', 'Ancient Tree',
+      'Rubber Tree', 'Crystal Branch Tree',
+    ],
+    plant: [
+      'Plant Fiber', 'Seaweed', 'Straw', 'Dragon Grass',
+      'Whirlwind Grass', 'Cotton', 'Silk', 'Wool', 'Resin',
+    ],
+    creature: [
+      'Wolf', 'Duck', 'Deer', 'Spider',
+      'Scorpion', 'Skeleton Soldier',
+    ],
+    chest: [
+      'Hidden Chest', 'Ruins Chest',
+    ],
+    fishing: [
+      'Fishing Spot',
+    ],
+    other: [
+      'Wisp', 'Magnet', 'Orb',
+    ],
+  };
+
+  // ============================================================
+  //  TYPE COLORS — must have an entry for every key above
+  // ============================================================
+  const TYPE_COLORS = {
+    mineral:  '#a0a0c0',
+    food:     '#6abf69',
+    tree:     '#8d6e3f',
+    plant:    '#4caf50',
+    creature: '#e57373',
+    chest:    '#ffd54f',
+    fishing:  '#4fc3f7',
+    other:    '#b0b0b0',
+  };
+
+  let workingNodes = [], nextId = 1;
+
+  const modal = document.getElementById('editor-modal');
+
+  function openModal()  { modal.style.display = 'flex'; document.getElementById('node-name').focus(); }
+  function closeModal() { modal.style.display = 'none'; }
+
+  document.getElementById('node-editor-btn').addEventListener('click', openModal);
+  document.getElementById('close-modal-btn').addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'n' && !['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) openModal();
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // ── Populate type dropdown from RESOURCE_LIST keys ──────────
+  const typeSelect = document.getElementById('node-type');
+  typeSelect.innerHTML = '';
+  Object.keys(RESOURCE_LIST).forEach(type => {
+    const opt = document.createElement('option');
+    opt.value = type;
+    opt.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+    typeSelect.appendChild(opt);
+  });
+
+  // ── Name dropdown: rebuilds when type changes ────────────────
+  function rebuildNameDropdown() {
+    const type  = typeSelect.value;
+    const names = RESOURCE_LIST[type] || [];
+    const sel   = document.getElementById('node-name');
+    sel.innerHTML = '';
+
+    names.forEach(name => {
+      const opt = document.createElement('option');
+      opt.value = name;
+      opt.textContent = name;
+      sel.appendChild(opt);
+    });
+
+    // Always offer a manual entry option at the bottom
+    const other = document.createElement('option');
+    other.value = '__other__';
+    other.textContent = '— type manually —';
+    sel.appendChild(other);
+
+    sel.dispatchEvent(new Event('change'));
+  }
+
+  typeSelect.addEventListener('change', rebuildNameDropdown);
+
+  // ── Show/hide manual text input ──────────────────────────────
+  document.getElementById('node-name').addEventListener('change', function() {
+    const manualInput = document.getElementById('node-name-manual');
+    if (this.value === '__other__') {
+      manualInput.style.display = 'block';
+      manualInput.focus();
+    } else {
+      manualInput.style.display = 'none';
+    }
+  });
+
+  // ── Load existing ────────────────────────────────────────────
+  document.getElementById('load-existing-btn').addEventListener('click', () => {
+    const a = document.getElementById('load-existing-area');
+    a.style.display = a.style.display === 'none' ? 'flex' : 'none';
+  });
+
+  document.getElementById('confirm-load-btn').addEventListener('click', () => {
+    try {
+      const parsed = JSON.parse(document.getElementById('existing-json-input').value.trim());
+      if (!Array.isArray(parsed)) throw new Error();
+      workingNodes = parsed;
+      nextId = parsed.reduce((m,n) => Math.max(m, n.id||0), 0) + 1;
+      document.getElementById('load-existing-area').style.display = 'none';
+      document.getElementById('existing-json-input').value = '';
+      showStatus(`Loaded ${parsed.length} nodes.`);
+      refreshOutput();
+    } catch { showStatus('Invalid JSON.', true); }
+  });
+
+  // ── Add node ─────────────────────────────────────────────────
+  document.getElementById('add-node-btn').addEventListener('click', () => {
+    const nameSelect = document.getElementById('node-name');
+    const name = nameSelect.value === '__other__'
+      ? document.getElementById('node-name-manual').value.trim()
+      : nameSelect.value;
+    const type   = typeSelect.value;
+    const island = document.getElementById('node-island').value;
+    const x      = parseInt(document.getElementById('node-x').value, 10);
+    const y      = parseInt(document.getElementById('node-y').value, 10);
+    const notes  = document.getElementById('node-notes').value.trim();
+
+    if (!name)               return showStatus('Name required.', true);
+    if (!island)             return showStatus('Select an island.', true);
+    if (isNaN(x)||isNaN(y)) return showStatus('X and Y required.', true);
+
+    workingNodes.push({ id: nextId++, name, type, island, notes, x, y });
+    document.getElementById('node-x').value     = '';
+    document.getElementById('node-y').value     = '';
+    document.getElementById('node-notes').value = '';
+    document.getElementById('node-x').focus();
+    showStatus(`Added: ${name} (${x}, ${y})`);
+    refreshOutput();
+  });
+
+  ['node-x','node-y'].forEach(id => {
+    document.getElementById(id).addEventListener('keydown', e => {
+      if (e.key === 'Enter') document.getElementById('add-node-btn').click();
+    });
+  });
+
+  // ── Refresh output + preview ─────────────────────────────────
+  function refreshOutput() {
+    document.getElementById('json-output').textContent = JSON.stringify(workingNodes, null, 2);
+    document.getElementById('node-count').textContent  = workingNodes.length;
+    const list = document.getElementById('node-preview-list');
+    if (workingNodes.length === 0) {
+      list.innerHTML = '<div style="font-size:0.78rem;color:#9fb0c2">No nodes yet.</div>';
+      return;
+    }
+    list.innerHTML = '';
+    [...workingNodes].reverse().slice(0,20).forEach(node => {
+      const color = TYPE_COLORS[node.type] || '#b0b0b0';
+      const d = document.createElement('div');
+      d.style.cssText = 'display:flex;align-items:center;gap:8px;font-size:0.8rem;padding:4px 6px;border-radius:4px;background:#202c38';
+      d.innerHTML = `
+        <span style="width:8px;height:8px;border-radius:50%;background:${color};flex-shrink:0;display:inline-block"></span>
+        <span style="flex:1;color:#e8eef5">${node.name}</span>
+        <span style="color:#9fb0c2;font-family:monospace;font-size:0.72rem">(${node.x},${node.y})</span>
+        <button data-id="${node.id}" style="background:none;border:none;color:#666;cursor:pointer;font-size:0.9rem;padding:0 2px">✕</button>
+      `;
+      d.querySelector('button').addEventListener('click', () => {
+        workingNodes = workingNodes.filter(n => n.id !== node.id);
         refreshOutput();
       });
-      
-      ['node-x','node-y'].forEach(id => {
-        document.getElementById(id).addEventListener('keydown', e => {
-          if (e.key === 'Enter') document.getElementById('add-node-btn').click();
-        });
+      list.appendChild(d);
+    });
+  }
+
+  // ── Copy JSON ─────────────────────────────────────────────────
+  document.getElementById('copy-json-btn').addEventListener('click', () => {
+    navigator.clipboard.writeText(document.getElementById('json-output').textContent)
+      .then(() => showStatus('Copied!'))
+      .catch(() => {
+        window.getSelection().selectAllChildren(document.getElementById('json-output'));
+        showStatus('Press ⌘C to copy.');
       });
-      
-      function refreshOutput() {
-        document.getElementById('json-output').textContent = JSON.stringify(workingNodes, null, 2);
-        document.getElementById('node-count').textContent  = workingNodes.length;
-        const list = document.getElementById('node-preview-list');
-        if (workingNodes.length === 0) { list.innerHTML = '<div style="font-size:0.78rem;color:#9fb0c2">No nodes yet.</div>'; return; }
-        list.innerHTML = '';
-        [...workingNodes].reverse().slice(0,20).forEach(node => {
-          const color = TYPE_COLORS[node.type]||TYPE_COLORS.other;
-          const d = document.createElement('div');
-          d.style.cssText = 'display:flex;align-items:center;gap:8px;font-size:0.8rem;padding:4px 6px;border-radius:4px;background:#202c38';
-          d.innerHTML = `<span style="width:8px;height:8px;border-radius:50%;background:${color};flex-shrink:0;display:inline-block"></span><span style="flex:1;color:#e8eef5">${node.name}</span><span style="color:#9fb0c2;font-family:monospace;font-size:0.72rem">(${node.x},${node.y})</span><button data-id="${node.id}" style="background:none;border:none;color:#666;cursor:pointer;font-size:0.9rem;padding:0 2px">✕</button>`;
-          d.querySelector('button').addEventListener('click', () => {
-            workingNodes = workingNodes.filter(n => n.id !== node.id);
-            refreshOutput();
-          });
-          list.appendChild(d);
-        });
-      }
-      
-      document.getElementById('copy-json-btn').addEventListener('click', () => {
-        navigator.clipboard.writeText(document.getElementById('json-output').textContent)
-          .then(() => showStatus('Copied!'))
-          .catch(() => { window.getSelection().selectAllChildren(document.getElementById('json-output')); showStatus('Select ⌘C to copy.'); });
-      });
-      
-      let t;
-      function showStatus(msg, err=false) {
-        const el = document.getElementById('editor-status');
-        el.textContent = msg; el.style.color = err ? '#e57373' : '#6fcf97';
-        clearTimeout(t); t = setTimeout(() => el.textContent='', 3000);
-      }
-      
-      refreshOutput();
-    </script>
+  });
+
+  // ── Status ───────────────────────────────────────────────────
+  let t;
+  function showStatus(msg, err=false) {
+    const el = document.getElementById('editor-status');
+    el.textContent = msg;
+    el.style.color = err ? '#e57373' : '#6fcf97';
+    clearTimeout(t);
+    t = setTimeout(() => el.textContent = '', 3000);
+  }
+
+  // ── Init ─────────────────────────────────────────────────────
+  rebuildNameDropdown();
+  refreshOutput();
+</script>
   </body>
 </html>
