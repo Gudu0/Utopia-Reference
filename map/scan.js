@@ -112,12 +112,16 @@ async function handleFiles(files) {
 }
 
 // ── Crop + OCR a single image ────────────────────────────────
+//  Memory note: we do NOT store the full image data URL on the
+//  result object. iPhone screenshots are 2-4 MB each as base64,
+//  and keeping 200 of them would easily crash a mobile browser.
+//  Instead we store the original File handle (a cheap reference)
+//  and re-read it on demand only when the lightbox is opened.
 async function scanImage(file) {
   return new Promise(resolve => {
     const reader = new FileReader();
     reader.onload = async e => {
-      const fullUrl = e.target.result;   // ← store full image for lightbox
-      const img     = new Image();
+      const img = new Image();
       img.onload = async () => {
         // Crop the coord region and upscale
         const canvas  = document.createElement('canvas');
@@ -137,6 +141,10 @@ async function scanImage(file) {
 
         const thumbUrl = canvas.toDataURL('image/png');
 
+        // Release the full-resolution image from memory — we only
+        // need the small cropped thumbnail going forward.
+        img.src = '';
+
         let coords = null;
         try {
           const { data: { text } } = await tesseractWorker.recognize(canvas);
@@ -149,18 +157,20 @@ async function scanImage(file) {
 
         const result = {
           thumbUrl,
-          fullUrl,          // full screenshot for lightbox
+          fileRef:      file,   // File handle — no image bytes retained
           coords,
           added:        false,
-          dupeResolved: false,  // true once user explicitly keeps/dismisses
-          dupOf,                // null or descriptive string
+          dupeResolved: false,
+          dupOf,
           file:         file.name,
         };
         scanResults.push(result);
         renderScanResult(result, scanResults.length - 1);
         resolve();
       };
-      img.src = fullUrl;
+      img.src = e.target.result;
+      // e.target.result (full data URL) is not stored — goes out of scope
+      // after this callback, freeing the memory.
     };
     reader.readAsDataURL(file);
   });
@@ -281,9 +291,13 @@ function renderScanResult(result, idx) {
   if (addBtn)     addBtn.addEventListener('click',     () => addFromScan(idx, addBtn));
   if (keepBtn)    keepBtn.addEventListener('click',    () => resolveAsSafe(idx, row));
   if (discardBtn) discardBtn.addEventListener('click', () => discardScan(idx, row));
-  if (viewBtnEl)  viewBtnEl.addEventListener('click',  () =>
-    openLightbox(result.fullUrl, `${result.file}${result.coords ? ' — ' + coordText : ''}`)
-  );
+  if (viewBtnEl)  viewBtnEl.addEventListener('click',  () => {
+    // Re-read the file on demand — we don't keep the full image in memory.
+    const label = `${result.file}${result.coords ? ' — ' + coordText : ''}`;
+    const fr = new FileReader();
+    fr.onload = e => openLightbox(e.target.result, label);
+    fr.readAsDataURL(result.fileRef);
+  });
 
   list.appendChild(row);
 }
