@@ -485,7 +485,9 @@ function renderScanResult(result, idx) {
         dupeLabel.title = result.dupOf;
         dupeLabel.textContent = '⚠ dupe of ' + result.dupOf;
         if (statusEl) statusEl.before(dupeLabel);
-        if (entryEl) entryEl.replaceWith(document.createElement('span'));
+        const placeholder = document.createElement('span');
+        placeholder.className = 'scan-add-btn'; // recognised by setActionCell
+        if (entryEl) entryEl.replaceWith(placeholder);
         setActionCell(row, result, idx);
       } else {
         // Clean — swap entry for normal Add button
