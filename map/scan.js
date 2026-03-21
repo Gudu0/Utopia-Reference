@@ -33,7 +33,7 @@ let tesseractWorker = null;
 
 // -- Version --------------------------------------------------
 const version = document.getElementById('version');
-version.innerHTML = 'v128';
+version.innerHTML = 'v129';
 
 // ── Lightbox ─────────────────────────────────────────────────
 const lightbox = document.createElement('div');
@@ -305,9 +305,25 @@ function setActionCell(row, result, idx) {
     el.querySelector('.scan-discard-btn').addEventListener('click', () => {
       result.added = true; result.dupeResolved = true;
       row.style.opacity = '0.4';
-      el.innerHTML = '<span style="font-size:0.72rem;color:var(--muted)">discarded</span>';
-      // Disable all remaining interactive elements on the row
+      // Disable all buttons except the undiscard button
       row.querySelectorAll('button').forEach(b => { b.disabled = true; b.style.pointerEvents = 'none'; });
+      // Replace action cell with undiscard button
+      const undoBtn = document.createElement('button');
+      undoBtn.className = 'scan-keep-btn';
+      undoBtn.textContent = 'Undo';
+      undoBtn.style.pointerEvents = 'auto';
+      undoBtn.disabled = false;
+      undoBtn.addEventListener('click', () => {
+        result.added = false;
+        result.dupeResolved = !!result.dupOf;
+        row.style.opacity = '';
+        // Re-enable view/edit buttons
+        row.querySelectorAll('button').forEach(b => { b.disabled = false; b.style.pointerEvents = ''; });
+        setActionCell(row, result, idx);
+        updateAddAllBtn();
+      });
+      el.innerHTML = '';
+      el.appendChild(undoBtn);
       updateAddAllBtn();
     });
   } else if (result.added) {
