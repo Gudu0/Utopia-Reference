@@ -176,12 +176,13 @@ async function scanImage(file) {
         }
 
         const dupOf = coords ? findDuplicate(coords, scanResults.length) : null;
-        const result = { thumbUrl, fullUrl: e.target.result, coords, dupOf, added: false, file: file.name };
+        const result = { thumbUrl, fileRef: file, coords, dupOf, added: false, file: file.name };
         scanResults.push(result);
         renderScanResult(result, scanResults.length - 1);
         resolve();
       };
       img.src = e.target.result;
+      // Note: e.target.result (full data URL) is not stored — goes out of scope here.
     };
     reader.readAsDataURL(file);
   });
@@ -348,7 +349,12 @@ function renderScanResult(result, idx) {
   if (addBtn) addBtn.addEventListener('click', () => addFromScan(idx, addBtn));
   const viewBtn = row.querySelector('.scan-view-btn');
   if (viewBtn) viewBtn.addEventListener('click', () =>
-    openLightbox(result.fullUrl, result.file + (result.coords ? ' — (' + result.coords.x + ', ' + result.coords.y + ')' : ''))
+    (() => {
+      const label = result.file + (result.coords ? ' — (' + result.coords.x + ', ' + result.coords.y + ')' : '');
+      const fr = new FileReader();
+      fr.onload = e => openLightbox(e.target.result, label);
+      fr.readAsDataURL(result.fileRef);
+    })()
   );
 
   // Thumbnail click — opens the cropped OCR region fullscreen so coords are readable
