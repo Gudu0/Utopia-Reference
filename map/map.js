@@ -49,11 +49,9 @@ let searchText   = '';
 
 // ── COORDINATE CONVERSION ─────────────────────────────────────
 //
-//  Leaflet CRS.Simple uses [lat, lng] where lat increases
-//  upward. Game Y=0 is at the top, so we invert it.
-//  If markers appear vertically mirrored when you add a real
-//  map image, just swap to:  return [gy, gx];
-//  COMMENT IS OUTDATED, PLEASE FIX
+//  Leaflet CRS.Simple uses [lat, lng]. Game coords map directly:
+//  [lat, lng] = [gy, gx]. Y increases upward in both systems,
+//  so no inversion is needed.
 function gameToLatLng(gx, gy) {
   return [gy, gx];  // Y maps directly — increases upward in both systems
 }
@@ -207,8 +205,11 @@ function makePopupHTML(node) {
     <div class="popup-name">${node.name}</div>
     <div class="popup-type" style="color:${cfg.color}">${cfg.label}</div>
     <div class="popup-island">📍 ${node.island}</div>
-    <div style="font-size:0.78rem;color:#888;margin-top:2px;font-family:monospace">
-      (${node.x}, ${node.y})
+    <div style="font-size:0.78rem;color:#888;margin-top:2px;font-family:monospace;display:flex;align-items:center;gap:6px">
+      <span>(${node.x}, ${node.y})</span>
+      <button onclick="navigator.clipboard.writeText('${node.x}, ${node.y}').catch(()=>{})"
+        style="background:none;border:1px solid #444;border-radius:3px;color:#888;cursor:pointer;font-size:0.68rem;padding:1px 5px;line-height:1.4"
+        title="Copy coordinates">copy</button>
     </div>
     ${notes}
   `;

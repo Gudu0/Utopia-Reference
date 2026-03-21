@@ -157,6 +157,29 @@ document.getElementById('add-node-btn').addEventListener('click', () => {
   if (!island)             return showStatus('Select an island.', true);
   if (isNaN(x) || isNaN(y)) return showStatus('X and Y required.', true);
 
+  // Dupe check against allNodes (map JSON) and workingNodes (session)
+  const DUPE_TOL = 2;
+  const dupeInMap     = typeof allNodes !== 'undefined' && allNodes.find(
+    n => Math.abs(n.x - x) <= DUPE_TOL && Math.abs(n.y - y) <= DUPE_TOL
+  );
+  const dupeInSession = workingNodes.find(
+    n => Math.abs(n.x - x) <= DUPE_TOL && Math.abs(n.y - y) <= DUPE_TOL
+  );
+  const dupe = dupeInMap || dupeInSession;
+  if (dupe) {
+    const where = dupeInMap ? 'on map' : 'in session';
+    // Show warning but don't block — user can add again to confirm
+    showStatus(`Warning: possible dupe of "${dupe.name}" ${where} (${dupe.x}, ${dupe.y}). Add again to confirm.`, true);
+    // Use a flag to allow second click to force-add
+    if (!document.getElementById('add-node-btn').dataset.dupeWarned) {
+      document.getElementById('add-node-btn').dataset.dupeWarned = '1';
+      return;
+    }
+    delete document.getElementById('add-node-btn').dataset.dupeWarned;
+  } else {
+    delete document.getElementById('add-node-btn').dataset.dupeWarned;
+  }
+
   addNode({ name, type, island, notes, x, y });
   document.getElementById('node-x').value     = '';
   document.getElementById('node-y').value     = '';
@@ -165,6 +188,11 @@ document.getElementById('add-node-btn').addEventListener('click', () => {
   showStatus(`Added: ${name} (${x}, ${y})`);
 });
 
+['node-x', 'node-y'].forEach(id => {
+  document.getElementById(id).addEventListener('input', () => {
+    delete document.getElementById('add-node-btn').dataset.dupeWarned;
+  });
+});
 ['node-x', 'node-y'].forEach(id => {
   document.getElementById(id).addEventListener('keydown', e => {
     if (e.key === 'Enter') document.getElementById('add-node-btn').click();
