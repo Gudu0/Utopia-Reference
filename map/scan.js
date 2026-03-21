@@ -131,10 +131,45 @@ async function scanImage(file) {
         const thumbUrl = canvas.toDataURL('image/png');
 
         let coords = null;
-        try {
-          const { data: { text } } = await tesseractWorker.recognize(canvas);
-          coords = parseCoords(text);
-        } catch (err) { /* OCR failed for this image — coords stays null */ }
+        const MAX_OCR_ATTEMPTS = 3;
+        for (let attempt = 1; attempt <= MAX_OCR_ATTEMPTS; attempt++) {
+          try {
+            // Each attempt uses a differently processed version of the canvas
+            const attemptCanvas = document.createElement('canvas');
+            attemptCanvas.width  = canvas.width;
+            attemptCanvas.height = canvas.height;
+            const actx = attemptCanvas.getContext('2d');
+            actx.drawImage(canvas, 0, 0);
+
+            if (attempt === 2) {
+              // Boost contrast — stretch pixel values to make text darker
+              const imgData = actx.getImageData(0, 0, attemptCanvas.width, attemptCanvas.height);
+              const d = imgData.data;
+              for (let i = 0; i < d.length; i += 4) {
+                // Apply a simple contrast curve: push darks darker, lights lighter
+                for (let c = 0; c < 3; c++) {
+                  const v = d[i + c] / 255;
+                  d[i + c] = Math.round(Math.min(255, Math.max(0, (v - 0.5) * 2.5 + 0.5) * 255));
+                }
+              }
+              actx.putImageData(imgData, 0, 0);
+            } else if (attempt === 3) {
+              // Invert — try dark text on light background
+              const imgData = actx.getImageData(0, 0, attemptCanvas.width, attemptCanvas.height);
+              const d = imgData.data;
+              for (let i = 0; i < d.length; i += 4) {
+                d[i]     = 255 - d[i];
+                d[i + 1] = 255 - d[i + 1];
+                d[i + 2] = 255 - d[i + 2];
+              }
+              actx.putImageData(imgData, 0, 0);
+            }
+
+            const { data: { text } } = await tesseractWorker.recognize(attemptCanvas);
+            coords = parseCoords(text);
+            if (coords) break;
+          } catch (err) { /* OCR error on this attempt — try again */ }
+        }
 
         const dupOf = coords ? findDuplicate(coords, scanResults.length) : null;
         const result = { thumbUrl, fullUrl: e.target.result, coords, dupOf, added: false, file: file.name };
