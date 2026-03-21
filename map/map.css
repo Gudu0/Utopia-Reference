@@ -366,3 +366,42 @@ html, body { height: 100%; overflow: hidden; }
   font-size: 0.88rem;
 }
 #scan-lightbox-close:hover { border-color: var(--accent); }
+
+
+/* ── Inline manual coord entry (OCR-failed rows) ────────────── */
+
+.scan-manual-entry {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  grid-column: 2 / 4;
+}
+
+.scan-manual-entry input[type="number"] {
+  width: 62px;
+  background: var(--input-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 3px 6px;
+  font: inherit;
+  font-size: 0.8rem;
+  font-family: monospace;
+  -moz-appearance: textfield;
+}
+.scan-manual-entry input[type="number"]::-webkit-inner-spin-button,
+.scan-manual-entry input[type="number"]::-webkit-outer-spin-button { display: none; }
+.scan-manual-entry input[type="number"]:focus { outline: none; border-color: var(--accent); }
+
+.scan-manual-confirm {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--accent);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 3px 7px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.scan-manual-confirm:hover { border-color: var(--accent); background: rgba(111,207,151,0.08); }

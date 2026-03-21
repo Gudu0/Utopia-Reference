@@ -174,7 +174,11 @@ function renderScanResult(result, idx) {
     </div>
     ${result.coords
       ? `<button class="scan-add-btn" data-idx="${idx}">Add</button>`
-      : '<span style="font-size:0.72rem;color:#e57373">edit manually</span>'
+      : `<div class="scan-manual-entry">
+        <input class="scan-manual-x" type="number" placeholder="X" min="0" max="25000" />
+        <input class="scan-manual-y" type="number" placeholder="Y" min="0" max="25000" />
+        <button class="scan-manual-confirm" data-idx="${idx}">✓</button>
+      </div>`
     }
     <button class="scan-view-btn" data-idx="${idx}" title="View full screenshot">🔍</button>
   `;
@@ -185,6 +189,36 @@ function renderScanResult(result, idx) {
   if (viewBtn) viewBtn.addEventListener('click', () =>
     openLightbox(result.fullUrl, result.file + (result.coords ? ' — (' + result.coords.x + ', ' + result.coords.y + ')' : ''))
   );
+
+  const confirmBtn = row.querySelector('.scan-manual-confirm');
+  const manualX    = row.querySelector('.scan-manual-x');
+  const manualY    = row.querySelector('.scan-manual-y');
+  if (confirmBtn && manualX && manualY) {
+    const confirmManual = () => {
+      const x = parseInt(manualX.value, 10);
+      const y = parseInt(manualY.value, 10);
+      if (isNaN(x) || isNaN(y) || x < 0 || x > 25000 || y < 0 || y > 25000) {
+        manualX.style.borderColor = '#e57373';
+        manualY.style.borderColor = '#e57373';
+        return;
+      }
+      result.coords = { x, y };
+      // Update coord display
+      const coordEl = row.querySelector('.scan-result-coords');
+      if (coordEl) { coordEl.textContent = '(' + x + ', ' + y + ')'; coordEl.style.color = '#6fcf97'; }
+      // Swap entry for Add button
+      const entryEl = row.querySelector('.scan-manual-entry');
+      const addB = document.createElement('button');
+      addB.className = 'scan-add-btn';
+      addB.textContent = 'Add';
+      addB.addEventListener('click', () => addFromScan(idx, addB));
+      if (entryEl) entryEl.replaceWith(addB);
+    };
+    confirmBtn.addEventListener('click', confirmManual);
+    [manualX, manualY].forEach(inp => {
+      inp.addEventListener('keydown', e => { if (e.key === 'Enter') confirmManual(); });
+    });
+  }
 
   list.appendChild(row);
 }
