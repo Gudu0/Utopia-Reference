@@ -61,9 +61,9 @@ const dropZone  = document.getElementById('scan-drop-zone');
 const fileInput = document.getElementById('scan-file-input');
 
 if (dropZone && fileInput) {
-  // Note: clicking the drop zone opens the file picker natively because
-  // the zone is now a <label> wrapping the <input> in index.html.
-  // No .click() proxy needed here.
+  // Input lives outside the modal (avoids z-index/stacking issues).
+  // We proxy the click directly and synchronously here.
+  dropZone.addEventListener('click', () => fileInput.click());
   dropZone.addEventListener('dragover', e => {
     e.preventDefault();
     dropZone.classList.add('dragover');
