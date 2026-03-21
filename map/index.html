@@ -17,6 +17,7 @@
       <nav class="top-nav">
         <a href="../" class="nav-link">Home</a>
         <button class="nav-link" id="node-editor-btn">+ Node</button>
+        <button class="nav-link" id="info-btn">?</button>
       </nav>
     </div>
   </header>
@@ -216,7 +217,56 @@
 
     </div>
   </div>
+  <!-- ══════════════════════════════════════════════════════════
+       INFO MODAL
+  ══════════════════════════════════════════════════════════ -->
+  <div id="info-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.65);z-index:3000;align-items:center;justify-content:center;">
+    <div style="background:#18212b;border:1px solid #2d3c4c;border-radius:12px;width:380px;max-height:85vh;display:flex;flex-direction:column;overflow:hidden;">
 
+      <div style="padding:12px 16px;border-bottom:1px solid #2d3c4c;display:flex;justify-content:space-between;align-items:center;flex-shrink:0">
+        <span style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:#9fb0c2">About this map</span>
+        <button id="close-info-btn" style="background:none;border:none;color:#9fb0c2;font-size:1.2rem;cursor:pointer">✕</button>
+      </div>
+
+      <div style="overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:14px;font-size:0.88rem;line-height:1.7;color:#e8eef5">
+
+        <p style="margin:0">
+          A community-built resource map for <strong>Utopia: Origin</strong>, covering
+          mines, food sources, creature spawns, fishing spots, chests, and more across
+          the world of Beia. Work in progress — coverage is incomplete.
+        </p>
+
+        <div>
+          <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.05em;color:#9fb0c2;margin-bottom:6px">Using the map</div>
+          <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px">
+            <li>Pan and zoom with mouse or touch</li>
+            <li>Search by name, island, or notes in the left sidebar</li>
+            <li>Filter by resource type or island</li>
+            <li>Click any dot to see its details and coordinates</li>
+            <li>Coordinates in the bottom-right show your current map position in game coords</li>
+          </ul>
+        </div>
+
+        <div>
+          <div style="font-size:0.78rem;text-transform:uppercase;letter-spacing:0.05em;color:#9fb0c2;margin-bottom:6px">Contributing nodes</div>
+          <p style="margin:0">
+            Coordinates are read directly from the in-game minimap
+            (<code style="background:#202c38;padding:1px 5px;border-radius:3px">No.3Archipelago / X, Y</code>)
+            while standing on a resource. To submit nodes you've found:
+          </p>
+          <ul style="margin:6px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:4px">
+            <li>Open a <a href="https://github.com/Gudu0/Utopia-Reference/issues" target="_blank" style="color:#6fcf97">GitHub issue</a> with your node data</li>
+            <li>DM on Discord — <strong style="color:#e8eef5">[ your handle here ]</strong></li>
+          </ul>
+        </div>
+
+        <div style="font-size:0.75rem;color:#9fb0c2;border-top:1px solid #2d3c4c;padding-top:10px">
+          Source on <a href="https://github.com/Gudu0/Utopia-Reference" target="_blank" style="color:#6fcf97">GitHub</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="map.js"></script>
   <script src="editor.js"></script>
