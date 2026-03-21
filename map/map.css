@@ -470,6 +470,11 @@ html, body { height: 100%; overflow: hidden; }
 
 /* ── Low coord warning label ─────────────────────────────── */
 
+.scan-result-row.is-edge {
+  border: 1px solid #9b7fd4;
+  background: #1a1228;
+}
+
 .scan-low-label {
   font-size: 0.68rem;
   color: #9b7fd4;

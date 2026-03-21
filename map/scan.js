@@ -221,7 +221,7 @@ function nearEdge(coords) {
 function renderScanResult(result, idx) {
   const list = document.getElementById('scan-results');
   const row  = document.createElement('div');
-  row.className   = 'scan-result-row' + (result.dupOf ? ' is-dupe' : '');
+  row.className   = 'scan-result-row' + (result.dupOf ? ' is-dupe' : '') + (nearEdge(result.coords) ? ' is-edge' : '');
   row.dataset.idx = idx;
 
   const coordText  = result.coords
@@ -339,6 +339,7 @@ function renderScanResult(result, idx) {
       const existingLowEl = row.querySelector('.scan-low-label');
       if (existingLowEl) existingLowEl.remove();
       const edgeMsg = nearEdge({ x, y });
+      row.classList.toggle('is-edge', !!edgeMsg);
       if (edgeMsg) {
         const lowLabel = document.createElement('div');
         lowLabel.className = 'scan-low-label';
@@ -393,10 +394,11 @@ function renderScanResult(result, idx) {
       const existingLowLabel = row.querySelector('.scan-low-label');
       if (existingLowLabel) existingLowLabel.remove();
       const edgeMsg = nearEdge({ x, y });
+      row.classList.toggle('is-edge', !!edgeMsg);
       if (edgeMsg) {
         const lowLabel = document.createElement('div');
         lowLabel.className = 'scan-low-label';
-        lowLabel.textContent = '⚠ low coords — near edge?';
+        lowLabel.textContent = edgeMsg;
         const statusEl2 = row.querySelector('.scan-result-status');
         if (statusEl2) statusEl2.before(lowLabel);
       }
