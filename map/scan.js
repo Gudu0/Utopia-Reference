@@ -242,6 +242,8 @@ function setActionCell(row, result, idx) {
       result.added = true; result.dupeResolved = true;
       row.style.opacity = '0.4';
       el.innerHTML = '<span style="font-size:0.72rem;color:var(--muted)">discarded</span>';
+      // Disable all remaining interactive elements on the row
+      row.querySelectorAll('button').forEach(b => { b.disabled = true; b.style.pointerEvents = 'none'; });
       updateAddAllBtn();
     });
   } else if (result.added) {
