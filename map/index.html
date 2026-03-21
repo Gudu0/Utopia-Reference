@@ -180,7 +180,10 @@
           </select>
         </div>
 
-        <div class="scan-progress" id="scan-progress"></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;min-height:18px">
+          <div class="scan-progress" id="scan-progress" style="text-align:left"></div>
+          <button id="scan-clear-btn" class="btn" style="font-size:0.72rem;padding:3px 10px;display:none">Clear</button>
+        </div>
 
         <!-- Results list -->
         <div class="scan-results" id="scan-results"></div>
@@ -221,7 +224,7 @@
        INFO MODAL
   ══════════════════════════════════════════════════════════ -->
   <div id="info-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.65);z-index:3000;align-items:center;justify-content:center;">
-    <div style="background:#18212b;border:1px solid #2d3c4c;border-radius:12px;width:380px;max-height:85vh;display:flex;flex-direction:column;overflow:hidden;">
+    <div style="background:#18212b;border:1px solid #2d3c4c;border-radius:12px;width:460px;max-height:85vh;display:flex;flex-direction:column;overflow:hidden;">
 
       <div style="padding:12px 16px;border-bottom:1px solid #2d3c4c;display:flex;justify-content:space-between;align-items:center;flex-shrink:0">
         <span style="font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;color:#9fb0c2">About this map</span>

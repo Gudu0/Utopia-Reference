@@ -538,6 +538,8 @@ function showScanStatus(msg) {
 function updateAddAllBtn() {
   const btn = document.getElementById('scan-add-all-btn');
   if (!btn) return;
+  const clearBtn = document.getElementById('scan-clear-btn');
+  if (clearBtn) clearBtn.style.display = scanResults.length ? 'block' : 'none';
   const unresolved  = scanResults.filter(r => r.dupOf && !r.dupeResolved && !r.added).length;
   const missingCoords = scanResults.filter(r => !r.coords && !r.added).length;
   btn.style.display = scanResults.length ? 'block' : 'none';
@@ -584,6 +586,17 @@ if (addAllBtn) {
     } else {
       showScanStatus('Nothing to add — check island and name are selected.');
     }
+  });
+}
+
+// ── Clear scan session ──────────────────────────────────────
+const clearScanBtn = document.getElementById('scan-clear-btn');
+if (clearScanBtn) {
+  clearScanBtn.addEventListener('click', () => {
+    scanResults = [];
+    document.getElementById('scan-results').innerHTML = '';
+    setScanProgress('');
+    updateAddAllBtn();
   });
 }
 
