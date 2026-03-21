@@ -484,13 +484,19 @@ function showScanStatus(msg) {
 function updateAddAllBtn() {
   const btn = document.getElementById('scan-add-all-btn');
   if (!btn) return;
-  const unresolved = scanResults.filter(r => r.dupOf && !r.dupeResolved && !r.added).length;
+  const unresolved  = scanResults.filter(r => r.dupOf && !r.dupeResolved && !r.added).length;
+  const missingCoords = scanResults.filter(r => !r.coords && !r.added).length;
   btn.style.display = scanResults.length ? 'block' : 'none';
   if (unresolved > 0) {
     btn.disabled = true;
     btn.textContent = 'Resolve ' + unresolved + ' duplicate' + (unresolved !== 1 ? 's' : '') + ' first';
     btn.style.borderColor = '#e5a73a';
     btn.style.color = '#e5a73a';
+  } else if (missingCoords > 0) {
+    btn.disabled = true;
+    btn.textContent = missingCoords + ' row' + (missingCoords !== 1 ? 's' : '') + ' missing coords';
+    btn.style.borderColor = '#e57373';
+    btn.style.color = '#e57373';
   } else {
     btn.disabled = false;
     btn.textContent = 'Add All to Session';
