@@ -16,6 +16,13 @@ const CROP_W = 199;  // width of crop region
 const CROP_H =  25;  // height of crop region
 const SCALE  =   3;  // upscale before OCR — sharpens small text
 
+// ── Edge warning thresholds ─────────────────────────────────
+//  If coords are within these bounds, the row gets an edge warning.
+const EDGE_LEFT   =  2000;   // x < this  → near west edge
+const EDGE_RIGHT  = 19000;   // x > this  → near east edge
+const EDGE_BOTTOM =  2000;   // y < this  → near south edge
+const EDGE_TOP    = 18750;   // y > this  → near north edge
+
 // ── Duplicate detection tolerance ───────────────────────────
 //  Coords within +-DUPE_TOLERANCE on both axes are flagged.
 const DUPE_TOLERANCE = 2;
@@ -198,6 +205,18 @@ function findDuplicate(coords, currentCount) {
   return null;
 }
 
+// ── Edge proximity check ─────────────────────────────────────
+//  Returns a label string if near any edge, or null if fine.
+function nearEdge(coords) {
+  if (!coords) return null;
+  const edges = [];
+  if (coords.x < EDGE_LEFT)   edges.push('west');
+  if (coords.x > EDGE_RIGHT)  edges.push('east');
+  if (coords.y < EDGE_BOTTOM) edges.push('south');
+  if (coords.y > EDGE_TOP)    edges.push('north');
+  return edges.length ? '⚠ near ' + edges.join('/') + ' edge' : null;
+}
+
 // ── Render one result row ────────────────────────────────────
 function renderScanResult(result, idx) {
   const list = document.getElementById('scan-results');
@@ -219,6 +238,7 @@ function renderScanResult(result, idx) {
       <div style="min-width:0">
         <div class="scan-result-coords" style="color:${coordColor}">${coordText}</div>
         ${result.dupOf ? `<div class="scan-dupe-label" title="${result.dupOf}">&#9888; dupe of ${result.dupOf}</div>` : ''}
+        ${nearEdge(result.coords) ? `<div class="scan-low-label">${nearEdge(result.coords)}</div>` : ''}
         <div class="scan-result-status"
           style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">
           ${result.file}
@@ -315,6 +335,16 @@ function renderScanResult(result, idx) {
       newCoordEl.textContent = '(' + x + ', ' + y + ')' + (result.manual ? ' ✏' : '');
       editEntry.replaceWith(newCoordEl);
       editBtn.style.display = '';
+      // Refresh low coord warning
+      const existingLowEl = row.querySelector('.scan-low-label');
+      if (existingLowEl) existingLowEl.remove();
+      const edgeMsg = nearEdge({ x, y });
+      if (edgeMsg) {
+        const lowLabel = document.createElement('div');
+        lowLabel.className = 'scan-low-label';
+        lowLabel.textContent = edgeMsg;
+        newCoordEl.after(lowLabel);
+      }
       // Update dupe state on the row
       const existingLabel = row.querySelector('.scan-dupe-label');
       if (existingLabel) existingLabel.remove();
@@ -359,6 +389,17 @@ function renderScanResult(result, idx) {
       // Show the edit button now that we have coords
       const editBtnEl = row.querySelector('.scan-edit-btn');
       if (editBtnEl) editBtnEl.style.display = '';
+      // Low coord warning
+      const existingLowLabel = row.querySelector('.scan-low-label');
+      if (existingLowLabel) existingLowLabel.remove();
+      const edgeMsg = nearEdge({ x, y });
+      if (edgeMsg) {
+        const lowLabel = document.createElement('div');
+        lowLabel.className = 'scan-low-label';
+        lowLabel.textContent = '⚠ low coords — near edge?';
+        const statusEl2 = row.querySelector('.scan-result-status');
+        if (statusEl2) statusEl2.before(lowLabel);
+      }
       const entryEl = row.querySelector('.scan-manual-entry');
       if (result.dupOf) {
         // Show as dupe — add label and keep/discard buttons

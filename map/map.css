@@ -467,3 +467,13 @@ html, body { height: 100%; overflow: hidden; }
   line-height: 1;
 }
 .scan-edit-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── Low coord warning label ─────────────────────────────── */
+
+.scan-low-label {
+  font-size: 0.68rem;
+  color: #9b7fd4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
