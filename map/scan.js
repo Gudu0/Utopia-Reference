@@ -275,16 +275,54 @@ function renderScanResult(result, idx) {
         return;
       }
       result.coords = { x, y };
-      // Update coord display
+      result.manual = true;
+      // Run dupe check on the newly entered coords
+      result.dupOf = findDuplicate({ x, y }, idx);
+      // Update coord display — show manual marker
       const coordEl = row.querySelector('.scan-result-coords');
-      if (coordEl) { coordEl.textContent = '(' + x + ', ' + y + ')'; coordEl.style.color = '#6fcf97'; }
-      // Swap entry for Add button
+      if (coordEl) {
+        coordEl.textContent = '(' + x + ', ' + y + ') ✏';
+        coordEl.style.color = result.dupOf ? '#e5a73a' : '#6fcf97';
+      }
       const entryEl = row.querySelector('.scan-manual-entry');
-      const addB = document.createElement('button');
-      addB.className = 'scan-add-btn';
-      addB.textContent = 'Add';
-      addB.addEventListener('click', () => addFromScan(idx, addB));
-      if (entryEl) entryEl.replaceWith(addB);
+      if (result.dupOf) {
+        // Show as dupe — add label and keep/discard buttons
+        row.classList.add('is-dupe');
+        const statusEl = row.querySelector('.scan-result-status');
+        const dupeLabel = document.createElement('div');
+        dupeLabel.className = 'scan-dupe-label';
+        dupeLabel.title = result.dupOf;
+        dupeLabel.textContent = '⚠ dupe of ' + result.dupOf;
+        if (statusEl) statusEl.before(dupeLabel);
+        const actions = document.createElement('div');
+        actions.className = 'dupe-actions';
+        actions.innerHTML = '<button class="scan-keep-btn">Keep</button><button class="scan-discard-btn">✕</button>';
+        actions.querySelector('.scan-keep-btn').addEventListener('click', () => {
+          result.dupOf = null; result.dupeResolved = true;
+          row.classList.remove('is-dupe');
+          if (coordEl) coordEl.style.color = '#6fcf97';
+          const lbl = row.querySelector('.scan-dupe-label'); if (lbl) lbl.remove();
+          const addB = document.createElement('button');
+          addB.className = 'scan-add-btn'; addB.textContent = 'Add';
+          addB.addEventListener('click', () => addFromScan(idx, addB));
+          actions.replaceWith(addB);
+          updateAddAllBtn();
+        });
+        actions.querySelector('.scan-discard-btn').addEventListener('click', () => {
+          result.added = true; result.dupeResolved = true;
+          row.style.opacity = '0.4';
+          actions.innerHTML = '<span style="font-size:0.72rem;color:var(--muted)">discarded</span>';
+          updateAddAllBtn();
+        });
+        if (entryEl) entryEl.replaceWith(actions);
+      } else {
+        // Clean — swap entry for normal Add button
+        const addB = document.createElement('button');
+        addB.className = 'scan-add-btn'; addB.textContent = 'Add';
+        addB.addEventListener('click', () => addFromScan(idx, addB));
+        if (entryEl) entryEl.replaceWith(addB);
+      }
+      updateAddAllBtn();
     };
     confirmBtn.addEventListener('click', confirmManual);
     [manualX, manualY].forEach(inp => {
