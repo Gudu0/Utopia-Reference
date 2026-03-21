@@ -482,3 +482,10 @@ html, body { height: 100%; overflow: hidden; }
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* ── Missing coords row ──────────────────────────────────── */
+
+.scan-result-row.is-missing {
+  border: 1px solid var(--danger);
+  background: #1f1010;
+}

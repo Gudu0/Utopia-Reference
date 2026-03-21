@@ -217,11 +217,52 @@ function nearEdge(coords) {
   return edges.length ? '⚠ near ' + edges.join('/') + ' edge' : null;
 }
 
+// ── Action cell helper ───────────────────────────────────────
+//  Renders the correct button(s) for a row's current state
+//  and re-wires listeners. Call whenever dupe state changes.
+function setActionCell(row, result, idx) {
+  const existing = row.querySelector('.dupe-actions, .scan-add-btn, .scan-manual-entry');
+  if (!existing || !result.coords) return;
+  let el;
+  if (result.dupOf && !result.dupeResolved) {
+    el = document.createElement('div');
+    el.className = 'dupe-actions';
+    el.innerHTML = '<button class="scan-keep-btn">Keep</button><button class="scan-discard-btn">\u2715</button>';
+    el.querySelector('.scan-keep-btn').addEventListener('click', () => {
+      result.dupOf = null; result.dupeResolved = true;
+      row.classList.remove('is-dupe');
+      row.classList.toggle('is-edge', !!nearEdge(result.coords));
+      const coordEl = row.querySelector('.scan-result-coords');
+      if (coordEl) coordEl.style.color = '#6fcf97';
+      const labelEl = row.querySelector('.scan-dupe-label'); if (labelEl) labelEl.remove();
+      setActionCell(row, result, idx);
+      updateAddAllBtn();
+    });
+    el.querySelector('.scan-discard-btn').addEventListener('click', () => {
+      result.added = true; result.dupeResolved = true;
+      row.style.opacity = '0.4';
+      el.innerHTML = '<span style="font-size:0.72rem;color:var(--muted)">discarded</span>';
+      updateAddAllBtn();
+    });
+  } else if (result.added) {
+    el = document.createElement('button');
+    el.className = 'scan-add-btn added';
+    el.textContent = '\u2713';
+    el.disabled = true;
+  } else {
+    el = document.createElement('button');
+    el.className = 'scan-add-btn';
+    el.textContent = 'Add';
+    el.addEventListener('click', () => addFromScan(idx, el));
+  }
+  existing.replaceWith(el);
+}
+
 // ── Render one result row ────────────────────────────────────
 function renderScanResult(result, idx) {
   const list = document.getElementById('scan-results');
   const row  = document.createElement('div');
-  row.className   = 'scan-result-row' + (result.dupOf ? ' is-dupe' : (nearEdge(result.coords) ? ' is-edge' : ''));
+  row.className   = 'scan-result-row' + (!result.coords ? ' is-missing' : result.dupOf ? ' is-dupe' : nearEdge(result.coords) ? ' is-edge' : '');
   row.dataset.idx = idx;
 
   const coordText  = result.coords
@@ -269,35 +310,8 @@ function renderScanResult(result, idx) {
     openLightbox(result.fullUrl, result.file + (result.coords ? ' — (' + result.coords.x + ', ' + result.coords.y + ')' : ''))
   );
 
-  const keepBtn    = row.querySelector('.scan-keep-btn');
-  const discardBtn = row.querySelector('.scan-discard-btn');
-  if (keepBtn) keepBtn.addEventListener('click', () => {
-    result.dupOf = null;
-    result.dupeResolved = true;
-    row.classList.remove('is-dupe');
-    row.classList.toggle('is-edge', !!nearEdge(result.coords));
-    const coordEl = row.querySelector('.scan-result-coords');
-    if (coordEl) coordEl.style.color = '#6fcf97';
-    const labelEl = row.querySelector('.scan-dupe-label');
-    if (labelEl) labelEl.remove();
-    const actionsEl = row.querySelector('.dupe-actions');
-    if (actionsEl) {
-      const addB = document.createElement('button');
-      addB.className = 'scan-add-btn';
-      addB.textContent = 'Add';
-      addB.addEventListener('click', () => addFromScan(idx, addB));
-      actionsEl.replaceWith(addB);
-    }
-    updateAddAllBtn();
-  });
-  if (discardBtn) discardBtn.addEventListener('click', () => {
-    result.added = true;
-    result.dupeResolved = true;
-    row.style.opacity = '0.4';
-    const actionsEl = row.querySelector('.dupe-actions');
-    if (actionsEl) actionsEl.innerHTML = '<span style="font-size:0.72rem;color:var(--muted)">discarded</span>';
-    updateAddAllBtn();
-  });
+  // buttons wired via setActionCell
+  setActionCell(row, result, idx);
 
   const editBtn = row.querySelector('.scan-edit-btn');
   if (editBtn) editBtn.addEventListener('click', () => {
@@ -360,6 +374,7 @@ function renderScanResult(result, idx) {
         dupeLabel.textContent = '⚠ dupe of ' + result.dupOf;
         newCoordEl.after(dupeLabel);
       }
+      setActionCell(row, result, idx);
       updateAddAllBtn();
     };
     exConfirm.addEventListener('click', confirmEdit);
@@ -389,6 +404,8 @@ function renderScanResult(result, idx) {
         coordEl.textContent = '(' + x + ', ' + y + ') ✏';
         coordEl.style.color = result.dupOf ? '#e5a73a' : '#6fcf97';
       }
+      // Coords now set — remove missing state
+      row.classList.remove('is-missing');
       // Show the edit button now that we have coords
       const editBtnEl = row.querySelector('.scan-edit-btn');
       if (editBtnEl) editBtnEl.style.display = '';
@@ -415,28 +432,8 @@ function renderScanResult(result, idx) {
         dupeLabel.title = result.dupOf;
         dupeLabel.textContent = '⚠ dupe of ' + result.dupOf;
         if (statusEl) statusEl.before(dupeLabel);
-        const actions = document.createElement('div');
-        actions.className = 'dupe-actions';
-        actions.innerHTML = '<button class="scan-keep-btn">Keep</button><button class="scan-discard-btn">✕</button>';
-        actions.querySelector('.scan-keep-btn').addEventListener('click', () => {
-          result.dupOf = null; result.dupeResolved = true;
-          row.classList.remove('is-dupe');
-          row.classList.toggle('is-edge', !!nearEdge(result.coords));
-          if (coordEl) coordEl.style.color = '#6fcf97';
-          const lbl = row.querySelector('.scan-dupe-label'); if (lbl) lbl.remove();
-          const addB = document.createElement('button');
-          addB.className = 'scan-add-btn'; addB.textContent = 'Add';
-          addB.addEventListener('click', () => addFromScan(idx, addB));
-          actions.replaceWith(addB);
-          updateAddAllBtn();
-        });
-        actions.querySelector('.scan-discard-btn').addEventListener('click', () => {
-          result.added = true; result.dupeResolved = true;
-          row.style.opacity = '0.4';
-          actions.innerHTML = '<span style="font-size:0.72rem;color:var(--muted)">discarded</span>';
-          updateAddAllBtn();
-        });
-        if (entryEl) entryEl.replaceWith(actions);
+        if (entryEl) entryEl.replaceWith(document.createElement('span'));
+        setActionCell(row, result, idx);
       } else {
         // Clean — swap entry for normal Add button
         const addB = document.createElement('button');
