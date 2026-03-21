@@ -70,3 +70,7 @@ You can also contribute other things, such as a better map or more category sugg
 The map is a work in progress — coverage is incomplete and the map image is temporary. If you spot errors or missing nodes, contributions are very welcome.
 
 The site is planned to eventually expand into a full item reference — crafting recipes, drop sources, and item uses — but the map is the current focus.
+
+## Disclaimer
+
+This is an unofficial fan site. Utopia: Origin and all related assets are property of HK Hero Entertainment. This site is not affiliated with or endorsed by HK Hero Entertainment.
