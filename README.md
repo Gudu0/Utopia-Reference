@@ -33,7 +33,12 @@ Node data lives in [`map/map-nodes.json`](map/map-nodes.json). Every entry looks
 }
 ```
 
-Coordinates are taken directly from the in-game minimap display (`No.3Archipelago / X, Y`) while standing on or next to the resource node.
+### Getting coordinates
+
+The easiest way is to use the built-in node editor on the map page:
+
+- **Manual entry** — stand on a resource in-game, read the `X, Y` coordinates shown under your minimap, and enter them in the Manual tab
+- **Screenshot scan** — take a screenshot while standing on a resource, drop it into the Scan Screenshots tab, and the coordinates are read automatically. Set the type and island, then copy the resulting JSON from the Output tab. (Tip - go around only doing one resouce, and its much easier to filter the screenshots and settings on the tab.)
 
 ### How to submit
 
