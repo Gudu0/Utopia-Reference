@@ -233,3 +233,14 @@ function showStatus(msg, err = false) {
 
 // ── Init ─────────────────────────────────────────────────────
 refreshOutput();
+// ── Info modal ───────────────────────────────────────────────
+const infoModal = document.getElementById('info-modal');
+document.getElementById('info-btn').addEventListener('click', () => {
+  infoModal.style.display = 'flex';
+});
+document.getElementById('close-info-btn').addEventListener('click', () => {
+  infoModal.style.display = 'none';
+});
+infoModal.addEventListener('click', e => {
+  if (e.target === infoModal) infoModal.style.display = 'none';
+});
