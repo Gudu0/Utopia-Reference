@@ -141,6 +141,8 @@
         <!-- Drop zone -->
         <div class="scan-drop-zone" id="scan-drop-zone">
           📁 Drop screenshots here or tap to pick files
+          <input type="file" id="scan-file-input" accept="image/*" multiple
+            style="position:absolute;width:0;height:0;opacity:0;border:0;padding:0" />
         </div>
 
         <!-- Island + type for batch (applied to all scanned results) -->
@@ -298,7 +300,5 @@
   <script src="map.js"></script>
   <script src="editor.js"></script>
   <script src="scan.js"></script>
-  <input type="file" id="scan-file-input" accept="image/*" multiple
-    style="position:fixed;top:-9999px;left:-9999px;opacity:0" />
 </body>
 </html>
