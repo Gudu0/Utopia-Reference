@@ -49,6 +49,8 @@ If you'd like to contribute nodes you've found, you can:
 
 Pull requests to `map/map-nodes.json` are also welcome if you're comfortable with GitHub.
 
+You can also contribute other things, such as a better map or more category suggestions. Same as above, make an issue or dm me.
+
 ### Current resource types
 
 | Type | Description |
