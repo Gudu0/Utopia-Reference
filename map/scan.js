@@ -199,6 +199,7 @@ function renderScanResult(result, idx) {
 
   row.innerHTML = `
     <div style="display:flex;align-items:center;gap:8px;min-width:0">
+      <span class="scan-row-num">#${idx + 1}</span>
       <img class="scan-thumb" src="${result.thumbUrl}" title="OCR crop region" />
       <div style="min-width:0">
         <div class="scan-result-coords" style="color:${coordColor}">${coordText}</div>
