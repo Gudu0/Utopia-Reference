@@ -33,7 +33,7 @@ let tesseractWorker = null;
 
 // -- Version --------------------------------------------------
 const version = document.getElementById('version');
-version.innerHTML = 'v127';
+version.innerHTML = 'v128';
 
 // ── Lightbox ─────────────────────────────────────────────────
 const lightbox = document.createElement('div');
@@ -51,14 +51,21 @@ document.getElementById('scan-lightbox-close').addEventListener('click', closeLi
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
 });
-function openLightbox(url, label) {
+let _lightboxObjUrl = null;
+
+function openLightbox(url, label, isObjUrl = false) {
+  if (_lightboxObjUrl) { URL.revokeObjectURL(_lightboxObjUrl); _lightboxObjUrl = null; }
+  _lightboxObjUrl = isObjUrl ? url : null;
   document.getElementById('scan-lightbox-img').src = url;
   document.getElementById('scan-lightbox-label').textContent = label;
   lightbox.classList.add('open');
 }
 function closeLightbox() {
   lightbox.classList.remove('open');
-  setTimeout(() => { document.getElementById('scan-lightbox-img').src = ''; }, 200);
+  setTimeout(() => {
+    document.getElementById('scan-lightbox-img').src = '';
+    if (_lightboxObjUrl) { URL.revokeObjectURL(_lightboxObjUrl); _lightboxObjUrl = null; }
+  }, 200);
 }
 
 // ── Wire up drop zone ────────────────────────────────────────
@@ -368,9 +375,11 @@ function renderScanResult(result, idx) {
   if (viewBtn) viewBtn.addEventListener('click', () =>
     (() => {
       const label = result.file + (result.coords ? ' — (' + result.coords.x + ', ' + result.coords.y + ')' : '');
-      const fr = new FileReader();
-      fr.onload = e => openLightbox(e.target.result, label);
-      fr.readAsDataURL(result.fileRef);
+      // createObjectURL gives the browser a direct reference to the file bytes —
+      // no base64 inflation, much lower memory overhead than readAsDataURL.
+      // We revoke the URL as soon as the lightbox closes to free the reference.
+      const objUrl = URL.createObjectURL(result.fileRef);
+      openLightbox(objUrl, label, true);
     })()
   );
 
