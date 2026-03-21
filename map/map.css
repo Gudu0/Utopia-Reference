@@ -405,3 +405,41 @@ html, body { height: 100%; overflow: hidden; }
   flex-shrink: 0;
 }
 .scan-manual-confirm:hover { border-color: var(--accent); background: rgba(111,207,151,0.08); }
+
+/* ── Duplicate detection ─────────────────────────────────── */
+
+.scan-result-row.is-dupe {
+  border: 1px solid #e5a73a;
+  background: #261f10;
+}
+
+.scan-dupe-label {
+  font-size: 0.68rem;
+  color: #e5a73a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.dupe-actions { display: flex; gap: 4px; }
+
+.scan-keep-btn,
+.scan-discard-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  padding: 3px 7px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.scan-keep-btn    { color: var(--accent); }
+.scan-keep-btn:hover    { border-color: var(--accent); }
+.scan-discard-btn { color: var(--danger); }
+.scan-discard-btn:hover { border-color: var(--danger); }
+
+#scan-add-all-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}

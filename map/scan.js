@@ -16,6 +16,10 @@ const CROP_W = 199;  // width of crop region
 const CROP_H =  25;  // height of crop region
 const SCALE  =   3;  // upscale before OCR — sharpens small text
 
+// ── Duplicate detection tolerance ───────────────────────────
+//  Coords within +-DUPE_TOLERANCE on both axes are flagged.
+const DUPE_TOLERANCE = 2;
+
 let scanResults    = [];
 let tesseractReady = false;
 let tesseractWorker = null;
@@ -90,9 +94,8 @@ async function handleFiles(files) {
     await scanImage(images[i]);
   }
 
-  setScanProgress(`Done — ${scanResults.length} result${scanResults.length !== 1 ? 's' : ''}.`);
-  const addAllBtn = document.getElementById('scan-add-all-btn');
-  if (addAllBtn) addAllBtn.style.display = scanResults.length ? 'block' : 'none';
+  setScanProgress('Done - ' + scanResults.length + ' result' + (scanResults.length !== 1 ? 's' : '') + '.');
+  updateAddAllBtn();
 }
 
 // ── Crop + OCR a single image ────────────────────────────────
@@ -126,7 +129,8 @@ async function scanImage(file) {
           coords = parseCoords(text);
         } catch (err) { /* OCR failed for this image — coords stays null */ }
 
-        const result = { thumbUrl, fullUrl: e.target.result, coords, added: false, file: file.name };
+        const dupOf = coords ? findDuplicate(coords, scanResults.length) : null;
+        const result = { thumbUrl, fullUrl: e.target.result, coords, dupOf, added: false, file: file.name };
         scanResults.push(result);
         renderScanResult(result, scanResults.length - 1);
         resolve();
@@ -149,23 +153,56 @@ function parseCoords(text) {
   return { x, y };
 }
 
+// ── Duplicate finder ─────────────────────────────────────────
+//  Checks new coords against earlier scan results, workingNodes
+//  (editor session), and allNodes (loaded map-nodes.json).
+//  Returns a descriptive string if a match is found, else null.
+function findDuplicate(coords, currentCount) {
+  const { x, y } = coords;
+  for (let i = 0; i < currentCount; i++) {
+    const r = scanResults[i];
+    if (!r.coords) continue;
+    if (Math.abs(r.coords.x - x) <= DUPE_TOLERANCE &&
+        Math.abs(r.coords.y - y) <= DUPE_TOLERANCE)
+      return 'scan #' + (i + 1) + ' (' + r.coords.x + ', ' + r.coords.y + ')';
+  }
+  if (typeof workingNodes !== 'undefined') {
+    for (const n of workingNodes) {
+      if (Math.abs(n.x - x) <= DUPE_TOLERANCE &&
+          Math.abs(n.y - y) <= DUPE_TOLERANCE)
+        return '"' + n.name + '" in session (' + n.x + ', ' + n.y + ')';
+    }
+  }
+  if (typeof allNodes !== 'undefined') {
+    for (const n of allNodes) {
+      if (Math.abs(n.x - x) <= DUPE_TOLERANCE &&
+          Math.abs(n.y - y) <= DUPE_TOLERANCE)
+        return '"' + n.name + '" on map (' + n.x + ', ' + n.y + ')';
+    }
+  }
+  return null;
+}
+
 // ── Render one result row ────────────────────────────────────
 function renderScanResult(result, idx) {
   const list = document.getElementById('scan-results');
   const row  = document.createElement('div');
-  row.className   = 'scan-result-row';
+  row.className   = 'scan-result-row' + (result.dupOf ? ' is-dupe' : '');
   row.dataset.idx = idx;
 
   const coordText  = result.coords
     ? `(${result.coords.x}, ${result.coords.y})`
-    : '⚠ not found';
-  const coordColor = result.coords ? '#6fcf97' : '#e57373';
+    : '\u26a0 not found';
+  const coordColor = result.coords
+    ? (result.dupOf ? '#e5a73a' : '#6fcf97')
+    : '#e57373';
 
   row.innerHTML = `
     <div style="display:flex;align-items:center;gap:8px;min-width:0">
       <img class="scan-thumb" src="${result.thumbUrl}" title="OCR crop region" />
       <div style="min-width:0">
         <div class="scan-result-coords" style="color:${coordColor}">${coordText}</div>
+        ${result.dupOf ? `<div class="scan-dupe-label" title="${result.dupOf}">&#9888; dupe of ${result.dupOf}</div>` : ''}
         <div class="scan-result-status"
           style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">
           ${result.file}
@@ -173,7 +210,12 @@ function renderScanResult(result, idx) {
       </div>
     </div>
     ${result.coords
-      ? `<button class="scan-add-btn" data-idx="${idx}">Add</button>`
+      ? (result.dupOf
+          ? `<div class="dupe-actions">
+               <button class="scan-keep-btn" data-idx="${idx}">Keep</button>
+               <button class="scan-discard-btn" data-idx="${idx}">&#x2715;</button>
+             </div>`
+          : `<button class="scan-add-btn" data-idx="${idx}">Add</button>`)
       : `<div class="scan-manual-entry">
         <input class="scan-manual-x" type="number" placeholder="X" min="0" max="25000" />
         <input class="scan-manual-y" type="number" placeholder="Y" min="0" max="25000" />
@@ -189,6 +231,35 @@ function renderScanResult(result, idx) {
   if (viewBtn) viewBtn.addEventListener('click', () =>
     openLightbox(result.fullUrl, result.file + (result.coords ? ' — (' + result.coords.x + ', ' + result.coords.y + ')' : ''))
   );
+
+  const keepBtn    = row.querySelector('.scan-keep-btn');
+  const discardBtn = row.querySelector('.scan-discard-btn');
+  if (keepBtn) keepBtn.addEventListener('click', () => {
+    result.dupOf = null;
+    result.dupeResolved = true;
+    row.classList.remove('is-dupe');
+    const coordEl = row.querySelector('.scan-result-coords');
+    if (coordEl) coordEl.style.color = '#6fcf97';
+    const labelEl = row.querySelector('.scan-dupe-label');
+    if (labelEl) labelEl.remove();
+    const actionsEl = row.querySelector('.dupe-actions');
+    if (actionsEl) {
+      const addB = document.createElement('button');
+      addB.className = 'scan-add-btn';
+      addB.textContent = 'Add';
+      addB.addEventListener('click', () => addFromScan(idx, addB));
+      actionsEl.replaceWith(addB);
+    }
+    updateAddAllBtn();
+  });
+  if (discardBtn) discardBtn.addEventListener('click', () => {
+    result.added = true;
+    result.dupeResolved = true;
+    row.style.opacity = '0.4';
+    const actionsEl = row.querySelector('.dupe-actions');
+    if (actionsEl) actionsEl.innerHTML = '<span style="font-size:0.72rem;color:var(--muted)">discarded</span>';
+    updateAddAllBtn();
+  });
 
   const confirmBtn = row.querySelector('.scan-manual-confirm');
   const manualX    = row.querySelector('.scan-manual-x');
@@ -240,7 +311,8 @@ function addFromScan(idx, btn) {
 
   addNode({ name, type, island, notes: '', x: result.coords.x, y: result.coords.y });
   result.added = true;
-  if (btn) { btn.textContent = '✓'; btn.classList.add('added'); btn.disabled = true; }
+  if (btn) { btn.textContent = '\u2713'; btn.classList.add('added'); btn.disabled = true; }
+  updateAddAllBtn();
 }
 
 function showScanStatus(msg) {
@@ -251,10 +323,31 @@ function showScanStatus(msg) {
   setTimeout(() => { el.textContent = ''; el.style.color = ''; }, 3000);
 }
 
+// ── Update Add All button state ─────────────────────────────
+function updateAddAllBtn() {
+  const btn = document.getElementById('scan-add-all-btn');
+  if (!btn) return;
+  const unresolved = scanResults.filter(r => r.dupOf && !r.dupeResolved && !r.added).length;
+  btn.style.display = scanResults.length ? 'block' : 'none';
+  if (unresolved > 0) {
+    btn.disabled = true;
+    btn.textContent = 'Resolve ' + unresolved + ' duplicate' + (unresolved !== 1 ? 's' : '') + ' first';
+    btn.style.borderColor = '#e5a73a';
+    btn.style.color = '#e5a73a';
+  } else {
+    btn.disabled = false;
+    btn.textContent = 'Add All to Session';
+    btn.style.borderColor = '';
+    btn.style.color = '';
+  }
+}
+
 // ── Add all results at once ──────────────────────────────────
 const addAllBtn = document.getElementById('scan-add-all-btn');
 if (addAllBtn) {
   addAllBtn.addEventListener('click', () => {
+    const unresolved = scanResults.filter(r => r.dupOf && !r.dupeResolved && !r.added).length;
+    if (unresolved > 0) { showScanStatus('Resolve ' + unresolved + ' duplicate' + (unresolved !== 1 ? 's' : '') + ' first.'); return; }
     const island = document.getElementById('scan-island').value;
     if (!island) { showScanStatus('Pick an island first.'); return; }
 
