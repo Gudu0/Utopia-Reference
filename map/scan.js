@@ -87,18 +87,29 @@ document.addEventListener('scan-tab-opened', async () => {
   }
 });
 
-// ── Handle dropped / picked files ───────────────────────────
+// ── Handle dropped / picked files ────────────────────────────
 async function handleFiles(files) {
   const images = files.filter(f => f.type.startsWith('image/'));
-  if (!images.length) return;
+
+  // Update immediately -- if this never appears, the event itself isn't firing
+  setScanProgress(images.length + ' image' + (images.length !== 1 ? 's' : '') + ' received...');
+  if (!images.length) {
+    setScanProgress('No images found in selection.');
+    return;
+  }
 
   if (!tesseractReady) {
-    setScanProgress('Loading OCR engine… (first time only, ~5s)');
-    await initTesseract();
+    setScanProgress('Loading OCR engine... (first time only, ~5s)');
+    try {
+      await initTesseract();
+    } catch (err) {
+      setScanProgress('OCR engine failed to load. Check your connection and retry.');
+      return;
+    }
   }
 
   for (let i = 0; i < images.length; i++) {
-    setScanProgress(`Scanning ${i + 1} / ${images.length}…`);
+    setScanProgress('Scanning ' + (i + 1) + ' / ' + images.length + '...');
     await scanImage(images[i]);
   }
 
@@ -106,8 +117,8 @@ async function handleFiles(files) {
   const dupes = scanResults.filter(r => r.dupOf && !r.dupeResolved).length;
   setScanProgress(
     dupes
-      ? `Done — ${total} result${total !== 1 ? 's' : ''}. ⚠ ${dupes} possible duplicate${dupes !== 1 ? 's' : ''} — resolve before adding.`
-      : `Done — ${total} result${total !== 1 ? 's' : ''}.`
+      ? 'Done - ' + total + ' result' + (total !== 1 ? 's' : '') + '. Warning: ' + dupes + ' possible duplicate' + (dupes !== 1 ? 's' : '') + ' - resolve before adding.'
+      : 'Done - ' + total + ' result' + (total !== 1 ? 's' : '') + '.'
   );
 
   updateAddAllBtn();
