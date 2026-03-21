@@ -33,7 +33,7 @@ let tesseractWorker = null;
 
 // -- Version --------------------------------------------------
 const version = document.getElementById('version');
-version.innerHTML = 'v126';
+version.innerHTML = 'v127';
 
 // ── Lightbox ─────────────────────────────────────────────────
 const lightbox = document.createElement('div');
@@ -147,7 +147,6 @@ async function scanImage(file) {
           try {
             const { data: { text } } = await tesseractWorker.recognize(c);
             const result = parseCoords(text);
-            // Explicitly release canvas memory before returning
             c.width = 0; c.height = 0;
             return result;
           } catch (e) {
@@ -187,6 +186,13 @@ async function scanImage(file) {
           });
         }
 
+        // Release the crop canvas — we have thumbUrl and coords, don't need it anymore
+        canvas.width = 0; canvas.height = 0;
+
+        // Release the full image — the FileReader result goes out of scope naturally
+        // but explicitly clearing src helps mobile Safari GC
+        img.src = '';
+
         const dupOf = coords ? findDuplicate(coords, scanResults.length) : null;
         const result = { thumbUrl, fileRef: file, coords, dupOf, added: false, file: file.name };
         scanResults.push(result);
@@ -194,7 +200,6 @@ async function scanImage(file) {
         resolve();
       };
       img.src = e.target.result;
-      // Note: e.target.result (full data URL) is not stored — goes out of scope here.
     };
     reader.readAsDataURL(file);
   });
