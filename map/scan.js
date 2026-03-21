@@ -351,6 +351,12 @@ function renderScanResult(result, idx) {
     openLightbox(result.fullUrl, result.file + (result.coords ? ' — (' + result.coords.x + ', ' + result.coords.y + ')' : ''))
   );
 
+  // Thumbnail click — opens the cropped OCR region fullscreen so coords are readable
+  const thumb = row.querySelector('.scan-thumb');
+  if (thumb) thumb.addEventListener('click', () =>
+    openLightbox(result.thumbUrl, 'OCR crop — ' + result.file + (result.coords ? ' — (' + result.coords.x + ', ' + result.coords.y + ')' : ''))
+  );
+
   // buttons wired via setActionCell
   setActionCell(row, result, idx);
 
