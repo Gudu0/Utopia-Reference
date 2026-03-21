@@ -256,7 +256,7 @@ html, body { height: 100%; overflow: hidden; }
 
 .scan-result-row {
   display: grid;
-  grid-template-columns: 1fr auto 32px;
+  grid-template-columns: 1fr auto 28px 28px;
   gap: 6px; align-items: center;
   background: var(--panel-2); border-radius: 6px; padding: 6px 8px;
 }
@@ -453,3 +453,17 @@ html, body { height: 100%; overflow: hidden; }
   flex-shrink: 0;
   min-width: 22px;
 }
+
+/* ── Edit coord button ───────────────────────────────────── */
+
+.scan-edit-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.75rem;
+  padding: 3px 5px;
+  line-height: 1;
+}
+.scan-edit-btn:hover { border-color: var(--accent); color: var(--accent); }

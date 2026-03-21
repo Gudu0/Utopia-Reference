@@ -143,14 +143,29 @@ async function scanImage(file) {
 
 // ── Parse "X, Y" out of OCR text ────────────────────────────
 function parseCoords(text) {
-  // Tesseract may read commas as periods or add extra spaces — be flexible
+  // Strip everything except digits, commas, periods, spaces
   const cleaned = text.replace(/[^\d,.\s]/g, ' ').trim();
-  const match   = cleaned.match(/(\d{2,6})[,.\s]+(\d{2,6})/);
-  if (!match) return null;
-  const x = parseInt(match[1], 10);
-  const y = parseInt(match[2], 10);
-  if (x < 0 || x > 25000 || y < 0 || y > 25000) return null;
-  return { x, y };
+
+  // Primary: X separator Y (normal case)
+  const match = cleaned.match(/(\d{2,6})[,.\s]+(\d{2,6})/);
+  if (match) {
+    const x = parseInt(match[1], 10);
+    let   y = parseInt(match[2], 10);
+
+    // If Y looks too small (e.g. "11" when we expect 5 digits), check if
+    // Tesseract split it — look for a third number immediately after
+    // e.g. "5562, 11 726" -> Y should be 11726
+    if (y < 1000) {
+      const extMatch = cleaned.match(/(\d{2,6})[,.\s]+(\d{1,3})\s+(\d{2,4})/);
+      if (extMatch) {
+        const joined = parseInt(extMatch[2] + extMatch[3], 10);
+        if (joined >= 1000 && joined <= 25000) y = joined;
+      }
+    }
+
+    if (x >= 0 && x <= 25000 && y >= 0 && y <= 25000) return { x, y };
+  }
+  return null;
 }
 
 // ── Duplicate finder ─────────────────────────────────────────
@@ -224,6 +239,7 @@ function renderScanResult(result, idx) {
       </div>`
     }
     <button class="scan-view-btn" data-idx="${idx}" title="View full screenshot">🔍</button>
+    ${result.coords ? `<button class="scan-edit-btn" data-idx="${idx}" title="Edit coordinates">✏</button>` : ""}
   `;
 
   const addBtn = row.querySelector('.scan-add-btn');
@@ -260,6 +276,61 @@ function renderScanResult(result, idx) {
     const actionsEl = row.querySelector('.dupe-actions');
     if (actionsEl) actionsEl.innerHTML = '<span style="font-size:0.72rem;color:var(--muted)">discarded</span>';
     updateAddAllBtn();
+  });
+
+  const editBtn = row.querySelector('.scan-edit-btn');
+  if (editBtn) editBtn.addEventListener('click', () => {
+    // Swap coord display for inline X/Y inputs pre-filled with current values
+    const coordEl = row.querySelector('.scan-result-coords');
+    const currentX = result.coords ? result.coords.x : '';
+    const currentY = result.coords ? result.coords.y : '';
+    const editEntry = document.createElement('div');
+    editEntry.className = 'scan-manual-entry scan-edit-entry';
+    editEntry.innerHTML =
+      '<input class="scan-manual-x" type="number" min="0" max="25000" value="' + currentX + '" />' +
+      '<input class="scan-manual-y" type="number" min="0" max="25000" value="' + currentY + '" />' +
+      '<button class="scan-manual-confirm">✓</button>';
+    if (coordEl) coordEl.replaceWith(editEntry);
+    editBtn.style.display = 'none';
+    const exX = editEntry.querySelector('.scan-manual-x');
+    const exY = editEntry.querySelector('.scan-manual-y');
+    const exConfirm = editEntry.querySelector('.scan-manual-confirm');
+    const confirmEdit = () => {
+      const x = parseInt(exX.value, 10);
+      const y = parseInt(exY.value, 10);
+      if (isNaN(x) || isNaN(y) || x < 0 || x > 25000 || y < 0 || y > 25000) {
+        exX.style.borderColor = '#e57373';
+        exY.style.borderColor = '#e57373';
+        return;
+      }
+      result.coords = { x, y };
+      // Re-run dupe check with updated coords
+      result.dupOf = findDuplicate({ x, y }, idx);
+      result.dupeResolved = false;
+      // Restore coord display
+      const newCoordEl = document.createElement('div');
+      newCoordEl.className = 'scan-result-coords';
+      newCoordEl.style.color = result.dupOf ? '#e5a73a' : '#6fcf97';
+      newCoordEl.textContent = '(' + x + ', ' + y + ')' + (result.manual ? ' ✏' : '');
+      editEntry.replaceWith(newCoordEl);
+      editBtn.style.display = '';
+      // Update dupe state on the row
+      const existingLabel = row.querySelector('.scan-dupe-label');
+      if (existingLabel) existingLabel.remove();
+      row.classList.remove('is-dupe');
+      if (result.dupOf) {
+        row.classList.add('is-dupe');
+        const dupeLabel = document.createElement('div');
+        dupeLabel.className = 'scan-dupe-label';
+        dupeLabel.title = result.dupOf;
+        dupeLabel.textContent = '⚠ dupe of ' + result.dupOf;
+        newCoordEl.after(dupeLabel);
+      }
+      updateAddAllBtn();
+    };
+    exConfirm.addEventListener('click', confirmEdit);
+    [exX, exY].forEach(inp => inp.addEventListener('keydown', e => { if (e.key === 'Enter') confirmEdit(); }));
+    exX.focus(); exX.select();
   });
 
   const confirmBtn = row.querySelector('.scan-manual-confirm');
