@@ -221,7 +221,7 @@ function nearEdge(coords) {
 function renderScanResult(result, idx) {
   const list = document.getElementById('scan-results');
   const row  = document.createElement('div');
-  row.className   = 'scan-result-row' + (result.dupOf ? ' is-dupe' : '') + (nearEdge(result.coords) ? ' is-edge' : '');
+  row.className   = 'scan-result-row' + (result.dupOf ? ' is-dupe' : (nearEdge(result.coords) ? ' is-edge' : ''));
   row.dataset.idx = idx;
 
   const coordText  = result.coords
@@ -275,6 +275,7 @@ function renderScanResult(result, idx) {
     result.dupOf = null;
     result.dupeResolved = true;
     row.classList.remove('is-dupe');
+    row.classList.toggle('is-edge', !!nearEdge(result.coords));
     const coordEl = row.querySelector('.scan-result-coords');
     if (coordEl) coordEl.style.color = '#6fcf97';
     const labelEl = row.querySelector('.scan-dupe-label');
@@ -352,6 +353,7 @@ function renderScanResult(result, idx) {
       row.classList.remove('is-dupe');
       if (result.dupOf) {
         row.classList.add('is-dupe');
+        row.classList.remove('is-edge');
         const dupeLabel = document.createElement('div');
         dupeLabel.className = 'scan-dupe-label';
         dupeLabel.title = result.dupOf;
@@ -406,6 +408,7 @@ function renderScanResult(result, idx) {
       if (result.dupOf) {
         // Show as dupe — add label and keep/discard buttons
         row.classList.add('is-dupe');
+        row.classList.remove('is-edge');
         const statusEl = row.querySelector('.scan-result-status');
         const dupeLabel = document.createElement('div');
         dupeLabel.className = 'scan-dupe-label';
@@ -418,6 +421,7 @@ function renderScanResult(result, idx) {
         actions.querySelector('.scan-keep-btn').addEventListener('click', () => {
           result.dupOf = null; result.dupeResolved = true;
           row.classList.remove('is-dupe');
+          row.classList.toggle('is-edge', !!nearEdge(result.coords));
           if (coordEl) coordEl.style.color = '#6fcf97';
           const lbl = row.querySelector('.scan-dupe-label'); if (lbl) lbl.remove();
           const addB = document.createElement('button');
