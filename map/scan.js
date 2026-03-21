@@ -31,6 +31,10 @@ let scanResults    = [];
 let tesseractReady = false;
 let tesseractWorker = null;
 
+// -- Version --------------------------------------------------
+const version = document.getElementById('version');
+version.innerHTML = 'v126';
+
 // ── Lightbox ─────────────────────────────────────────────────
 const lightbox = document.createElement('div');
 lightbox.id = 'scan-lightbox';
