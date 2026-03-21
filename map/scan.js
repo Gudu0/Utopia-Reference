@@ -18,7 +18,7 @@ const SCALE  =   3;  // upscale before OCR — sharpens small text
 // ── Duplicate detection tolerance ───────────────────────────
 //  Coords within ±DUPE_TOLERANCE on both axes are flagged.
 //  Nodes are very close together sometimes — keep this tight.
-const DUPE_TOLERANCE = 4;
+const DUPE_TOLERANCE = 3;
 
 let scanResults     = [];
 let tesseractReady  = false;
