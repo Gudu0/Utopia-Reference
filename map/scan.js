@@ -20,6 +20,32 @@ let scanResults    = [];
 let tesseractReady = false;
 let tesseractWorker = null;
 
+// ── Lightbox ─────────────────────────────────────────────────
+const lightbox = document.createElement('div');
+lightbox.id = 'scan-lightbox';
+lightbox.innerHTML = `
+  <div id="scan-lightbox-inner">
+    <img id="scan-lightbox-img" src="" alt="Screenshot" />
+    <div id="scan-lightbox-label"></div>
+    <button id="scan-lightbox-close">Close</button>
+  </div>
+`;
+document.body.appendChild(lightbox);
+lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+document.getElementById('scan-lightbox-close').addEventListener('click', closeLightbox);
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+});
+function openLightbox(url, label) {
+  document.getElementById('scan-lightbox-img').src = url;
+  document.getElementById('scan-lightbox-label').textContent = label;
+  lightbox.classList.add('open');
+}
+function closeLightbox() {
+  lightbox.classList.remove('open');
+  setTimeout(() => { document.getElementById('scan-lightbox-img').src = ''; }, 200);
+}
+
 // ── Wire up drop zone ────────────────────────────────────────
 const dropZone  = document.getElementById('scan-drop-zone');
 const fileInput = document.getElementById('scan-file-input');
@@ -100,7 +126,7 @@ async function scanImage(file) {
           coords = parseCoords(text);
         } catch (err) { /* OCR failed for this image — coords stays null */ }
 
-        const result = { thumbUrl, coords, added: false, file: file.name };
+        const result = { thumbUrl, fullUrl: e.target.result, coords, added: false, file: file.name };
         scanResults.push(result);
         renderScanResult(result, scanResults.length - 1);
         resolve();
@@ -150,10 +176,15 @@ function renderScanResult(result, idx) {
       ? `<button class="scan-add-btn" data-idx="${idx}">Add</button>`
       : '<span style="font-size:0.72rem;color:#e57373">edit manually</span>'
     }
+    <button class="scan-view-btn" data-idx="${idx}" title="View full screenshot">🔍</button>
   `;
 
   const addBtn = row.querySelector('.scan-add-btn');
   if (addBtn) addBtn.addEventListener('click', () => addFromScan(idx, addBtn));
+  const viewBtn = row.querySelector('.scan-view-btn');
+  if (viewBtn) viewBtn.addEventListener('click', () =>
+    openLightbox(result.fullUrl, result.file + (result.coords ? ' — (' + result.coords.x + ', ' + result.coords.y + ')' : ''))
+  );
 
   list.appendChild(row);
 }
