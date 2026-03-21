@@ -139,11 +139,13 @@
         </div>
 
         <!-- Drop zone -->
-        <div class="scan-drop-zone" id="scan-drop-zone">
-          📁 Drop screenshots here or click to pick files
+        <!-- label makes the entire zone a native file-picker trigger —
+             no JS .click() proxy needed, works on mobile Safari and all browsers. -->
+        <label class="scan-drop-zone" id="scan-drop-zone">
+          📁 Drop screenshots here or tap to pick files
           <input type="file" id="scan-file-input" accept="image/*" multiple
             style="display:none" />
-        </div>
+        </label>
 
         <!-- Island + type for batch (applied to all scanned results) -->
         <div class="mf">
