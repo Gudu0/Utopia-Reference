@@ -18,7 +18,7 @@ const SCALE  =   3;  // upscale before OCR — sharpens small text
 // ── Duplicate detection tolerance ───────────────────────────
 //  Coords within ±DUPE_TOLERANCE on both axes are flagged.
 //  Nodes are very close together sometimes — keep this tight.
-const DUPE_TOLERANCE = 3;
+const DUPE_TOLERANCE = 2;
 
 let scanResults     = [];
 let tesseractReady  = false;
@@ -245,10 +245,20 @@ function renderScanResult(result, idx) {
     ? (result.dupOf ? '#e5a73a' : '#6fcf97')
     : '#e57373';
 
-  // Right-side cell: add button, or dupe controls, or "edit manually"
+  // Right-side cell: add button, dupe controls, or inline manual entry
   let actionCell;
   if (!result.coords) {
-    actionCell = `<span style="font-size:0.72rem;color:#e57373;grid-column:2/4">edit manually</span>`;
+    // OCR failed — show inline X/Y inputs so the user can enter coords
+    // without leaving the scan tab. Spans both action columns.
+    actionCell = `
+      <div class="scan-manual-entry" style="grid-column:2/4;display:flex;align-items:center;gap:4px;flex-wrap:wrap">
+        <input class="scan-manual-x" type="number" placeholder="X" min="0" max="25000"
+          style="width:68px" title="Game X coordinate" />
+        <input class="scan-manual-y" type="number" placeholder="Y" min="0" max="25000"
+          style="width:68px" title="Game Y coordinate" />
+        <button class="scan-manual-confirm" data-idx="${idx}" title="Confirm coords">✓</button>
+      </div>
+    `;
   } else if (result.dupOf) {
     actionCell = `
       <div class="dupe-actions">
@@ -288,9 +298,84 @@ function renderScanResult(result, idx) {
   const discardBtn = row.querySelector('.scan-discard-btn');
   const viewBtnEl  = row.querySelector('.scan-view-btn');
 
+  // Wire buttons
+  const addBtn        = row.querySelector('.scan-add-btn');
+  const keepBtn       = row.querySelector('.scan-keep-btn');
+  const discardBtn    = row.querySelector('.scan-discard-btn');
+  const viewBtnEl     = row.querySelector('.scan-view-btn');
+  const confirmBtn    = row.querySelector('.scan-manual-confirm');
+  const manualX       = row.querySelector('.scan-manual-x');
+  const manualY       = row.querySelector('.scan-manual-y');
+
   if (addBtn)     addBtn.addEventListener('click',     () => addFromScan(idx, addBtn));
   if (keepBtn)    keepBtn.addEventListener('click',    () => resolveAsSafe(idx, row));
   if (discardBtn) discardBtn.addEventListener('click', () => discardScan(idx, row));
+
+  if (confirmBtn && manualX && manualY) {
+    const confirmManual = () => {
+      const x = parseInt(manualX.value, 10);
+      const y = parseInt(manualY.value, 10);
+      if (isNaN(x) || isNaN(y) || x < 0 || x > 25000 || y < 0 || y > 25000) {
+        manualX.style.borderColor = '#e57373';
+        manualY.style.borderColor = '#e57373';
+        return;
+      }
+      // Coords accepted — patch the result and re-render the row's state
+      manualX.style.borderColor = '';
+      manualY.style.borderColor = '';
+      result.coords = { x, y };
+
+      // Re-check for duplicates now that we have real coords
+      result.dupOf = findDuplicate({ x, y }, idx);
+
+      // Swap the manual entry section for the normal action cell
+      const entryEl   = row.querySelector('.scan-manual-entry');
+      const coordEl   = row.querySelector('.scan-result-coords');
+      if (coordEl) {
+        coordEl.textContent = `(${x}, ${y})`;
+        coordEl.style.color = result.dupOf ? '#e5a73a' : '#6fcf97';
+      }
+
+      if (result.dupOf) {
+        row.classList.add('is-dupe');
+        // Insert dupe label under coords
+        const statusEl = row.querySelector('.scan-result-status');
+        const dupeLabel = document.createElement('div');
+        dupeLabel.className = 'scan-dupe-label';
+        dupeLabel.title     = result.dupOf;
+        dupeLabel.textContent = `⚠ possible dupe of ${result.dupOf}`;
+        if (statusEl) statusEl.before(dupeLabel);
+
+        // Replace entry with dupe-actions
+        const actions = document.createElement('div');
+        actions.className = 'dupe-actions';
+        actions.innerHTML = `
+          <button class="scan-keep-btn" data-idx="${idx}" title="Not a duplicate — keep it">Keep</button>
+          <button class="scan-discard-btn" data-idx="${idx}" title="Discard this result">✕</button>
+        `;
+        actions.querySelector('.scan-keep-btn').addEventListener('click',    () => resolveAsSafe(idx, row));
+        actions.querySelector('.scan-discard-btn').addEventListener('click', () => discardScan(idx, row));
+        entryEl.replaceWith(actions);
+      } else {
+        // Replace entry with a normal Add button
+        const addB        = document.createElement('button');
+        addB.className    = 'scan-add-btn';
+        addB.dataset.idx  = String(idx);
+        addB.textContent  = 'Add';
+        addB.addEventListener('click', () => addFromScan(idx, addB));
+        entryEl.replaceWith(addB);
+      }
+
+      updateAddAllBtn();
+    };
+
+    confirmBtn.addEventListener('click', confirmManual);
+    // Allow Enter from either input field to confirm
+    [manualX, manualY].forEach(input => {
+      input.addEventListener('keydown', e => { if (e.key === 'Enter') confirmManual(); });
+    });
+  }
+
   if (viewBtnEl)  viewBtnEl.addEventListener('click',  () => {
     // Re-read the file on demand — we don't keep the full image in memory.
     const label = `${result.file}${result.coords ? ' — ' + coordText : ''}`;
