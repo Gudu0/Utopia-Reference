@@ -239,7 +239,7 @@ function renderScanResult(result, idx) {
       </div>`
     }
     <button class="scan-view-btn" data-idx="${idx}" title="View full screenshot">🔍</button>
-    ${result.coords ? `<button class="scan-edit-btn" data-idx="${idx}" title="Edit coordinates">✏</button>` : ""}
+    <button class="scan-edit-btn" data-idx="${idx}" title="Edit coordinates" style="${result.coords ? '' : 'display:none'}">✏</button>
   `;
 
   const addBtn = row.querySelector('.scan-add-btn');
@@ -304,6 +304,7 @@ function renderScanResult(result, idx) {
         return;
       }
       result.coords = { x, y };
+      result.manual = true;
       // Re-run dupe check with updated coords
       result.dupOf = findDuplicate({ x, y }, idx);
       result.dupeResolved = false;
@@ -355,6 +356,9 @@ function renderScanResult(result, idx) {
         coordEl.textContent = '(' + x + ', ' + y + ') ✏';
         coordEl.style.color = result.dupOf ? '#e5a73a' : '#6fcf97';
       }
+      // Show the edit button now that we have coords
+      const editBtnEl = row.querySelector('.scan-edit-btn');
+      if (editBtnEl) editBtnEl.style.display = '';
       const entryEl = row.querySelector('.scan-manual-entry');
       if (result.dupOf) {
         // Show as dupe — add label and keep/discard buttons
