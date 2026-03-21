@@ -9,60 +9,22 @@
 //  thumbnail in each result row to see what OCR is seeing.
 // ============================================================
 
+
 const CROP_X = 340;  // pixels from left edge of screenshot
 const CROP_Y = 391;  // pixels from top edge
 const CROP_W = 199;  // width of crop region
 const CROP_H =  25;  // height of crop region
 const SCALE  =   3;  // upscale before OCR — sharpens small text
 
-// ── Duplicate detection tolerance ───────────────────────────
-//  Coords within ±DUPE_TOLERANCE on both axes are flagged.
-//  Nodes are very close together sometimes — keep this tight.
-const DUPE_TOLERANCE = 2;
-
-let scanResults     = [];
-let tesseractReady  = false;
+let scanResults    = [];
+let tesseractReady = false;
 let tesseractWorker = null;
-
-// ── Lightbox ─────────────────────────────────────────────────
-//  Single overlay element, reused for every "view" click.
-const lightbox = document.createElement('div');
-lightbox.id = 'scan-lightbox';
-lightbox.innerHTML = `
-  <div id="scan-lightbox-inner">
-    <img id="scan-lightbox-img" src="" alt="Screenshot" />
-    <div id="scan-lightbox-label"></div>
-    <button id="scan-lightbox-close">✕ Close</button>
-  </div>
-`;
-document.body.appendChild(lightbox);
-
-lightbox.addEventListener('click', e => {
-  if (e.target === lightbox) closeLightbox();
-});
-document.getElementById('scan-lightbox-close').addEventListener('click', closeLightbox);
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
-});
-
-function openLightbox(fullUrl, label) {
-  document.getElementById('scan-lightbox-img').src   = fullUrl;
-  document.getElementById('scan-lightbox-label').textContent = label;
-  lightbox.classList.add('open');
-}
-function closeLightbox() {
-  lightbox.classList.remove('open');
-  // Clear src after transition so the old image doesn't flash on next open
-  setTimeout(() => { document.getElementById('scan-lightbox-img').src = ''; }, 200);
-}
 
 // ── Wire up drop zone ────────────────────────────────────────
 const dropZone  = document.getElementById('scan-drop-zone');
 const fileInput = document.getElementById('scan-file-input');
 
 if (dropZone && fileInput) {
-  // Input lives outside the modal (avoids z-index/stacking issues).
-  // We proxy the click directly and synchronously here.
   dropZone.addEventListener('click', () => fileInput.click());
   dropZone.addEventListener('dragover', e => {
     e.preventDefault();
@@ -87,49 +49,27 @@ document.addEventListener('scan-tab-opened', async () => {
   }
 });
 
-// ── Handle dropped / picked files ────────────────────────────
+// ── Handle dropped / picked files ───────────────────────────
 async function handleFiles(files) {
   const images = files.filter(f => f.type.startsWith('image/'));
-
-  // Update immediately -- if this never appears, the event itself isn't firing
-  setScanProgress(images.length + ' image' + (images.length !== 1 ? 's' : '') + ' received...');
-  if (!images.length) {
-    setScanProgress('No images found in selection.');
-    return;
-  }
+  if (!images.length) return;
 
   if (!tesseractReady) {
-    setScanProgress('Loading OCR engine... (first time only, ~5s)');
-    try {
-      await initTesseract();
-    } catch (err) {
-      setScanProgress('OCR engine failed to load. Check your connection and retry.');
-      return;
-    }
+    setScanProgress('Loading OCR engine… (first time only, ~5s)');
+    await initTesseract();
   }
 
   for (let i = 0; i < images.length; i++) {
-    setScanProgress('Scanning ' + (i + 1) + ' / ' + images.length + '...');
+    setScanProgress(`Scanning ${i + 1} / ${images.length}…`);
     await scanImage(images[i]);
   }
 
-  const total = scanResults.length;
-  const dupes = scanResults.filter(r => r.dupOf && !r.dupeResolved).length;
-  setScanProgress(
-    dupes
-      ? 'Done - ' + total + ' result' + (total !== 1 ? 's' : '') + '. Warning: ' + dupes + ' possible duplicate' + (dupes !== 1 ? 's' : '') + ' - resolve before adding.'
-      : 'Done - ' + total + ' result' + (total !== 1 ? 's' : '') + '.'
-  );
-
-  updateAddAllBtn();
+  setScanProgress(`Done — ${scanResults.length} result${scanResults.length !== 1 ? 's' : ''}.`);
+  const addAllBtn = document.getElementById('scan-add-all-btn');
+  if (addAllBtn) addAllBtn.style.display = scanResults.length ? 'block' : 'none';
 }
 
 // ── Crop + OCR a single image ────────────────────────────────
-//  Memory note: we do NOT store the full image data URL on the
-//  result object. iPhone screenshots are 2-4 MB each as base64,
-//  and keeping 200 of them would easily crash a mobile browser.
-//  Instead we store the original File handle (a cheap reference)
-//  and re-read it on demand only when the lightbox is opened.
 async function scanImage(file) {
   return new Promise(resolve => {
     const reader = new FileReader();
@@ -154,82 +94,21 @@ async function scanImage(file) {
 
         const thumbUrl = canvas.toDataURL('image/png');
 
-        // Release the full-resolution image from memory — we only
-        // need the small cropped thumbnail going forward.
-        img.src = '';
-
         let coords = null;
         try {
           const { data: { text } } = await tesseractWorker.recognize(canvas);
           coords = parseCoords(text);
-        } catch (err) { /* OCR failed — coords stays null */ }
+        } catch (err) { /* OCR failed for this image — coords stays null */ }
 
-        // ── Duplicate check ──────────────────────────────────
-        //  dupOf: null = clean, string = label of what it duplicates
-        const dupOf = coords ? findDuplicate(coords, scanResults.length) : null;
-
-        const result = {
-          thumbUrl,
-          fileRef:      file,   // File handle — no image bytes retained
-          coords,
-          added:        false,
-          dupeResolved: false,
-          dupOf,
-          file:         file.name,
-        };
+        const result = { thumbUrl, coords, added: false, file: file.name };
         scanResults.push(result);
         renderScanResult(result, scanResults.length - 1);
         resolve();
       };
       img.src = e.target.result;
-      // e.target.result (full data URL) is not stored — goes out of scope
-      // after this callback, freeing the memory.
     };
     reader.readAsDataURL(file);
   });
-}
-
-// ── Duplicate finder ─────────────────────────────────────────
-//  Checks new coords against:
-//    1. Already-scanned results in this session (by currentCount index)
-//    2. workingNodes (session nodes added via manual or scan)
-//    3. allNodes (nodes loaded from map-nodes.json)
-//  Returns a human-readable string describing the match, or null.
-
-function findDuplicate(coords, currentCount) {
-  const { x, y } = coords;
-
-  // Check earlier scan results in this session
-  for (let i = 0; i < currentCount; i++) {
-    const r = scanResults[i];
-    if (!r.coords) continue;
-    if (Math.abs(r.coords.x - x) <= DUPE_TOLERANCE &&
-        Math.abs(r.coords.y - y) <= DUPE_TOLERANCE) {
-      return `scan result #${i + 1} (${r.coords.x}, ${r.coords.y})`;
-    }
-  }
-
-  // Check working nodes (editor.js session nodes)
-  if (typeof workingNodes !== 'undefined') {
-    for (const n of workingNodes) {
-      if (Math.abs(n.x - x) <= DUPE_TOLERANCE &&
-          Math.abs(n.y - y) <= DUPE_TOLERANCE) {
-        return `"${n.name}" already in session (${n.x}, ${n.y})`;
-      }
-    }
-  }
-
-  // Check allNodes (loaded map-nodes.json)
-  if (typeof allNodes !== 'undefined') {
-    for (const n of allNodes) {
-      if (Math.abs(n.x - x) <= DUPE_TOLERANCE &&
-          Math.abs(n.y - y) <= DUPE_TOLERANCE) {
-        return `"${n.name}" already on map (${n.x}, ${n.y})`;
-      }
-    }
-  }
-
-  return null;
 }
 
 // ── Parse "X, Y" out of OCR text ────────────────────────────
@@ -248,199 +127,35 @@ function parseCoords(text) {
 function renderScanResult(result, idx) {
   const list = document.getElementById('scan-results');
   const row  = document.createElement('div');
-  row.className   = 'scan-result-row' + (result.dupOf ? ' is-dupe' : '');
+  row.className   = 'scan-result-row';
   row.dataset.idx = idx;
 
   const coordText  = result.coords
     ? `(${result.coords.x}, ${result.coords.y})`
     : '⚠ not found';
-  const coordColor = result.coords
-    ? (result.dupOf ? '#e5a73a' : '#6fcf97')
-    : '#e57373';
-
-  // Right-side cell: add button, dupe controls, or inline manual entry
-  let actionCell;
-  if (!result.coords) {
-    // OCR failed — show inline X/Y inputs so the user can enter coords
-    // without leaving the scan tab. Spans both action columns.
-    actionCell = `
-      <div class="scan-manual-entry" style="grid-column:2/4;display:flex;align-items:center;gap:4px;flex-wrap:wrap">
-        <input class="scan-manual-x" type="number" placeholder="X" min="0" max="25000"
-          style="width:68px" title="Game X coordinate" />
-        <input class="scan-manual-y" type="number" placeholder="Y" min="0" max="25000"
-          style="width:68px" title="Game Y coordinate" />
-        <button class="scan-manual-confirm" data-idx="${idx}" title="Confirm coords">✓</button>
-      </div>
-    `;
-  } else if (result.dupOf) {
-    actionCell = `
-      <div class="dupe-actions">
-        <button class="scan-keep-btn" data-idx="${idx}" title="Not a duplicate — keep it">Keep</button>
-        <button class="scan-discard-btn" data-idx="${idx}" title="Discard this result">✕</button>
-      </div>
-    `;
-  } else {
-    actionCell = `<button class="scan-add-btn" data-idx="${idx}">Add</button>`;
-  }
-
-  // View button — always present when we have a full image
-  const viewBtn = `<button class="scan-view-btn" data-idx="${idx}" title="View full screenshot">🔍</button>`;
+  const coordColor = result.coords ? '#6fcf97' : '#e57373';
 
   row.innerHTML = `
     <div style="display:flex;align-items:center;gap:8px;min-width:0">
       <img class="scan-thumb" src="${result.thumbUrl}" title="OCR crop region" />
       <div style="min-width:0">
         <div class="scan-result-coords" style="color:${coordColor}">${coordText}</div>
-        ${result.dupOf
-          ? `<div class="scan-dupe-label" title="${result.dupOf}">⚠ possible dupe of ${result.dupOf}</div>`
-          : ''
-        }
         <div class="scan-result-status"
           style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">
           ${result.file}
         </div>
       </div>
     </div>
-    ${actionCell}
-    ${viewBtn}
+    ${result.coords
+      ? `<button class="scan-add-btn" data-idx="${idx}">Add</button>`
+      : '<span style="font-size:0.72rem;color:#e57373">edit manually</span>'
+    }
   `;
 
-  // Wire buttons
-  const addBtn     = row.querySelector('.scan-add-btn');
-  const keepBtn    = row.querySelector('.scan-keep-btn');
-  const discardBtn = row.querySelector('.scan-discard-btn');
-  const viewBtnEl  = row.querySelector('.scan-view-btn');
-
-  // Wire buttons
-  const addBtn        = row.querySelector('.scan-add-btn');
-  const keepBtn       = row.querySelector('.scan-keep-btn');
-  const discardBtn    = row.querySelector('.scan-discard-btn');
-  const viewBtnEl     = row.querySelector('.scan-view-btn');
-  const confirmBtn    = row.querySelector('.scan-manual-confirm');
-  const manualX       = row.querySelector('.scan-manual-x');
-  const manualY       = row.querySelector('.scan-manual-y');
-
-  if (addBtn)     addBtn.addEventListener('click',     () => addFromScan(idx, addBtn));
-  if (keepBtn)    keepBtn.addEventListener('click',    () => resolveAsSafe(idx, row));
-  if (discardBtn) discardBtn.addEventListener('click', () => discardScan(idx, row));
-
-  if (confirmBtn && manualX && manualY) {
-    const confirmManual = () => {
-      const x = parseInt(manualX.value, 10);
-      const y = parseInt(manualY.value, 10);
-      if (isNaN(x) || isNaN(y) || x < 0 || x > 25000 || y < 0 || y > 25000) {
-        manualX.style.borderColor = '#e57373';
-        manualY.style.borderColor = '#e57373';
-        return;
-      }
-      // Coords accepted — patch the result and re-render the row's state
-      manualX.style.borderColor = '';
-      manualY.style.borderColor = '';
-      result.coords = { x, y };
-
-      // Re-check for duplicates now that we have real coords
-      result.dupOf = findDuplicate({ x, y }, idx);
-
-      // Swap the manual entry section for the normal action cell
-      const entryEl   = row.querySelector('.scan-manual-entry');
-      const coordEl   = row.querySelector('.scan-result-coords');
-      if (coordEl) {
-        coordEl.textContent = `(${x}, ${y})`;
-        coordEl.style.color = result.dupOf ? '#e5a73a' : '#6fcf97';
-      }
-
-      if (result.dupOf) {
-        row.classList.add('is-dupe');
-        // Insert dupe label under coords
-        const statusEl = row.querySelector('.scan-result-status');
-        const dupeLabel = document.createElement('div');
-        dupeLabel.className = 'scan-dupe-label';
-        dupeLabel.title     = result.dupOf;
-        dupeLabel.textContent = `⚠ possible dupe of ${result.dupOf}`;
-        if (statusEl) statusEl.before(dupeLabel);
-
-        // Replace entry with dupe-actions
-        const actions = document.createElement('div');
-        actions.className = 'dupe-actions';
-        actions.innerHTML = `
-          <button class="scan-keep-btn" data-idx="${idx}" title="Not a duplicate — keep it">Keep</button>
-          <button class="scan-discard-btn" data-idx="${idx}" title="Discard this result">✕</button>
-        `;
-        actions.querySelector('.scan-keep-btn').addEventListener('click',    () => resolveAsSafe(idx, row));
-        actions.querySelector('.scan-discard-btn').addEventListener('click', () => discardScan(idx, row));
-        entryEl.replaceWith(actions);
-      } else {
-        // Replace entry with a normal Add button
-        const addB        = document.createElement('button');
-        addB.className    = 'scan-add-btn';
-        addB.dataset.idx  = String(idx);
-        addB.textContent  = 'Add';
-        addB.addEventListener('click', () => addFromScan(idx, addB));
-        entryEl.replaceWith(addB);
-      }
-
-      updateAddAllBtn();
-    };
-
-    confirmBtn.addEventListener('click', confirmManual);
-    // Allow Enter from either input field to confirm
-    [manualX, manualY].forEach(input => {
-      input.addEventListener('keydown', e => { if (e.key === 'Enter') confirmManual(); });
-    });
-  }
-
-  if (viewBtnEl)  viewBtnEl.addEventListener('click',  () => {
-    // Re-read the file on demand — we don't keep the full image in memory.
-    const label = `${result.file}${result.coords ? ' — ' + coordText : ''}`;
-    const fr = new FileReader();
-    fr.onload = e => openLightbox(e.target.result, label);
-    fr.readAsDataURL(result.fileRef);
-  });
+  const addBtn = row.querySelector('.scan-add-btn');
+  if (addBtn) addBtn.addEventListener('click', () => addFromScan(idx, addBtn));
 
   list.appendChild(row);
-}
-
-// ── Resolve a flagged row as "keep it, it's fine" ────────────
-function resolveAsSafe(idx, row) {
-  const result      = scanResults[idx];
-  result.dupOf      = null;
-  result.dupeResolved = true;
-  row.classList.remove('is-dupe');
-
-  // Replace dupe-actions with a normal Add button
-  const actionsEl = row.querySelector('.dupe-actions');
-  if (actionsEl) {
-    const addBtn        = document.createElement('button');
-    addBtn.className    = 'scan-add-btn';
-    addBtn.dataset.idx  = idx;
-    addBtn.textContent  = 'Add';
-    addBtn.addEventListener('click', () => addFromScan(idx, addBtn));
-    actionsEl.replaceWith(addBtn);
-  }
-
-  // Update coord colour to green
-  const coordEl = row.querySelector('.scan-result-coords');
-  if (coordEl) coordEl.style.color = '#6fcf97';
-
-  // Remove dupe label
-  const labelEl = row.querySelector('.scan-dupe-label');
-  if (labelEl) labelEl.remove();
-
-  updateAddAllBtn();
-}
-
-// ── Discard a scan result entirely ───────────────────────────
-function discardScan(idx, row) {
-  scanResults[idx].added        = true;   // treat as handled so Add All skips it
-  scanResults[idx].dupeResolved = true;
-  row.classList.add('discarded');
-  row.style.opacity = '0.35';
-  // Replace controls with a label
-  const actionsEl = row.querySelector('.dupe-actions');
-  if (actionsEl) {
-    actionsEl.innerHTML = '<span style="font-size:0.72rem;color:#9fb0c2">discarded</span>';
-  }
-  updateAddAllBtn();
 }
 
 // ── Add a single scan result to the session ──────────────────
@@ -461,8 +176,6 @@ function addFromScan(idx, btn) {
   addNode({ name, type, island, notes: '', x: result.coords.x, y: result.coords.y });
   result.added = true;
   if (btn) { btn.textContent = '✓'; btn.classList.add('added'); btn.disabled = true; }
-
-  updateAddAllBtn();
 }
 
 function showScanStatus(msg) {
@@ -473,46 +186,10 @@ function showScanStatus(msg) {
   setTimeout(() => { el.textContent = ''; el.style.color = ''; }, 3000);
 }
 
-// ── Update Add All button state ───────────────────────────────
-//  Blocked when any result has an unresolved dupe flag.
-function updateAddAllBtn() {
-  const btn = document.getElementById('scan-add-all-btn');
-  if (!btn) return;
-
-  const unresolvedDupes = scanResults.filter(
-    r => r.dupOf && !r.dupeResolved && !r.added
-  ).length;
-
-  const hasAddable = scanResults.some(r => !r.added && r.coords && !r.dupOf);
-
-  btn.style.display = scanResults.length ? 'block' : 'none';
-
-  if (unresolvedDupes > 0) {
-    btn.disabled         = true;
-    btn.title            = `Resolve ${unresolvedDupes} flagged duplicate${unresolvedDupes !== 1 ? 's' : ''} before adding all`;
-    btn.dataset.blocked  = 'true';
-    btn.textContent      = `⚠ Resolve ${unresolvedDupes} duplicate${unresolvedDupes !== 1 ? 's' : ''} first`;
-  } else {
-    btn.disabled         = false;
-    btn.title            = '';
-    btn.dataset.blocked  = '';
-    btn.textContent      = 'Add All';
-  }
-}
-
 // ── Add all results at once ──────────────────────────────────
 const addAllBtn = document.getElementById('scan-add-all-btn');
 if (addAllBtn) {
   addAllBtn.addEventListener('click', () => {
-    // Guard — should not be reachable while blocked, but just in case
-    const unresolvedDupes = scanResults.filter(
-      r => r.dupOf && !r.dupeResolved && !r.added
-    ).length;
-    if (unresolvedDupes > 0) {
-      showScanStatus(`Resolve ${unresolvedDupes} flagged duplicate${unresolvedDupes !== 1 ? 's' : ''} before adding all.`);
-      return;
-    }
-
     const island = document.getElementById('scan-island').value;
     if (!island) { showScanStatus('Pick an island first.'); return; }
 
