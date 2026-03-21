@@ -142,25 +142,29 @@ async function scanImage(file) {
             actx.drawImage(canvas, 0, 0);
 
             if (attempt === 2) {
-              // Boost contrast — stretch pixel values to make text darker
+              // Black-and-white threshold — eliminates background colour variation.
+              // Pixels brighter than the threshold become white, darker become black.
+              // The coord text is light-coloured so we invert after thresholding
+              // so Tesseract sees dark text on white (which it prefers).
               const imgData = actx.getImageData(0, 0, attemptCanvas.width, attemptCanvas.height);
               const d = imgData.data;
+              const THRESHOLD = 160; // tune if needed: higher = more pixels go black
               for (let i = 0; i < d.length; i += 4) {
-                // Apply a simple contrast curve: push darks darker, lights lighter
-                for (let c = 0; c < 3; c++) {
-                  const v = d[i + c] / 255;
-                  d[i + c] = Math.round(Math.min(255, Math.max(0, (v - 0.5) * 2.5 + 0.5) * 255));
-                }
+                const brightness = 0.299 * d[i] + 0.587 * d[i+1] + 0.114 * d[i+2];
+                const val = brightness > THRESHOLD ? 0 : 255; // invert: bright→black, dark→white
+                d[i] = d[i+1] = d[i+2] = val;
               }
               actx.putImageData(imgData, 0, 0);
             } else if (attempt === 3) {
-              // Invert — try dark text on light background
+              // Same threshold but with a lower cutoff — catches cases where
+              // text is darker or background is lighter than expected
               const imgData = actx.getImageData(0, 0, attemptCanvas.width, attemptCanvas.height);
               const d = imgData.data;
+              const THRESHOLD = 100;
               for (let i = 0; i < d.length; i += 4) {
-                d[i]     = 255 - d[i];
-                d[i + 1] = 255 - d[i + 1];
-                d[i + 2] = 255 - d[i + 2];
+                const brightness = 0.299 * d[i] + 0.587 * d[i+1] + 0.114 * d[i+2];
+                const val = brightness > THRESHOLD ? 0 : 255;
+                d[i] = d[i+1] = d[i+2] = val;
               }
               actx.putImageData(imgData, 0, 0);
             }
