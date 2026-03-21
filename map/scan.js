@@ -131,48 +131,56 @@ async function scanImage(file) {
         const thumbUrl = canvas.toDataURL('image/png');
 
         let coords = null;
-        const MAX_OCR_ATTEMPTS = 3;
-        for (let attempt = 1; attempt <= MAX_OCR_ATTEMPTS; attempt++) {
+
+        // Helper: process a canvas variant, run OCR, release the canvas, return coords or null
+        const tryOCR = async (processFunc) => {
+          const c = document.createElement('canvas');
+          c.width  = canvas.width;
+          c.height = canvas.height;
+          const ctx2 = c.getContext('2d');
+          ctx2.drawImage(canvas, 0, 0);
+          processFunc(ctx2, c);
           try {
-            // Each attempt uses a differently processed version of the canvas
-            const attemptCanvas = document.createElement('canvas');
-            attemptCanvas.width  = canvas.width;
-            attemptCanvas.height = canvas.height;
-            const actx = attemptCanvas.getContext('2d');
-            actx.drawImage(canvas, 0, 0);
+            const { data: { text } } = await tesseractWorker.recognize(c);
+            const result = parseCoords(text);
+            // Explicitly release canvas memory before returning
+            c.width = 0; c.height = 0;
+            return result;
+          } catch (e) {
+            c.width = 0; c.height = 0;
+            return null;
+          }
+        };
 
-            if (attempt === 2) {
-              // Black-and-white threshold — eliminates background colour variation.
-              // Pixels brighter than the threshold become white, darker become black.
-              // The coord text is light-coloured so we invert after thresholding
-              // so Tesseract sees dark text on white (which it prefers).
-              const imgData = actx.getImageData(0, 0, attemptCanvas.width, attemptCanvas.height);
-              const d = imgData.data;
-              const THRESHOLD = 160; // tune if needed: higher = more pixels go black
-              for (let i = 0; i < d.length; i += 4) {
-                const brightness = 0.299 * d[i] + 0.587 * d[i+1] + 0.114 * d[i+2];
-                const val = brightness > THRESHOLD ? 0 : 255; // invert: bright→black, dark→white
-                d[i] = d[i+1] = d[i+2] = val;
-              }
-              actx.putImageData(imgData, 0, 0);
-            } else if (attempt === 3) {
-              // Same threshold but with a lower cutoff — catches cases where
-              // text is darker or background is lighter than expected
-              const imgData = actx.getImageData(0, 0, attemptCanvas.width, attemptCanvas.height);
-              const d = imgData.data;
-              const THRESHOLD = 100;
-              for (let i = 0; i < d.length; i += 4) {
-                const brightness = 0.299 * d[i] + 0.587 * d[i+1] + 0.114 * d[i+2];
-                const val = brightness > THRESHOLD ? 0 : 255;
-                d[i] = d[i+1] = d[i+2] = val;
-              }
-              actx.putImageData(imgData, 0, 0);
+        // Attempt 1: raw crop (no processing)
+        coords = await tryOCR(() => {});
+
+        // Attempt 2: B&W threshold at 160 — only if attempt 1 failed
+        if (!coords) {
+          coords = await tryOCR((ctx2, c) => {
+            const imgData = ctx2.getImageData(0, 0, c.width, c.height);
+            const d = imgData.data;
+            for (let i = 0; i < d.length; i += 4) {
+              const brightness = 0.299 * d[i] + 0.587 * d[i+1] + 0.114 * d[i+2];
+              const val = brightness > 160 ? 0 : 255;
+              d[i] = d[i+1] = d[i+2] = val;
             }
+            ctx2.putImageData(imgData, 0, 0);
+          });
+        }
 
-            const { data: { text } } = await tesseractWorker.recognize(attemptCanvas);
-            coords = parseCoords(text);
-            if (coords) break;
-          } catch (err) { /* OCR error on this attempt — try again */ }
+        // Attempt 3: B&W threshold at 100 — only if attempt 2 also failed
+        if (!coords) {
+          coords = await tryOCR((ctx2, c) => {
+            const imgData = ctx2.getImageData(0, 0, c.width, c.height);
+            const d = imgData.data;
+            for (let i = 0; i < d.length; i += 4) {
+              const brightness = 0.299 * d[i] + 0.587 * d[i+1] + 0.114 * d[i+2];
+              const val = brightness > 100 ? 0 : 255;
+              d[i] = d[i+1] = d[i+2] = val;
+            }
+            ctx2.putImageData(imgData, 0, 0);
+          });
         }
 
         const dupOf = coords ? findDuplicate(coords, scanResults.length) : null;
