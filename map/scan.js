@@ -33,7 +33,7 @@ let tesseractWorker = null;
 
 // -- Version --------------------------------------------------
 const version = document.getElementById('version');
-version.innerHTML = 'v132';
+version.innerHTML = 'v133';
 
 // ── Lightbox ─────────────────────────────────────────────────
 const lightbox = document.createElement('div');
