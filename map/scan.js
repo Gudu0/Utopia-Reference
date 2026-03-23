@@ -33,7 +33,7 @@ let tesseractWorker = null;
 
 // -- Version --------------------------------------------------
 const version = document.getElementById('version');
-version.innerHTML = 'v131';
+version.innerHTML = 'v132';
 
 // ── Lightbox ─────────────────────────────────────────────────
 const lightbox = document.createElement('div');
@@ -355,10 +355,10 @@ function renderScanResult(result, idx) {
     : '#e57373';
 
   row.innerHTML = `
-    <div style="display:flex;align-items:center;gap:8px;min-width:0">
+    <img class="scan-thumb" src="${result.thumbUrl}" title="Click to zoom crop region" />
+    <div class="scan-row-inner">
       <span class="scan-row-num">#${idx + 1}</span>
-      <img class="scan-thumb" src="${result.thumbUrl}" title="OCR crop region" />
-      <div style="min-width:0">
+      <div style="min-width:0;flex:1">
         <div class="scan-result-coords" style="color:${coordColor}">${coordText}</div>
         ${result.dupOf ? `<div class="scan-dupe-label" title="${result.dupOf}">&#9888; dupe of ${result.dupOf}</div>` : ''}
         ${nearEdge(result.coords) ? `<div class="scan-low-label">${nearEdge(result.coords)}</div>` : ''}
@@ -367,22 +367,22 @@ function renderScanResult(result, idx) {
           ${result.file}
         </div>
       </div>
+      ${result.coords
+        ? (result.dupOf
+            ? `<div class="dupe-actions">
+                 <button class="scan-keep-btn" data-idx="${idx}">Keep</button>
+                 <button class="scan-discard-btn" data-idx="${idx}">&#x2715;</button>
+               </div>`
+            : `<button class="scan-add-btn" data-idx="${idx}">Add</button>`)
+        : `<div class="scan-manual-entry">
+          <input class="scan-manual-x" type="number" placeholder="X" min="0" max="25000" />
+          <input class="scan-manual-y" type="number" placeholder="Y" min="0" max="25000" />
+          <button class="scan-manual-confirm" data-idx="${idx}">✓</button>
+        </div>`
+      }
+      <button class="scan-view-btn" data-idx="${idx}" title="View full screenshot">🔍</button>
+      <button class="scan-edit-btn" data-idx="${idx}" title="Edit coordinates" style="${result.coords ? '' : 'display:none'}">✏</button>
     </div>
-    ${result.coords
-      ? (result.dupOf
-          ? `<div class="dupe-actions">
-               <button class="scan-keep-btn" data-idx="${idx}">Keep</button>
-               <button class="scan-discard-btn" data-idx="${idx}">&#x2715;</button>
-             </div>`
-          : `<button class="scan-add-btn" data-idx="${idx}">Add</button>`)
-      : `<div class="scan-manual-entry">
-        <input class="scan-manual-x" type="number" placeholder="X" min="0" max="25000" />
-        <input class="scan-manual-y" type="number" placeholder="Y" min="0" max="25000" />
-        <button class="scan-manual-confirm" data-idx="${idx}">✓</button>
-      </div>`
-    }
-    <button class="scan-view-btn" data-idx="${idx}" title="View full screenshot">🔍</button>
-    <button class="scan-edit-btn" data-idx="${idx}" title="Edit coordinates" style="${result.coords ? '' : 'display:none'}">✏</button>
   `;
 
   const addBtn = row.querySelector('.scan-add-btn');
