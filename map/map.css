@@ -261,7 +261,7 @@ html, body { height: 100%; overflow: hidden; }
   background: var(--panel-2); border-radius: 6px; padding: 6px 8px;
 }
 
-.scan-result-coords  { font-family: monospace; font-size: 0.8rem; color: var(--accent); }
+.scan-result-coords  { font-family: monospace; font-size: 0.8rem; color: var(--accent); white-space: nowrap; }
 .scan-result-status  { font-size: 0.72rem; color: var(--muted); }
 
 .scan-add-btn {
@@ -272,7 +272,7 @@ html, body { height: 100%; overflow: hidden; }
 .scan-add-btn.added { color: var(--accent); border-color: var(--accent); opacity: 0.5; cursor: default; }
 
 .scan-thumb {
-  width: 120px; height: 16px; object-fit: cover; border-radius: 3px;
+  width: 90px; height: 14px; object-fit: cover; border-radius: 3px;
   border: 1px solid var(--border); flex-shrink: 0;
   cursor: pointer;
   image-rendering: pixelated; /* keeps text sharp when scaled */
