@@ -280,7 +280,7 @@ html, body { height: 100%; overflow: hidden; }
 .scan-add-btn.added { color: var(--accent); border-color: var(--accent); opacity: 0.5; cursor: default; }
 
 .scan-thumb {
-  width: 100%; height: 25px; object-fit: none; object-position: center;
+  width:50%; height: 25px; object-position: center; margin:auto;
   border-radius: 3px; border: 1px solid var(--border);
   cursor: pointer; image-rendering: pixelated; display: block;
 }
