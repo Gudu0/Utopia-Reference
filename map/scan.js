@@ -33,7 +33,7 @@ let tesseractWorker = null;
 
 // -- Version --------------------------------------------------
 const version = document.getElementById('version');
-version.innerHTML = 'v134';
+version.innerHTML = 'v135';
 
 // ── Lightbox ─────────────────────────────────────────────────
 const lightbox = document.createElement('div');
@@ -139,7 +139,12 @@ async function scanImage(file) {
           0, 0, CROP_W * SCALE, CROP_H * SCALE
         );
 
-        const thumbUrl = canvas.toDataURL('image/png');
+        // Store the crop as a Blob rather than a base64 data URL.
+        // A Blob is a thin handle to raw bytes — no base64 inflation (~33% larger),
+        // and iOS can evict the backing memory under pressure and reload from the
+        // Blob handle if needed. We create a short-lived object URL only when the
+        // <img> actually needs to load, then revoke it immediately after decode.
+        const thumbBlob = await new Promise(res => canvas.toBlob(res, 'image/png'));
 
         let coords = null;
 
@@ -193,7 +198,7 @@ async function scanImage(file) {
           });
         }
 
-        // Release the crop canvas — we have thumbUrl and coords, don't need it anymore
+        // Release the crop canvas — we have thumbBlob and coords, don't need it anymore
         canvas.width = 0; canvas.height = 0;
 
         // Release the full image — the FileReader result goes out of scope naturally
@@ -201,7 +206,7 @@ async function scanImage(file) {
         img.src = '';
 
         const dupOf = coords ? findDuplicate(coords, scanResults.length) : null;
-        const result = { thumbUrl, fileRef: file, coords, dupOf, added: false, file: file.name };
+        const result = { thumbBlob, fileRef: file, coords, dupOf, added: false, file: file.name };
         scanResults.push(result);
         renderScanResult(result, scanResults.length - 1);
         resolve();
@@ -355,7 +360,7 @@ function renderScanResult(result, idx) {
     : '#e57373';
 
   row.innerHTML = `
-    <img class="scan-thumb" src="${result.thumbUrl}" title="Click to zoom crop region" />
+    <img class="scan-thumb" src="" title="Click to zoom crop region" />
     <div class="scan-row-inner">
       <span class="scan-row-num">#${idx + 1}</span>
       <div style="min-width:0;flex:1">
@@ -387,23 +392,31 @@ function renderScanResult(result, idx) {
 
   const addBtn = row.querySelector('.scan-add-btn');
   if (addBtn) addBtn.addEventListener('click', () => addFromScan(idx, addBtn));
-  const viewBtn = row.querySelector('.scan-view-btn');
-  if (viewBtn) viewBtn.addEventListener('click', () =>
-    (() => {
-      const label = result.file + (result.coords ? ' — (' + result.coords.x + ', ' + result.coords.y + ')' : '');
-      // createObjectURL gives the browser a direct reference to the file bytes —
-      // no base64 inflation, much lower memory overhead than readAsDataURL.
-      // We revoke the URL as soon as the lightbox closes to free the reference.
-      const objUrl = URL.createObjectURL(result.fileRef);
-      openLightbox(objUrl, label, true);
-    })()
-  );
 
-  // Thumbnail click — opens the cropped OCR region fullscreen so coords are readable
+  // 🔍 View button — full screenshot via object URL (revoked when lightbox closes)
+  const viewBtn = row.querySelector('.scan-view-btn');
+  if (viewBtn) viewBtn.addEventListener('click', () => {
+    const label  = result.file + (result.coords ? ' — (' + result.coords.x + ', ' + result.coords.y + ')' : '');
+    const objUrl = URL.createObjectURL(result.fileRef);
+    openLightbox(objUrl, label, true);
+  });
+
+  // Thumbnail — load via short-lived object URL, revoke after decode.
+  // By the time onload fires the browser has decoded the image into a texture;
+  // the URL and the Blob bytes are no longer needed in JS heap.
   const thumb = row.querySelector('.scan-thumb');
-  if (thumb) thumb.addEventListener('click', () =>
-    openLightbox(result.thumbUrl, 'OCR crop — ' + result.file + (result.coords ? ' — (' + result.coords.x + ', ' + result.coords.y + ')' : ''))
-  );
+  if (thumb && result.thumbBlob) {
+    const thumbObjUrl = URL.createObjectURL(result.thumbBlob);
+    thumb.onload = () => URL.revokeObjectURL(thumbObjUrl);
+    thumb.src = thumbObjUrl;
+  }
+
+  // Thumbnail click — re-create object URL on demand to show crop fullscreen
+  if (thumb) thumb.addEventListener('click', () => {
+    if (!result.thumbBlob) return;
+    const url = URL.createObjectURL(result.thumbBlob);
+    openLightbox(url, 'OCR crop — ' + result.file + (result.coords ? ' — (' + result.coords.x + ', ' + result.coords.y + ')' : ''), true);
+  });
 
   // buttons wired via setActionCell
   setActionCell(row, result, idx);
@@ -637,6 +650,8 @@ if (addAllBtn) {
 const clearScanBtn = document.getElementById('scan-clear-btn');
 if (clearScanBtn) {
   clearScanBtn.addEventListener('click', () => {
+    // Null blob references so the GC can reclaim backing memory promptly
+    scanResults.forEach(r => { r.thumbBlob = null; r.fileRef = null; });
     scanResults = [];
     document.getElementById('scan-results').innerHTML = '';
     setScanProgress('');
