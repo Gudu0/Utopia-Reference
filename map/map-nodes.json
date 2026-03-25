@@ -1,2 +1,706 @@
 [
+  [
+  {
+    "id": 1,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5407,
+    "y": 11623
+  },
+  {
+    "id": 2,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5409,
+    "y": 11626
+  },
+  {
+    "id": 3,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5408,
+    "y": 11628
+  },
+  {
+    "id": 4,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5407,
+    "y": 11631
+  },
+  {
+    "id": 5,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5403,
+    "y": 11642
+  },
+  {
+    "id": 6,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5403,
+    "y": 11645
+  },
+  {
+    "id": 7,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5400,
+    "y": 11645
+  },
+  {
+    "id": 8,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5403,
+    "y": 11649
+  },
+  {
+    "id": 9,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5452,
+    "y": 11642
+  },
+  {
+    "id": 10,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5452,
+    "y": 11644
+  },
+  {
+    "id": 11,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5452,
+    "y": 11647
+  },
+  {
+    "id": 12,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5459,
+    "y": 11591
+  },
+  {
+    "id": 13,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5457,
+    "y": 11590
+  },
+  {
+    "id": 14,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5487,
+    "y": 11588
+  },
+  {
+    "id": 15,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5487,
+    "y": 11585
+  },
+  {
+    "id": 16,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5490,
+    "y": 11582
+  },
+  {
+    "id": 17,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5458,
+    "y": 11604
+  },
+  {
+    "id": 18,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5460,
+    "y": 11606
+  },
+  {
+    "id": 19,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5464,
+    "y": 11613
+  },
+  {
+    "id": 20,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5467,
+    "y": 11613
+  },
+  {
+    "id": 21,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5491,
+    "y": 11597
+  },
+  {
+    "id": 22,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5491,
+    "y": 11601
+  },
+  {
+    "id": 23,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5519,
+    "y": 11625
+  },
+  {
+    "id": 24,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5499,
+    "y": 11649
+  },
+  {
+    "id": 25,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5496,
+    "y": 11646
+  },
+  {
+    "id": 26,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5498,
+    "y": 11645
+  },
+  {
+    "id": 27,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5505,
+    "y": 11648
+  },
+  {
+    "id": 28,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5508,
+    "y": 11650
+  },
+  {
+    "id": 29,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5511,
+    "y": 11653
+  },
+  {
+    "id": 30,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5517,
+    "y": 11651
+  },
+  {
+    "id": 31,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5517,
+    "y": 11655
+  },
+  {
+    "id": 32,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5516,
+    "y": 11658
+  },
+  {
+    "id": 33,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5520,
+    "y": 11654
+  },
+  {
+    "id": 34,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5514,
+    "y": 11665
+  },
+  {
+    "id": 35,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5512,
+    "y": 11667
+  },
+  {
+    "id": 36,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5514,
+    "y": 11665
+  },
+  {
+    "id": 37,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5424,
+    "y": 11687
+  },
+  {
+    "id": 38,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5427,
+    "y": 11686
+  },
+  {
+    "id": 39,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5444,
+    "y": 11711
+  },
+  {
+    "id": 40,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5446,
+    "y": 11709
+  },
+  {
+    "id": 41,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5444,
+    "y": 11707
+  },
+  {
+    "id": 42,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5457,
+    "y": 11695
+  },
+  {
+    "id": 43,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5458,
+    "y": 11697
+  },
+  {
+    "id": 44,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5457,
+    "y": 11699
+  },
+  {
+    "id": 45,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5460,
+    "y": 11701
+  },
+  {
+    "id": 46,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5464,
+    "y": 11707
+  },
+  {
+    "id": 47,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5470,
+    "y": 11705
+  },
+  {
+    "id": 48,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5468,
+    "y": 11707
+  },
+  {
+    "id": 49,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5496,
+    "y": 11694
+  },
+  {
+    "id": 50,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5498,
+    "y": 11693
+  },
+  {
+    "id": 51,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5496,
+    "y": 11690
+  },
+  {
+    "id": 52,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5492,
+    "y": 11690
+  },
+  {
+    "id": 53,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5508,
+    "y": 11734
+  },
+  {
+    "id": 54,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5508,
+    "y": 11739
+  },
+  {
+    "id": 55,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5505,
+    "y": 11739
+  },
+  {
+    "id": 56,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5484,
+    "y": 11735
+  },
+  {
+    "id": 57,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5482,
+    "y": 11732
+  },
+  {
+    "id": 58,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5469,
+    "y": 11739
+  },
+  {
+    "id": 59,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5472,
+    "y": 11738
+  },
+  {
+    "id": 60,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5469,
+    "y": 11735
+  },
+  {
+    "id": 61,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5481,
+    "y": 11767
+  },
+  {
+    "id": 62,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5483,
+    "y": 11765
+  },
+  {
+    "id": 63,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5483,
+    "y": 11771
+  },
+  {
+    "id": 64,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5552,
+    "y": 11791
+  },
+  {
+    "id": 65,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5554,
+    "y": 11789
+  },
+  {
+    "id": 66,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5557,
+    "y": 11791
+  },
+  {
+    "id": 67,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5541,
+    "y": 11807
+  },
+  {
+    "id": 68,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5541,
+    "y": 11810
+  },
+  {
+    "id": 69,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5569,
+    "y": 11799
+  },
+  {
+    "id": 70,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5566,
+    "y": 11797
+  },
+  {
+    "id": 71,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5561,
+    "y": 11726
+  },
+  {
+    "id": 72,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5561,
+    "y": 11723
+  },
+  {
+    "id": 73,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5559,
+    "y": 11720
+  },
+  {
+    "id": 74,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5549,
+    "y": 11714
+  },
+  {
+    "id": 75,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5548,
+    "y": 11716
+  },
+  {
+    "id": 76,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5545,
+    "y": 11716
+  },
+  {
+    "id": 77,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5551,
+    "y": 11717
+  },
+  {
+    "id": 78,
+    "name": "Stone Mine",
+    "type": "mineral",
+    "island": "Joy River Valley",
+    "notes": "",
+    "x": 5552,
+    "y": 11712
+  }
+]
 ]
