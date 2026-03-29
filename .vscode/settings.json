@@ -1,11 +1,22 @@
 {
     "json.schemas": [
-
         {
             "fileMatch": [
                 "/**itemDef.jsonc"
             ],
             "url": "./itemDefSchema.json"
+        },
+        {
+            "fileMatch": [
+                "/**nodeDef.jsonc"
+            ],
+            "url": "./nodeDefSchema.json"
+        },
+        {
+            "fileMatch": [
+                "/**enemyDef.jsonc"
+            ],
+            "url": "./enemyDefSchema.json"
         }
     ]
 }

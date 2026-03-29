@@ -1,0 +1,17 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Game Enemy Schema",
+    "description": "Strict schema for game enemy with category-specific validation.",
+    "type": "array",
+    "nodes": {
+        "type": "object",
+        "required": [],
+        "properties": {
+
+        },
+        "allOf": {
+
+        },
+        "additionalProperties": false
+    }
+}

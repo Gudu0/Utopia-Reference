@@ -1,7 +1,130 @@
+const style = document.createElement('style');
+style.textContent = `
+.side-panel {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 260px;
+  height: 100%;
+  background: #f4f4f4;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+  box-sizing: border-box;
+  transition: right 0.25s ease;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.side-panel-title {
+  text-align: center;
+  margin-top: 5px;
+  padding-top: 0;
+}
+
+.side-panel.open {
+  right: 0;
+}
+.side-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.side-panel-title {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.clear-logs-button {
+  border: 1px solid #999;
+  background: #ececec;
+  color: #222;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.clear-logs-button:hover {
+  background: #dddddd;
+}
+
+.clear-logs-button:active {
+  background: #d2d2d2;
+}
+
+.logs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.log-entry {
+  background: #e9ecef;
+  border-left: 4px solid #5b7c99;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #222;
+  word-break: break-word;
+}
+
+.log-entry-warn {
+  background: #dde1d3;
+  border-left: 4px solid #958f51;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #222;
+  word-break: break-word;
+}
+
+.log-entry-error {
+  background: #e08080;
+  border-left: 4px solid #a21401;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #222;
+  word-break: break-word;
+}
+
+.log-entry-info {
+  background: #91d996;
+  border-left: 4px solid #169924;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #222;
+  word-break: break-word;
+}
+`;
+document.head.appendChild(style);
+
+
+
+const sidePanelHTML =`<div id="sidePanel" class="side-panel">
+                        <div class="side-panel-header">
+                            <h2 class="side-panel-title">Logs</h2>
+                            <button id="clearLogsButton" class="clear-logs-button" type="button">Clear</button>
+                        </div>
+                        <hr>
+                        <div class="logs" id="logdiv"></div>
+                      </div>
+                      `;
+
+document.body.insertAdjacentHTML('afterbegin', sidePanelHTML);
+
 const sidePanel = document.getElementById("sidePanel");
 const logDiv = document.getElementById("logdiv");
 const clearLogsButton = document.getElementById("clearLogsButton");
 const MAX_LOG_ENTRIES = 100;
+
 
 clearLogsButton.addEventListener("click", function () {
   logDiv.innerHTML = "";
@@ -99,3 +222,4 @@ window.addEventListener('error', function(event) {
         log(`404 ERROR: ${event.target.src || event.target.href}`, "warn");
     }
 }, true);
+

@@ -1,0 +1,56 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Game Node Schema",
+    "description": "Strict schema for game nodes with category-specific validation.",
+    "type": "array",
+    "nodes": {
+        "type": "object",
+        "required": ["id", "name", "desc", "img", "category", "subcategory"],
+        "properties": {
+            "id": {
+                "type": "string",
+                "pattern": "^[a-z0-9_]+$"
+            },
+            "name": {
+                "type": "string"
+            },
+            "desc": { 
+                "type": "string"
+            },
+            "img": {
+                "type": ["string", "null"],
+                "default": null
+            },
+            "notes": {
+                "type": "string"
+            },
+            "category": {
+                "type": "string",
+                "enum": []
+            },
+            "subcategory": {
+                "type": "string",
+                "enum": []
+            },
+            "health":{
+                "type": "integer"
+            },
+            "tool":{
+                "type": "string",
+                "enum": ["pick", "axe", "sword", "hand"]
+            }
+
+        },
+        "allOf": [
+            {
+                "if": {
+                    "required": ["health"]
+                },
+                "then": {
+                    "required": ["tool"]
+                }
+            }
+        ],
+        "additionalProperties": false
+    }
+}
