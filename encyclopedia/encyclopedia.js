@@ -133,6 +133,7 @@ function wireNodeExtraFilters() {
         applyFiltersAndRender();
     });
 }
+
 async function loadNodes() {
     try {
         const response = await fetch("./data/nodeDef.jsonc");
@@ -850,9 +851,13 @@ function renderDetails() {
     renderItemDetails(entry);
 }
 
-function renderDetailsImage(item) {
-    if (item.img) {
-        return `<img class="details-image" src="./data/itemImages/${encodeURIComponent(item.img)}" alt="${escapeHtml(item.name)}" />`;
+function renderDetailsImage(resource) {
+    if (resource.weight) const path = "item;"
+    if (resource.drops) const path = "node;"
+    // if (resource.?) const path = "enemy;"
+
+    if (resource.img) {
+        return `<img class="details-image" src="./data/${path}Images/${encodeURIComponent(resource.img)}" alt="${escapeHtml(resource.name)}" />`;
     }
 
     return `<div class="details-image details-image-placeholder">No Image</div>`;
