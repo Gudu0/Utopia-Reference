@@ -852,9 +852,9 @@ function renderDetails() {
 }
 
 function renderDetailsImage(resource) {
-    if (resource.weight) const path = "item;"
-    if (resource.drops) const path = "node;"
-    // if (resource.?) const path = "enemy;"
+    if (resource.weight) {const path = "item";}
+    if (resource.drops) {const path = "node";}
+    // if (resource.?) {const path = "enemy;"}
 
     if (resource.img) {
         return `<img class="details-image" src="./data/${path}Images/${encodeURIComponent(resource.img)}" alt="${escapeHtml(resource.name)}" />`;
