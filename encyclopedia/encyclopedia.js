@@ -852,8 +852,8 @@ function renderDetails() {
 }
 
 function renderDetailsImage(resource) {
-    if (resource.weight) {const path = "item";}
-    if (resource.drops) {const path = "node";}
+    if ("weight" in resource) {const path = "item";}
+    if ("drops" in resource) {const path = "node";}
     // if (resource.?) {const path = "enemy;"}
 
     if (resource.img) {
