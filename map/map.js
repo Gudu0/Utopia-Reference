@@ -20,11 +20,19 @@
 
 // ── CONFIG ───────────────────────────────────────────────────
 
-const MAP_IMAGE  = "images/Beia_map_TEMPORARY.png";   // e.g. 'images/beia-map.jpg' — null = grid placeholder
 const GAME_MIN_X = 19;
 const GAME_MIN_Y = 18;
 const GAME_MAX_X = 19980; // update once you know the real world edge
 const GAME_MAX_Y = 19981;
+
+// ── LAYER CONFIG ──────────────────────────────────────────────
+//  Set image paths for each layer. null = show grid placeholder.
+
+const LAYER_IMAGES = {
+  ground:      "images/Beia_map_TEMPORARY.png",
+  sky:         null,   // replace with e.g. "images/Beia_sky.png" when available
+  underground: null,   // replace with e.g. "images/Beia_underground.png" when available
+};
 
 // ── TYPE COLORS ───────────────────────────────────────────────
 
@@ -45,6 +53,7 @@ let allNodes     = [];
 let allMarkers   = [];
 let activeTypes  = new Set(Object.keys(TYPE_CONFIG));
 let activeIsland = 'all';
+let activeLayer  = 'ground';
 let searchText   = '';
 
 // ── COORDINATE CONVERSION ─────────────────────────────────────
@@ -76,8 +85,25 @@ const worldBounds = [
   [GAME_MAX_Y, GAME_MAX_X],
 ];
 
-if (MAP_IMAGE) {
-  L.imageOverlay(MAP_IMAGE, worldBounds).addTo(map);
+// ── MAP IMAGE OVERLAY ─────────────────────────────────────────
+//  One overlay per layer — only the active layer's overlay is
+//  added to the map at any time. Layers with null images fall
+//  back to the grid placeholder.
+
+let _activeOverlay = null;
+
+function setLayerOverlay(layer) {
+  if (_activeOverlay) { _activeOverlay.remove(); _activeOverlay = null; }
+  const imgPath = LAYER_IMAGES[layer];
+  if (imgPath) {
+    _activeOverlay = L.imageOverlay(imgPath, worldBounds).addTo(map);
+  } else {
+    drawGridPlaceholder();
+  }
+}
+
+if (LAYER_IMAGES.ground) {
+  _activeOverlay = L.imageOverlay(LAYER_IMAGES.ground, worldBounds).addTo(map);
 } else {
   drawGridPlaceholder();
 }
@@ -224,13 +250,14 @@ function updateVisibility() {
     const marker      = allMarkers[i];
     const typeMatch   = activeTypes.has(node.type || 'other');
     const islandMatch = activeIsland === 'all' || node.island === activeIsland;
+    const layerMatch  = (node.layer || 'ground') === activeLayer;
     const searchMatch = searchText === ''
       || node.name.toLowerCase().includes(searchText)
       || (node.island || '').toLowerCase().includes(searchText)
       || (node.notes  || '').toLowerCase().includes(searchText);
 
-    if (typeMatch && islandMatch && searchMatch) { marker.addTo(map); visible++; }
-    else                                         { marker.remove();              }
+    if (typeMatch && islandMatch && layerMatch && searchMatch) { marker.addTo(map); visible++; }
+    else                                                        { marker.remove();              }
   });
 
   const el = document.getElementById('result-count');
@@ -324,6 +351,17 @@ async function loadNodes() {
   activeTypes = new Set(typesFound);
   updateVisibility();
 }
+
+// ── LAYER SWITCHER ────────────────────────────────────────────
+
+document.querySelectorAll('input[name="layer-radio"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    if (!radio.checked) return;
+    activeLayer = radio.value;
+    setLayerOverlay(activeLayer);
+    updateVisibility();
+  });
+});
 
 // ── SEARCH ────────────────────────────────────────────────────
 

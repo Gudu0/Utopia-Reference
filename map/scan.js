@@ -33,7 +33,7 @@ let tesseractWorker = null;
 
 // -- Version --------------------------------------------------
 const version = document.getElementById('version');
-version.innerHTML = 'v135';
+version.innerHTML = 'v138 ';
 
 // ── Lightbox ─────────────────────────────────────────────────
 const lightbox = document.createElement('div');
@@ -573,11 +573,12 @@ function addFromScan(idx, btn) {
     : nameEl.value;
   const type   = document.getElementById('scan-type').value;
   const island = document.getElementById('scan-island').value;
+  const layer  = document.getElementById('scan-layer').value;
 
   if (!name)   { showScanStatus('Pick a resource name first.'); return; }
   if (!island) { showScanStatus('Pick an island first.'); return; }
 
-  addNode({ name, type, island, notes: '', x: result.coords.x, y: result.coords.y });
+  addNode({ name, type, island, layer, notes: '', x: result.coords.x, y: result.coords.y });
   result.added = true;
   if (btn) { btn.textContent = '\u2713'; btn.classList.add('added'); btn.disabled = true; }
   updateAddAllBtn();

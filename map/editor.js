@@ -149,6 +149,7 @@ document.getElementById('add-node-btn').addEventListener('click', () => {
     : nameEl.value;
   const type   = document.getElementById('node-type').value;
   const island = document.getElementById('node-island').value;
+  const layer  = document.getElementById('node-layer').value;
   const x      = parseInt(document.getElementById('node-x').value, 10);
   const y      = parseInt(document.getElementById('node-y').value, 10);
   const notes  = document.getElementById('node-notes').value.trim();
@@ -180,7 +181,7 @@ document.getElementById('add-node-btn').addEventListener('click', () => {
     delete document.getElementById('add-node-btn').dataset.dupeWarned;
   }
 
-  addNode({ name, type, island, notes, x, y });
+  addNode({ name, type, island, layer, notes, x, y });
   document.getElementById('node-x').value     = '';
   document.getElementById('node-y').value     = '';
   document.getElementById('node-notes').value = '';

@@ -37,6 +37,26 @@
         </select>
       </div>
       <div>
+        <h3>Layer</h3>
+        <div class="filter-list" id="layer-filter-list">
+          <label class="filter-item">
+            <input type="radio" name="layer-radio" value="ground" checked
+              style="accent-color:var(--accent);cursor:pointer" />
+            Ground
+          </label>
+          <label class="filter-item">
+            <input type="radio" name="layer-radio" value="sky"
+              style="accent-color:var(--accent);cursor:pointer" />
+            Sky
+          </label>
+          <label class="filter-item">
+            <input type="radio" name="layer-radio" value="underground"
+              style="accent-color:var(--accent);cursor:pointer" />
+            Underground
+          </label>
+        </div>
+      </div>
+      <div>
         <h3>Resource Type</h3>
         <div class="filter-list" id="filter-list"></div>
       </div>
@@ -125,6 +145,15 @@
           <textarea id="node-notes" rows="2" placeholder="Respawns quickly, guarded, etc."></textarea>
         </div>
 
+        <div class="mf">
+          <label>Layer</label>
+          <select id="node-layer">
+            <option value="ground">Ground</option>
+            <option value="sky">Sky</option>
+            <option value="underground">Underground</option>
+          </select>
+        </div>
+
         <button id="add-node-btn" class="btn" style="border-color:#6fcf97;width:100%;font-weight:600">Add Node</button>
         <div id="editor-status" style="font-size:0.8rem;min-height:18px;text-align:center;color:#6fcf97"></div>
       </div>
@@ -177,6 +206,15 @@
             <option>Mount Beia</option><option>The City of Hope - Ceylens</option>
             <option>Twilight Foothills</option><option>Valhalla</option>
             <option>Wilds of Duguang</option>
+          </select>
+        </div>
+
+        <div class="mf">
+          <label>Layer (applied to all below)</label>
+          <select id="scan-layer">
+            <option value="ground">Ground</option>
+            <option value="sky">Sky</option>
+            <option value="underground">Underground</option>
           </select>
         </div>
 
