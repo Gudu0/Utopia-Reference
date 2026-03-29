@@ -321,7 +321,6 @@ function buildIslandFilter(islands) {
 // ── LOAD NODES ────────────────────────────────────────────────
 
 async function loadNodes() {
-  let data;
   try {
     const response = await fetch('./map-nodes.jsonc');
     if (!response.ok) {
