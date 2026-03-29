@@ -321,13 +321,14 @@ function buildIslandFilter(islands) {
 // ── LOAD NODES ────────────────────────────────────────────────
 
 async function loadNodes() {
+  let data;
   try {
     const response = await fetch('./map-nodes.jsonc');
     if (!response.ok) {
       throw new Error(`Failed to load map-nodes.jsonc (${response.status})`);
     }
     const rawText = await response.text();
-    const data = parse(rawText);
+    data = parse(rawText);
   } catch (err) {
     console.error('Could not load map-nodes.json:', err);
     return;
