@@ -307,14 +307,6 @@ function populateItemSubcategoryFilter() {
     subcategoryFilter.value = tab.subcategory;
 }
 
-function renderItemImage(item) {
-    if (item.img) {
-        return `<img src="./data/itemImages/${encodeURIComponent(item.img)}" alt="${escapeHtml(item.name)}" />`;
-    }
-
-    return `<div class="item-card-placeholder" aria-hidden="true">?</div>`;
-}
-
 
 // ------ Enemy ------ \\\
 
