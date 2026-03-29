@@ -30,7 +30,7 @@ const GAME_MAX_Y = 19981;
 
 const LAYER_IMAGES = {
   ground:      "images/Beia_map_TEMPORARY.png",
-  sky:         null,   // replace with e.g. "images/Beia_sky.png" when available
+  sky:         "images/sky.png",  
   underground: null,   // replace with e.g. "images/Beia_underground.png" when available
 };
 
