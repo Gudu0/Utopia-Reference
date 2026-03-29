@@ -374,6 +374,51 @@ html, body {
 }
 
 
+.rarity-common {
+    background: #2a3440;
+    color: #b8c7d9;
+}
+
+.rarity-uncommon {
+    background: #1f3d2b;
+    color: #4cd97b;
+}
+
+.rarity-rare {
+    background: #1c2f4d;
+    color: #5aa9ff;
+}
+
+.rarity-epic {
+    background: #3a1f4d;
+    color: #c77dff;
+}
+
+.rarity-legendary {
+    background: #4d3a1c;
+    color: #ffb84d;
+}
+
+
+
+
+
+
+
+
+
+
+/* The great divide */
+
+
+
+
+
+
+
+
+
+
 
 
 

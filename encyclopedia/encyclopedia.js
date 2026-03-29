@@ -334,7 +334,26 @@ function renderDetails() {
     }
 
     if (item.rarity) {
-        metaPills.push(`<span class="meta-pill">${escapeHtml(capitalizeWords(item.rarity))}</span>`);
+        switch(item.rarity){
+            case "common":
+                metaPills.push(`<span class="meta-pill rarity-common">${escapeHtml(capitalizeWords(item.rarity))}</span>`);
+                break;
+            case "uncommon":
+                metaPills.push(`<span class="meta-pill rarity-uncommon">${escapeHtml(capitalizeWords(item.rarity))}</span>`);
+                break;
+            case "rare":
+                metaPills.push(`<span class="meta-pill rarity-rare">${escapeHtml(capitalizeWords(item.rarity))}</span>`);
+                break;
+            case "epic":
+                metaPills.push(`<span class="meta-pill rarity-epic">${escapeHtml(capitalizeWords(item.rarity))}</span>`);
+                break;
+            case "legendary":
+                metaPills.push(`<span class="meta-pill rarity-legendary">${escapeHtml(capitalizeWords(item.rarity))}</span>`);
+                break;
+            default:
+                metaPills.push(`<span class="meta-pill">${escapeHtml(capitalizeWords(item.rarity))}</span>`);
+                break;
+        }
     }
 
     els.details.innerHTML = `
