@@ -158,6 +158,7 @@ async function loadNodes() {
 
 function normalizeNode(node) {
     return {
+        type: "node",
         id: node.id ?? crypto.randomUUID(),
         name: node.name ?? "Unnamed Node",
         desc: node.desc ?? "",
@@ -193,7 +194,7 @@ function renderNodeDetails(node) {
 
     els.details.innerHTML = `
         <div class="details-header">
-            ${renderDetailsNodeImage(node)}
+            ${renderDetailsImage(node)}
             <div class="details-header-text">
                 <h2>${escapeHtml(node.name)}</h2>
                 <div class="details-meta">
@@ -376,6 +377,7 @@ async function loadItems() {
 
 function normalizeItem(item) {
     return {
+        type: "item",
         id: item.id ?? crypto.randomUUID(),
         name: item.name ?? "Unnamed Item",
         weight: item.weight ?? null,
@@ -458,7 +460,7 @@ function renderItemDetails(item) {
 
     els.details.innerHTML = `
         <div class="details-header">
-            ${renderDetailsItemImage(item)}
+            ${renderDetailsImage(item)}
             <div class="details-header-text">
                 <h2>${escapeHtml(item.name)}</h2>
                 <div class="details-meta">
@@ -851,21 +853,16 @@ function renderDetails() {
     renderItemDetails(entry);
 }
 
-function renderDetailsItemImage(item) {
-    if (item.img) {
-        return `<img class="details-image" src="./data/itemImages/${encodeURIComponent(item.img)}" alt="${escapeHtml(item.name)}" />`;
-    }
+function renderDetailsImage(element) {
+    const img = element.img;
+    const type = element.type;
+    if (img) {
+        return `<img class="details-image" src="./data/${type}Images/${encodeURIComponent(element.img)}" alt="${escapeHtml(element.name)}" />`;
+    } 
 
     return `<div class="details-image details-image-placeholder">No Image</div>`;
 }
 
-function renderDetailsNodeImage(node) {
-    if (node.img) {
-        return `<img class="details-image" src="./data/nodeImages/${encodeURIComponent(node.img)}" alt="${escapeHtml(node.name)}" />`;
-    }
-
-    return `<div class="details-image details-image-placeholder">No Image</div>`;
-}
 
 function renderInfoSection(item) {
     const rows = [];
