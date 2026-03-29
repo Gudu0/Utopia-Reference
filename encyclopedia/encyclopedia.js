@@ -1,4 +1,7 @@
 import { log } from "./log.js";
+import { parse } from "https://esm.sh/jsonc-parser";
+
+
 log("encyclopedia.js loaded");
 const ITEMS_PER_PAGE = 20;
 
@@ -91,7 +94,7 @@ async function loadItems() {
         }
 
         const rawText = await response.text();
-        const data = jsonc.parse(rawText);
+        const data = parse(rawText);
 
         if (!Array.isArray(data)) {
             throw new Error("itemDef.jsonc root must be an array.");
