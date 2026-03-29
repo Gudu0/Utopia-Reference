@@ -200,7 +200,7 @@
         "name":"Gold Ore",
         "weight":0.035,  //kg
         "desc":"Contains the element gold. Fairly rare.",
-        "img":"gold.jpg", // null for when no image
+        "img":"gold_ore.jpg", // null for when no image
         "sources":[
             // fill later
         ],
