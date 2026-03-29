@@ -3,18 +3,30 @@
         "id": "iron_mine",
         "name": "Iron Mine",
         "desc": "Iron mine Description goes here, but there aren't any ingame I think",
-        "img": null,
+        "img": "iron_mine.jpg",
         "category": "Mine",
         "subcategory": "determinSubCategory",
         "drops": {
             "items": {
                 "drop1": {
                     "id": "iron_ore",
-                    "amount": 4
+                    "amount": "temp"
                 },
                 "drop2": {
                     "id": "stone",
-                    "amount": 4
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "coal",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "magnet",
+                    "amount": "temp"
+                },
+                "drop5": {
+                    "id": "coral_stone",
+                    "amount": "temp"
                 }
             },
             "xp": 400
@@ -43,7 +55,7 @@
                 },
                 "drop4": {
                     "id": "elemental_essence_stone_mine",
-                    "amount": 1
+                    "amount": "0-1"
                 }
             },
             "xp": 200

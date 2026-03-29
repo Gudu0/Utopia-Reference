@@ -4,7 +4,7 @@
         "name":"Iron Ore",
         "weight":0.025,  //kg
         "desc":"Contains the element iron. After processing, it can be forged into all manner of equipment.",
-        "img":null, // null for when no image
+        "img":"iron_ore.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -21,7 +21,7 @@
         "name":"Iron Bar",
         "weight":0.02,  //kg
         "desc":"A versatile metal alloy. Obtained by smelting iron ore in a furnace.",
-        "img":null, // null for when no image
+        "img":"iron_bar.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -38,7 +38,7 @@
         "name":"Orb",
         "weight":0.001, //kg
         "desc":"Seems to contain a dark power, bred from some magic force.",
-        "img":null, // null for when no image
+        "img":"orb.jpg", // null for when no image
         "sources":[
             // fill later
             // kill imp types
@@ -58,7 +58,7 @@
         "name":"Wood",
         "weight":0.03,  //kg
         "desc":"Material obtained by chopping down trees. Has a wide range of uses.",
-        "img":null, // null for when no image
+        "img":"wood.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -75,7 +75,7 @@
         "name":"BBQ Octopus",
         "weight":0.03,  //kg
         "desc":"Barbacued Octopus",
-        "img":null, // null for when no image
+        "img":"bbq_octopus.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -96,7 +96,7 @@
         "name":"Waterskin",
         "weight":0.01,  //kg
         "desc":"Used for storing water. The main way to quench your thirst.",
-        "img":null, // null for when no image
+        "img":"waterskin.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -115,7 +115,7 @@
         "name":"Clay",
         "weight":0.01,  //kg
         "desc":"Viscous, sticky mud suitable for making handicrafts.",
-        "img":null, // null for when no image
+        "img":"clay.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -132,7 +132,7 @@
         "name":"Sand",
         "weight":0.01,  //kg
         "desc":"Fine grained particles which can be smelted into glass.",
-        "img":null, // null for when no image
+        "img":"sand.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -149,7 +149,7 @@
         "name":"Magnet",
         "weight":0.01,  //kg
         "desc":"Black magnetic rock obtained from gathering in iron mines and used to make some fun objects.",
-        "img":null, // null for when no image
+        "img":"magnet.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -183,7 +183,7 @@
         "name":"Silver Ore",
         "weight":0.03,  //kg
         "desc":"Contains the element silver. Fairly valubale",
-        "img":null, // null for when no image
+        "img":"silver_ore.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -268,7 +268,7 @@
         "name":"Steam Stone",
         "weight":0.02,  //kg
         "desc":"Obtained from mining rocks that give off steam. Provides a steady flow of power.",
-        "img":null, // null for when no image
+        "img":"steam_stone.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -285,7 +285,7 @@
         "name":"Ice Crystal",
         "weight":0.02,  //kg
         "desc":"Appear in a gelid land, excude the midnight blue. according to the experiment, this material can interaction with the steam stone.",
-        "img":null, // null for when no image
+        "img":"ice_crystal.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -302,7 +302,7 @@
         "name":"Crimson Jade",
         "weight":0.03,  //kg
         "desc":"Crystalizes from geothermal energy absorption.",
-        "img":null, // null for when no image
+        "img":"crimson_jade", // null for when no image
         "sources":[
             // fill later
         ],
@@ -319,7 +319,7 @@
         "name":"Emerald",
         "weight":0.01,  //kg
         "desc":"A unique ore distributed in Elain Grand Desert. Has a divine green glow.",
-        "img":null, // null for when no image
+        "img":"emerald.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -336,7 +336,7 @@
         "name":"Ice Orbs",
         "weight":0.001,  //kg
         "desc":"It seems to have the dark soul with the cold breath, it was made by the life of the region's magic.",
-        "img":null, // null for when no image
+        "img":"ice_orbs.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -353,7 +353,7 @@
         "name":"Natanz Blue Orb",
         "weight":0.02,  //kg
         "desc":"The unique blue spar of Natanz, the favorite stone of the Natanz people, they believe that blue can give people a happy state of mind.",
-        "img":null, // null for when no image
+        "img":"natanz_blue_orb.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -370,7 +370,7 @@
         "name":"Rune Stone",
         "weight":0.05,  //kg
         "desc":"Born on the Sky Islands, it stores runic energy.",
-        "img":null, // null for when no image
+        "img":"rune_stone.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -387,7 +387,7 @@
         "name":"Silver Bar",
         "weight":0.025,  //kg
         "desc":"A versatile metal alloy. Obtained by smelting silver ore in a furnace.",
-        "img":null, // null for when no image
+        "img":"silver_bar.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -404,7 +404,7 @@
         "name":"Gold Bar",
         "weight":0.03,  //kg
         "desc":"A versatile metal alloy. Obtained by smelting gold ore in a furnace.",
-        "img":null, // null for when no image
+        "img":"gold_bar.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -421,7 +421,7 @@
         "name":"Crystal",
         "weight":0.035,  //kg
         "desc":"A versatile metal alloy. Obtained by smelting crystal ore in a magic furnace.",
-        "img":null, // null for when no image
+        "img":"crystal.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -438,7 +438,7 @@
         "name":"Obsidian",
         "weight":0.1,  //kg
         "desc":"A versatile metal alloy. Obtained by smelting obsidian ore in a magic furnace.",
-        "img":null, // null for when no image
+        "img":"obsidian.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -455,7 +455,7 @@
         "name":"Etherial Pyramid",
         "weight":0.0,  // 0 kg's for 6 of them
         "desc":"A pure pyramid mostly used to craft Emerald Tablet.",
-        "img":null, // null for when no image
+        "img":"etherial_pyramid.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -472,7 +472,7 @@
         "name":"Cursed Pyramid",
         "weight":0.0,  // 0 kg's for 6 of them
         "desc":"A cursed pyramid. Can be used to craft things.",
-        "img":null, // null for when no image
+        "img":"cursed_pyramid.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -489,7 +489,7 @@
         "name":"Coral Stone",
         "weight":0.01,  //kg
         "desc":"Add this when making weapons. It can make iron weapons sharper.",
-        "img":null, // null for when no image
+        "img":"coral_stone.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -506,7 +506,7 @@
         "name":"Moonlight Stone",
         "weight":0.01,  //kg
         "desc":"Add this when making weapons. It can make silver weapons sharper.",
-        "img":null, // null for when no image
+        "img":"moonlight_stone.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -523,7 +523,7 @@
         "name":"Ruby",
         "weight":0.01,  //kg
         "desc":"Add this when making weapons. It can make gold weapons sharper.",
-        "img":null, // null for when no image
+        "img":"ruby.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -540,7 +540,7 @@
         "name":"Sapphire",
         "weight":0.01,  //kg
         "desc":"Add this when making weapons. It can make crystal weapons sharper.",
-        "img":null, // null for when no image
+        "img":"sapphire.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -557,7 +557,7 @@
         "name":"Black Gem",
         "weight":0.01,  //kg
         "desc":"Add this when making weapons. It can make obsidian weapons sharper.",
-        "img":null, // null for when no image
+        "img":"black_gem.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -574,7 +574,7 @@
         "name":"Ancient Gem",
         "weight":0.01,  //kg
         "desc":"Add this when making weapons. It can make ancient weapons sharper.",
-        "img":null, // null for when no image
+        "img":"ancient_gem.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -591,7 +591,7 @@
         "name":"Fire Enchant Stone 1",
         "weight":0.01,  //kg
         "desc":"Possesses a magic power and has all kinds of uses. It can enhance weapons and leg armors and grant attribute bonuses. A Lv. 1 Enchant Stone can only be used when enchanting an item the first two times. \n-The enchanted weapon will increase Attack limit (1/2) \n-The enchanted leg armor will increase Defence (1/2)",
-        "img":null, // null for when no image
+        "img":"fire_enchant_stone1.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -608,7 +608,7 @@
         "name":"Lightning Enchant Stone 1",
         "weight":0.01,  //kg
         "desc":"Possesses a magic power and has all kinds of uses. It can enhance weapons and helmets and grant attribute bonuses. A Lv. 1 Enchant Stone can only be used when enchanting an item the first two times. \n-The enchanted weapon will increase damage dealt to trees (1) \n-The enchanted helmet will increase HP (3/5)",
-        "img":null, // null for when no image
+        "img":"lightning_enchant_stone1.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -625,7 +625,7 @@
         "name":"Ice Enchant Stone 1",
         "weight":0.01,  //kg
         "desc":"Possesses a magic power and has all kinds of uses. It can enhance weapons and body armors and grant attribute bonuses. A Lv. 1 Enchant Stone can only be used when enchanting an item the first two times. \n-The enchanted weapon will increase damage dealt to ores (1) \n-The enchanted body armor will increase HP (3/5)",
-        "img":null, // null for when no image
+        "img":"ice_enchant_stone1.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -642,7 +642,7 @@
         "name":"Lightning Enchant Stone 2",
         "weight":0.01,  //kg
         "desc":"Possesses a magic power and has all kinds of uses. It can enhance weapons and helmets and grant attribute bonuses. \n-The enchanted weapon will increase damage dealt to trees (1/2) \n-The enchanted helmet will increase HP (3/5/7)",
-        "img":null, // null for when no image
+        "img":"lightning_enchant_stone2.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -659,7 +659,7 @@
         "name":"HearthStone",
         "weight":0.01,  //kg
         "desc":"This can help ypu return home quickly.",
-        "img":null, // null for when no image
+        "img":"hearthstone.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -676,7 +676,7 @@
         "name":"Energy-rich Crystals",
         "weight":0.03,  //kg
         "desc":"The crystals, infused with powerful, concentrates energy, can affect even the surrounding monsters.",
-        "img":null, // null for when no image
+        "img":"energy_rich_crystals.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -693,7 +693,7 @@
         "name":"Portal Reel",
         "weight":0.001,  //kg
         "desc":"A miracle reel, can portal to the unlock beacon. Note: This item is a bound item. It cannot be traded to another player.",
-        "img":null, // null for when no image
+        "img":"portal_reel.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -711,7 +711,7 @@
         "name":"Campfire",
         "weight":0.1,  //kg
         "desc":"A campfire not only brings you warmth in the cold of night but also scares of monsters and can be used to barbacue. Really usefull! Most facilites only allow placing up to 20 at a time!",
-        "img":null, // null for when no image
+        "img":"campfire.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -728,7 +728,7 @@
         "name":"Sleeping Bag",
         "weight":0.1,  //kg
         "desc":"A portable sleeping bag that can be used as a temporary base. After genetic recombination, you'll be respawned here. Place up to 10 sleeping bags and beds at a time!",
-        "img":null, // null for when no image
+        "img":"sleeping_bag.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -745,7 +745,7 @@
         "name":"Boat",
         "weight":0.3,  //kg
         "desc":"A reliable vessel for sea voyages. Most facilites only allow placing up to 20 at a time!",
-        "img":null, // null for when no image
+        "img":"boat.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -762,7 +762,7 @@
         "name":"Rubber",
         "weight":0.01,  //kg
         "desc":"A substance gathered from rubber trees. Bouncy and sticky.",
-        "img":null, // null for when no image
+        "img":"rubber.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -779,7 +779,7 @@
         "name":"Resin",
         "weight":0.01,  //kg
         "desc":"A liquid secreted from some trees. Easily found among pines and poplars.",
-        "img":null, // null for when no image
+        "img":"resin.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -796,7 +796,7 @@
         "name":"Straw",
         "weight":0.01,  //kg
         "desc":"A common plant, thick and sturdy. Can protect against wind and rain.",
-        "img":null, // null for when no image
+        "img":"straw.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -813,7 +813,7 @@
         "name":"Cotton",
         "weight":0.01,  //kg
         "desc":"Seed fibers from a ccotton plant which can be woven into comfortable cotton cloth. Wild cotton grows in fairly elevated regions.",
-        "img":null, // null for when no image
+        "img":"cotton.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -830,7 +830,7 @@
         "name":"Plant Fiber",
         "weight":0.01,  //kg
         "desc":"A substance made from plant threads, obtained from gathering weeds. Used to make linen.",
-        "img":null, // null for when no image
+        "img":"plant_fiber.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -847,7 +847,7 @@
         "name":"Wand",
         "weight":0.1,  //kg
         "desc":"A conduit of magic and a wondrous weapon.",
-        "img":null, // null for when no image
+        "img":"wand.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -866,7 +866,7 @@
         "name":"The Guidebook",
         "weight":0.1,  //kg
         "desc":"Can use magic to encounter a variety of monsters in the adventure of the magic book of analysis, the world all things are included in the guide to come.",
-        "img":null, // null for when no image
+        "img":"the_guidebook.jpg", // null for when no image
         "sources":[
             // fill later
         ],
