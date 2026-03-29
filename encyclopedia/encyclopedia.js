@@ -227,7 +227,7 @@ function renderNodeDropsSection(node) {
         const item = getItemById(drop.id);
         const itemName = item ? item.name : drop.id;
         const itemImg = item?.img;
-        const amount = drop.amount ?? 1;
+        const amount = drop.amount ?? "";
 
         return `
             <button
@@ -242,7 +242,7 @@ function renderNodeDropsSection(node) {
                         : `<div class="item-card-placeholder" aria-hidden="true">?</div>`
                 }
                 <span>${escapeHtml(itemName)}</span>
-                <div class="item-card-amount">×${escapeHtml(amount)}</div>
+                ${amount ? `<div class="item-card-amount">${escapeHtml(amount)}</div>` : ""}
             </button>
         `;
     });

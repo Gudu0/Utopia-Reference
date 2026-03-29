@@ -30,7 +30,7 @@
             },
             "subcategory": {
                 "type": "string",
-                "enum": ["determinSubCat"]
+                "enum": ["determinSubCategory"]
             },
             "health":{
                 "type": "integer"

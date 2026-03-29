@@ -5,7 +5,7 @@
         "desc": "Iron mine Description goes here, but there aren't any ingame I think",
         "img": null,
         "category": "Mine",
-        "subcategory": "determinSubCat",
+        "subcategory": "determinSubCategory",
         "drops": {
             "items": {
                 "drop1": {
@@ -18,6 +18,35 @@
                 }
             },
             "xp": 400
+        }
+    },
+    {
+        "id": "stone_mine",
+        "name": "Stone Mine",
+        "desc": "Stone mine Description goes here, but there aren't any ingame I think",
+        "img": "stone_mine.jpg",
+        "category": "Mine",
+        "subcategory": "determinSubCategory",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "stone",
+                    "amount": "40-46"
+                },
+                "drop2": {
+                    "id": "coal",
+                    "amount": "0-1"
+                },
+                "drop3": {
+                    "id": "sulfur",
+                    "amount": "0-1"
+                },
+                "drop4": {
+                    "id": "elemental_essence_stone_mine",
+                    "amount": 1
+                }
+            },
+            "xp": 200
         }
     }
 ]

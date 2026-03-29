@@ -166,7 +166,7 @@
         "name":"Stone",
         "weight":0.02,  //kg
         "desc":"Commonly found rocks, but easy to make things with.",
-        "img":null, // null for when no image
+        "img":"stone.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -200,7 +200,7 @@
         "name":"Gold Ore",
         "weight":0.035,  //kg
         "desc":"Contains the element gold. Fairly rare.",
-        "img":null, // null for when no image
+        "img":"gold.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -217,7 +217,7 @@
         "name":"Crystal Ore",
         "weight":0.04,  //kg
         "desc":"Crystal ore, glittering and translucent",
-        "img":null, // null for when no image
+        "img":"crystal_ore.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -234,7 +234,7 @@
         "name":"Coal",
         "weight":0.02,  //kg
         "desc":"A black mineral used for fuel",
-        "img":null, // null for when no image
+        "img":"coal_ore.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -251,7 +251,7 @@
         "name":"Sulfur",
         "weight":0.001,  //kg
         "desc":"Very strong-smelling, flammable, and explosive.",
-        "img":null, // null for when no image
+        "img":"sulfur.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -879,5 +879,22 @@
         "rarity":"uncommon",
         "durability": 1,
         "levelLimit": null
+    },
+    {
+        "id":"elemental_essence_stone_mine",
+        "name":"Elemental Essence-Stone Mine",
+        "weight":0.0,  //kg at 2 stack
+        "desc":"Used to synthesizeTransformation Potion-Stone Mine",
+        "img":"elemental_essence_stone_mine.jpg", // null for when no image
+        "sources":[
+            // fill later
+        ],
+        "uses":[
+            //fill later
+        ],
+        "notes":"",
+        "category":"Material",
+        "subcategory":"determinSubcategory",
+        "rarity":"epic",
     }
 ]

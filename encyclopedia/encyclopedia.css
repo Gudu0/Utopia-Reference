@@ -483,9 +483,21 @@ html, body {
 }
 
 
+.details-drop-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 10px;
+}
 
+.item-card-mini {
+  min-height: 120px;
+}
 
-
+.item-card-amount {
+  margin-top: auto;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
 
 
 /* The great divide */
