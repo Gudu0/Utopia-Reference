@@ -18,14 +18,19 @@ const state = {
 
 const els = {
     searchInput: document.getElementById("entry-search"),
+    sortFilter: document.getElementById("sort-filter"),
     resultCount: document.getElementById("entry-result-count"),
+
     details: document.getElementById("entry-details"),
     itemGrid: document.getElementById("entry-grid"),
 
-    sortFilter: document.getElementById("sort-filter"),
     pageIndicator: document.getElementById("page-indicator"),
     prevPageBtn: document.getElementById("prev-page-btn"),
-    nextPageBtn: document.getElementById("next-page-btn")
+    nextPageBtn: document.getElementById("next-page-btn"),
+
+    extraFilters: document.getElementById("tab-extra-filters"),
+    gridTitle: document.getElementById("grid-title"),
+    tabButtons: [...document.querySelectorAll(".encyclopedia-tab")]
 };
 
 init();
@@ -33,27 +38,12 @@ init();
 async function init() {
     wireEvents();
     await loadItems();
-    populateCategoryFilter();
-    populateSubcategoryFilter();
     applyFiltersAndRender();
 }
 
 function wireEvents() {
     els.searchInput.addEventListener("input", () => {
         state.search = els.searchInput.value.trim().toLowerCase();
-        state.currentPage = 1;
-        applyFiltersAndRender();
-    });
-
-    els.categoryFilter.addEventListener("change", () => {
-        state.category = els.categoryFilter.value;
-        state.currentPage = 1;
-        populateSubcategoryFilter();
-        applyFiltersAndRender();
-    });
-
-    els.subcategoryFilter.addEventListener("change", () => {
-        state.subcategory = els.subcategoryFilter.value;
         state.currentPage = 1;
         applyFiltersAndRender();
     });
@@ -189,14 +179,6 @@ function applyFiltersAndRender() {
 
             return haystack.includes(state.search);
         });
-    }
-
-    if (state.category !== "all") {
-        items = items.filter(item => item.category === state.category);
-    }
-
-    if (state.subcategory !== "all") {
-        items = items.filter(item => item.subcategory === state.subcategory);
     }
 
     sortItems(items);
