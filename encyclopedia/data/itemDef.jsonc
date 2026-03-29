@@ -302,7 +302,7 @@
         "name":"Crimson Jade",
         "weight":0.03,  //kg
         "desc":"Crystalizes from geothermal energy absorption.",
-        "img":"crimson_jade", // null for when no image
+        "img":"crimson_jade.jpg", // null for when no image
         "sources":[
             // fill later
         ],
@@ -451,11 +451,11 @@
         "rarity":"rare" 
     },
     {
-        "id":"etherial_pyramid",
-        "name":"Etherial Pyramid",
+        "id":"ethereal_pyramid",
+        "name":"Ethereal Pyramid",
         "weight":0.0,  // 0 kg's for 6 of them
         "desc":"A pure pyramid mostly used to craft Emerald Tablet.",
-        "img":"etherial_pyramid.jpg", // null for when no image
+        "img":"ethereal_pyramid.jpg", // null for when no image
         "sources":[
             // fill later
         ],
