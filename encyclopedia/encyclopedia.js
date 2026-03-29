@@ -191,6 +191,10 @@ function renderNodeDetails(node) {
     if (node.health != null) {
         rows.push(detailRow("Health", String(node.health)));
     }
+    if (node.drops.xp != null){
+        rows.push(detailRow("XP", String(node.drops.xp)));
+    }
+
 
     els.details.innerHTML = `
         <div class="details-header">
@@ -202,7 +206,7 @@ function renderNodeDetails(node) {
                 </div>
             </div>
         </div>
-
+        
         <div class="details-section">
             <h3>Overview</h3>
             <p>${escapeHtml(node.desc || "No description yet.")}</p>
@@ -249,17 +253,12 @@ function renderNodeDropsSection(node) {
         `;
     });
 
-    const xpLine = node.drops.xp != null
-        ? `<p class="details-drop-xp">XP: ${escapeHtml(node.drops.xp)}</p>`
-        : "";
-
     return `
         <div class="details-section">
             <h3>Drops</h3>
             <div class="details-drop-grid">
                 ${cards.join("")}
             </div>
-            ${xpLine}
         </div>
     `;
 }
