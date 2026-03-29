@@ -701,8 +701,8 @@
             //fill later
         ],
         "notes":"",
-        "category":"Material",
-        "subcategory":"additives",
+        "category":"Useable",
+        "subcategory":"determinSubcategory",
         "rarity":"epic",
         "bound":true
     },
