@@ -1,0 +1,11 @@
+{
+    "json.schemas": [
+
+        {
+            "fileMatch": [
+                "/**itemDef.jsonc"
+            ],
+            "url": "./itemDefSchema.json"
+        }
+    ]
+}

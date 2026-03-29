@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Game Item Schema",
+  "description": "Strict schema for game items with category-specific validation.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": [
+      "id", "name", "weight", "desc", "img",
+      "sources", "uses", "notes",
+      "category", "subcategory", "rarity"
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^[a-z0-9_]+$"
+      },
+      "name": {
+        "type": "string"
+      },
+      "weight": {
+        "type": "number",
+        "minimum": 0
+      },
+      "desc": {
+        "type": "string"
+      },
+      "img": {
+        "type": ["string", "null"],
+        "default": null
+      },
+      "sources": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "uses": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "notes": {
+        "type": "string"
+      },
+      "category": {
+        "type": "string",
+        "enum": ["Material", "Food", "Equippable", "Useable", "ToolNoDurability", "Bulding"]
+      },
+      "subcategory": {
+        "type": "string",
+        "enum": ["ore", "bar", "drop", "wood", "bbq", "determinSubcategory", "additives", "enchantStone"]
+      },
+      "rarity": {
+        "type": "string",
+        "enum": ["common", "uncommon", "rare", "epic", "legendary"]
+      },
+      "bound":{
+        "type":"boolean"
+      },
+      "foodStats": {
+        "type": "object",
+        "required": ["food", "water"],
+        "properties": {
+          "food": { "type": "integer" },
+          "water": { "type": "integer" }
+        },
+        "additionalProperties": false
+      },
+      "durability": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "levelLimit": {
+        "type": ["integer", "null"],
+        "minimum": 0
+      }
+    },
+    "allOf": [
+      {
+        "if": {
+          "properties": { "category": { "const": "Food" } },
+          "required": ["category"]
+        },
+        "then": {
+          "required": ["foodStats"]
+        }
+      },
+      {
+        "if": {
+          "properties": { "category": { "const": "Equippable" } },
+          "required": ["category"]
+        },
+        "then": {
+          "required": ["durability", "levelLimit"]
+        }
+      }
+    ],
+    "additionalProperties": false
+  }
+}
