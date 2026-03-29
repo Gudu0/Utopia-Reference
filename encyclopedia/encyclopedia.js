@@ -6,14 +6,16 @@ log("encyclopedia.js loaded");
 const ITEMS_PER_PAGE = 20;
 
 const state = {
+    activeTab: "items",
     allItems: [],
     filteredItems: [],
     selectedItemId: null,
     currentPage: 1,
     search: "",
+    sort: "name-asc",
+
     category: "all",
-    subcategory: "all",
-    sort: "name-asc"
+    subcategory: "all"
 };
 
 const els = {
@@ -33,11 +35,14 @@ const els = {
     tabButtons: [...document.querySelectorAll(".encyclopedia-tab")]
 };
 
+
+
 init();
 
 async function init() {
     wireEvents();
     await loadItems();
+    renderExtraFilters();
     applyFiltersAndRender();
 }
 
@@ -120,45 +125,53 @@ function normalizeItem(item) {
 }
 
 function populateCategoryFilter() {
-    const categories = [...new Set(state.allItems.map(item => item.category).filter(Boolean))]
-        .sort((a, b) => a.localeCompare(b));
+    const categoryFilter = document.getElementById("category-filter");
+    if (!categoryFilter) { return; }
 
-    els.categoryFilter.innerHTML = `<option value="all">All Categories</option>`;
+    const categories = [...new Set(
+        state.allItems.map(item => item.category).filter(Boolean)
+    )].sort((a, b) => a.localeCompare(b));
+
+    categoryFilter.innerHTML = `<option value="all">All Categories</option>`;
 
     for (const category of categories) {
         const option = document.createElement("option");
         option.value = category;
         option.textContent = category;
-        els.categoryFilter.appendChild(option);
+        categoryFilter.appendChild(option);
     }
+
+    categoryFilter.value = categories.includes(state.category) ? state.category : "all";
 }
 
 function populateSubcategoryFilter() {
+    const subcategoryFilter = document.getElementById("subcategory-filter");
+    if (!subcategoryFilter) { return; }
+
     let sourceItems = state.allItems;
 
     if (state.category !== "all") {
         sourceItems = sourceItems.filter(item => item.category === state.category);
     }
 
-    const subcategories = [...new Set(sourceItems.map(item => item.subcategory).filter(Boolean))]
-        .sort((a, b) => a.localeCompare(b));
+    const subcategories = [...new Set(
+        sourceItems.map(item => item.subcategory).filter(Boolean)
+    )].sort((a, b) => a.localeCompare(b));
 
-    els.subcategoryFilter.innerHTML = `<option value="all">All Subcategories</option>`;
+    subcategoryFilter.innerHTML = `<option value="all">All Subcategories</option>`;
 
     for (const subcategory of subcategories) {
         const option = document.createElement("option");
         option.value = subcategory;
-        option.textContent = capitalizeWords(subcategory);
-        els.subcategoryFilter.appendChild(option);
+        option.textContent = subcategory;
+        subcategoryFilter.appendChild(option);
     }
 
-    if (
-        state.subcategory !== "all" &&
-        !subcategories.includes(state.subcategory)
-    ) {
+    if (!subcategories.includes(state.subcategory)) {
         state.subcategory = "all";
-        els.subcategoryFilter.value = "all";
     }
+
+    subcategoryFilter.value = state.subcategory;
 }
 
 function applyFiltersAndRender() {
@@ -181,8 +194,17 @@ function applyFiltersAndRender() {
         });
     }
 
-    sortItems(items);
+    if (state.activeTab === "items") {
+        if (state.category !== "all") {
+            items = items.filter(item => item.category === state.category);
+        }
 
+        if (state.subcategory !== "all") {
+            items = items.filter(item => item.subcategory === state.subcategory);
+        }
+    }
+
+    sortItems(items);
     state.filteredItems = items;
 
     clampCurrentPage();
@@ -230,6 +252,70 @@ function ensureValidSelection() {
     if (!stillExists) {
         state.selectedItemId = state.filteredItems[0].id;
     }
+}
+
+function renderExtraFilters() {
+    if (state.activeTab === "items") {
+        els.extraFilters.innerHTML = `
+            <div class="panel-section">
+                <h3>Category</h3>
+                <select id="category-filter" class="island-select">
+                    <option value="all">All Categories</option>
+                </select>
+            </div>
+
+            <div class="panel-section">
+                <h3>Subcategory</h3>
+                <select id="subcategory-filter" class="island-select">
+                    <option value="all">All Subcategories</option>
+                </select>
+            </div>
+        `;
+
+        populateCategoryFilter();
+        populateSubcategoryFilter();
+        wireItemExtraFilters();
+        return;
+    }
+
+    if (state.activeTab === "nodes") {
+        els.extraFilters.innerHTML = `
+            <div class="panel-section">
+                <h3>Node Filters</h3>
+                <div class="result-count">Coming next.</div>
+            </div>
+        `;
+        return;
+    }
+
+    els.extraFilters.innerHTML = `
+        <div class="panel-section">
+            <h3>Enemy Filters</h3>
+            <div class="result-count">Coming later.</div>
+        </div>
+    `;
+}
+
+function wireItemExtraFilters() {
+    const categoryFilter = document.getElementById("category-filter");
+    const subcategoryFilter = document.getElementById("subcategory-filter");
+
+    categoryFilter.value = state.category;
+    subcategoryFilter.value = state.subcategory;
+
+    categoryFilter.addEventListener("change", () => {
+        state.category = categoryFilter.value;
+        state.currentPage = 1;
+        state.subcategory = "all";
+        renderExtraFilters();
+        applyFiltersAndRender();
+    });
+
+    subcategoryFilter.addEventListener("change", () => {
+        state.subcategory = subcategoryFilter.value;
+        state.currentPage = 1;
+        applyFiltersAndRender();
+    });
 }
 
 function renderResultCount() {
