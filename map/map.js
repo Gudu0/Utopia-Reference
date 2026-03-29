@@ -29,7 +29,7 @@ const GAME_MAX_Y = 19981;
 //  Set image paths for each layer. null = show grid placeholder.
 
 const LAYER_IMAGES = {
-  ground:      "images/Beia_map_TEMPORARY.png",
+  ground:      "images/ground.png",
   sky:         "images/sky.png",  
   underground: "images/underground.png",   // replace with e.g. "images/Beia_underground.png" when available
 };
