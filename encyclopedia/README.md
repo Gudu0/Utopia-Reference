@@ -6,13 +6,17 @@ A community-built resource map for [Utopia: Origin](https://play.google.com/stor
 
 **[→ Open the encyclopedia](https://gudu0.github.io/Utopia-Reference/encyclopedia/encyclopedia.html)**
 
-// put general info here
+
+
+// put info about how to use or contribute here
+
+
 
 ## Project Status
 
-The map is a work in progress — coverage is incomplete and the map image is temporary. If you spot errors or missing nodes, contributions are very welcome.
+The map is a work in progress — coverage is nonexistant and the map images are temporary. If you spot errors or missing nodes, contributions are very welcome.
 
-The site is planned to eventually expand into a full item reference — crafting recipes, drop sources, and item uses — but the map is the current focus.
+The site is planned to eventually expand into a full item reference — crafting recipes, drop sources, and item uses — the encyclopedia is the current focus.
 
 ## Disclaimer
 

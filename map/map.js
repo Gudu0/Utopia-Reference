@@ -1,3 +1,4 @@
+import { parse } from "https://esm.sh/jsonc-parser";
 // ============================================================
 //  map.js  —  Utopia: Origin Resource Map
 // ============================================================
@@ -322,8 +323,12 @@ function buildIslandFilter(islands) {
 async function loadNodes() {
   let data;
   try {
-    const res = await fetch('map-nodes.json');
-    data = await res.json();
+    const response = await fetch('map-nodes.jsonc');
+    if (!response.ok) {
+      throw new Error(`Failed to load map-nodes.jsonc (${response.status})`);
+    }
+    const rawText = await response.text();
+    const data = parse(rawText);
   } catch (err) {
     console.error('Could not load map-nodes.json:', err);
     return;
