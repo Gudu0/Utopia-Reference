@@ -317,9 +317,10 @@ function renderUsesSection(item) {
     `;
 }
 
-function renderItemImage(item) {
-    if (item.img) {
-        return `<img src="./data/itemImages/${encodeURIComponent(item.img)}" alt="${escapeHtml(item.name)}" />`;
+function renderGridImage(element) {
+    const type = element.type;
+    if (element.img) {
+        return `<img src="./data/${type}Images/${encodeURIComponent(element.img)}" alt="${escapeHtml(element.name)}" />`;
     }
 
     return `<div class="item-card-placeholder" aria-hidden="true">?</div>`;
@@ -781,7 +782,7 @@ function renderExtraFilters() {
 function renderResultCount() {
     const tab = getTabState();
     const count = tab.filtered.length;
-    els.resultCount.textContent = `${count} item${count === 1 ? "" : "s"}`;
+    els.resultCount.textContent = `${count} entries${count === 1 ? "" : "s"}`;
 }
 
 function renderGrid() {
@@ -790,30 +791,30 @@ function renderGrid() {
 
     const startIndex = (tab.currentPage - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
-    const pageItems = tab.filtered.slice(startIndex, endIndex);
+    const pageElement = tab.filtered.slice(startIndex, endIndex);
 
-    if (pageItems.length === 0) {
+    if (pageElement.length === 0) {
         els.itemGrid.innerHTML = `<div class="grid-empty">No items found.</div>`;
         return;
     }
 
-    for (const item of pageItems) {
+    for (const element of pageElement) {
         const button = document.createElement("button");
         button.className = "item-card";
-        if (item.id === tab.selectedId) {
+        if (element.id === tab.selectedId) {
             button.classList.add("selected");
         }
 
         button.type = "button";
-        button.title = item.name;
+        button.title = element.name;
 
         button.innerHTML = `
-            ${renderItemImage(item)}
-            <span>${escapeHtml(item.name)}</span>
+            ${renderGridImage(element)}
+            <span>${escapeHtml(element.name)}</span>
         `;
 
         button.addEventListener("click", () => {
-            tab.selectedId = item.id;
+            tab.selectedId = element.id;
             renderGrid();
             renderDetails();
         });
