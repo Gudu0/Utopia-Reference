@@ -292,9 +292,9 @@
         "uses":[
             //fill later
         ],
-        "notes":"Is it ore?",
+        "notes":"",
         "category":"Material",
-        "subcategory":"ore",
+        "subcategory":"determinSubcategory",
         "rarity":"epic" 
     },
     {
@@ -360,9 +360,9 @@
         "uses":[
             //fill later
         ],
-        "notes":"Is it ore?",
+        "notes":"",
         "category":"Material",
-        "subcategory":"ore",
+        "subcategory":"determinSubcategory",
         "rarity":"epic" 
     },
     {
@@ -667,7 +667,7 @@
             //fill later
         ],
         "notes":"",
-        "category":"ToolNoDurability",
+        "category":"Useable",
         "subcategory":"determinSubcategory",
         "rarity":"rare" 
     },
@@ -692,7 +692,7 @@
         "id":"portal_reel",
         "name":"Portal Reel",
         "weight":0.001,  //kg
-        "desc":"A miricle reel, can portal to the unlock beacon. Note: This item is a bound item. It cannot be traded to another player.",
+        "desc":"A miracle reel, can portal to the unlock beacon. Note: This item is a bound item. It cannot be traded to another player.",
         "img":null, // null for when no image
         "sources":[
             // fill later

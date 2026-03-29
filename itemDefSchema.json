@@ -42,7 +42,7 @@
       },
       "category": {
         "type": "string",
-        "enum": ["Material", "Food", "Equippable", "Useable", "ToolNoDurability", "Bulding"]
+        "enum": ["Material", "Food", "Equippable", "Useable", "Bulding"]
       },
       "subcategory": {
         "type": "string",
