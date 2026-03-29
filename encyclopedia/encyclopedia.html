@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Utopia: Origin Notes - Encyclopedia</title>
+  <link rel="stylesheet" href="../map/map.css" />
+  <link rel="stylesheet" href="encyclopedia.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-row">
+      <div>
+        <h1>Utopia: Origin Notes</h1>
+        <p class="subtitle">Encyclopedia</p>
+      </div>
+
+      <nav class="top-nav">
+        <a href="../" class="nav-link">Home</a>
+        <a href="../map/index.html" class="nav-link">Map</a>
+        <a href="./" class="nav-link current">Encyclopedia</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="encyclopedia-layout">
+    <!-- Left: controls -->
+    <aside class="encyclopedia-sidebar">
+      <div class="panel-section">
+        <h3>Search</h3>
+        <input
+          id="item-search"
+          class="search-input"
+          type="text"
+          placeholder="Search items..."
+          autocomplete="off"
+        />
+        <div class="result-count" id="item-result-count">0 items</div>
+      </div>
+
+      <div class="panel-section">
+        <h3>Category</h3>
+        <select id="category-filter" class="island-select">
+          <option value="all">All Categories</option>
+        </select>
+      </div>
+
+      <div class="panel-section">
+        <h3>Subcategory</h3>
+        <select id="subcategory-filter" class="island-select">
+          <option value="all">All Subcategories</option>
+        </select>
+      </div>
+
+      <div class="panel-section">
+        <h3>Sort</h3>
+        <select id="sort-filter" class="island-select">
+          <option value="name-asc">Name (A-Z)</option>
+          <option value="name-desc">Name (Z-A)</option>
+        </select>
+      </div>
+    </aside>
+
+    <!-- Center: item details -->
+    <section class="encyclopedia-details">
+      <div class="details-card" id="item-details">
+        <div class="details-empty">
+          <div class="details-empty-icon">📘</div>
+          <h2>Select an item</h2>
+          <p>Choose something from the item list to view its info.</p>
+        </div>
+
+        <!-- JS can replace this whole area when an item is selected -->
+        <!-- Suggested future structure:
+        <div class="details-header">
+          <img class="details-image" src="data/itemImages/example.png" alt="Example" />
+          <div class="details-header-text">
+            <h2>Iron Ore</h2>
+            <div class="details-meta">
+              <span class="meta-pill">Material</span>
+              <span class="meta-pill">Ore</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="details-section">
+          <h3>Overview</h3>
+          <p>Basic metal ore used in crafting.</p>
+        </div>
+
+        <div class="details-section">
+          <h3>Sources</h3>
+          <ul class="details-list">
+            <li>Found at iron resource nodes</li>
+          </ul>
+        </div>
+
+        <div class="details-section">
+          <h3>Uses</h3>
+          <ul class="details-list">
+            <li>Used to craft Iron Ingot</li>
+          </ul>
+        </div>
+        -->
+      </div>
+    </section>
+
+    <!-- Right: paged item grid -->
+    <aside class="encyclopedia-grid-panel">
+      <div class="grid-panel-header">
+        <h3>Items</h3>
+        <div class="page-indicator" id="page-indicator">Page 1 / 1</div>
+      </div>
+
+      <div class="item-grid" id="item-grid">
+        <!-- JS inserts item buttons/cards here -->
+        <!-- Example:
+        <button class="item-card selected">
+          <img src="data/itemImages/iron_ore.png" alt="Iron Ore" />
+          <span>Iron Ore</span>
+        </button>
+        -->
+      </div>
+
+      <div class="pagination-bar">
+        <button class="btn" id="prev-page-btn">Prev</button>
+        <button class="btn" id="next-page-btn">Next</button>
+      </div>
+    </aside>
+  </main>
+
+  <script src="encyclopedia.js"></script>
+</body>
+</html>
