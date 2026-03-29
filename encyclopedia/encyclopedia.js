@@ -223,22 +223,27 @@ function renderNodeDropsSection(node) {
         return "";
     }
 
-    const lines = itemDrops.map(drop => {
+    const cards = itemDrops.map(drop => {
         const item = getItemById(drop.id);
         const itemName = item ? item.name : drop.id;
+        const itemImg = item?.img;
         const amount = drop.amount ?? 1;
 
         return `
-            <li>
-                <button
-                    type="button"
-                    class="inline-entry-link"
-                    data-item-id="${escapeHtml(drop.id)}"
-                >
-                    ${escapeHtml(itemName)}
-                </button>
-                × ${escapeHtml(amount)}
-            </li>
+            <button
+                type="button"
+                class="item-card item-card-mini"
+                data-item-id="${escapeHtml(drop.id)}"
+                title="${escapeHtml(itemName)}"
+            >
+                ${
+                    itemImg
+                        ? `<img src="./data/itemImages/${encodeURIComponent(itemImg)}" alt="${escapeHtml(itemName)}" />`
+                        : `<div class="item-card-placeholder" aria-hidden="true">?</div>`
+                }
+                <span>${escapeHtml(itemName)}</span>
+                <div class="item-card-amount">×${escapeHtml(amount)}</div>
+            </button>
         `;
     });
 
@@ -249,9 +254,9 @@ function renderNodeDropsSection(node) {
     return `
         <div class="details-section">
             <h3>Drops</h3>
-            <ul class="details-list">
-                ${lines.join("")}
-            </ul>
+            <div class="details-drop-grid">
+                ${cards.join("")}
+            </div>
             ${xpLine}
         </div>
     `;
