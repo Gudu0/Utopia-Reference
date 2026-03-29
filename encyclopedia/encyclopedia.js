@@ -127,7 +127,8 @@ function normalizeItem(item) {
         category: item.category ?? "Misc",
         subcategory: item.subcategory ?? "",
         rarity: item.rarity ?? null,
-        durability: item.durability ?? null
+        durability: item.durability ?? null,
+        foodStats: item.foodStats ?? null,
     };
 }
 
