@@ -33,7 +33,7 @@ let tesseractWorker = null;
 
 // -- Version --------------------------------------------------
 const version = document.getElementById('version');
-version.innerHTML = 'v138 ';
+version.innerHTML = 'v144';
 
 // ── Lightbox ─────────────────────────────────────────────────
 const lightbox = document.createElement('div');
@@ -572,7 +572,9 @@ function addFromScan(idx, btn) {
     ? document.getElementById('scan-name-manual').value.trim()
     : nameEl.value;
   const type   = document.getElementById('scan-type').value;
-  const island = document.getElementById('scan-island').value;
+  const island = document.getElementById('scan-island').value === '__other__'
+    ? document.getElementById('scan-island-manual').value.trim()
+    : document.getElementById('scan-island').value;
   const layer  = document.getElementById('scan-layer').value;
 
   if (!name)   { showScanStatus('Pick a resource name first.'); return; }
@@ -625,7 +627,10 @@ if (addAllBtn) {
   addAllBtn.addEventListener('click', () => {
     const unresolved = scanResults.filter(r => r.dupOf && !r.dupeResolved && !r.added).length;
     if (unresolved > 0) { showScanStatus('Resolve ' + unresolved + ' duplicate' + (unresolved !== 1 ? 's' : '') + ' first.'); return; }
-    const island = document.getElementById('scan-island').value;
+    const islandSel = document.getElementById('scan-island').value;
+    const island    = islandSel === '__other__'
+      ? document.getElementById('scan-island-manual').value.trim()
+      : islandSel;
     if (!island) { showScanStatus('Pick an island first.'); return; }
 
     let added = 0;

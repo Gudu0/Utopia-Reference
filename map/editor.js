@@ -118,6 +118,16 @@ wireManualInput('node-name', 'node-name-manual');
 buildTypeSelect('scan-type', 'scan-name', 'scan-name-manual');
 wireManualInput('scan-name', 'scan-name-manual');
 
+// ── Island manual input wiring ────────────────────────────────
+function wireIslandManual(selectId, manualId) {
+  document.getElementById(selectId).addEventListener('change', function () {
+    document.getElementById(manualId).style.display =
+      this.value === '__other__' ? 'block' : 'none';
+  });
+}
+wireIslandManual('node-island', 'node-island-manual');
+wireIslandManual('scan-island', 'scan-island-manual');
+
 // ── Load existing JSON ───────────────────────────────────────
 document.getElementById('load-existing-btn').addEventListener('click', () => {
   const a = document.getElementById('load-existing-area');
@@ -148,7 +158,9 @@ document.getElementById('add-node-btn').addEventListener('click', () => {
     ? document.getElementById('node-name-manual').value.trim()
     : nameEl.value;
   const type   = document.getElementById('node-type').value;
-  const island = document.getElementById('node-island').value;
+  const island = document.getElementById('node-island').value === '__other__'
+    ? document.getElementById('node-island-manual').value.trim()
+    : document.getElementById('node-island').value;
   const layer  = document.getElementById('node-layer').value;
   const x      = parseInt(document.getElementById('node-x').value, 10);
   const y      = parseInt(document.getElementById('node-y').value, 10);
