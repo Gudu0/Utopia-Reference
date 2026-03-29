@@ -399,7 +399,9 @@ html, body {
     color: #ffb84d;
 }
 
-
+.food-positive { color: #4cd97b; }
+.food-negative { color: #d06b6b; }
+.food-neutral  { color: var(--muted); }
 
 
 

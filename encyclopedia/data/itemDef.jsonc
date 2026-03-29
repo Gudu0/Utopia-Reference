@@ -86,8 +86,10 @@
         "category":"Food",
         "subcategory":"bbq",
         "rarity":"uncommon", //idk where to find this yet, but I know items have it.
-        "food": 30,
-        "water": -10
+        "foodStats": {
+            "food": 30,
+            "water": -10
+        }
     },
     {
         "id":"waterskin",

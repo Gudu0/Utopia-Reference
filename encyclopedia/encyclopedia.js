@@ -393,6 +393,12 @@ function renderInfoSection(item) {
         rows.push(detailRow("Durability", String(item.durability)));
     }
 
+    if (item.foodStats != null) {
+        rows.push(foodRow(item.foodStats));
+    }
+
+
+
     return `
         <div class="details-section">
             <h3>Overview</h3>
@@ -443,6 +449,25 @@ function renderNotesSection(item) {
             <p>${escapeHtml(item.notes)}</p>
         </div>
     `;
+}
+
+function foodRow(foodStats) {
+    const fd = foodStats.food ?? 0;
+    const wt = foodStats.water ?? 0;
+
+    const foodClass = fd > 0 ? "food-positive" : fd < 0 ? "food-negative" : "food-neutral";
+    const waterClass = wt > 0 ? "food-positive" : wt < 0 ? "food-negative" : "food-neutral";
+
+    const html = [];
+    html.push('<div class="details-stat-row">');
+    html.push('<span class="details-stat-label">Food / Water</span>');
+    html.push('<div class="details-stat-value">');
+    html.push(`<span class="${foodClass}">${escapeHtml(fd)}</span>`);
+    html.push(' / ');
+    html.push(`<span class="${waterClass}">${escapeHtml(wt)}</span>`);
+    html.push('</div>');
+    html.push('</div>');
+    return html.join("");
 }
 
 function detailRow(label, value) {
