@@ -91,8 +91,7 @@ async function loadItems() {
         }
 
         const rawText = await response.text();
-        const cleanedText = stripJsonComments(rawText);
-        const data = JSON.parse(cleanedText);
+        const data = jsonc.parse(rawText);
 
         if (!Array.isArray(data)) {
             throw new Error("itemDef.jsonc root must be an array.");
@@ -110,12 +109,6 @@ async function loadItems() {
         `;
         els.itemGrid.innerHTML = `<div class="grid-empty">Failed to load items.</div>`;
     }
-}
-
-function stripJsonComments(text) {
-    return text
-        .replace(/\/\*[\s\S]*?\*\//g, "")
-        .replace(/^\s*\/\/.*$/gm, "");
 }
 
 function normalizeItem(item) {
