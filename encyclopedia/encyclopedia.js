@@ -17,15 +17,12 @@ const state = {
 };
 
 const els = {
-    searchInput: document.getElementById("item-search"),
-    categoryFilter: document.getElementById("category-filter"),
-    subcategoryFilter: document.getElementById("subcategory-filter"),
+    searchInput: document.getElementById("entry-search"),
+    resultCount: document.getElementById("entry-result-count"),
+    details: document.getElementById("entry-details"),
+    itemGrid: document.getElementById("entry-grid"),
+
     sortFilter: document.getElementById("sort-filter"),
-    resultCount: document.getElementById("item-result-count"),
-
-    details: document.getElementById("item-details"),
-
-    itemGrid: document.getElementById("item-grid"),
     pageIndicator: document.getElementById("page-indicator"),
     prevPageBtn: document.getElementById("prev-page-btn"),
     nextPageBtn: document.getElementById("next-page-btn")
