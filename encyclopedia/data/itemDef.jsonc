@@ -1,0 +1,110 @@
+[
+    {
+        "id":"iron_ore",
+        "name":"Iron Ore",
+        "weight":0.025,  //kg
+        "desc":"Contains the element iron. After processing, it can be forged into all manner of equipment.",
+        "img":null, // null for when no image
+        "sources":[
+            // fill later
+        ],
+        "uses":[
+            //fill later
+        ],
+        "notes":"",
+        "category":"Material",
+        "subcategory":"ore",
+        "rarity":"common" //idk where to find this yet, but I know items have it.
+    },
+    {
+        "id":"iron_bar",
+        "name":"Iron Bar",
+        "weight":0.02,  //kg
+        "desc":"A versatile metal alloy. Obtained by smelting iron ore in a furnace.",
+        "img":null, // null for when no image
+        "sources":[
+            // fill later
+        ],
+        "uses":[
+            //fill later
+        ],
+        "notes":"",
+        "category":"Material",
+        "subcategory":"bar",
+        "rarity":"common" //idk where to find this yet, but I know items have it.
+    },
+    {
+        "id":"orb",
+        "name":"Orb",
+        "weight":0.001, //kg
+        "desc":"Seems to contain a dark power, bred from some magic force.",
+        "img":null, // null for when no image
+        "sources":[
+            // fill later
+            // kill imp types
+            // chest
+            // lots o other ways
+        ],
+        "uses":[
+            //fill later
+        ],
+        "notes":"",
+        "category":"Material",
+        "subcategory":"drop", //idk what subcategory it would be. 
+        "rarity":"common" //idk where to find this yet, but I know items have it.
+    },
+    {
+        "id":"wood",
+        "name":"Wood",
+        "weight":0.03,  //kg
+        "desc":"Material obtained by chopping down trees. Has a wide range of uses.",
+        "img":null, // null for when no image
+        "sources":[
+            // fill later
+        ],
+        "uses":[
+            //fill later
+        ],
+        "notes":"",
+        "category":"Material",
+        "subcategory":"wood",
+        "rarity":"common" //idk where to find this yet, but I know items have it.
+    },
+    {
+        "id":"bbq_octopus",
+        "name":"BBQ Octopus",
+        "weight":0.03,  //kg
+        "desc":"Barbacued Octopus",
+        "img":null, // null for when no image
+        "sources":[
+            // fill later
+        ],
+        "uses":[
+            //fill later
+        ],
+        "notes":"",
+        "category":"Food",
+        "subcategory":"bbq",
+        "rarity":"uncommon", //idk where to find this yet, but I know items have it.
+        "food": 30,
+        "water": -10
+    },
+    {
+        "id":"waterskin",
+        "name":"Waterskin",
+        "weight":0.01,  //kg
+        "desc":"Used for storing water. The main way to quench your thirst.",
+        "img":null, // null for when no image
+        "sources":[
+            // fill later
+        ],
+        "uses":[
+            //fill later
+        ],
+        "notes":"500 durability at max fill, goes down 100 per drink.",
+        "category":"Tool",
+        "subcategory":"", // ??
+        "rarity":"common", //idk where to find this yet, but I know items have it.
+        "durability":500 
+    }
+]
