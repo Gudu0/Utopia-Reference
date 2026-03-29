@@ -9,6 +9,7 @@ const state = {
     activeTab: "items",
     tabs: {
         items: {
+            loaded: false,
             all: [],
             filtered: [],
             selectedId: null,
@@ -19,6 +20,7 @@ const state = {
             subcategory: "all"
         },
         nodes: {
+            loaded: false,
             all: [],
             filtered: [],
             selectedId: null,
@@ -29,6 +31,7 @@ const state = {
             subcategory: "all"
         },
         enemies: {
+            loaded: false,
             all: [],
             filtered: [],
             selectedId: null,
@@ -130,6 +133,116 @@ function wireNodeExtraFilters() {
         applyFiltersAndRender();
     });
 }
+async function loadNodes() {
+    try {
+        const response = await fetch("./data/nodeDef.jsonc");
+        if (!response.ok) {
+            throw new Error(`Failed to load nodeDef.jsonc (${response.status})`);
+        }
+
+        const rawText = await response.text();
+        const data = parse(rawText);
+
+        if (!Array.isArray(data)) {
+            throw new Error("nodeDef.jsonc root must be an array.");
+        }
+
+        state.tabs.nodes.all = data.map(normalizeNode);
+        state.tabs.nodes.loaded = true;
+    } catch (error) {
+        log(`loadNodes failed: ${error}`);
+        throw error;
+    }
+}
+
+function normalizeNode(node) {
+    return {
+        id: node.id ?? crypto.randomUUID(),
+        name: node.name ?? "Unnamed Node",
+        desc: node.desc ?? "",
+        img: node.img ?? null,
+        notes: node.notes ?? "",
+        category: node.category ?? "Misc",
+        subcategory: node.subcategory ?? "",
+        health: node.health ?? null,
+        tool: node.tool ?? null,
+        drops: node.drops ?? null
+    };
+}
+
+function renderNodeDetails(node) {
+    const metaPills = [];
+
+    if (node.category) {
+        metaPills.push(`<span class="meta-pill">${escapeHtml(node.category)}</span>`);
+    }
+
+    if (node.subcategory) {
+        metaPills.push(`<span class="meta-pill">${escapeHtml(capitalizeWords(node.subcategory))}</span>`);
+    }
+
+    if (node.tool) {
+        metaPills.push(`<span class="meta-pill">${escapeHtml(capitalizeWords(node.tool))}</span>`);
+    }
+
+    const rows = [];
+    if (node.health != null) {
+        rows.push(detailRow("Health", String(node.health)));
+    }
+
+    els.details.innerHTML = `
+        <div class="details-header">
+            ${renderDetailsImage(node)}
+            <div class="details-header-text">
+                <h2>${escapeHtml(node.name)}</h2>
+                <div class="details-meta">
+                    ${metaPills.join("")}
+                </div>
+            </div>
+        </div>
+
+        <div class="details-section">
+            <h3>Overview</h3>
+            <p>${escapeHtml(node.desc || "No description yet.")}</p>
+            ${rows.length ? `<div class="details-stats">${rows.join("")}</div>` : ""}
+        </div>
+
+        ${renderNodeDropsSection(node)}
+        ${renderNotesSection(node)}
+    `;
+}
+
+function renderNodeDropsSection(node) {
+    if (!node.drops || !node.drops.items) {
+        return "";
+    }
+
+    const itemDrops = Object.values(node.drops.items);
+    if (!itemDrops.length) {
+        return "";
+    }
+
+    const lines = itemDrops.map(drop => {
+        const dropId = drop.id ?? "unknown";
+        const amount = drop.amount ?? 1;
+        return `<li>${escapeHtml(dropId)} × ${escapeHtml(amount)}</li>`;
+    });
+
+    const xpLine = node.drops.xp != null
+        ? `<p class="details-drop-xp">XP: ${escapeHtml(node.drops.xp)}</p>`
+        : "";
+
+    return `
+        <div class="details-section">
+            <h3>Drops</h3>
+            <ul class="details-list">
+                ${lines.join("")}
+            </ul>
+            ${xpLine}
+        </div>
+    `;
+}
+
 
 
 // ----- ITEM ----- \\\
@@ -227,6 +340,7 @@ async function loadItems() {
         }
         log("loaded items", data);
         state.tabs.items.all = data.map(normalizeItem);
+        state.tabs.items.loaded = true;
     } catch (error) {
         console.error("loadItems failed:", error);
         els.details.innerHTML = `
@@ -307,6 +421,39 @@ function populateItemSubcategoryFilter() {
     subcategoryFilter.value = tab.subcategory;
 }
 
+function renderItemDetails(item) {
+    const metaPills = [];
+
+    if (item.category) {
+        metaPills.push(`<span class="meta-pill">${escapeHtml(item.category)}</span>`);
+    }
+
+    if (item.subcategory) {
+        metaPills.push(`<span class="meta-pill">${escapeHtml(capitalizeWords(item.subcategory))}</span>`);
+    }
+
+    if (item.rarity) {
+        metaPills.push(`<span class="meta-pill rarity-${escapeHtml(item.rarity)}">${escapeHtml(capitalizeWords(item.rarity))}</span>`);
+    }
+
+    els.details.innerHTML = `
+        <div class="details-header">
+            ${renderDetailsImage(item)}
+            <div class="details-header-text">
+                <h2>${escapeHtml(item.name)}</h2>
+                <div class="details-meta">
+                    ${metaPills.join("")}
+                </div>
+            </div>
+        </div>
+
+        ${renderInfoSection(item)}
+        ${renderSourcesSection(item)}
+        ${renderUsesSection(item)}
+        ${renderNotesSection(item)}
+    `;
+}
+
 
 // ------ Enemy ------ \\\
 
@@ -355,19 +502,22 @@ function escapeHtml(value) {
         .replaceAll("'", "&#39;");
 }
 
-function switchTab(tabName) {
+async function switchTab(tabName) {
     if (tabName === state.activeTab) {
         return;
     }
 
     state.activeTab = tabName;
 
+    if (tabName === "nodes" && !state.tabs.nodes.loaded) {
+        await loadNodes();
+    }
+
     renderActiveTabButton();
     renderExtraFilters();
     syncSharedControlsFromTab();
     applyFiltersAndRender();
 }
-
 
 function sortEntries(entries, sortMode) {
     switch (sortMode) {
@@ -499,8 +649,12 @@ function applyFiltersAndRender() {
 
 function wireTabButtons() {
     for (const button of els.tabButtons) {
-        button.addEventListener("click", () => {
-            switchTab(button.dataset.tab);
+        button.addEventListener("click", async () => {
+            try {
+                await switchTab(button.dataset.tab);
+            } catch (error) {
+                log(`switchTab failed: ${error}`);
+            }
         });
     }
 }
@@ -630,68 +784,25 @@ function renderPageIndicator() {
 
 function renderDetails() {
     const tab = getTabState();
-    const item = tab.filtered.find(entry => entry.id === tab.selectedId);
+    const entry = tab.filtered.find(item => item.id === tab.selectedId);
 
-    if (!item) {
+    if (!entry) {
         els.details.innerHTML = `
             <div class="details-empty">
                 <div class="details-empty-icon">📘</div>
-                <h2>Select an item</h2>
-                <p>Choose something from the item list to view its info.</p>
+                <h2>Select an entry</h2>
+                <p>Choose something from the current tab to view its info.</p>
             </div>
         `;
         return;
     }
 
-    const metaPills = [];
-
-    if (item.category) {
-        metaPills.push(`<span class="meta-pill">${escapeHtml(item.category)}</span>`);
+    if (state.activeTab === "nodes") {
+        renderNodeDetails(entry);
+        return;
     }
 
-    if (item.subcategory) {
-        metaPills.push(`<span class="meta-pill">${escapeHtml(capitalizeWords(item.subcategory))}</span>`);
-    }
-
-    if (item.rarity) {
-        switch(item.rarity){
-            case "common":
-                metaPills.push(`<span class="meta-pill rarity-common">${escapeHtml(capitalizeWords(item.rarity))}</span>`);
-                break;
-            case "uncommon":
-                metaPills.push(`<span class="meta-pill rarity-uncommon">${escapeHtml(capitalizeWords(item.rarity))}</span>`);
-                break;
-            case "rare":
-                metaPills.push(`<span class="meta-pill rarity-rare">${escapeHtml(capitalizeWords(item.rarity))}</span>`);
-                break;
-            case "epic":
-                metaPills.push(`<span class="meta-pill rarity-epic">${escapeHtml(capitalizeWords(item.rarity))}</span>`);
-                break;
-            case "legendary":
-                metaPills.push(`<span class="meta-pill rarity-legendary">${escapeHtml(capitalizeWords(item.rarity))}</span>`);
-                break;
-            default:
-                metaPills.push(`<span class="meta-pill">${escapeHtml(capitalizeWords(item.rarity))}</span>`);
-                break;
-        }
-    }
-
-    els.details.innerHTML = `
-        <div class="details-header">
-            ${renderDetailsImage(item)}
-            <div class="details-header-text">
-                <h2>${escapeHtml(item.name)}</h2>
-                <div class="details-meta">
-                    ${metaPills.join("")}
-                </div>
-            </div>
-        </div>
-
-        ${renderInfoSection(item)}
-        ${renderSourcesSection(item)}
-        ${renderUsesSection(item)}
-        ${renderNotesSection(item)}
-    `;
+    renderItemDetails(entry);
 }
 
 function renderDetailsImage(item) {
@@ -740,3 +851,4 @@ function renderNotesSection(item) {
         </div>
     `;
 }
+

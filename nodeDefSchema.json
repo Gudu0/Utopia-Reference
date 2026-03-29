@@ -3,7 +3,7 @@
     "title": "Game Node Schema",
     "description": "Strict schema for game nodes with category-specific validation.",
     "type": "array",
-    "nodes": {
+    "items": {
         "type": "object",
         "required": ["id", "name", "desc", "img", "category", "subcategory", "drops"],
         "properties": {
