@@ -129,6 +129,15 @@
     </aside>
   </main>
 
-  <script src="encyclopedia.js"></script>
+  <div id="sidePanel" class="side-panel">
+            <div class="side-panel-header">
+                <h2 class="side-panel-title">Logs</h2>
+                <button id="clearLogsButton" class="clear-logs-button" type="button">Clear</button>
+            </div>
+            <hr>
+            <div class="logs" id="logdiv"></div>
+        </div>
+  <script src="log.js"></script>  
+  <script type="module" src="encyclopedia.js"></script>
 </body>
 </html>

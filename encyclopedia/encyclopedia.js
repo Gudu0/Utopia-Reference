@@ -1,3 +1,5 @@
+import { log } from "./log.js";
+log("encyclopedia.js loaded");
 const ITEMS_PER_PAGE = 20;
 
 const state = {
@@ -81,6 +83,7 @@ function wireEvents() {
 }
 
 async function loadItems() {
+    log("about to fetch items");
     try {
         const response = await fetch("./data/itemDef.jsonc");
         if (!response.ok) {
@@ -94,10 +97,10 @@ async function loadItems() {
         if (!Array.isArray(data)) {
             throw new Error("itemDef.jsonc root must be an array.");
         }
-
+        log("loaded items", data);
         state.allItems = data.map(normalizeItem);
     } catch (error) {
-        console.error(error);
+        console.error("loadItems failed:", error);
         els.details.innerHTML = `
             <div class="details-empty">
                 <div class="details-empty-icon">⚠️</div>
@@ -105,6 +108,7 @@ async function loadItems() {
                 <p>${escapeHtml(error.message)}</p>
             </div>
         `;
+        els.itemGrid.innerHTML = `<div class="grid-empty">Failed to load items.</div>`;
     }
 }
 
