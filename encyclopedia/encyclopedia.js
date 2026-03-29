@@ -193,7 +193,7 @@ function renderNodeDetails(node) {
 
     els.details.innerHTML = `
         <div class="details-header">
-            ${renderDetailsImage(node)}
+            ${renderDetailsNodeImage(node)}
             <div class="details-header-text">
                 <h2>${escapeHtml(node.name)}</h2>
                 <div class="details-meta">
@@ -458,7 +458,7 @@ function renderItemDetails(item) {
 
     els.details.innerHTML = `
         <div class="details-header">
-            ${renderDetailsImage(item)}
+            ${renderDetailsItemImage(item)}
             <div class="details-header-text">
                 <h2>${escapeHtml(item.name)}</h2>
                 <div class="details-meta">
@@ -851,13 +851,17 @@ function renderDetails() {
     renderItemDetails(entry);
 }
 
-function renderDetailsImage(resource) {
-    if ("weight" in resource) {const path = "item";}
-    if ("drops" in resource) {const path = "node";}
-    // if (resource.?) {const path = "enemy;"}
+function renderDetailsItemImage(item) {
+    if (item.img) {
+        return `<img class="details-image" src="./data/itemImages/${encodeURIComponent(item.img)}" alt="${escapeHtml(item.name)}" />`;
+    }
 
-    if (resource.img) {
-        return `<img class="details-image" src="./data/${path}Images/${encodeURIComponent(resource.img)}" alt="${escapeHtml(resource.name)}" />`;
+    return `<div class="details-image details-image-placeholder">No Image</div>`;
+}
+
+function renderDetailsNodeImage(node) {
+    if (node.img) {
+        return `<img class="details-image" src="./data/nodeImages/${encodeURIComponent(node.img)}" alt="${escapeHtml(node.name)}" />`;
     }
 
     return `<div class="details-image details-image-placeholder">No Image</div>`;
