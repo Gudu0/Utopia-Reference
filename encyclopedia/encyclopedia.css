@@ -434,6 +434,12 @@ html, body {
   border-color: var(--accent);
 }
 
+#tab-extra-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 
 
 

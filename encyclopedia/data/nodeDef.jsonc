@@ -1,5 +1,23 @@
 [
     {
-        
+        "id": "iron_mine",
+        "name": "Iron Mine",
+        "desc": "Iron mine Description goes here, but there aren't any ingame I think",
+        "img": null,
+        "category": "Mine",
+        "subcategory": "determinSubCat",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "iron_ore",
+                    "amount": 4
+                },
+                "drop2": {
+                    "id": "stone",
+                    "amount": 4
+                }
+            },
+            "xp": 400
+        }
     }
 ]

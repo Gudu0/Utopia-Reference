@@ -5,7 +5,7 @@
     "type": "array",
     "nodes": {
         "type": "object",
-        "required": ["id", "name", "desc", "img", "category", "subcategory"],
+        "required": ["id", "name", "desc", "img", "category", "subcategory", "drops"],
         "properties": {
             "id": {
                 "type": "string",
@@ -26,11 +26,11 @@
             },
             "category": {
                 "type": "string",
-                "enum": []
+                "enum": ["Mine"]
             },
             "subcategory": {
                 "type": "string",
-                "enum": []
+                "enum": ["determinSubCat"]
             },
             "health":{
                 "type": "integer"
@@ -38,6 +38,33 @@
             "tool":{
                 "type": "string",
                 "enum": ["pick", "axe", "sword", "hand"]
+            },
+            "drops": {
+                "type": "object",
+                "properties": {
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "drop1": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string",
+                                        "pattern": "^[a-z0-9_]+$"
+                                    },
+                                    "amount": {
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        },
+                        "required":["drop1"]
+                    },
+                    "xp": {
+                        "type": "integer"
+                    }
+                },
+                "required": ["items"]
             }
 
         },
