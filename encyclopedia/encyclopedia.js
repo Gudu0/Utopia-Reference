@@ -210,10 +210,11 @@ function renderNodeDetails(node) {
         ${renderNodeDropsSection(node)}
         ${renderNotesSection(node)}
     `;
+    wireDetailLinks();
 }
 
 function renderNodeDropsSection(node) {
-    if (!node.drops || !node.drops.items) {
+    if (!node.drops?.items) {
         return "";
     }
 
@@ -223,9 +224,22 @@ function renderNodeDropsSection(node) {
     }
 
     const lines = itemDrops.map(drop => {
-        const dropId = drop.id ?? "unknown";
+        const item = getItemById(drop.id);
+        const itemName = item ? item.name : drop.id;
         const amount = drop.amount ?? 1;
-        return `<li>${escapeHtml(dropId)} × ${escapeHtml(amount)}</li>`;
+
+        return `
+            <li>
+                <button
+                    type="button"
+                    class="inline-entry-link"
+                    data-item-id="${escapeHtml(drop.id)}"
+                >
+                    ${escapeHtml(itemName)}
+                </button>
+                × ${escapeHtml(amount)}
+            </li>
+        `;
     });
 
     const xpLine = node.drops.xp != null
@@ -558,6 +572,32 @@ function ensureValidSelection() {
     }
 }
 
+function getItemById(itemId) {
+    return state.tabs.items.all.find(item => item.id === itemId) ?? null;
+}
+
+async function jumpToItem(itemId) {
+    const itemTab = state.tabs.items;
+
+    itemTab.search = "";
+    itemTab.category = "all";
+    itemTab.subcategory = "all";
+    itemTab.selectedId = itemId;
+
+    await switchTab("items");
+
+    syncSharedControlsFromTab();
+    renderExtraFilters();
+    applyFiltersAndRender();
+
+    const index = itemTab.filtered.findIndex(item => item.id === itemId);
+    itemTab.currentPage = index === -1 ? 1 : Math.floor(index / ITEMS_PER_PAGE) + 1;
+
+    renderGrid();
+    renderPageIndicator();
+    renderDetails();
+}
+
 // ----- Other -------- \\\
 
 async function init() {
@@ -852,3 +892,12 @@ function renderNotesSection(item) {
     `;
 }
 
+function wireDetailLinks() {
+    const itemLinks = els.details.querySelectorAll("[data-item-id]");
+
+    for (const button of itemLinks) {
+        button.addEventListener("click", async () => {
+            await jumpToItem(button.dataset.itemId);
+        });
+    }
+}

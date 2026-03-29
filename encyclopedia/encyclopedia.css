@@ -440,6 +440,19 @@ html, body {
   gap: 12px;
 }
 
+.inline-entry-link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--accent);
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.inline-entry-link:hover {
+  color: var(--text);
+}
 
 
 
