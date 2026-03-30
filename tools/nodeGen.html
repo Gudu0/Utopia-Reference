@@ -259,7 +259,7 @@
                     return;
                 }
 
-                addDrop("", "temp");
+                addDrop("", "#?");
 
                 const newRows = dropsContainer.querySelectorAll(".drop-row");
                 const newLastRow = newRows[newRows.length - 1];
@@ -277,7 +277,7 @@
 
             const amountInput = document.createElement("input");
             amountInput.type = "text";
-            amountInput.value = "temp";
+            amountInput.value = "#?";
             amountInput.className = "drop-amount-input";
             wrapper.appendChild(amountInput);
 
@@ -304,7 +304,7 @@
             });
         }
 
-        function addDrop(defaultId = "", defaultAmount = "temp") {
+        function addDrop(defaultId = "", defaultAmount = "#?") {
             const dropNumber = dropsContainer.querySelectorAll(".drop-row").length + 1;
             const row = createDropRow(dropNumber);
 
@@ -322,7 +322,7 @@
             rows.forEach((row) => {
                 const rawDropId = row.querySelector(".drop-id-input").value;
                 const dropId = cleanTypedId(rawDropId);
-                const dropAmount = row.querySelector(".drop-amount-input").value.trim() || "temp";
+                const dropAmount = row.querySelector(".drop-amount-input").value.trim() || "#?";
 
                 if (dropId === "") {
                     return;
@@ -385,8 +385,8 @@
             notesInput.value = "";
 
             dropsContainer.innerHTML = "";
-            addDrop(DEFAULT_DROP_1_ID, "temp");
-            addDrop(DEFAULT_DROP_2_ID, "temp");
+            addDrop(DEFAULT_DROP_1_ID, "#?");
+            addDrop(DEFAULT_DROP_2_ID, "#?");
 
             updateAutoFields();
             nameInput.focus();
@@ -404,7 +404,7 @@
             let firstDropInput = dropsContainer.querySelector(".drop-row .drop-id-input");
 
             if (!firstDropInput) {
-                addDrop("", "temp");
+                addDrop("", "#?");
                 firstDropInput = dropsContainer.querySelector(".drop-row .drop-id-input");
             }
 
@@ -415,7 +415,7 @@
         });
 
         addDropButton.addEventListener("click", () => {
-            addDrop("", "temp");
+            addDrop("", "#?");
         });
 
         generateButton.addEventListener("click", () => {
