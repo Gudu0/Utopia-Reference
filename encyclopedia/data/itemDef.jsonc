@@ -636,7 +636,10 @@
         "desc": "Possesses a magic power and has all kinds of uses. It can enhance weapons and leg armors and grant attribute bonuses. A Lv. 1 Enchant Stone can only be used when enchanting an item the first two times. \n-The enchanted weapon will increase Attack limit (1/2) \n-The enchanted leg armor will increase Defence (1/2)",
         "img": "fire_enchant_stone1.jpg",
         "sources": {
-            "node": [],
+            "node": [
+                "bomb_tree",
+                "marvel_tree"
+            ],
             "enemy": []
         },
         "uses": [],
@@ -652,7 +655,10 @@
         "desc": "Possesses a magic power and has all kinds of uses. It can enhance weapons and helmets and grant attribute bonuses. A Lv. 1 Enchant Stone can only be used when enchanting an item the first two times. \n-The enchanted weapon will increase damage dealt to trees (1) \n-The enchanted helmet will increase HP (3/5)",
         "img": "lightning_enchant_stone1.jpg",
         "sources": {
-            "node": [],
+            "node": [
+                "baobab_tree",
+                "marvel_tree"
+            ],
             "enemy": []
         },
         "uses": [],
@@ -668,7 +674,10 @@
         "desc": "Possesses a magic power and has all kinds of uses. It can enhance weapons and body armors and grant attribute bonuses. A Lv. 1 Enchant Stone can only be used when enchanting an item the first two times. \n-The enchanted weapon will increase damage dealt to ores (1) \n-The enchanted body armor will increase HP (3/5)",
         "img": "ice_enchant_stone1.jpg",
         "sources": {
-            "node": [],
+            "node": [
+                "dragon_blood_tree",
+                "marvel_tree"
+            ],
             "enemy": []
         },
         "uses": [],
