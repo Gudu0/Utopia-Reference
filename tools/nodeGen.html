@@ -437,6 +437,7 @@
 
         function copy(){
             gen();
+            output.value = output.value.slice(0, -1);
             navigator.clipboard.writeText(output.value).then(() => {
                 //nothing
             }).catch(err => {
@@ -445,9 +446,7 @@
             clearEntryFields();
         }
 
-        addDrop(DEFAULT_DROP_1_ID, "temp");
-        addDrop(DEFAULT_DROP_2_ID, "temp");
-
+        addDrop("");
         updateAutoFields();
     </script>
 </body>

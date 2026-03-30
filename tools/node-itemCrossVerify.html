@@ -174,7 +174,8 @@
             if (t.startsWith("loaded ") || t.startsWith("check complete") || t.startsWith("fix complete")) return "info";
             if (t.includes("duplicate")) return "duplicate";
             if (t.includes("img")) return "img";
-            if (t.includes("does not exist")) return "missing";
+            // Look for both "does not exist" and our new "Unique Missing" prefix
+            if (t.includes("does not exist") || t.startsWith("unique missing:")) return "missing"; 
             if (t.includes("mismatch")) return "mismatch";
             if (t.startsWith("fixed ")) return "info";
             return "other";
@@ -336,12 +337,22 @@
             const nodeToDroppedItems = buildNodeToDroppedItems(nodes);
             const itemToSourceNodes = buildItemToSourceNodes(items);
 
+            // Track unique missing IDs to prevent spam
+            const missingItemIds = new Set();
+            const missingNodeIds = new Set();
+
             for (let i = 0; i < nodes.length; i++) {
                 const node = nodes[i];
                 if (!isObject(node) || typeof node.id !== "string") continue;
                 const nodeId = node.id;
                 for (const itemId of getNodeDropItemIds(node)) {
-                    if (!validItemIds.has(itemId)) { addLine(`nodes[${i}] "${nodeId}": drop item "${itemId}" does not exist in item ids`); continue; }
+                    if (!validItemIds.has(itemId)) {
+                        if (!missingItemIds.has(itemId)) {
+                            addLine(`Unique Missing: Item "${itemId}" (referenced by node "${nodeId}") does not exist in items`, "missing");
+                            missingItemIds.add(itemId);
+                        }
+                        continue; 
+                    }
                     const itemSourceNodes = itemToSourceNodes.get(itemId) || new Set();
                     if (!itemSourceNodes.has(nodeId)) addLine(`Mismatch: node "${nodeId}" drops item "${itemId}", but item "${itemId}" does not list "${nodeId}" in sources.node`);
                 }
@@ -352,7 +363,13 @@
                 if (!isObject(item) || typeof item.id !== "string") continue;
                 const itemId = item.id;
                 for (const nodeId of getItemSourceNodeIds(item)) {
-                    if (!validNodeIds.has(nodeId)) { addLine(`items[${i}] "${itemId}": source node "${nodeId}" does not exist in node ids`); continue; }
+                    if (!validNodeIds.has(nodeId)) {
+                        if (!missingNodeIds.has(nodeId)) {
+                            addLine(`Unique Missing: Node "${nodeId}" (referenced by item "${itemId}") does not exist in nodes`, "missing");
+                            missingNodeIds.add(nodeId);
+                        }
+                        continue;
+                    }
                     const droppedItems = nodeToDroppedItems.get(nodeId) || new Set();
                     if (!droppedItems.has(itemId)) addLine(`Mismatch: item "${itemId}" lists node "${nodeId}" in sources.node, but node "${nodeId}" does not drop "${itemId}"`);
                 }
