@@ -460,15 +460,16 @@ html, body {
   gap: 10px;
 }
 
-.item-card-mini {
+/* .item-card-mini {
   position: relative;
   min-height: 110px;
+  min-height: 120px;
 }
 
 .item-card-mini .item-card-placeholder {
   width: 48px;
   height: 48px;
-}
+} */
 
 .item-card-amount {
   position: absolute;
@@ -480,6 +481,9 @@ html, body {
   border-radius: 999px;
   padding: 2px 6px;
   color: var(--muted);
+  margin-top: auto;
+  font-size: 0.72rem;
+  color: var(--muted);
 }
 
 .details-drop-grid {
@@ -488,21 +492,20 @@ html, body {
   gap: 10px;
 }
 
-.item-card-mini {
-  min-height: 120px;
-}
-
-.item-card-amount {
-  margin-top: auto;
-  font-size: 0.72rem;
-  color: var(--muted);
-}
-
 .details-related-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
   gap: 10px;
 }
+
+
+
+
+
+
+
+
+
 
 
 

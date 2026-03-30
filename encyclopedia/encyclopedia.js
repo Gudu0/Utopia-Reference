@@ -238,7 +238,7 @@ function renderNodeDropsSection(node) {
         return `
             <button
                 type="button"
-                class="item-card item-card-mini"
+                class="item-card"
                 data-item-id="${escapeHtml(drop.id)}"
                 title="${escapeHtml(itemName)}"
             >
@@ -484,7 +484,7 @@ function renderItemSourcesSection(item) {
         return `
             <button
                 type="button"
-                class="item-card item-card-mini"
+                class="item-card"
                 data-node-id="${escapeHtml(nodeId)}"
                 title="${escapeHtml(nodeName)}"
             >
