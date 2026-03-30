@@ -10,23 +10,23 @@
             "items": {
                 "drop1": {
                     "id": "iron_ore",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "stone",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "coal",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "magnet",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop5": {
                     "id": "coral_stone",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": 400
@@ -78,19 +78,19 @@
             "items": {
                 "drop1": {
                     "id": "silver_ore",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "stone",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "coal",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "moonlight_stone",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -110,19 +110,19 @@
             "items": {
                 "drop1": {
                     "id": "gold_ore",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "stone",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "coal",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "ruby",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -142,19 +142,19 @@
             "items": {
                 "drop1": {
                     "id": "crystal_ore",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "stone",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "coal",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "sapphire",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -174,19 +174,19 @@
             "items": {
                 "drop1": {
                     "id": "obsidian_ore",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "stone",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "coal",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "black_gem",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -226,11 +226,11 @@
             "items": {
                 "drop1": {
                     "id": "natanz_spar_ball",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "the_power_of_natanz",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -250,7 +250,7 @@
             "items": {
                 "drop1": {
                     "id": "rune_stone",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -270,7 +270,7 @@
             "items": {
                 "drop1": {
                     "id": "rune_stone",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -290,7 +290,7 @@
             "items": {
                 "drop1": {
                     "id": "rune_stone",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -310,7 +310,7 @@
             "items": {
                 "drop1": {
                     "id": "rune_stone",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -330,7 +330,7 @@
             "items": {
                 "drop1": {
                     "id": "rune_stone",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -350,7 +350,7 @@
             "items": {
                 "drop1": {
                     "id": "rune_stone",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -370,7 +370,7 @@
             "items": {
                 "drop1": {
                     "id": "rune_stone",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -390,7 +390,7 @@
             "items": {
                 "drop1": {
                     "id": "rune_stone",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -410,7 +410,7 @@
             "items": {
                 "drop1": {
                     "id": "crimson_jade",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -430,7 +430,7 @@
             "items": {
                 "drop1": {
                     "id": "energy_rich_crystals",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -450,11 +450,11 @@
             "items": {
                 "drop1": {
                     "id": "stardust",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "unstable_starcore",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -474,7 +474,7 @@
             "items": {
                 "drop1": {
                     "id": "emerald",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -497,19 +497,19 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "straw",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "resin",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "desert_poplar_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -530,27 +530,27 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "straw",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "cone",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "resin",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop5": {
                     "id": "green_pine_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop6": {
                     "id": "elemental_essence_green_pine",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -571,39 +571,39 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "straw",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "apple",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "honey",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop5": {
                     "id": "resin",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop6": {
                     "id": "silkworm",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop7": {
                     "id": "leaf",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop8": {
                     "id": "elemental_essence_apple",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop9": {
                     "id": "silkworm_fancy",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -624,23 +624,23 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "straw",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "cone",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "resin",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop5": {
                     "id": "snow_pine_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -661,23 +661,23 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "straw",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "resin",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "silkworm",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop5": {
                     "id": "slikworm_fancy",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -698,27 +698,27 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "straw",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "coconut",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "resin",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop5": {
                     "id": "coconut_tree_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop6": {
                     "id": "elemental_essence_coconut_tree",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -739,35 +739,35 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "straw",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "resin",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "silkworm",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop5": {
                     "id": "leaf",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop6": {
                     "id": "rubber",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop7": {
                     "id": "rubber_tree_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop8": {
                     "id": "silkworm_fancy",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -788,19 +788,19 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "straw",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "resin",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "fern_tree_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -821,23 +821,23 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "straw",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "resin",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "banana",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop5": {
                     "id": "elemental_essence_banana_tree",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -858,19 +858,19 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "straw",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "resin",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "bamboo_rice",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -891,27 +891,27 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "straw",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "resin",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "peach",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop5": {
                     "id": "peach_tree_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop6": {
                     "id": "elemental_essence_peach_tree",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -932,7 +932,7 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -953,19 +953,19 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "straw",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "resin",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "blue_mapple_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -986,23 +986,23 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "straw",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "dark_purple_fruit",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "purple_hibiscus_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop5": {
                     "id": "strange_dark_purple_fruit",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1023,11 +1023,11 @@
             "items": {
                 "drop1": {
                     "id": "fairy_flower",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "fairy_fruit",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1048,11 +1048,11 @@
             "items": {
                 "drop1": {
                     "id": "thick_laurel_branches",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "osmanthus_leaf",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1073,7 +1073,7 @@
             "items": {
                 "drop1": {
                     "id": "afloat_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1094,11 +1094,11 @@
             "items": {
                 "drop1": {
                     "id": "parting_resin",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "unstable_starcore",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1119,23 +1119,23 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "straw",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "lightning_enchant_stone_1",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "resin",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop5": {
                     "id": "baobab_tree_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1156,23 +1156,23 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "straw",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "resin",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "bomb_fruit",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop5": {
                     "id": "fire_enchant_stone_1",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1193,19 +1193,19 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "straw",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "bomb_fruit",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "resin",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1226,23 +1226,23 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "straw",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "ice_enchant_stone_1",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "resin",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop5": {
                     "id": "dragon_blood_tree_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1263,19 +1263,19 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "straw",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "resin",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "natanz_marvel_tree_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1296,31 +1296,31 @@
             "items": {
                 "drop1": {
                     "id": "wood",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "straw",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "ice_enchant_stone_1",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "fire_enchant_stone_1",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop5": {
                     "id": "lightning_enchant_stone_1",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop6": {
                     "id": "resin",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop7": {
                     "id": "marvel_tree_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1341,19 +1341,19 @@
             "items": {
                 "drop1": {
                     "id": "clay",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "small_earthworm",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "large_earthworm",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "king_earthworm",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1374,7 +1374,7 @@
             "items": {
                 "drop1": {
                     "id": "sand",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1395,11 +1395,11 @@
             "items": {
                 "drop1": {
                     "id": "plant_fiber",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "elemental_essence_weeds",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1420,15 +1420,15 @@
             "items": {
                 "drop1": {
                     "id": "strawberry",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "strawberry_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "elemental_essence_strawberry",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1449,15 +1449,15 @@
             "items": {
                 "drop1": {
                     "id": "blueberry",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "blueberry_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "elemental_essence_blueberry",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1478,11 +1478,11 @@
             "items": {
                 "drop1": {
                     "id": "mushroom",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "mushroom_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1503,11 +1503,11 @@
             "items": {
                 "drop1": {
                     "id": "red_mushroom",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "red_mushroom_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1528,11 +1528,11 @@
             "items": {
                 "drop1": {
                     "id": "blue_mushroom",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "blue_mushroom_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1553,7 +1553,7 @@
             "items": {
                 "drop1": {
                     "id": "plant_fiber",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1574,11 +1574,11 @@
             "items": {
                 "drop1": {
                     "id": "onion",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "onion_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1599,11 +1599,11 @@
             "items": {
                 "drop1": {
                     "id": "pepper",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "pepper_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1624,11 +1624,11 @@
             "items": {
                 "drop1": {
                     "id": "green_pepper",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "green_pepper_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1649,11 +1649,11 @@
             "items": {
                 "drop1": {
                     "id": "taro",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "taro_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1674,11 +1674,11 @@
             "items": {
                 "drop1": {
                     "id": "orange",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "orange_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1699,15 +1699,15 @@
             "items": {
                 "drop1": {
                     "id": "lemon",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "lemon_grass",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "lemon_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1728,11 +1728,11 @@
             "items": {
                 "drop1": {
                     "id": "ginger",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "ginger_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1753,7 +1753,7 @@
             "items": {
                 "drop1": {
                     "id": "icy_south_pine_cone",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1774,15 +1774,15 @@
             "items": {
                 "drop1": {
                     "id": "green_flower",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "pistil",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "small_bee",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1803,11 +1803,11 @@
             "items": {
                 "drop1": {
                     "id": "pistil",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "small_bee",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1828,19 +1828,19 @@
             "items": {
                 "drop1": {
                     "id": "red_flower",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "roselle",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "pistil",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "small_bee",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1861,11 +1861,11 @@
             "items": {
                 "drop1": {
                     "id": "mint",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "mint_seeds",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1886,15 +1886,15 @@
             "items": {
                 "drop1": {
                     "id": "blue_flower",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "pistil",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "small_bee",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1915,11 +1915,11 @@
             "items": {
                 "drop1": {
                     "id": "perilla",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "perilla_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1940,11 +1940,11 @@
             "items": {
                 "drop1": {
                     "id": "eggplant",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "eggplant_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1965,11 +1965,11 @@
             "items": {
                 "drop1": {
                     "id": "cucumber",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "cucumber_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -1990,7 +1990,7 @@
             "items": {
                 "drop1": {
                     "id": "clover",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2011,11 +2011,11 @@
             "items": {
                 "drop1": {
                     "id": "cocoa_bean",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "cocoa_bean_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2036,11 +2036,11 @@
             "items": {
                 "drop1": {
                     "id": "soybean_sprout",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "soybean_sprout_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2061,11 +2061,11 @@
             "items": {
                 "drop1": {
                     "id": "red_bean_sprout",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "red_bean_sprout_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2086,11 +2086,11 @@
             "items": {
                 "drop1": {
                     "id": "watermelon",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "watermelon_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2111,11 +2111,11 @@
             "items": {
                 "drop1": {
                     "id": "pumpkin",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "pumpkin_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2136,15 +2136,15 @@
             "items": {
                 "drop1": {
                     "id": "chili",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "chili_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "hot_chili",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2165,11 +2165,11 @@
             "items": {
                 "drop1": {
                     "id": "sugarcane",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "sugarcane_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2190,11 +2190,11 @@
             "items": {
                 "drop1": {
                     "id": "grape",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "grape_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2215,11 +2215,11 @@
             "items": {
                 "drop1": {
                     "id": "tomato",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "tomato_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2240,11 +2240,11 @@
             "items": {
                 "drop1": {
                     "id": "spinach",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "spinach_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2265,11 +2265,11 @@
             "items": {
                 "drop1": {
                     "id": "corn",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "corn_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2290,11 +2290,11 @@
             "items": {
                 "drop1": {
                     "id": "carrot",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "carrot_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2315,11 +2315,11 @@
             "items": {
                 "drop1": {
                     "id": "cotton",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "cotton_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2340,11 +2340,11 @@
             "items": {
                 "drop1": {
                     "id": "wheat",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "wheat_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2365,11 +2365,11 @@
             "items": {
                 "drop1": {
                     "id": "potato",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "potato_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2390,7 +2390,7 @@
             "items": {
                 "drop1": {
                     "id": "natanz_stearic",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2411,7 +2411,7 @@
             "items": {
                 "drop1": {
                     "id": "ammonite",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2432,15 +2432,15 @@
             "items": {
                 "drop1": {
                     "id": "spore_ball",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "giant_mushroom_cap",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "giant_mushroom_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2461,11 +2461,11 @@
             "items": {
                 "drop1": {
                     "id": "spiritual_fire_ganoderma",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "violet_ganoderma",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2486,11 +2486,11 @@
             "items": {
                 "drop1": {
                     "id": "rippling_duckweed",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "past_wine",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2511,11 +2511,11 @@
             "items": {
                 "drop1": {
                     "id": "gushing_flower",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "earth_blossom",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2536,11 +2536,11 @@
             "items": {
                 "drop1": {
                     "id": "illusion_gold_cluster",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "rainbow_stamen",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2561,11 +2561,11 @@
             "items": {
                 "drop1": {
                     "id": "natanz_fruit",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "natanz_fruit_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2586,7 +2586,7 @@
             "items": {
                 "drop1": {
                     "id": "yellow_flower",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2607,15 +2607,15 @@
             "items": {
                 "drop1": {
                     "id": "orange_flower",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "pistil",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "small_bee",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2636,15 +2636,15 @@
             "items": {
                 "drop1": {
                     "id": "violet_flower",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "pistil",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "small_bee",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2665,19 +2665,19 @@
             "items": {
                 "drop1": {
                     "id": "green_phosphor",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "phantom_lily",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "pistil",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "small_bee",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2698,19 +2698,19 @@
             "items": {
                 "drop1": {
                     "id": "blue_phosphor",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "blue_devil",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "pistil",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "small_bee",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2731,19 +2731,19 @@
             "items": {
                 "drop1": {
                     "id": "purple_phosphor",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "mandala",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "pistil",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "small_bee",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2764,19 +2764,19 @@
             "items": {
                 "drop1": {
                     "id": "pink_phosphor",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "pink_flame",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "pistil",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop4": {
                     "id": "small_bee",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2797,7 +2797,7 @@
             "items": {
                 "drop1": {
                     "id": "venus_flytrap",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2818,7 +2818,7 @@
             "items": {
                 "drop1": {
                     "id": "rafflesia",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2839,7 +2839,7 @@
             "items": {
                 "drop1": {
                     "id": "sky_fruit",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2860,11 +2860,11 @@
             "items": {
                 "drop1": {
                     "id": "date_palm",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "date_palm_flower",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2885,7 +2885,7 @@
             "items": {
                 "drop1": {
                     "id": "starred_flower",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2906,7 +2906,7 @@
             "items": {
                 "drop1": {
                     "id": "leyline_leaf",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2927,7 +2927,7 @@
             "items": {
                 "drop1": {
                     "id": "crystal_stone_fruit",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2948,15 +2948,15 @@
             "items": {
                 "drop1": {
                     "id": "white_lotus",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "white_lotus_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop3": {
                     "id": "elemental_essence_white_lotus",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -2977,11 +2977,11 @@
             "items": {
                 "drop1": {
                     "id": "sunflower_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "elemental_essence_sunflower",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -3002,7 +3002,7 @@
             "items": {
                 "drop1": {
                     "id": "natanz_sunflower_seed",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -3023,7 +3023,7 @@
             "items": {
                 "drop1": {
                     "id": "crystal_water_lily",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -3044,11 +3044,11 @@
             "items": {
                 "drop1": {
                     "id": "frost_flower",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "ice_crystal",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -3069,7 +3069,7 @@
             "items": {
                 "drop1": {
                     "id": "scent_of_foam",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -3090,11 +3090,11 @@
             "items": {
                 "drop1": {
                     "id": "large_scallop",
-                    "amount": "temp"
+                    "amount": "?"
                 },
                 "drop2": {
                     "id": "scallop",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
@@ -3115,7 +3115,7 @@
             "items": {
                 "drop1": {
                     "id": "natanz_blue_orb",
-                    "amount": "temp"
+                    "amount": "?"
                 }
             },
             "xp": -1
