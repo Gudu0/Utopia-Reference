@@ -1076,5 +1076,59 @@
         "subcategory": "Ore",
         "rarity": "rare",
         "bound": false
-    }
+    },
+    {
+        "id": "desert_poplar_seed",
+        "name": "Desert Poplar Seed",
+        "desc": "A desert poplar seed. Plant it and grow a a desert poplar tree.",
+        "img": "desert_poplar_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "green_pine_seed",
+        "name": "Green Pine Seed",
+        "desc": "A green pine seed. Plant it and harvest wheat later.",
+        "img": "green_pine_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "cone",
+        "name": "Cone",
+        "desc": "Will fill you belly, but also make you thirsty. Better to eat it cooked.",
+        "img": "cone.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
 ]
