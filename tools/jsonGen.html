@@ -335,7 +335,8 @@
             '$fec': 'fire_enchant_stone_',
             '$iec': 'ice_enchant_stone_',
             '$p': 'pistil',
-            '$nm': null
+            '$nm': null,
+            '$sdnm': null
         };
 
         function switchMode(mode) {
@@ -364,8 +365,13 @@
                 switch (key) {
                     case '$nm':
                         replacement = name.toLowerCase();
-
                         break;
+                    
+                    case '$sdnm':
+                        let nmms = name.toLowerCase();
+                        replacement = nmms.replace('seed', 'tree');
+                        break;    
+
                     case '$sd': 
                         // ID + seed
                         replacement = id + macros['$sd']; 
