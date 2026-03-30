@@ -61,7 +61,7 @@
                         "required":["drop1"]
                     },
                     "xp": {
-                        "type": "integer"
+                        "type": ["integer", "string"]
                     }
                 },
                 "required": ["items"]

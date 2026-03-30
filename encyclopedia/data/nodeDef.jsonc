@@ -93,7 +93,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "tool": "pick",
         "health": "#?",
