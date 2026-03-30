@@ -337,6 +337,7 @@
             '$nm': null,
             '$tnm': null,
             '$pig': null,
+            '$tfmp': null
         };
 
         function switchMode(mode) {
@@ -374,6 +375,10 @@
                     
                     case '$pig':
                         replacement = "Plant it and grow a";
+                        break;
+
+                    case '$tfmp':
+                        replacement = `Used to synthesize Transformation Potion-${name}`;
                         break;
 
                     case '$sd': 
