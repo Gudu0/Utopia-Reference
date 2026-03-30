@@ -91,6 +91,14 @@
       },
       "time-limited": {
         "type": "string"
+      },
+      "tags": {
+          "type": "array",
+          "items": {
+              "type": "string",
+              "pattern": "^[a-z0-9_]+$"
+          },
+          "description": "Custom metadata tags for filtering or logic."
       }
     },
     "allOf": [

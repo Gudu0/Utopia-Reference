@@ -25,5 +25,23 @@
             ],
             "url": "./Schemas/map-nodesSchema.json"
         }
-    ]
+    ],
+    "workbench.tree.indent": 10,
+    "workbench.view.showQuietly": {
+        "workbench.panel.output": true
+    },
+    "workbench.editor.dragToOpenWindow": false,
+    "workbench.editor.tabSizing": "fit",
+    "editor.showFoldingControls": "always",
+    "editor.defaultFoldingRangeProvider": "zokugun.explicit-folding",
+    "[javascript]": {
+        "explicitFolding.rules": [
+            {
+                "begin": "{",
+                "end": "}",
+                "while": "content",
+                "foldLastLine": true 
+            }
+        ]
+    }
 }
