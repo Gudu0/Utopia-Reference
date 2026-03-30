@@ -31,7 +31,7 @@
             },
             "xp": 400
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Common"
     },
@@ -63,7 +63,7 @@
             },
             "xp": 200
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Common"
     },
@@ -95,7 +95,7 @@
             },
             "xp": -1
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Common"
     },
@@ -127,7 +127,7 @@
             },
             "xp": -1
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Rare"
     },
@@ -159,7 +159,7 @@
             },
             "xp": -1
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Rare"
     },
@@ -191,11 +191,10 @@
             },
             "xp": -1
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Rare"
     },
-    
     {
         "id": "fire_magic_mine",
         "name": "Fire Magic Mine",
@@ -212,7 +211,7 @@
             },
             "xp": -1
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Extremely Rare"
     },
@@ -229,14 +228,14 @@
                     "id": "natanz_spar_ball",
                     "amount": "temp"
                 },
-                "drop2":{
+                "drop2": {
                     "id": "the_power_of_natanz",
                     "amount": "temp"
                 }
             },
             "xp": -1
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Extremely Rare"
     },
@@ -256,7 +255,7 @@
             },
             "xp": -1
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Rare"
     },
@@ -276,7 +275,7 @@
             },
             "xp": -1
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Rare"
     },
@@ -296,7 +295,7 @@
             },
             "xp": -1
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Rare"
     },
@@ -316,7 +315,7 @@
             },
             "xp": -1
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Rare"
     },
@@ -336,7 +335,7 @@
             },
             "xp": -1
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Rare"
     },
@@ -356,7 +355,7 @@
             },
             "xp": -1
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Rare"
     },
@@ -376,7 +375,7 @@
             },
             "xp": -1
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Rare"
     },
@@ -396,7 +395,7 @@
             },
             "xp": -1
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Rare"
     },
@@ -416,7 +415,7 @@
             },
             "xp": -1
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Common"
     },
@@ -436,7 +435,7 @@
             },
             "xp": -1
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Common"
     },
@@ -460,7 +459,7 @@
             },
             "xp": -1
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Common"
     },
@@ -480,8 +479,2647 @@
             },
             "xp": -1
         },
-        "tool":"pick",
+        "tool": "pick",
         "health": -1,
         "rarity": "Common"
-    }
+    },
+    {
+        "id": "desert_poplar",
+        "name": "Desert Poplar",
+        "desc": "",
+        "img": "desert_poplar.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "straw",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "resin",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "desert_poplar_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "green_pine",
+        "name": "Green Pine",
+        "desc": "",
+        "img": "green_pine.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "straw",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "cone",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "resin",
+                    "amount": "temp"
+                },
+                "drop5": {
+                    "id": "green_pine_seed",
+                    "amount": "temp"
+                },
+                "drop6": {
+                    "id": "elemental_essence_green_pine",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "apple_tree",
+        "name": "Apple Tree",
+        "desc": "",
+        "img": "apple_tree.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "straw",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "apple",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "honey",
+                    "amount": "temp"
+                },
+                "drop5": {
+                    "id": "resin",
+                    "amount": "temp"
+                },
+                "drop6": {
+                    "id": "silkworm",
+                    "amount": "temp"
+                },
+                "drop7": {
+                    "id": "leaf",
+                    "amount": "temp"
+                },
+                "drop8": {
+                    "id": "elemental_essence_apple",
+                    "amount": "temp"
+                },
+                "drop9": {
+                    "id": "silkworm_fancy",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "snow_pine",
+        "name": "Snow Pine",
+        "desc": "",
+        "img": "snow_pine.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "straw",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "cone",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "resin",
+                    "amount": "temp"
+                },
+                "drop5": {
+                    "id": "snow_pine_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "poplar",
+        "name": "Poplar",
+        "desc": "",
+        "img": "poplar.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "straw",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "resin",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "silkworm",
+                    "amount": "temp"
+                },
+                "drop5": {
+                    "id": "slikworm_fancy",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "coconut_tree",
+        "name": "Coconut Tree",
+        "desc": "",
+        "img": "coconut_tree.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "straw",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "coconut",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "resin",
+                    "amount": "temp"
+                },
+                "drop5": {
+                    "id": "coconut_tree_seed",
+                    "amount": "temp"
+                },
+                "drop6": {
+                    "id": "elemental_essence_coconut_tree",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "rubber_tree",
+        "name": "Rubber Tree",
+        "desc": "",
+        "img": "rubber_tree.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "straw",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "resin",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "silkworm",
+                    "amount": "temp"
+                },
+                "drop5": {
+                    "id": "leaf",
+                    "amount": "temp"
+                },
+                "drop6": {
+                    "id": "rubber",
+                    "amount": "temp"
+                },
+                "drop7": {
+                    "id": "rubber_tree_seed",
+                    "amount": "temp"
+                },
+                "drop8": {
+                    "id": "silkworm_fancy",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "fern_tree",
+        "name": "Fern Tree",
+        "desc": "",
+        "img": "fern_tree.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "straw",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "resin",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "fern_tree_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "banana_tree",
+        "name": "Banana Tree",
+        "desc": "",
+        "img": "banana_tree.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "straw",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "resin",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "banana",
+                    "amount": "temp"
+                },
+                "drop5": {
+                    "id": "elemental_essence_banana_tree",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "bamboo",
+        "name": "Bamboo",
+        "desc": "",
+        "img": "bamboo.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "straw",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "resin",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "bamboo_rice",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "peach_tree",
+        "name": "Peach Tree",
+        "desc": "",
+        "img": "peach_tree.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "straw",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "resin",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "peach",
+                    "amount": "temp"
+                },
+                "drop5": {
+                    "id": "peach_tree_seed",
+                    "amount": "temp"
+                },
+                "drop6": {
+                    "id": "elemental_essence_peach_tree",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "ice_orb_tree",
+        "name": "Ice Orb Tree",
+        "desc": "",
+        "img": "ice_orb_tree.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "blue_mapple",
+        "name": "Blue Mapple",
+        "desc": "",
+        "img": "blue_mapple.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "straw",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "resin",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "blue_mapple_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "purple_hibiscus",
+        "name": "Purple Hibiscus",
+        "desc": "",
+        "img": "purple_hibiscus.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "straw",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "dark_purple_fruit",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "purple_hibiscus_seed",
+                    "amount": "temp"
+                },
+                "drop5": {
+                    "id": "strange_dark_purple_fruit",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "super_cactus",
+        "name": "Super Cactus",
+        "desc": "",
+        "img": "super_cactus.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "fairy_flower",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "fairy_fruit",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "straight_osmanthus",
+        "name": "Straight Osmanthus",
+        "desc": "",
+        "img": "straight_osmanthus.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "thick_laurel_branches",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "osmanthus_leaf",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "plankton_ball",
+        "name": "Plankton Ball",
+        "desc": "",
+        "img": "plankton_ball.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "afloat_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "parting_tree",
+        "name": "Parting Tree",
+        "desc": "",
+        "img": "parting_tree.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "parting_resin",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "unstable_starcore",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Rare"
+    },
+    {
+        "id": "baobab_tree",
+        "name": "Baobab Tree",
+        "desc": "",
+        "img": "baobab_tree.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "straw",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "lightning_enchant_stone_1",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "resin",
+                    "amount": "temp"
+                },
+                "drop5": {
+                    "id": "baobab_tree_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Extremely Rare"
+    },
+    {
+        "id": "bomb_tree",
+        "name": "Bomb Tree",
+        "desc": "",
+        "img": "bomb_tree.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "pick",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "straw",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "resin",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "bomb_fruit",
+                    "amount": "temp"
+                },
+                "drop5": {
+                    "id": "fire_enchant_stone_1",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Extremely Rare"
+    },
+    {
+        "id": "young_bomb_tree",
+        "name": "Young Bomb Tree",
+        "desc": "",
+        "img": "young_bomb_tree.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "straw",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "bomb_fruit",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "resin",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Extremely Rare"
+    },
+    {
+        "id": "dragon_blood_tree",
+        "name": "Dragon Blood Tree",
+        "desc": "",
+        "img": "dragon_blood_tree.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "straw",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "ice_enchant_stone_1",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "resin",
+                    "amount": "temp"
+                },
+                "drop5": {
+                    "id": "dragon_blood_tree_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Extremely Rare"
+    },
+    {
+        "id": "natanz_marvel_tree",
+        "name": "Natanz Marvel Tree",
+        "desc": "",
+        "img": "natanz_marvel_tree.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "straw",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "resin",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "natanz_marvel_tree_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Extremely Rare"
+    },
+    {
+        "id": "marvel_tree",
+        "name": "Marvel Tree",
+        "desc": "",
+        "img": "marvel_tree.jpg",
+        "notes": "",
+        "category": "Trees",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "axe",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wood",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "straw",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "ice_enchant_stone_1",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "fire_enchant_stone_1",
+                    "amount": "temp"
+                },
+                "drop5": {
+                    "id": "lightning_enchant_stone_1",
+                    "amount": "temp"
+                },
+                "drop6": {
+                    "id": "resin",
+                    "amount": "temp"
+                },
+                "drop7": {
+                    "id": "marvel_tree_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Extremely Rare"
+    },
+    {
+        "id": "pile_of_clay",
+        "name": "Pile of Clay",
+        "desc": "",
+        "img": "pile_of_clay.jpg",
+        "notes": "",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "clay",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "small_earthworm",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "large_earthworm",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "king_earthworm",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "pile_of_sand",
+        "name": "Pile of Sand",
+        "desc": "",
+        "img": "pile_of_sand.jpg",
+        "notes": "",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "sand",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "weeds",
+        "name": "Weeds",
+        "desc": "",
+        "img": "weeds.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "plant_fiber",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "elemental_essence_weeds",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "strawberry",
+        "name": "Strawberry",
+        "desc": "",
+        "img": "strawberry.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "Food",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "strawberry",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "strawberry_seed",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "elemental_essence_strawberry",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "blueberry",
+        "name": "Blueberry",
+        "desc": "",
+        "img": "blueberry.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "Food",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "blueberry",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "blueberry_seed",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "elemental_essence_blueberry",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "mushroom",
+        "name": "Mushroom",
+        "desc": "",
+        "img": "mushroom.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "Food",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "mushroom",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "mushroom_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "red_mushroom",
+        "name": "Red Mushroom",
+        "desc": "",
+        "img": "red_mushroom.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "Food",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "red_mushroom",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "red_mushroom_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "blue_mushroom",
+        "name": "Blue Mushroom",
+        "desc": "",
+        "img": "blue_mushroom.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "Food",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "blue_mushroom",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "blue_mushroom_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "weeds2",
+        "name": "Weeds2",
+        "desc": "",
+        "img": "weeds2.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "plant_fiber",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "onion",
+        "name": "Onion",
+        "desc": "",
+        "img": "onion.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "Food",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "onion",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "onion_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "hot_pepper",
+        "name": "Hot Pepper",
+        "desc": "",
+        "img": "hot_pepper.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "Food",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "pepper",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "pepper_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "green_pepper",
+        "name": "Green Pepper",
+        "desc": "",
+        "img": "green_pepper.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "Food",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "green_pepper",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "green_pepper_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "taro",
+        "name": "Taro",
+        "desc": "",
+        "img": "taro.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "Food",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "taro",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "taro_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "orange",
+        "name": "Orange",
+        "desc": "",
+        "img": "orange.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "Food",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "orange",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "orange_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "lemon",
+        "name": "Lemon",
+        "desc": "",
+        "img": "lemon.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "Food",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "lemon",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "lemon_grass",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "lemon_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "ginger",
+        "name": "Ginger",
+        "desc": "",
+        "img": "ginger.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "Food",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "ginger",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "ginger_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "frost_pine_cone",
+        "name": "Frost Pine Cone",
+        "desc": "",
+        "img": "frost_pine_cone.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "icy_south_pine_cone",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "green_flower",
+        "name": "Green Flower",
+        "desc": "",
+        "img": "green_flower.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "green_flower",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "pistil",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "small_bee",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "cyan_flower",
+        "name": "Cyan Flower",
+        "desc": "",
+        "img": "cyan_flower.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "pistil",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "small_bee",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "red_flower",
+        "name": "Red Flower",
+        "desc": "",
+        "img": "red_flower.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "red_flower",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "roselle",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "pistil",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "small_bee",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "mint",
+        "name": "mint",
+        "desc": "",
+        "img": "mint.jpg",
+        "notes": "whys it lowercase ingame lol",
+        "category": "Plants",
+        "subcategory": "Food",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "mint",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "mint_seeds",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "blue_flower",
+        "name": "Blue Flower",
+        "desc": "",
+        "img": "blue_flower.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "blue_flower",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "pistil",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "small_bee",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "perilla",
+        "name": "Perilla",
+        "desc": "",
+        "img": "perilla.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "perilla",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "perilla_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "eggplant",
+        "name": "eggplant",
+        "desc": "",
+        "img": "eggplant.jpg",
+        "notes": "lowercase name ingame",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "eggplant",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "eggplant_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "cucumber",
+        "name": "cucumber",
+        "desc": "",
+        "img": "cucumber.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "cucumber",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "cucumber_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "clover",
+        "name": "Clover",
+        "desc": "",
+        "img": "clover.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "clover",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "cocoa_bean",
+        "name": "Cocoa Bean",
+        "desc": "",
+        "img": "cocoa_bean.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "cocoa_bean",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "cocoa_bean_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "soybean_sprout",
+        "name": "Soybean Sprout",
+        "desc": "",
+        "img": "soybean_sprout.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "soybean_sprout",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "soybean_sprout_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "red_bean_sprout",
+        "name": "Red Bean Sprout",
+        "desc": "",
+        "img": "red_bean_sprout.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "red_bean_sprout",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "red_bean_sprout_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "watermelon",
+        "name": "Watermelon",
+        "desc": "",
+        "img": "watermelon.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "watermelon",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "watermelon_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "pumpkin",
+        "name": "Pumpkin",
+        "desc": "",
+        "img": "pumpkin.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "pumpkin",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "pumpkin_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "chilli",
+        "name": "Chilli",
+        "desc": "",
+        "img": "chilli.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "chilli",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "chilli_seed",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "hot_chili",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "sugarcane",
+        "name": "Sugarcane",
+        "desc": "",
+        "img": "sugarcane.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "sugarcane",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "sugarcane_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "grape",
+        "name": "Grape",
+        "desc": "",
+        "img": "grape.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "grape",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "grape_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "tomato",
+        "name": "Tomato",
+        "desc": "",
+        "img": "tomato.jpg",
+        "notes": "",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "pick",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "tomato",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "tomato_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "spinach",
+        "name": "Spinach",
+        "desc": "",
+        "img": "spinach.jpg",
+        "notes": "",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "pick",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "spinach",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "spinach_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "corn",
+        "name": "Corn",
+        "desc": "",
+        "img": "corn.jpg",
+        "notes": "",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "pick",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "corn",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "corn_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "carrot",
+        "name": "Carrot",
+        "desc": "",
+        "img": "carrot.jpg",
+        "notes": "",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "pick",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "carrot",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "carrot_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "cotton",
+        "name": "Cotton",
+        "desc": "",
+        "img": "cotton.jpg",
+        "notes": "",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "pick",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "cotton",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "cotton_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "wheat",
+        "name": "Wheat",
+        "desc": "",
+        "img": "wheat.jpg",
+        "notes": "",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "pick",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "wheat",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "wheat_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "potato",
+        "name": "Potato",
+        "desc": "",
+        "img": "potato.jpg",
+        "notes": "",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "pick",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "potato",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "potato_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "natanz_cotton_flower",
+        "name": "Natanz Cotton Flower",
+        "desc": "",
+        "img": "natanz_cotton_flower.jpg",
+        "notes": "",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "pick",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "natanz_stearic",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "ammonite",
+        "name": "Ammonite",
+        "desc": "",
+        "img": "ammonite.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "ammonite",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "giant_mushroom",
+        "name": "Giant Mushroom",
+        "desc": "",
+        "img": "giant_mushroom.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "spore_ball",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "giant_mushroom_cap",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "giant_mushroom_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "spiritual_fire_ganoderma",
+        "name": "Spiritual Fire Ganoderma",
+        "desc": "",
+        "img": "spiritual_fire_ganoderma.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "spiritual_fire_ganoderma",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "violet_ganoderma",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "rippling_duckweed",
+        "name": "Rippling Duckweed",
+        "desc": "",
+        "img": "rippling_duckweed.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "rippling_duckweed",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "past_wine",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "gushing_flower",
+        "name": "Gushing Flower",
+        "desc": "",
+        "img": "gushing_flower.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "gushing_flower",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "earth_blossom",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "illusion_gold_cluster",
+        "name": "Illusion Gold Cluster",
+        "desc": "",
+        "img": "illusion_gold_cluster.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "illusion_gold_cluster",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "rainbow_stamen",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "natanz_fruit",
+        "name": "Natanz Fruit",
+        "desc": "",
+        "img": "natanz_fruit.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "natanz_fruit",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "natanz_fruit_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Rare"
+    },
+    {
+        "id": "cactus",
+        "name": "Cactus",
+        "desc": "",
+        "img": "cactus.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "yellow_flower",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Rare"
+    },
+    {
+        "id": "orange_flower",
+        "name": "Orange Flower",
+        "desc": "",
+        "img": "orange_flower.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "orange_flower",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "pistil",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "small_bee",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Rare"
+    },
+    {
+        "id": "violet_flower",
+        "name": "Violet Flower",
+        "desc": "",
+        "img": "violet_flower.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "violet_flower",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "pistil",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "small_bee",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Rare"
+    },
+    {
+        "id": "phantom_lily",
+        "name": "Phantom Lily",
+        "desc": "",
+        "img": "phantom_lily.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "green_phosphor",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "phantom_lily",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "pistil",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "small_bee",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Rare"
+    },
+    {
+        "id": "blue_devil",
+        "name": "Blue Devil",
+        "desc": "",
+        "img": "blue_devil.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "blue_phosphor",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "blue_devil",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "pistil",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "small_bee",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "mandala",
+        "name": "Mandala",
+        "desc": "",
+        "img": "mandala.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "purple_phosphor",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "mandala",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "pistil",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "small_bee",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "pink_flame",
+        "name": "Pink Flame",
+        "desc": "",
+        "img": "pink_flame.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "pink_phosphor",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "pink_flame",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "pistil",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "small_bee",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "venus_flytrap",
+        "name": "Venus Flytrap",
+        "desc": "",
+        "img": "venus_flytrap.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "venus_flytrap",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "rafflesia",
+        "name": "Rafflesia",
+        "desc": "",
+        "img": "rafflesia.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "rafflesia",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "sky_fruit",
+        "name": "Sky Fruit",
+        "desc": "",
+        "img": "sky_fruit.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "sky_fruit",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "date_palm_tree",
+        "name": "Date Palm Tree",
+        "desc": "",
+        "img": "date_palm_tree.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "date_palm",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "date_palm_flower",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "starred_flower",
+        "name": "Starred Flower",
+        "desc": "",
+        "img": "starred_flower.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "starred_flower",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "leyline_plant",
+        "name": "Leyline Plant",
+        "desc": "",
+        "img": "leyline_plant.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "leyline_leaf",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "crystal_stone_fruit",
+        "name": "Crystal Stone Fruit",
+        "desc": "",
+        "img": "crystal_stone_fruit.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "crystal_stone_fruit",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "white_lotus",
+        "name": "White Lotus",
+        "desc": "",
+        "img": "white_lotus.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "white_lotus",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "white_lotus_seed",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "elemental_essence_white_lotus",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Extremely Rare"
+    },
+    {
+        "id": "sunflower",
+        "name": "Sunflower",
+        "desc": "",
+        "img": "sunflower.jpg",
+        "notes": "by obsidn ruin by skull lake",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "sunflower_seed",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "elemental_essence_sunflower",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Extremely Rare"
+    },
+    {
+        "id": "natanz_sunflower",
+        "name": "Natanz Sunflower",
+        "desc": "",
+        "img": "natanz_sunflower.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "natanz_sunflower_seed",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Extremely Rare"
+    },
+    {
+        "id": "crystal_water_lily",
+        "name": "Crystal water Lily",
+        "desc": "",
+        "img": "crystal_water_lily.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "crystal_water_lily",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Extremely Rare"
+    },
+    {
+        "id": "frost_flower",
+        "name": "Frost Flower",
+        "desc": "",
+        "img": "frost_flower.jpg",
+        "notes": "",
+        "category": "Plants",
+        "subcategory": "NotFood",
+        "health": -1,
+        "tool": "hand",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "frost_flower",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "ice_crystal",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Extremely Rare"
+    },
+    {
+        "id": "marvelous_foam",
+        "name": "Marvelous Foam",
+        "desc": "",
+        "img": "marvelous_foam.jpg",
+        "notes": "",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "pick",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "scent_of_foam",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "scallop",
+        "name": "Scallop",
+        "desc": "",
+        "img": "scallop.jpg",
+        "notes": "",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "pick",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "large_scallop",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "scallop",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
+    {
+        "id": "natanz_blue_orb",
+        "name": "Natanz Blue Orb",
+        "desc": "",
+        "img": "natanz_blue_orb.jpg",
+        "notes": "",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "health": -1,
+        "tool": "pick",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "natanz_blue_orb",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "rarity": "Common"
+    },
 ]

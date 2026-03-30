@@ -26,11 +26,11 @@
             },
             "category": {
                 "type": "string",
-                "enum": ["Ore", "Trees"]
+                "enum": ["Ore", "Trees", "Plants"]
             },
             "subcategory": {
                 "type": "string",
-                "enum": ["determinSubCategory"]
+                "enum": ["determinSubCategory", "Food", "NotFood"]
             },
             "health":{
                 "type": "integer"

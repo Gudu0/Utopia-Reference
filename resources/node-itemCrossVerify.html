@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Node/Item JSONC Checker</title>
+</head>
+<body>
+    <h1>Node / Item JSONC Checker</h1>
+
+    <h2>node.jsonc</h2>
+    <textarea id="nodeInput" rows="20" cols="100" placeholder="Paste node.jsonc here"></textarea>
+
+    <h2>item.jsonc</h2>
+    <textarea id="itemInput" rows="20" cols="100" placeholder="Paste item.jsonc here"></textarea>
+
+    <br><br>
+    <button id="checkButton">Check</button>
+    <button id="fixButton">Fix img + item sources.node</button>
+
+    <hr>
+
+    <h2>Output</h2>
+    <div id="output"></div>
+
+    <h2>Fixed node.jsonc</h2>
+    <textarea id="fixedNodeOutput" rows="20" cols="100" readonly></textarea>
+
+    <h2>Fixed item.jsonc</h2>
+    <textarea id="fixedItemOutput" rows="20" cols="100" readonly></textarea>
+
+    <script>
+        const nodeInput = document.getElementById("nodeInput");
+        const itemInput = document.getElementById("itemInput");
+        const checkButton = document.getElementById("checkButton");
+        const fixButton = document.getElementById("fixButton");
+        const output = document.getElementById("output");
+        const fixedNodeOutput = document.getElementById("fixedNodeOutput");
+        const fixedItemOutput = document.getElementById("fixedItemOutput");
+
+        function clearOutput() {
+            output.innerHTML = "";
+        }
+
+        function addLine(text) {
+            const p = document.createElement("p");
+            p.textContent = text;
+            output.appendChild(p);
+        }
+
+        function stripSingleLineComments(text) {
+            const lines = text.split("\n");
+            const cleanedLines = [];
+
+            for (const line of lines) {
+                let inString = false;
+                let escaped = false;
+                let cleanedLine = "";
+
+                for (let i = 0; i < line.length; i++) {
+                    const char = line[i];
+                    const nextChar = line[i + 1];
+
+                    if (escaped) {
+                        cleanedLine += char;
+                        escaped = false;
+                        continue;
+                    }
+
+                    if (char === "\\") {
+                        cleanedLine += char;
+                        if (inString) {
+                            escaped = true;
+                        }
+                        continue;
+                    }
+
+                    if (char === "\"") {
+                        cleanedLine += char;
+                        inString = !inString;
+                        continue;
+                    }
+
+                    if (!inString && char === "/" && nextChar === "/") {
+                        break;
+                    }
+
+                    cleanedLine += char;
+                }
+
+                cleanedLines.push(cleanedLine);
+            }
+
+            return cleanedLines.join("\n");
+        }
+
+        function parseJsonc(text, label) {
+            try {
+                return JSON.parse(stripSingleLineComments(text));
+            } catch (error) {
+                throw new Error(`${label}: invalid JSON/JSONC -> ${error.message}`);
+            }
+        }
+
+        function isObject(value) {
+            return value !== null && typeof value === "object" && !Array.isArray(value);
+        }
+
+        function deepClone(value) {
+            return JSON.parse(JSON.stringify(value));
+        }
+
+        function getNodeDropItemIds(node) {
+            const result = [];
+            const dropItems = node?.drops?.items;
+
+            if (!isObject(dropItems)) {
+                return result;
+            }
+
+            for (const dropKey of Object.keys(dropItems)) {
+                const drop = dropItems[dropKey];
+                if (isObject(drop) && typeof drop.id === "string") {
+                    result.push(drop.id);
+                }
+            }
+
+            return result;
+        }
+
+        function getItemSourceNodeIds(item) {
+            const nodeSources = item?.sources?.node;
+            if (!Array.isArray(nodeSources)) {
+                return [];
+            }
+
+            return nodeSources.filter(value => typeof value === "string");
+        }
+
+        function buildIdMap(array, label) {
+            const map = new Map();
+
+            for (let i = 0; i < array.length; i++) {
+                const entry = array[i];
+                if (!isObject(entry)) {
+                    continue;
+                }
+
+                const id = entry.id;
+                if (typeof id !== "string") {
+                    continue;
+                }
+
+                if (!map.has(id)) {
+                    map.set(id, []);
+                }
+
+                map.get(id).push(i);
+            }
+
+            for (const [id, indexes] of map.entries()) {
+                if (indexes.length > 1) {
+                    addLine(`${label}: duplicate id "${id}" at indexes ${indexes.join(", ")}`);
+                }
+            }
+
+            return map;
+        }
+
+        function buildNodeToDroppedItems(nodes) {
+            const map = new Map();
+
+            for (const node of nodes) {
+                if (!isObject(node) || typeof node.id !== "string") {
+                    continue;
+                }
+
+                map.set(node.id, new Set(getNodeDropItemIds(node)));
+            }
+
+            return map;
+        }
+
+        function buildItemToSourceNodes(items) {
+            const map = new Map();
+
+            for (const item of items) {
+                if (!isObject(item) || typeof item.id !== "string") {
+                    continue;
+                }
+
+                map.set(item.id, new Set(getItemSourceNodeIds(item)));
+            }
+
+            return map;
+        }
+
+        function buildDroppedByNodesMap(nodes) {
+            const map = new Map();
+
+            for (const node of nodes) {
+                if (!isObject(node) || typeof node.id !== "string") {
+                    continue;
+                }
+
+                const nodeId = node.id;
+                const dropItemIds = getNodeDropItemIds(node);
+
+                for (const itemId of dropItemIds) {
+                    if (!map.has(itemId)) {
+                        map.set(itemId, new Set());
+                    }
+                    map.get(itemId).add(nodeId);
+                }
+            }
+
+            return map;
+        }
+
+        function checkImgMatchesId(entries, label) {
+            for (let i = 0; i < entries.length; i++) {
+                const entry = entries[i];
+                if (!isObject(entry)) {
+                    addLine(`${label}[${i}]: not an object`);
+                    continue;
+                }
+
+                const id = entry.id;
+                const img = entry.img;
+
+                if (typeof id !== "string") {
+                    addLine(`${label}[${i}]: missing or invalid id`);
+                    continue;
+                }
+
+                const expectedImg = `${id}.jpg`;
+
+                if (img !== expectedImg) {
+                    addLine(`${label}[${i}] "${id}": img is "${img}", expected "${expectedImg}"`);
+                }
+            }
+        }
+
+        function checkCrossFile(nodes, items) {
+            const nodeIdMap = buildIdMap(nodes, "nodes");
+            const itemIdMap = buildIdMap(items, "items");
+
+            const validNodeIds = new Set(nodeIdMap.keys());
+            const validItemIds = new Set(itemIdMap.keys());
+
+            const nodeToDroppedItems = buildNodeToDroppedItems(nodes);
+            const itemToSourceNodes = buildItemToSourceNodes(items);
+
+            for (let i = 0; i < nodes.length; i++) {
+                const node = nodes[i];
+                if (!isObject(node) || typeof node.id !== "string") {
+                    continue;
+                }
+
+                const nodeId = node.id;
+                const droppedItemIds = getNodeDropItemIds(node);
+
+                for (const itemId of droppedItemIds) {
+                    if (!validItemIds.has(itemId)) {
+                        addLine(`nodes[${i}] "${nodeId}": drop item "${itemId}" does not exist in item ids`);
+                        continue;
+                    }
+
+                    const itemSourceNodes = itemToSourceNodes.get(itemId) || new Set();
+                    if (!itemSourceNodes.has(nodeId)) {
+                        addLine(`Mismatch: node "${nodeId}" drops item "${itemId}", but item "${itemId}" does not list "${nodeId}" in sources.node`);
+                    }
+                }
+            }
+
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i];
+                if (!isObject(item) || typeof item.id !== "string") {
+                    continue;
+                }
+
+                const itemId = item.id;
+                const sourceNodeIds = getItemSourceNodeIds(item);
+
+                for (const nodeId of sourceNodeIds) {
+                    if (!validNodeIds.has(nodeId)) {
+                        addLine(`items[${i}] "${itemId}": source node "${nodeId}" does not exist in node ids`);
+                        continue;
+                    }
+
+                    const droppedItems = nodeToDroppedItems.get(nodeId) || new Set();
+                    if (!droppedItems.has(itemId)) {
+                        addLine(`Mismatch: item "${itemId}" lists node "${nodeId}" in sources.node, but node "${nodeId}" does not drop "${itemId}"`);
+                    }
+                }
+            }
+        }
+
+        function fixImgs(entries, label) {
+            let changes = 0;
+
+            for (let i = 0; i < entries.length; i++) {
+                const entry = entries[i];
+                if (!isObject(entry) || typeof entry.id !== "string") {
+                    continue;
+                }
+
+                const expectedImg = `${entry.id}.jpg`;
+                if (entry.img !== expectedImg) {
+                    entry.img = expectedImg;
+                    changes++;
+                    addLine(`Fixed ${label}[${i}] "${entry.id}" img -> "${expectedImg}"`);
+                }
+            }
+
+            return changes;
+        }
+
+        function fixItemSourcesFromNodes(nodes, items) {
+            let changes = 0;
+            const validNodeIds = new Set();
+
+            for (const node of nodes) {
+                if (isObject(node) && typeof node.id === "string") {
+                    validNodeIds.add(node.id);
+                }
+            }
+
+            const droppedByNodesMap = buildDroppedByNodesMap(nodes);
+
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i];
+                if (!isObject(item) || typeof item.id !== "string") {
+                    continue;
+                }
+
+                if (!isObject(item.sources)) {
+                    item.sources = {};
+                    changes++;
+                    addLine(`Fixed items[${i}] "${item.id}": created sources object`);
+                }
+
+                const expectedNodeSources = Array.from(droppedByNodesMap.get(item.id) || []);
+                expectedNodeSources.sort();
+
+                const currentNodeSources = Array.isArray(item.sources.node)
+                    ? item.sources.node.filter(value => typeof value === "string" && validNodeIds.has(value))
+                    : [];
+
+                const currentSorted = [...currentNodeSources].sort();
+
+                const sameLength = currentSorted.length === expectedNodeSources.length;
+                const sameValues = sameLength && currentSorted.every((value, index) => value === expectedNodeSources[index]);
+
+                if (!sameValues || !Array.isArray(item.sources.node)) {
+                    item.sources.node = expectedNodeSources;
+                    changes++;
+                    addLine(`Fixed items[${i}] "${item.id}" sources.node -> [${expectedNodeSources.join(", ")}]`);
+                }
+            }
+
+            return changes;
+        }
+
+        function runCheck() {
+            clearOutput();
+            fixedNodeOutput.value = "";
+            fixedItemOutput.value = "";
+
+            let nodes;
+            let items;
+
+            try {
+                nodes = parseJsonc(nodeInput.value, "node.jsonc");
+                items = parseJsonc(itemInput.value, "item.jsonc");
+            } catch (error) {
+                addLine(error.message);
+                return;
+            }
+
+            if (!Array.isArray(nodes)) {
+                addLine("node.jsonc: top level must be an array");
+                return;
+            }
+
+            if (!Array.isArray(items)) {
+                addLine("item.jsonc: top level must be an array");
+                return;
+            }
+
+            addLine(`Loaded ${nodes.length} nodes`);
+            addLine(`Loaded ${items.length} items`);
+
+            checkImgMatchesId(nodes, "nodes");
+            checkImgMatchesId(items, "items");
+            checkCrossFile(nodes, items);
+
+            addLine("Check complete.");
+        }
+
+        function runFix() {
+            clearOutput();
+
+            let nodes;
+            let items;
+
+            try {
+                nodes = parseJsonc(nodeInput.value, "node.jsonc");
+                items = parseJsonc(itemInput.value, "item.jsonc");
+            } catch (error) {
+                addLine(error.message);
+                return;
+            }
+
+            if (!Array.isArray(nodes)) {
+                addLine("node.jsonc: top level must be an array");
+                return;
+            }
+
+            if (!Array.isArray(items)) {
+                addLine("item.jsonc: top level must be an array");
+                return;
+            }
+
+            const fixedNodes = deepClone(nodes);
+            const fixedItems = deepClone(items);
+
+            let totalChanges = 0;
+            totalChanges += fixImgs(fixedNodes, "nodes");
+            totalChanges += fixImgs(fixedItems, "items");
+            totalChanges += fixItemSourcesFromNodes(fixedNodes, fixedItems);
+
+            fixedNodeOutput.value = JSON.stringify(fixedNodes, null, 4);
+            fixedItemOutput.value = JSON.stringify(fixedItems, null, 4);
+
+            addLine(`Fix complete. ${totalChanges} change(s) made.`);
+        }
+
+        checkButton.addEventListener("click", runCheck);
+        fixButton.addEventListener("click", runFix);
+    </script>
+</body>
+</html>
