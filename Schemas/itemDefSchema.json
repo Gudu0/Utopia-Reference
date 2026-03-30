@@ -55,15 +55,18 @@
       },
       "category": {
         "type": "string",
-        "enum": ["Material", "Food", "Equippable", "Useable", "Bulding"]
+        "enum": ["Material", "Food", "Equippable", "Useable", "Bulding"],
+        "pattern": "^[A-Z]"
       },
       "subcategory": {
         "type": "string",
-        "enum": ["Ore", "Bar", "Drop", "Wood", "BBQ", "DetermineSubcategory", "Additives", "EnchantStone"]
+        "enum": ["Ore", "Bar", "Drop", "Wood", "BBQ", "DetermineSubcategory", "Additives", "EnchantStone", "Plant"],
+        "pattern": "^[A-Z]"
       },
       "rarity": {
         "type": "string",
-        "enum": ["common", "uncommon", "rare", "epic", "legendary"]
+        "enum": ["common", "uncommon", "rare", "epic", "legendary"],
+        "pattern": "^[a-z]"
       },
       "bound":{
         "type":"boolean"

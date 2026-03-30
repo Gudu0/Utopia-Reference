@@ -71,10 +71,10 @@
         "allOf": [
             {
                 "if": {
-                    "required": ["health"]
+                    "required": ["tool"]
                 },
                 "then": {
-                    "required": ["tool"]
+                    "required": ["health"]
                 }
             }
         ],

@@ -30,7 +30,9 @@
                 }
             },
             "xp": 400
-        }
+        },
+        "tool":"pick",
+        "health": 0
     },
     {
         "id": "stone_mine",
@@ -59,6 +61,8 @@
                 }
             },
             "xp": 200
-        }
+        },
+        "tool":"pick",
+        "health": 0
     }
 ]
