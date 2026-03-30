@@ -220,16 +220,13 @@ function renderNodeDetails(node) {
 }
 
 function renderNodeDropsSection(node) {
-    if (!node.drops?.items) {
-        return "";
-    }
-
-    const itemDrops = Object.values(node.drops.items);
-    if (!itemDrops.length) {
+    const itemDrops = node.drops?.items;
+    if (!Array.isArray(itemDrops) || !itemDrops.length) {
         return "";
     }
 
     const cards = itemDrops.map(drop => {
+        // 'drop' is now directly { id: "...", amount: "..." }
         const item = getItemById(drop.id);
         const itemName = item ? item.name : drop.id;
         const itemImg = item?.img;
