@@ -3,30 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <title>Node/Item JSONC Checker</title>
+    <style>
+        body { font-family: sans-serif; padding: 16px; max-width: 1100px; margin: 0 auto; }
+        h1, h2 { margin-bottom: 6px; }
+        textarea { width: 100%; box-sizing: border-box; font-family: monospace; font-size: 12px; }
+        .github-row { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; flex-wrap: wrap; }
+        .github-row input { flex: 1; min-width: 200px; font-family: monospace; font-size: 12px; padding: 4px 6px; border: 1px solid #ccc; border-radius: 4px; }
+        .github-row button { padding: 4px 10px; cursor: pointer; }
+        .controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 8px 0; }
+        .controls button { padding: 6px 14px; cursor: pointer; }
+        .filter-bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
+        .filter-bar label { font-weight: bold; }
+        .filter-bar input[type=text] { flex: 1; min-width: 200px; padding: 4px 8px; font-size: 13px; border: 1px solid #ccc; border-radius: 4px; }
+        .filter-btn { padding: 3px 10px; cursor: pointer; border: 1px solid #999; border-radius: 4px; background: #f0f0f0; font-size: 12px; }
+        .filter-btn.active { background: #333; color: #fff; border-color: #333; }
+        #output p { margin: 3px 0; font-family: monospace; font-size: 13px; }
+        #output p.hidden { display: none; }
+        .status-ok { color: green; }
+        .status-err { color: #c00; }
+        .status-info { color: #555; }
+        #matchCount { font-size: 12px; color: #666; margin-left: 8px; }
+    </style>
 </head>
 <body>
     <h1>Node / Item JSONC Checker</h1>
 
+    <h2>Load from GitHub</h2>
+    <div class="github-row">
+        <input id="nodeUrl" type="text" placeholder="node.jsonc raw GitHub URL (e.g. https://raw.githubusercontent.com/user/repo/main/node.jsonc)" value="https://raw.githubusercontent.com/Gudu0/Utopia-Reference/refs/heads/main/encyclopedia/data/nodeDef.jsonc"/>
+        <button id="loadNodeBtn">Load node.jsonc</button>
+        <span id="nodeLoadStatus"></span>
+    </div>
+    <div class="github-row">
+        <input id="itemUrl" type="text" placeholder="item.jsonc raw GitHub URL" value="https://raw.githubusercontent.com/Gudu0/Utopia-Reference/refs/heads/main/encyclopedia/data/itemDef.jsonc"/>
+        <button id="loadItemBtn">Load item.jsonc</button>
+        <span id="itemLoadStatus"></span>
+    </div>
+
     <h2>node.jsonc</h2>
-    <textarea id="nodeInput" rows="20" cols="100" placeholder="Paste node.jsonc here"></textarea>
+    <textarea id="nodeInput" rows="12" placeholder="Paste node.jsonc here, or load from GitHub above"></textarea>
 
     <h2>item.jsonc</h2>
-    <textarea id="itemInput" rows="20" cols="100" placeholder="Paste item.jsonc here"></textarea>
+    <textarea id="itemInput" rows="12" placeholder="Paste item.jsonc here, or load from GitHub above"></textarea>
 
-    <br><br>
-    <button id="checkButton">Check</button>
-    <button id="fixButton">Fix img + item sources.node</button>
+    <div class="controls">
+        <button id="checkButton">Check</button>
+        <button id="fixButton">Fix img + item sources.node</button>
+    </div>
 
     <hr>
 
     <h2>Output</h2>
+    <div class="filter-bar">
+        <label>Filter:</label>
+        <input type="text" id="filterText" placeholder="Search errors by text..." />
+        <button class="filter-btn active" data-type="all">All</button>
+        <button class="filter-btn" data-type="mismatch">Mismatches</button>
+        <button class="filter-btn" data-type="missing">Missing IDs</button>
+        <button class="filter-btn" data-type="img">Img</button>
+        <button class="filter-btn" data-type="duplicate">Duplicates</button>
+        <button class="filter-btn" data-type="info">Info / Status</button>
+        <span id="matchCount"></span>
+    </div>
     <div id="output"></div>
 
     <h2>Fixed node.jsonc</h2>
-    <textarea id="fixedNodeOutput" rows="20" cols="100" readonly></textarea>
+    <textarea id="fixedNodeOutput" rows="12" readonly></textarea>
 
     <h2>Fixed item.jsonc</h2>
-    <textarea id="fixedItemOutput" rows="20" cols="100" readonly></textarea>
+    <textarea id="fixedItemOutput" rows="12" readonly></textarea>
 
     <script>
         const nodeInput = document.getElementById("nodeInput");
@@ -36,60 +81,163 @@
         const output = document.getElementById("output");
         const fixedNodeOutput = document.getElementById("fixedNodeOutput");
         const fixedItemOutput = document.getElementById("fixedItemOutput");
+        const filterText = document.getElementById("filterText");
+        const matchCount = document.getElementById("matchCount");
+
+        // --- GitHub loading ---
+
+        // Parse any GitHub URL variant into { owner, repo, branch, filePath }
+        function parseGithubUrl(url) {
+            const u = url.trim();
+            const rawMatch = u.match(
+                /^https:\/\/raw\.githubusercontent\.com\/([^/]+)\/([^/]+)\/(?:refs\/heads\/)?([^/]+)\/(.+)$/
+            );
+            if (rawMatch) return { owner: rawMatch[1], repo: rawMatch[2], branch: rawMatch[3], filePath: rawMatch[4] };
+
+            const blobMatch = u.match(
+                /^https:\/\/github\.com\/([^/]+)\/([^/]+)\/blob\/([^/]+)\/(.+)$/
+            );
+            if (blobMatch) return { owner: blobMatch[1], repo: blobMatch[2], branch: blobMatch[3], filePath: blobMatch[4] };
+
+            return null;
+        }
+
+        async function loadFromGithub(url, textarea, statusEl) {
+            statusEl.textContent = "Loading...";
+            statusEl.style.color = "#555";
+
+            const parsed = parseGithubUrl(url.trim());
+
+            // Strategy 1: GitHub Contents API — proper CORS headers, no proxy needed
+            if (parsed) {
+                try {
+                    const apiUrl = `https://api.github.com/repos/${parsed.owner}/${parsed.repo}/contents/${parsed.filePath}?ref=${parsed.branch}`;
+                    const res = await fetch(apiUrl, { headers: { Accept: "application/vnd.github.raw+json" } });
+                    if (!res.ok) throw new Error(`GitHub API HTTP ${res.status}`);
+                    textarea.value = await res.text();
+                    statusEl.textContent = "✓ Loaded";
+                    statusEl.style.color = "green";
+                    return;
+                } catch (_) { /* fall through */ }
+            }
+
+            // Strategy 2: corsproxy.io with correct /?url= format
+            const rawUrl = parsed
+                ? `https://raw.githubusercontent.com/${parsed.owner}/${parsed.repo}/${parsed.branch}/${parsed.filePath}`
+                : url.trim().replace("https://github.com/", "https://raw.githubusercontent.com/").replace("/blob/", "/").replace(/\/refs\/heads\//, "/");
+
+            try {
+                const res = await fetch(`https://corsproxy.io/?url=${encodeURIComponent(rawUrl)}`);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                textarea.value = await res.text();
+                statusEl.textContent = "✓ Loaded (via proxy)";
+                statusEl.style.color = "green";
+            } catch (err) {
+                statusEl.textContent = "✗ Failed — check the URL and try again";
+                statusEl.style.color = "#c00";
+            }
+        }
+
+        document.getElementById("loadNodeBtn").addEventListener("click", () => {
+            loadFromGithub(
+                document.getElementById("nodeUrl").value,
+                nodeInput,
+                document.getElementById("nodeLoadStatus")
+            );
+        });
+
+        document.getElementById("loadItemBtn").addEventListener("click", () => {
+            loadFromGithub(
+                document.getElementById("itemUrl").value,
+                itemInput,
+                document.getElementById("itemLoadStatus")
+            );
+        });
+
+        // --- Filtering ---
+
+        let activeTypeFilter = "all";
+
+        document.querySelectorAll(".filter-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                activeTypeFilter = btn.dataset.type;
+                applyFilters();
+            });
+        });
+
+        filterText.addEventListener("input", applyFilters);
+
+        function classifyLine(text) {
+            const t = text.toLowerCase();
+            if (t.startsWith("loaded ") || t.startsWith("check complete") || t.startsWith("fix complete")) return "info";
+            if (t.includes("duplicate")) return "duplicate";
+            if (t.includes("img")) return "img";
+            if (t.includes("does not exist")) return "missing";
+            if (t.includes("mismatch")) return "mismatch";
+            if (t.startsWith("fixed ")) return "info";
+            return "other";
+        }
+
+        function applyFilters() {
+            const search = filterText.value.toLowerCase();
+            const lines = output.querySelectorAll("p");
+            let visible = 0;
+
+            lines.forEach(p => {
+                const text = p.textContent.toLowerCase();
+                const type = p.dataset.type;
+
+                const typeMatch = activeTypeFilter === "all" || type === activeTypeFilter || (activeTypeFilter === "info" && type === "info");
+                const textMatch = !search || text.includes(search);
+
+                if (typeMatch && textMatch) {
+                    p.classList.remove("hidden");
+                    visible++;
+                } else {
+                    p.classList.add("hidden");
+                }
+            });
+
+            const total = lines.length;
+            matchCount.textContent = total ? `Showing ${visible} of ${total}` : "";
+        }
+
+        // --- Core logic (unchanged) ---
 
         function clearOutput() {
             output.innerHTML = "";
+            matchCount.textContent = "";
         }
 
-        function addLine(text) {
+        function addLine(text, forceType) {
             const p = document.createElement("p");
             p.textContent = text;
+            const type = forceType || classifyLine(text);
+            p.dataset.type = type;
+            if (type === "info") p.classList.add("status-info");
             output.appendChild(p);
         }
 
         function stripSingleLineComments(text) {
             const lines = text.split("\n");
             const cleanedLines = [];
-
             for (const line of lines) {
                 let inString = false;
                 let escaped = false;
                 let cleanedLine = "";
-
                 for (let i = 0; i < line.length; i++) {
                     const char = line[i];
                     const nextChar = line[i + 1];
-
-                    if (escaped) {
-                        cleanedLine += char;
-                        escaped = false;
-                        continue;
-                    }
-
-                    if (char === "\\") {
-                        cleanedLine += char;
-                        if (inString) {
-                            escaped = true;
-                        }
-                        continue;
-                    }
-
-                    if (char === "\"") {
-                        cleanedLine += char;
-                        inString = !inString;
-                        continue;
-                    }
-
-                    if (!inString && char === "/" && nextChar === "/") {
-                        break;
-                    }
-
+                    if (escaped) { cleanedLine += char; escaped = false; continue; }
+                    if (char === "\\") { cleanedLine += char; if (inString) escaped = true; continue; }
+                    if (char === "\"") { cleanedLine += char; inString = !inString; continue; }
+                    if (!inString && char === "/" && nextChar === "/") break;
                     cleanedLine += char;
                 }
-
                 cleanedLines.push(cleanedLine);
             }
-
             return cleanedLines.join("\n");
         }
 
@@ -101,263 +249,149 @@
             }
         }
 
-        function isObject(value) {
-            return value !== null && typeof value === "object" && !Array.isArray(value);
-        }
-
-        function deepClone(value) {
-            return JSON.parse(JSON.stringify(value));
-        }
+        function isObject(value) { return value !== null && typeof value === "object" && !Array.isArray(value); }
+        function deepClone(value) { return JSON.parse(JSON.stringify(value)); }
 
         function getNodeDropItemIds(node) {
             const result = [];
             const dropItems = node?.drops?.items;
-
-            if (!isObject(dropItems)) {
-                return result;
-            }
-
+            if (!isObject(dropItems)) return result;
             for (const dropKey of Object.keys(dropItems)) {
                 const drop = dropItems[dropKey];
-                if (isObject(drop) && typeof drop.id === "string") {
-                    result.push(drop.id);
-                }
+                if (isObject(drop) && typeof drop.id === "string") result.push(drop.id);
             }
-
             return result;
         }
 
         function getItemSourceNodeIds(item) {
             const nodeSources = item?.sources?.node;
-            if (!Array.isArray(nodeSources)) {
-                return [];
-            }
-
+            if (!Array.isArray(nodeSources)) return [];
             return nodeSources.filter(value => typeof value === "string");
         }
 
         function buildIdMap(array, label) {
             const map = new Map();
-
             for (let i = 0; i < array.length; i++) {
                 const entry = array[i];
-                if (!isObject(entry)) {
-                    continue;
-                }
-
+                if (!isObject(entry)) continue;
                 const id = entry.id;
-                if (typeof id !== "string") {
-                    continue;
-                }
-
-                if (!map.has(id)) {
-                    map.set(id, []);
-                }
-
+                if (typeof id !== "string") continue;
+                if (!map.has(id)) map.set(id, []);
                 map.get(id).push(i);
             }
-
             for (const [id, indexes] of map.entries()) {
-                if (indexes.length > 1) {
-                    addLine(`${label}: duplicate id "${id}" at indexes ${indexes.join(", ")}`);
-                }
+                if (indexes.length > 1) addLine(`${label}: duplicate id "${id}" at indexes ${indexes.join(", ")}`);
             }
-
             return map;
         }
 
         function buildNodeToDroppedItems(nodes) {
             const map = new Map();
-
             for (const node of nodes) {
-                if (!isObject(node) || typeof node.id !== "string") {
-                    continue;
-                }
-
+                if (!isObject(node) || typeof node.id !== "string") continue;
                 map.set(node.id, new Set(getNodeDropItemIds(node)));
             }
-
             return map;
         }
 
         function buildItemToSourceNodes(items) {
             const map = new Map();
-
             for (const item of items) {
-                if (!isObject(item) || typeof item.id !== "string") {
-                    continue;
-                }
-
+                if (!isObject(item) || typeof item.id !== "string") continue;
                 map.set(item.id, new Set(getItemSourceNodeIds(item)));
             }
-
             return map;
         }
 
         function buildDroppedByNodesMap(nodes) {
             const map = new Map();
-
             for (const node of nodes) {
-                if (!isObject(node) || typeof node.id !== "string") {
-                    continue;
-                }
-
+                if (!isObject(node) || typeof node.id !== "string") continue;
                 const nodeId = node.id;
-                const dropItemIds = getNodeDropItemIds(node);
-
-                for (const itemId of dropItemIds) {
-                    if (!map.has(itemId)) {
-                        map.set(itemId, new Set());
-                    }
+                for (const itemId of getNodeDropItemIds(node)) {
+                    if (!map.has(itemId)) map.set(itemId, new Set());
                     map.get(itemId).add(nodeId);
                 }
             }
-
             return map;
         }
 
         function checkImgMatchesId(entries, label) {
             for (let i = 0; i < entries.length; i++) {
                 const entry = entries[i];
-                if (!isObject(entry)) {
-                    addLine(`${label}[${i}]: not an object`);
-                    continue;
-                }
-
+                if (!isObject(entry)) { addLine(`${label}[${i}]: not an object`); continue; }
                 const id = entry.id;
                 const img = entry.img;
-
-                if (typeof id !== "string") {
-                    addLine(`${label}[${i}]: missing or invalid id`);
-                    continue;
-                }
-
+                if (typeof id !== "string") { addLine(`${label}[${i}]: missing or invalid id`); continue; }
                 const expectedImg = `${id}.jpg`;
-
-                if (img !== expectedImg) {
-                    addLine(`${label}[${i}] "${id}": img is "${img}", expected "${expectedImg}"`);
-                }
+                if (img !== expectedImg) addLine(`${label}[${i}] "${id}": img is "${img}", expected "${expectedImg}"`);
             }
         }
 
         function checkCrossFile(nodes, items) {
             const nodeIdMap = buildIdMap(nodes, "nodes");
             const itemIdMap = buildIdMap(items, "items");
-
             const validNodeIds = new Set(nodeIdMap.keys());
             const validItemIds = new Set(itemIdMap.keys());
-
             const nodeToDroppedItems = buildNodeToDroppedItems(nodes);
             const itemToSourceNodes = buildItemToSourceNodes(items);
 
             for (let i = 0; i < nodes.length; i++) {
                 const node = nodes[i];
-                if (!isObject(node) || typeof node.id !== "string") {
-                    continue;
-                }
-
+                if (!isObject(node) || typeof node.id !== "string") continue;
                 const nodeId = node.id;
-                const droppedItemIds = getNodeDropItemIds(node);
-
-                for (const itemId of droppedItemIds) {
-                    if (!validItemIds.has(itemId)) {
-                        addLine(`nodes[${i}] "${nodeId}": drop item "${itemId}" does not exist in item ids`);
-                        continue;
-                    }
-
+                for (const itemId of getNodeDropItemIds(node)) {
+                    if (!validItemIds.has(itemId)) { addLine(`nodes[${i}] "${nodeId}": drop item "${itemId}" does not exist in item ids`); continue; }
                     const itemSourceNodes = itemToSourceNodes.get(itemId) || new Set();
-                    if (!itemSourceNodes.has(nodeId)) {
-                        addLine(`Mismatch: node "${nodeId}" drops item "${itemId}", but item "${itemId}" does not list "${nodeId}" in sources.node`);
-                    }
+                    if (!itemSourceNodes.has(nodeId)) addLine(`Mismatch: node "${nodeId}" drops item "${itemId}", but item "${itemId}" does not list "${nodeId}" in sources.node`);
                 }
             }
 
             for (let i = 0; i < items.length; i++) {
                 const item = items[i];
-                if (!isObject(item) || typeof item.id !== "string") {
-                    continue;
-                }
-
+                if (!isObject(item) || typeof item.id !== "string") continue;
                 const itemId = item.id;
-                const sourceNodeIds = getItemSourceNodeIds(item);
-
-                for (const nodeId of sourceNodeIds) {
-                    if (!validNodeIds.has(nodeId)) {
-                        addLine(`items[${i}] "${itemId}": source node "${nodeId}" does not exist in node ids`);
-                        continue;
-                    }
-
+                for (const nodeId of getItemSourceNodeIds(item)) {
+                    if (!validNodeIds.has(nodeId)) { addLine(`items[${i}] "${itemId}": source node "${nodeId}" does not exist in node ids`); continue; }
                     const droppedItems = nodeToDroppedItems.get(nodeId) || new Set();
-                    if (!droppedItems.has(itemId)) {
-                        addLine(`Mismatch: item "${itemId}" lists node "${nodeId}" in sources.node, but node "${nodeId}" does not drop "${itemId}"`);
-                    }
+                    if (!droppedItems.has(itemId)) addLine(`Mismatch: item "${itemId}" lists node "${nodeId}" in sources.node, but node "${nodeId}" does not drop "${itemId}"`);
                 }
             }
         }
 
         function fixImgs(entries, label) {
             let changes = 0;
-
             for (let i = 0; i < entries.length; i++) {
                 const entry = entries[i];
-                if (!isObject(entry) || typeof entry.id !== "string") {
-                    continue;
-                }
-
+                if (!isObject(entry) || typeof entry.id !== "string") continue;
                 const expectedImg = `${entry.id}.jpg`;
-                if (entry.img !== expectedImg) {
-                    entry.img = expectedImg;
-                    changes++;
-                    addLine(`Fixed ${label}[${i}] "${entry.id}" img -> "${expectedImg}"`);
-                }
+                if (entry.img !== expectedImg) { entry.img = expectedImg; changes++; addLine(`Fixed ${label}[${i}] "${entry.id}" img -> "${expectedImg}"`); }
             }
-
             return changes;
         }
 
         function fixItemSourcesFromNodes(nodes, items) {
             let changes = 0;
             const validNodeIds = new Set();
-
-            for (const node of nodes) {
-                if (isObject(node) && typeof node.id === "string") {
-                    validNodeIds.add(node.id);
-                }
-            }
-
+            for (const node of nodes) { if (isObject(node) && typeof node.id === "string") validNodeIds.add(node.id); }
             const droppedByNodesMap = buildDroppedByNodesMap(nodes);
 
             for (let i = 0; i < items.length; i++) {
                 const item = items[i];
-                if (!isObject(item) || typeof item.id !== "string") {
-                    continue;
-                }
-
-                if (!isObject(item.sources)) {
-                    item.sources = {};
-                    changes++;
-                    addLine(`Fixed items[${i}] "${item.id}": created sources object`);
-                }
-
-                const expectedNodeSources = Array.from(droppedByNodesMap.get(item.id) || []);
-                expectedNodeSources.sort();
-
+                if (!isObject(item) || typeof item.id !== "string") continue;
+                if (!isObject(item.sources)) { item.sources = {}; changes++; addLine(`Fixed items[${i}] "${item.id}": created sources object`); }
+                const expectedNodeSources = Array.from(droppedByNodesMap.get(item.id) || []).sort();
                 const currentNodeSources = Array.isArray(item.sources.node)
                     ? item.sources.node.filter(value => typeof value === "string" && validNodeIds.has(value))
                     : [];
-
                 const currentSorted = [...currentNodeSources].sort();
-
-                const sameLength = currentSorted.length === expectedNodeSources.length;
-                const sameValues = sameLength && currentSorted.every((value, index) => value === expectedNodeSources[index]);
-
+                const sameValues = currentSorted.length === expectedNodeSources.length && currentSorted.every((v, idx) => v === expectedNodeSources[idx]);
                 if (!sameValues || !Array.isArray(item.sources.node)) {
                     item.sources.node = expectedNodeSources;
                     changes++;
                     addLine(`Fixed items[${i}] "${item.id}" sources.node -> [${expectedNodeSources.join(", ")}]`);
                 }
             }
-
             return changes;
         }
 
@@ -365,74 +399,41 @@
             clearOutput();
             fixedNodeOutput.value = "";
             fixedItemOutput.value = "";
-
-            let nodes;
-            let items;
-
+            let nodes, items;
             try {
                 nodes = parseJsonc(nodeInput.value, "node.jsonc");
                 items = parseJsonc(itemInput.value, "item.jsonc");
-            } catch (error) {
-                addLine(error.message);
-                return;
-            }
-
-            if (!Array.isArray(nodes)) {
-                addLine("node.jsonc: top level must be an array");
-                return;
-            }
-
-            if (!Array.isArray(items)) {
-                addLine("item.jsonc: top level must be an array");
-                return;
-            }
-
-            addLine(`Loaded ${nodes.length} nodes`);
-            addLine(`Loaded ${items.length} items`);
-
+            } catch (error) { addLine(error.message); return; }
+            if (!Array.isArray(nodes)) { addLine("node.jsonc: top level must be an array"); return; }
+            if (!Array.isArray(items)) { addLine("item.jsonc: top level must be an array"); return; }
+            addLine(`Loaded ${nodes.length} nodes`, "info");
+            addLine(`Loaded ${items.length} items`, "info");
             checkImgMatchesId(nodes, "nodes");
             checkImgMatchesId(items, "items");
             checkCrossFile(nodes, items);
-
-            addLine("Check complete.");
+            addLine("Check complete.", "info");
+            applyFilters();
         }
 
         function runFix() {
             clearOutput();
-
-            let nodes;
-            let items;
-
+            let nodes, items;
             try {
                 nodes = parseJsonc(nodeInput.value, "node.jsonc");
                 items = parseJsonc(itemInput.value, "item.jsonc");
-            } catch (error) {
-                addLine(error.message);
-                return;
-            }
-
-            if (!Array.isArray(nodes)) {
-                addLine("node.jsonc: top level must be an array");
-                return;
-            }
-
-            if (!Array.isArray(items)) {
-                addLine("item.jsonc: top level must be an array");
-                return;
-            }
-
+            } catch (error) { addLine(error.message); return; }
+            if (!Array.isArray(nodes)) { addLine("node.jsonc: top level must be an array"); return; }
+            if (!Array.isArray(items)) { addLine("item.jsonc: top level must be an array"); return; }
             const fixedNodes = deepClone(nodes);
             const fixedItems = deepClone(items);
-
             let totalChanges = 0;
             totalChanges += fixImgs(fixedNodes, "nodes");
             totalChanges += fixImgs(fixedItems, "items");
             totalChanges += fixItemSourcesFromNodes(fixedNodes, fixedItems);
-
             fixedNodeOutput.value = JSON.stringify(fixedNodes, null, 4);
             fixedItemOutput.value = JSON.stringify(fixedItems, null, 4);
-
-            addLine(`Fix complete. ${totalChanges} change(s) made.`);
+            addLine(`Fix complete. ${totalChanges} change(s) made.`, "info");
+            applyFilters();
         }
 
         checkButton.addEventListener("click", runCheck);

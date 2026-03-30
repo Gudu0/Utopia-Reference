@@ -972,5 +972,22 @@
         "rarity": "epic",
         "bound": true,
         "time-limited": "01:00:00"
-    }
+    },
+    {
+        "id": "obsidian_ore",
+        "name": "Obsidian Ore",
+        "weight": 0.05,
+        "desc": "A jet-black ore thet you might come across, only if you're lucky",
+        "img": "obsidian_ore.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Ore",
+        "rarity": "rare",
+        "bound": false
+    },
 ]
