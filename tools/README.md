@@ -13,6 +13,7 @@ Tools used to create and validate project entries.
 | `nodeGen.html` | Interface for creating new **node entries**. |
 | `itemGen.html` | Interface for creating new **item entries**. |
 | `node-itemCrossVerify.html` | **Data Integrity Tool:** Validates image paths and cross-references IDs (e.g., flags nodes dropping items missing from the database). |
+| `imageRenamer.html` | Tool for mass renaming images, use with missing id copy button in the cross verify tool. |
 
 ---
 

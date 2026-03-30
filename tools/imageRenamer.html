@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Renamer - Sync Fix</title>
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+ 	<script>eruda.init();</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <style>
+        :root {
+          --size: 100px;
+          --gap: 10px;
+        }
+
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        body {
+          font-family: system-ui, sans-serif;
+          background: #f0f2f5;
+          padding: 40px;
+          user-select: none;
+        }
+
+        .controls {
+          max-width: 900px;
+          margin: 0 auto 30px;
+          background: white;
+          padding: 20px;
+          border-radius: 12px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+        }
+
+        textarea {
+          width: 100%;
+          height: 80px;
+          padding: 12px;
+          border: 1px solid #ddd;
+          border-radius: 6px;
+          font-size: 14px;
+        }
+
+        .workspace {
+          display: flex;
+          gap: var(--gap);
+          justify-content: center;
+          align-items: flex-start;
+        }
+
+        .column {
+          display: flex;
+          flex-direction: column;
+          gap: var(--gap);
+        }
+
+        /* Image Slots */
+        .img-slot {
+          width: var(--size);
+          height: var(--size);
+          border: 1px solid #ccc;
+          background: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+        }
+
+        .img-slot img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        /* Name Wrapper (holds name + X) */
+        .name-wrapper {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          height: var(--size);
+          width: 320px;
+        }
+
+        .name-slot {
+          flex-grow: 1;
+          height: 100%;
+          border: 1px solid #ddd;
+          background: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: grab;
+          font-size: 1.2rem;
+          font-weight: 600;
+          padding: 15px;
+          text-align: center;
+        }
+
+        .name-slot.dragging {
+          opacity: 0;
+        }
+
+        .del-btn {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          border: 1.5px solid #ff4d4f;
+          color: #ff4d4f;
+          background: white;
+          cursor: pointer;
+          font-weight: bold;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .del-btn:hover {
+          background: #ff4d4f;
+          color: white;
+        }
+
+        .btn-row {
+          display: flex;
+          gap: 10px;
+        }
+
+        button.main {
+          padding: 12px 24px;
+          cursor: pointer;
+          background: #007bff;
+          color: white;
+          border: none;
+          border-radius: 6px;
+          font-weight: bold;
+          flex-grow: 1;
+        }
+
+        .download-btn {
+          background: #28a745;
+        }
+    </style>
+</head>
+<body>
+
+<div class="controls">
+    <input type="file" id="imageInput" multiple accept="image/*">
+    <textarea id="bulkNames" placeholder="Paste names separated by commas (e.g. Apple, Banana, Cherry)..."></textarea>
+    <div class="btn-row">
+        <button class="main" onclick="processNames()">Add Names to List</button>
+        <button class="main download-btn" onclick="downloadAll()">Download Renamed ZIP</button>
+    </div>
+</div>
+
+<div class="workspace">
+    <div class="column" id="imageCol"></div>
+    <div class="column" id="nameCol"></div>
+</div>
+
+<script>
+const imageInput = document.getElementById('imageInput');
+const imageCol = document.getElementById('imageCol');
+const nameCol = document.getElementById('nameCol');
+
+// 1. Handle File Uploads
+imageInput.addEventListener('change', (e) => {
+    const files = Array.from(e.target.files);
+    files.forEach(file => {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const slot = document.createElement('div');
+            slot.className = 'img-slot';
+            // Store the actual file data on the element for the ZIP function
+            slot.fileData = file; 
+            
+            const img = document.createElement('img');
+            img.src = event.target.result;
+            slot.appendChild(img);
+            imageCol.appendChild(slot);
+        };
+        reader.readAsDataURL(file);
+    });
+});
+
+// 2. Handle Adding Names from Textarea
+function processNames() {
+    const text = document.getElementById('bulkNames').value;
+    const names = text.split(/,|\n/).map(n => n.trim()).filter(n => n !== "");
+    
+    names.forEach(name => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'name-wrapper';
+        wrapper.draggable = true;
+
+        wrapper.innerHTML = `
+            <div class="name-slot">${name}</div>
+            <button class="del-btn" onclick="this.parentElement.remove()">✕</button>
+        `;
+
+        // Drag and Drop Logic
+        wrapper.addEventListener('dragstart', () => wrapper.classList.add('dragging'));
+        wrapper.addEventListener('dragend', () => wrapper.classList.remove('dragging'));
+        
+        nameCol.appendChild(wrapper);
+    });
+    document.getElementById('bulkNames').value = "";
+}
+
+// 3. Drag and Drop Sorting Logic
+nameCol.addEventListener('dragover', e => {
+    e.preventDefault();
+    const dragging = document.querySelector('.dragging');
+    const afterElement = getDragAfterElement(nameCol, e.clientY);
+    if (afterElement == null) {
+        nameCol.appendChild(dragging);
+    } else {
+        nameCol.insertBefore(dragging, afterElement);
+    }
+});
+
+function getDragAfterElement(container, y) {
+    const draggableElements = [...container.querySelectorAll('.name-wrapper:not(.dragging)')];
+    return draggableElements.reduce((closest, child) => {
+        const box = child.getBoundingClientRect();
+        const offset = y - box.top - box.height / 2;
+        if (offset < 0 && offset > closest.offset) {
+            return { offset: offset, element: child };
+        } else {
+            return closest;
+        }
+    }, { offset: Number.NEGATIVE_INFINITY }).element;
+}
+    async function downloadAll() {
+        try {
+            const zip = new JSZip();
+            const imageSlots = [...imageCol.children];
+            const nameWrappers = [...nameCol.children];
+
+            if (!imageSlots.length) {
+                alert("Upload some images first!");
+                return;
+            }
+
+            let addedCount = 0;
+            imageSlots.forEach((img, i) => {
+                if (nameWrappers[i]) {
+                    const nameText = nameWrappers[i].querySelector('.name-slot').textContent;
+                    if (nameText.trim() !== "") {
+                        // Sanitize filename to remove illegal characters
+                        const cleanName = nameText.replace(/[/\\?%*:|"<>]/g, '-') + ".jpg";
+                        zip.file(cleanName, img.fileData);
+                        addedCount++;
+                    }
+                }
+            });
+
+            if (addedCount === 0) {
+                alert("No paired names found. Add some names to match your images!");
+                return;
+            }
+
+            // Generate ZIP
+            const blob = await zip.generateAsync({type: "blob"});
+            
+            // Create download link
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = "renamed_images.zip";
+            
+            // Required for Firefox and some Chrome versions
+            document.body.appendChild(link); 
+            link.click();
+            
+            // Cleanup
+            setTimeout(() => {
+                document.body.removeChild(link);
+                URL.revokeObjectURL(link.href);
+            }, 100);
+
+        } catch (error) {
+            console.error("Download Error:", error);
+            alert("An error occurred while creating the ZIP. Check the console (F12) for details.");
+        }
+    }
+</script>
+
+</body>
+</html>

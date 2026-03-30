@@ -944,7 +944,7 @@
         "name": "Blue Mapple",
         "desc": "",
         "img": "blue_mapple.jpg",
-        "notes": "",
+        "notes": "is mapple a mispelling of maple??",
         "category": "Trees",
         "subcategory": "determinSubCategory",
         "health": "#?",
@@ -977,7 +977,7 @@
         "name": "Purple Hibiscus",
         "desc": "",
         "img": "purple_hibiscus.jpg",
-        "notes": "",
+        "notes": "Why is the seed name blue maple??",
         "category": "Trees",
         "subcategory": "determinSubCategory",
         "health": "#?",
@@ -997,7 +997,7 @@
                     "amount": "#?"
                 },
                 "drop4": {
-                    "id": "purple_hibiscus_seed",
+                    "id": "blue_maple_seed",
                     "amount": "#?"
                 },
                 "drop5": {
@@ -1802,10 +1802,14 @@
         "drops": {
             "items": {
                 "drop1": {
-                    "id": "pistil",
+                    "id": "cyan_flower",
                     "amount": "#?"
                 },
                 "drop2": {
+                    "id": "pistil",
+                    "amount": "#?"
+                },
+                "drop3": {
                     "id": "small_bee",
                     "amount": "#?"
                 }
