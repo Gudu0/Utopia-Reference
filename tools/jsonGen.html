@@ -336,7 +336,8 @@
             '$iec': 'ice_enchant_stone_',
             '$p': 'pistil',
             '$nm': null,
-            '$tnm': null
+            '$tnm': null,
+            '$pig': null,
         };
 
         function switchMode(mode) {
@@ -369,8 +370,12 @@
                     
                     case '$tnm':
                         let nmms = name.toLowerCase();
-                        replacement = nmms.replace('seed', 'tree');
+                        replacement = nmms.replace('seed', 'tree') + '.';
                         break;    
+                    
+                    case '$pig':
+                        replacement = 'Plant it and grow a';
+                        break;
 
                     case '$sd': 
                         // ID + seed
