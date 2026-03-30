@@ -56,7 +56,28 @@
         "desc": "Material obtained by chopping down trees. Has a wide range of uses.",
         "img": "wood.jpg",
         "sources": {
-            "node": [],
+            "node": [
+                "apple_tree",
+                "bamboo",
+                "banana_tree",
+                "baobab_tree",
+                "blue_mapple",
+                "bomb_tree",
+                "coconut_tree",
+                "desert_poplar",
+                "dragon_blood_tree",
+                "fern_tree",
+                "green_pine",
+                "ice_orb_tree",
+                "marvel_tree",
+                "natanz_marvel_tree",
+                "peach_tree",
+                "poplar",
+                "purple_hibiscus",
+                "rubber_tree",
+                "snow_pine",
+                "young_bomb_tree"
+            ],
             "enemy": []
         },
         "uses": [],
@@ -110,7 +131,9 @@
         "desc": "Viscous, sticky mud suitable for making handicrafts.",
         "img": "clay.jpg",
         "sources": {
-            "node": [],
+            "node": [
+                "pile_of_clay"
+            ],
             "enemy": []
         },
         "uses": [],
@@ -126,7 +149,9 @@
         "desc": "Fine grained particles which can be smelted into glass.",
         "img": "sand.jpg",
         "sources": {
-            "node": [],
+            "node": [
+                "pile_of_sand"
+            ],
             "enemy": []
         },
         "uses": [],
@@ -296,7 +321,9 @@
         "desc": "Appear in a gelid land, excude the midnight blue. according to the experiment, this material can interaction with the steam stone.",
         "img": "ice_crystal.jpg",
         "sources": {
-            "node": [],
+            "node": [
+                "frost_flower"
+            ],
             "enemy": []
         },
         "uses": [],
@@ -364,7 +391,9 @@
         "desc": "The unique blue spar of Natanz, the favorite stone of the Natanz people, they believe that blue can give people a happy state of mind.",
         "img": "natanz_blue_orb.jpg",
         "sources": {
-            "node": [],
+            "node": [
+                "natanz_blue_orb"
+            ],
             "enemy": []
         },
         "uses": [],
@@ -770,7 +799,9 @@
         "desc": "A substance gathered from rubber trees. Bouncy and sticky.",
         "img": "rubber.jpg",
         "sources": {
-            "node": [],
+            "node": [
+                "rubber_tree"
+            ],
             "enemy": []
         },
         "uses": [],
@@ -786,7 +817,26 @@
         "desc": "A liquid secreted from some trees. Easily found among pines and poplars.",
         "img": "resin.jpg",
         "sources": {
-            "node": [],
+            "node": [
+                "apple_tree",
+                "bamboo",
+                "banana_tree",
+                "baobab_tree",
+                "blue_mapple",
+                "bomb_tree",
+                "coconut_tree",
+                "desert_poplar",
+                "dragon_blood_tree",
+                "fern_tree",
+                "green_pine",
+                "marvel_tree",
+                "natanz_marvel_tree",
+                "peach_tree",
+                "poplar",
+                "rubber_tree",
+                "snow_pine",
+                "young_bomb_tree"
+            ],
             "enemy": []
         },
         "uses": [],
@@ -802,7 +852,27 @@
         "desc": "A common plant, thick and sturdy. Can protect against wind and rain.",
         "img": "straw.jpg",
         "sources": {
-            "node": [],
+            "node": [
+                "apple_tree",
+                "bamboo",
+                "banana_tree",
+                "baobab_tree",
+                "blue_mapple",
+                "bomb_tree",
+                "coconut_tree",
+                "desert_poplar",
+                "dragon_blood_tree",
+                "fern_tree",
+                "green_pine",
+                "marvel_tree",
+                "natanz_marvel_tree",
+                "peach_tree",
+                "poplar",
+                "purple_hibiscus",
+                "rubber_tree",
+                "snow_pine",
+                "young_bomb_tree"
+            ],
             "enemy": []
         },
         "uses": [],
@@ -818,7 +888,9 @@
         "desc": "Seed fibers from a ccotton plant which can be woven into comfortable cotton cloth. Wild cotton grows in fairly elevated regions.",
         "img": "cotton.jpg",
         "sources": {
-            "node": [],
+            "node": [
+                "cotton"
+            ],
             "enemy": []
         },
         "uses": [],
@@ -834,7 +906,10 @@
         "desc": "A substance made from plant threads, obtained from gathering weeds. Used to make linen.",
         "img": "plant_fiber.jpg",
         "sources": {
-            "node": [],
+            "node": [
+                "weeds",
+                "weeds2"
+            ],
             "enemy": []
         },
         "uses": [],
@@ -961,6 +1036,7 @@
         "img": "unstable_starcore.jpg",
         "sources": {
             "node": [
+                "parting_tree",
                 "stardust_mine"
             ],
             "enemy": []
@@ -980,7 +1056,9 @@
         "desc": "A jet-black ore thet you might come across, only if you're lucky",
         "img": "obsidian_ore.jpg",
         "sources": {
-            "node": [],
+            "node": [
+                "obsidian_mine"
+            ],
             "enemy": []
         },
         "uses": [],

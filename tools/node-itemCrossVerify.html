@@ -1,41 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Node/Item JSONC Checker</title>
     <style>
-        body { font-family: sans-serif; padding: 16px; max-width: 1100px; margin: 0 auto; }
-        h1, h2 { margin-bottom: 6px; }
-        textarea { width: 100%; box-sizing: border-box; font-family: monospace; font-size: 12px; }
-        .github-row { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; flex-wrap: wrap; }
-        .github-row input { flex: 1; min-width: 200px; font-family: monospace; font-size: 12px; padding: 4px 6px; border: 1px solid #ccc; border-radius: 4px; }
-        .github-row button { padding: 4px 10px; cursor: pointer; }
-        .controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 8px 0; }
-        .controls button { padding: 6px 14px; cursor: pointer; }
-        .filter-bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
-        .filter-bar label { font-weight: bold; }
-        .filter-bar input[type=text] { flex: 1; min-width: 200px; padding: 4px 8px; font-size: 13px; border: 1px solid #ccc; border-radius: 4px; }
-        .filter-btn { padding: 3px 10px; cursor: pointer; border: 1px solid #999; border-radius: 4px; background: #f0f0f0; font-size: 12px; }
-        .filter-btn.active { background: #333; color: #fff; border-color: #333; }
-        #output p { margin: 3px 0; font-family: monospace; font-size: 13px; }
-        #output p.hidden { display: none; }
-        .status-ok { color: green; }
-        .status-err { color: #c00; }
-        .status-info { color: #555; }
-        #matchCount { font-size: 12px; color: #666; margin-left: 8px; }
+        body {
+            font-family: sans-serif;
+            padding: 16px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h1,
+        h2 {
+            margin-bottom: 6px;
+        }
+
+        textarea {
+            width: 100%;
+            box-sizing: border-box;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        .github-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            margin-bottom: 6px;
+            flex-wrap: wrap;
+        }
+
+        .github-row input {
+            flex: 1;
+            min-width: 200px;
+            font-family: monospace;
+            font-size: 12px;
+            padding: 4px 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .github-row button {
+            padding: 4px 10px;
+            cursor: pointer;
+        }
+
+        .controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 8px 0;
+        }
+
+        .controls button {
+            padding: 6px 14px;
+            cursor: pointer;
+        }
+
+        .filter-bar {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .filter-bar label {
+            font-weight: bold;
+        }
+
+        .filter-bar input[type=text] {
+            flex: 1;
+            min-width: 200px;
+            padding: 4px 8px;
+            font-size: 13px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .filter-btn {
+            padding: 3px 10px;
+            cursor: pointer;
+            border: 1px solid #999;
+            border-radius: 4px;
+            background: #f0f0f0;
+            font-size: 12px;
+        }
+
+        .filter-btn.active {
+            background: #333;
+            color: #fff;
+            border-color: #333;
+        }
+
+        #output p {
+            margin: 3px 0;
+            font-family: monospace;
+            font-size: 13px;
+        }
+
+        #output p.hidden {
+            display: none;
+        }
+
+        .status-ok {
+            color: green;
+        }
+
+        .status-err {
+            color: #c00;
+        }
+
+        .status-info {
+            color: #555;
+        }
+
+        #matchCount {
+            font-size: 12px;
+            color: #666;
+            margin-left: 8px;
+        }
     </style>
 </head>
+
 <body>
     <h1>Node / Item JSONC Checker</h1>
 
     <h2>Load from GitHub</h2>
     <div class="github-row">
-        <input id="nodeUrl" type="text" placeholder="node.jsonc raw GitHub URL (e.g. https://raw.githubusercontent.com/user/repo/main/node.jsonc)" value="https://raw.githubusercontent.com/Gudu0/Utopia-Reference/refs/heads/main/encyclopedia/data/nodeDef.jsonc"/>
+        <input id="nodeUrl" type="text"
+            placeholder="node.jsonc raw GitHub URL (e.g. https://raw.githubusercontent.com/user/repo/main/node.jsonc)"
+            value="https://raw.githubusercontent.com/Gudu0/Utopia-Reference/refs/heads/main/encyclopedia/data/nodeDef.jsonc" />
         <button id="loadNodeBtn">Load node.jsonc</button>
         <span id="nodeLoadStatus"></span>
     </div>
     <div class="github-row">
-        <input id="itemUrl" type="text" placeholder="item.jsonc raw GitHub URL" value="https://raw.githubusercontent.com/Gudu0/Utopia-Reference/refs/heads/main/encyclopedia/data/itemDef.jsonc"/>
+        <input id="itemUrl" type="text" placeholder="item.jsonc raw GitHub URL"
+            value="https://raw.githubusercontent.com/Gudu0/Utopia-Reference/refs/heads/main/encyclopedia/data/itemDef.jsonc" />
         <button id="loadItemBtn">Load item.jsonc</button>
         <span id="itemLoadStatus"></span>
     </div>
@@ -48,7 +152,10 @@
 
     <div class="controls">
         <button id="checkButton">Check</button>
-        <button id="fixButton">Fix img + item sources.node</button>
+        <button id="fixImgButton">Fix Images (.jpg)</button>
+        <button id="fixSourcesButton">Fix item sources.node</button>
+        <button id="fixAllButton" style="background-color: #eef;">Fix All</button>
+        <button id="copyMissingBtn">Copy Missing IDs</button>
     </div>
 
     <hr>
@@ -174,8 +281,7 @@
             if (t.startsWith("loaded ") || t.startsWith("check complete") || t.startsWith("fix complete")) return "info";
             if (t.includes("duplicate")) return "duplicate";
             if (t.includes("img")) return "img";
-            // Look for both "does not exist" and our new "Unique Missing" prefix
-            if (t.includes("does not exist") || t.startsWith("unique missing:")) return "missing"; 
+            if (t.includes("does not exist") || t.startsWith("unique missing:")) return "missing"; // Updated
             if (t.includes("mismatch")) return "mismatch";
             if (t.startsWith("fixed ")) return "info";
             return "other";
@@ -329,6 +435,9 @@
             }
         }
 
+        // Track unique missing IDs globally so the copy button can access them
+        let lastMissingIds = new Set();
+
         function checkCrossFile(nodes, items) {
             const nodeIdMap = buildIdMap(nodes, "nodes");
             const itemIdMap = buildIdMap(items, "items");
@@ -337,9 +446,7 @@
             const nodeToDroppedItems = buildNodeToDroppedItems(nodes);
             const itemToSourceNodes = buildItemToSourceNodes(items);
 
-            // Track unique missing IDs to prevent spam
-            const missingItemIds = new Set();
-            const missingNodeIds = new Set();
+            lastMissingIds.clear();
 
             for (let i = 0; i < nodes.length; i++) {
                 const node = nodes[i];
@@ -347,11 +454,11 @@
                 const nodeId = node.id;
                 for (const itemId of getNodeDropItemIds(node)) {
                     if (!validItemIds.has(itemId)) {
-                        if (!missingItemIds.has(itemId)) {
-                            addLine(`Unique Missing: Item "${itemId}" (referenced by node "${nodeId}") does not exist in items`, "missing");
-                            missingItemIds.add(itemId);
+                        if (!lastMissingIds.has(itemId)) {
+                            addLine(`Unique Missing: Item "${itemId}" (referenced by node "${nodeId}")`, "missing");
+                            lastMissingIds.add(itemId);
                         }
-                        continue; 
+                        continue;
                     }
                     const itemSourceNodes = itemToSourceNodes.get(itemId) || new Set();
                     if (!itemSourceNodes.has(nodeId)) addLine(`Mismatch: node "${nodeId}" drops item "${itemId}", but item "${itemId}" does not list "${nodeId}" in sources.node`);
@@ -364,9 +471,9 @@
                 const itemId = item.id;
                 for (const nodeId of getItemSourceNodeIds(item)) {
                     if (!validNodeIds.has(nodeId)) {
-                        if (!missingNodeIds.has(nodeId)) {
-                            addLine(`Unique Missing: Node "${nodeId}" (referenced by item "${itemId}") does not exist in nodes`, "missing");
-                            missingNodeIds.add(nodeId);
+                        if (!lastMissingIds.has(nodeId)) {
+                            addLine(`Unique Missing: Node "${nodeId}" (referenced by item "${itemId}")`, "missing");
+                            lastMissingIds.add(nodeId);
                         }
                         continue;
                     }
@@ -375,6 +482,21 @@
                 }
             }
         }
+
+        // Copy Button Listener
+        document.getElementById("copyMissingBtn").addEventListener("click", () => {
+            if (lastMissingIds.size === 0) {
+                alert("No missing IDs found to copy!");
+                return;
+            }
+            const textToCopy = Array.from(lastMissingIds).join(", ");
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const btn = document.getElementById("copyMissingBtn");
+                const originalText = btn.textContent;
+                btn.textContent = "✓ Copied!";
+                setTimeout(() => btn.textContent = originalText, 2000);
+            });
+        });
 
         function fixImgs(entries, label) {
             let changes = 0;
@@ -432,29 +554,72 @@
             applyFilters();
         }
 
-        function runFix() {
+        // --- Global tracking for the copy button ---
+
+// --- Logic Modules ---
+
+        function performImgFix(nodes, items) {
+            let changes = fixImgs(nodes, "nodes");
+            changes += fixImgs(items, "items");
+            return changes;
+        }
+
+        function performSourceFix(nodes, items) {
+            return fixItemSourcesFromNodes(nodes, items);
+        }
+
+        function updateFixedOutputs(nodes, items) {
+            fixedNodeOutput.value = JSON.stringify(nodes, null, 4);
+            fixedItemOutput.value = JSON.stringify(items, null, 4);
+        }
+
+        // --- Event Handlers ---
+
+        function handleFix(type) {
             clearOutput();
             let nodes, items;
             try {
                 nodes = parseJsonc(nodeInput.value, "node.jsonc");
                 items = parseJsonc(itemInput.value, "item.jsonc");
             } catch (error) { addLine(error.message); return; }
-            if (!Array.isArray(nodes)) { addLine("node.jsonc: top level must be an array"); return; }
-            if (!Array.isArray(items)) { addLine("item.jsonc: top level must be an array"); return; }
+
             const fixedNodes = deepClone(nodes);
             const fixedItems = deepClone(items);
             let totalChanges = 0;
-            totalChanges += fixImgs(fixedNodes, "nodes");
-            totalChanges += fixImgs(fixedItems, "items");
-            totalChanges += fixItemSourcesFromNodes(fixedNodes, fixedItems);
-            fixedNodeOutput.value = JSON.stringify(fixedNodes, null, 4);
-            fixedItemOutput.value = JSON.stringify(fixedItems, null, 4);
-            addLine(`Fix complete. ${totalChanges} change(s) made.`, "info");
+
+            if (type === 'img' || type === 'all') {
+                totalChanges += performImgFix(fixedNodes, fixedItems);
+            }
+            if (type === 'sources' || type === 'all') {
+                totalChanges += performSourceFix(fixedNodes, fixedItems);
+            }
+
+            updateFixedOutputs(fixedNodes, fixedItems);
+            addLine(`Fix (${type}) complete. ${totalChanges} change(s) made.`, "info");
             applyFilters();
         }
 
+        // --- Listeners ---
+
         checkButton.addEventListener("click", runCheck);
-        fixButton.addEventListener("click", runFix);
+        document.getElementById("fixImgButton").addEventListener("click", () => handleFix('img'));
+        document.getElementById("fixSourcesButton").addEventListener("click", () => handleFix('sources'));
+        document.getElementById("fixAllButton").addEventListener("click", () => handleFix('all'));
+
+        document.getElementById("copyMissingBtn").addEventListener("click", () => {
+            if (lastMissingIds.size === 0) {
+                alert("No missing IDs found. Run 'Check' first!");
+                return;
+            }
+            const textToCopy = Array.from(lastMissingIds).join(", ");
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const btn = document.getElementById("copyMissingBtn");
+                const originalText = btn.textContent;
+                btn.textContent = "✓ Copied!";
+                setTimeout(() => btn.textContent = originalText, 2000);
+            });
+        });
     </script>
 </body>
+
 </html>
