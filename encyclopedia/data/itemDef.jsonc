@@ -1,1251 +1,976 @@
 [
     {
-        "id":"iron_ore",
-        "name":"Iron Ore",
-        "weight":0.025,  //kg
-        "desc":"Contains the element iron. After processing, it can be forged into all manner of equipment.",
-        "img":"iron_ore.jpg", // null for when no image
-        "sources":{
+        "id": "iron_ore",
+        "name": "Iron Ore",
+        "weight": 0.025,
+        "desc": "Contains the element iron. After processing, it can be forged into all manner of equipment.",
+        "img": "iron_ore.jpg",
+        "sources": {
             "node": [
                 "iron_mine"
             ],
-            "enemy":[
-
-            ]
+            "enemy": []
         },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Ore",
-        "rarity":"uncommon" // color background of item in inv
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Ore",
+        "rarity": "uncommon"
     },
     {
-        "id":"iron_bar",
-        "name":"Iron Bar",
-        "weight":0.02,  //kg
-        "desc":"A versatile metal alloy. Obtained by smelting iron ore in a furnace.",
-        "img":"iron_bar.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
+        "id": "iron_bar",
+        "name": "Iron Bar",
+        "weight": 0.02,
+        "desc": "A versatile metal alloy. Obtained by smelting iron ore in a furnace.",
+        "img": "iron_bar.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
         },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Bar",
-        "rarity":"uncommon" 
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Bar",
+        "rarity": "uncommon"
     },
     {
-        "id":"orb",
-        "name":"Orb",
-        "weight":0.001, //kg
-        "desc":"Seems to contain a dark power, bred from some magic force.",
-        "img":"orb.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
+        "id": "orb",
+        "name": "Orb",
+        "weight": 0.001,
+        "desc": "Seems to contain a dark power, bred from some magic force.",
+        "img": "orb.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
         },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Drop", //idk what subcategory it would be. 
-        "rarity":"uncommon"
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Drop",
+        "rarity": "uncommon"
     },
     {
-        "id":"wood",
-        "name":"Wood",
-        "weight":0.03,  //kg
-        "desc":"Material obtained by chopping down trees. Has a wide range of uses.",
-        "img":"wood.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
+        "id": "wood",
+        "name": "Wood",
+        "weight": 0.03,
+        "desc": "Material obtained by chopping down trees. Has a wide range of uses.",
+        "img": "wood.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
         },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Wood",
-        "rarity":"common" 
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Wood",
+        "rarity": "common"
     },
     {
-        "id":"bbq_octopus",
-        "name":"BBQ Octopus",
-        "weight":0.03,  //kg
-        "desc":"Barbacued Octopus",
-        "img":"bbq_octopus.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
+        "id": "bbq_octopus",
+        "name": "BBQ Octopus",
+        "weight": 0.03,
+        "desc": "Barbacued Octopus",
+        "img": "bbq_octopus.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
         },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Food",
-        "subcategory":"BBQ",
-        "rarity":"uncommon",
+        "uses": [],
+        "notes": "",
+        "category": "Food",
+        "subcategory": "BBQ",
+        "rarity": "uncommon",
         "foodStats": {
             "food": 30,
             "water": -10
         }
     },
     {
-        "id":"waterskin",
-        "name":"Waterskin",
-        "weight":0.01,  //kg
-        "desc":"Used for storing water. The main way to quench your thirst.",
-        "img":"waterskin.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"500 durability at max fill, goes down 100 per drink.",
-        "category":"Equippable",
-        "subcategory":"DetermineSubcategory", // ?? replace later.
-        "rarity":"common", //idk where to find this yet, but I know items have it.
-        "durability":500,
-        "levelLimit": null
-    },
-    {
-        "id":"clay",
-        "name":"Clay",
-        "weight":0.01,  //kg
-        "desc":"Viscous, sticky mud suitable for making handicrafts.",
-        "img":"clay.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Ore",
-        "rarity":"common" 
-    },
-    {
-        "id":"sand",
-        "name":"Sand",
-        "weight":0.01,  //kg
-        "desc":"Fine grained particles which can be smelted into glass.",
-        "img":"sand.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Ore",
-        "rarity":"common" 
-    },
-    {
-        "id":"magnet",
-        "name":"Magnet",
-        "weight":0.01,  //kg
-        "desc":"Black magnetic rock obtained from gathering in iron mines and used to make some fun objects.",
-        "img":"magnet.jpg", // null for when no image
-        "sources":{
-            "node": [
-                "iron_mine"
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Ore",
-        "rarity":"uncommon" 
-    },
-    {
-        "id":"stone",
-        "name":"Stone",
-        "weight":0.02,  //kg
-        "desc":"Commonly found rocks, but easy to make things with.",
-        "img":"stone.jpg", // null for when no image
+        "id": "waterskin",
+        "name": "Waterskin",
+        "weight": 0.01,
+        "desc": "Used for storing water. The main way to quench your thirst.",
+        "img": "waterskin.jpg",
         "sources": {
-            "node": [
-                "stone_mine", "iron_mine"
-            ],
-            "enemy":[
-
-            ]
+            "node": [],
+            "enemy": []
         },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Ore",
-        "rarity":"common" 
-    },
-    {
-        "id":"silver_ore",
-        "name":"Silver Ore",
-        "weight":0.03,  //kg
-        "desc":"Contains the element silver. Fairly valubale",
-        "img":"silver_ore.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Ore",
-        "rarity":"uncommon"
-    },
-    {
-        "id":"gold_ore",
-        "name":"Gold Ore",
-        "weight":0.035,  //kg
-        "desc":"Contains the element gold. Fairly rare.",
-        "img":"gold_ore.jpg", // null for when no image
-        "sources":{
-                "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Ore",
-        "rarity":"uncommon" 
-    },
-    {
-        "id":"crystal_ore",
-        "name":"Crystal Ore",
-        "weight":0.04,  //kg
-        "desc":"Crystal ore, glittering and translucent",
-        "img":"crystal_ore.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Ore",
-        "rarity":"rare" 
-    },
-    {
-        "id":"coal",
-        "name":"Coal",
-        "weight":0.02,  //kg
-        "desc":"A black mineral used for fuel",
-        "img":"coal_ore.jpg", // null for when no image
-        "sources":{
-            "node": [
-                "iron_mine", "stone_mine"
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Ore",
-        "rarity":"uncommon" 
-    },
-    {
-        "id":"sulfur",
-        "name":"Sulfur",
-        "weight":0.001,  //kg
-        "desc":"Very strong-smelling, flammable, and explosive.",
-        "img":"sulfur.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Ore",
-        "rarity":"uncommon" 
-    },
-    {
-        "id":"steam_stone",
-        "name":"Steam Stone",
-        "weight":0.02,  //kg
-        "desc":"Obtained from mining rocks that give off steam. Provides a steady flow of power.",
-        "img":"steam_stone.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Ore",
-        "rarity":"epic" 
-    },
-    {
-        "id":"ice_crystal",
-        "name":"Ice Crystal",
-        "weight":0.02,  //kg
-        "desc":"Appear in a gelid land, excude the midnight blue. according to the experiment, this material can interaction with the steam stone.",
-        "img":"ice_crystal.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"epic" 
-    },
-    {
-        "id":"crimson_jade",
-        "name":"Crimson Jade",
-        "weight":0.03,  //kg
-        "desc":"Crystalizes from geothermal energy absorption.",
-        "img":"crimson_jade.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Ore",
-        "rarity":"rare" 
-    },
-    {
-        "id":"emerald",
-        "name":"Emerald",
-        "weight":0.01,  //kg
-        "desc":"A unique ore distributed in Elain Grand Desert. Has a divine green glow.",
-        "img":"emerald.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Ore",
-        "rarity":"uncommon" 
-    },
-    {
-        "id":"ice_orbs",
-        "name":"Ice Orbs",
-        "weight":0.001,  //kg
-        "desc":"It seems to have the dark soul with the cold breath, it was made by the life of the region's magic.",
-        "img":"ice_orbs.jpg", // null for when no image
-        "sources":{
-            "node": [
-                "stone_mine"
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Drop",
-        "rarity":"rare" 
-    },
-    {
-        "id":"natanz_blue_orb",
-        "name":"Natanz Blue Orb",
-        "weight":0.02,  //kg
-        "desc":"The unique blue spar of Natanz, the favorite stone of the Natanz people, they believe that blue can give people a happy state of mind.",
-        "img":"natanz_blue_orb.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"epic" 
-    },
-    {
-        "id":"rune_stone",
-        "name":"Rune Stone",
-        "weight":0.05,  //kg
-        "desc":"Born on the Sky Islands, it stores runic energy.",
-        "img":"rune_stone.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Ore",
-        "rarity":"uncommon" 
-    },
-    {
-        "id":"silver_bar",
-        "name":"Silver Bar",
-        "weight":0.025,  //kg
-        "desc":"A versatile metal alloy. Obtained by smelting silver ore in a furnace.",
-        "img":"silver_bar.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Bar",
-        "rarity":"uncommon" 
-    },
-    {
-        "id":"gold_bar",
-        "name":"Gold Bar",
-        "weight":0.03,  //kg
-        "desc":"A versatile metal alloy. Obtained by smelting gold ore in a furnace.",
-        "img":"gold_bar.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Bar",
-        "rarity":"uncommon" 
-    },
-    {
-        "id":"crystal",
-        "name":"Crystal",
-        "weight":0.035,  //kg
-        "desc":"A versatile metal alloy. Obtained by smelting crystal ore in a magic furnace.",
-        "img":"crystal.jpg", // null for when no image
-        "sources":{
-            "node": [
-            
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Bar",
-        "rarity":"rare" 
-    },
-    {
-        "id":"obsidian",
-        "name":"Obsidian",
-        "weight":0.1,  //kg
-        "desc":"A versatile metal alloy. Obtained by smelting obsidian ore in a magic furnace.",
-        "img":"obsidian.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Bar",
-        "rarity":"rare" 
-    },
-    {
-        "id":"ethereal_pyramid",
-        "name":"Ethereal Pyramid",
-        "weight":0.0,  // 0 kg's for 6 of them
-        "desc":"A pure pyramid mostly used to craft Emerald Tablet.",
-        "img":"ethereal_pyramid.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"uncommon" 
-    },
-    {
-        "id":"cursed_pyramid",
-        "name":"Cursed Pyramid",
-        "weight":0.0,  // 0 kg's for 6 of them
-        "desc":"A cursed pyramid. Can be used to craft things.",
-        "img":"cursed_pyramid.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"rare" 
-    },
-    {
-        "id":"coral_stone",
-        "name":"Coral Stone",
-        "weight":0.01,  //kg
-        "desc":"Add this when making weapons. It can make iron weapons sharper.",
-        "img":"coral_stone.jpg", // null for when no image
-        "sources":{
-            "node": [
-                "iron_mine"
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Additives",
-        "rarity":"rare" 
-    },
-    {
-        "id":"moonlight_stone",
-        "name":"Moonlight Stone",
-        "weight":0.01,  //kg
-        "desc":"Add this when making weapons. It can make silver weapons sharper.",
-        "img":"moonlight_stone.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Additives",
-        "rarity":"rare" 
-    },
-    {
-        "id":"ruby",
-        "name":"Ruby",
-        "weight":0.01,  //kg
-        "desc":"Add this when making weapons. It can make gold weapons sharper.",
-        "img":"ruby.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Additives",
-        "rarity":"rare" 
-    },
-    {
-        "id":"sapphire",
-        "name":"Sapphire",
-        "weight":0.01,  //kg
-        "desc":"Add this when making weapons. It can make crystal weapons sharper.",
-        "img":"sapphire.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Additives",
-        "rarity":"epic" 
-    },
-    {
-        "id":"black_gem",
-        "name":"Black Gem",
-        "weight":0.01,  //kg
-        "desc":"Add this when making weapons. It can make obsidian weapons sharper.",
-        "img":"black_gem.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Additives",
-        "rarity":"epic" 
-    },
-    {
-        "id":"ancient_gem",
-        "name":"Ancient Gem",
-        "weight":0.01,  //kg
-        "desc":"Add this when making weapons. It can make ancient weapons sharper.",
-        "img":"ancient_gem.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Additives",
-        "rarity":"epic" 
-    },
-    {
-        "id":"fire_enchant_stone1",
-        "name":"Fire Enchant Stone 1",
-        "weight":0.01,  //kg
-        "desc":"Possesses a magic power and has all kinds of uses. It can enhance weapons and leg armors and grant attribute bonuses. A Lv. 1 Enchant Stone can only be used when enchanting an item the first two times. \n-The enchanted weapon will increase Attack limit (1/2) \n-The enchanted leg armor will increase Defence (1/2)",
-        "img":"fire_enchant_stone1.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"EnchantStone",
-        "rarity":"epic" 
-    },
-    {
-        "id":"lightning_enchant_stone1",
-        "name":"Lightning Enchant Stone 1",
-        "weight":0.01,  //kg
-        "desc":"Possesses a magic power and has all kinds of uses. It can enhance weapons and helmets and grant attribute bonuses. A Lv. 1 Enchant Stone can only be used when enchanting an item the first two times. \n-The enchanted weapon will increase damage dealt to trees (1) \n-The enchanted helmet will increase HP (3/5)",
-        "img":"lightning_enchant_stone1.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"EnchantStone",
-        "rarity":"epic" 
-    },
-    {
-        "id":"ice_enchant_stone1",
-        "name":"Ice Enchant Stone 1",
-        "weight":0.01,  //kg
-        "desc":"Possesses a magic power and has all kinds of uses. It can enhance weapons and body armors and grant attribute bonuses. A Lv. 1 Enchant Stone can only be used when enchanting an item the first two times. \n-The enchanted weapon will increase damage dealt to ores (1) \n-The enchanted body armor will increase HP (3/5)",
-        "img":"ice_enchant_stone1.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"EnchantStone",
-        "rarity":"epic" 
-    },
-    {
-        "id":"lightning_enchant_stone2",
-        "name":"Lightning Enchant Stone 2",
-        "weight":0.01,  //kg
-        "desc":"Possesses a magic power and has all kinds of uses. It can enhance weapons and helmets and grant attribute bonuses. \n-The enchanted weapon will increase damage dealt to trees (1/2) \n-The enchanted helmet will increase HP (3/5/7)",
-        "img":"lightning_enchant_stone2.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"EnchantStone",
-        "rarity":"epic" 
-    },
-    {
-        "id":"hearthstone",
-        "name":"HearthStone",
-        "weight":0.01,  //kg
-        "desc":"This can help ypu return home quickly.",
-        "img":"hearthstone.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Useable",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"rare" 
-    },
-    {
-        "id":"energy_rich_crystals",
-        "name":"Energy-rich Crystals",
-        "weight":0.03,  //kg
-        "desc":"The crystals, infused with powerful, concentrates energy, can affect even the surrounding monsters.",
-        "img":"energy_rich_crystals.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Ore",
-        "rarity":"rare" 
-    },
-    {
-        "id":"portal_reel",
-        "name":"Portal Reel",
-        "weight":0.001,  //kg
-        "desc":"A miracle reel, can portal to the unlock beacon. Note: This item is a bound item. It cannot be traded to another player.",
-        "img":"portal_reel.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Useable",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"epic",
-        "bound":true
-    },
-    {
-        "id":"campfire",
-        "name":"Campfire",
-        "weight":0.1,  //kg
-        "desc":"A campfire not only brings you warmth in the cold of night but also scares of monsters and can be used to barbacue. Really usefull! Most facilites only allow placing up to 20 at a time!",
-        "img":"campfire.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Bulding",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"uncommon"
-    },
-    {
-        "id":"sleeping_bag",
-        "name":"Sleeping Bag",
-        "weight":0.1,  //kg
-        "desc":"A portable sleeping bag that can be used as a temporary base. After genetic recombination, you'll be respawned here. Place up to 10 sleeping bags and beds at a time!",
-        "img":"sleeping_bag.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Bulding",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"uncommon"
-    },
-    {
-        "id":"boat",
-        "name":"Boat",
-        "weight":0.3,  //kg
-        "desc":"A reliable vessel for sea voyages. Most facilites only allow placing up to 20 at a time!",
-        "img":"boat.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Bulding",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"uncommon"
-    },
-    {
-        "id":"rubber",
-        "name":"Rubber",
-        "weight":0.01,  //kg
-        "desc":"A substance gathered from rubber trees. Bouncy and sticky.",
-        "img":"rubber.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"uncommon" 
-    },
-    {
-        "id":"resin",
-        "name":"Resin",
-        "weight":0.01,  //kg
-        "desc":"A liquid secreted from some trees. Easily found among pines and poplars.",
-        "img":"resin.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"uncommon" 
-    },
-    {
-        "id":"straw",
-        "name":"Straw",
-        "weight":0.01,  //kg
-        "desc":"A common plant, thick and sturdy. Can protect against wind and rain.",
-        "img":"straw.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"common" 
-    },
-    {
-        "id":"cotton",
-        "name":"Cotton",
-        "weight":0.01,  //kg
-        "desc":"Seed fibers from a ccotton plant which can be woven into comfortable cotton cloth. Wild cotton grows in fairly elevated regions.",
-        "img":"cotton.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"uncommon" 
-    },
-    {
-        "id":"plant_fiber",
-        "name":"Plant Fiber",
-        "weight":0.01,  //kg
-        "desc":"A substance made from plant threads, obtained from gathering weeds. Used to make linen.",
-        "img":"plant_fiber.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"common" 
-    },
-    {
-        "id":"wand",
-        "name":"Wand",
-        "weight":0.1,  //kg
-        "desc":"A conduit of magic and a wondrous weapon.",
-        "img":"wand.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
-        },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Equippable",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"uncommon",
+        "uses": [],
+        "notes": "500 durability at max fill, goes down 100 per drink.",
+        "category": "Equippable",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "common",
         "durability": 500,
         "levelLimit": null
     },
     {
-        "id":"the_guidebook",
-        "name":"The Guidebook",
-        "weight":0.1,  //kg
-        "desc":"Can use magic to encounter a variety of monsters in the adventure of the magic book of analysis, the world all things are included in the guide to come.",
-        "img":"the_guidebook.jpg", // null for when no image
-        "sources":{
-            "node": [
-                
-            ],
-            "enemy":[
-
-            ]
+        "id": "clay",
+        "name": "Clay",
+        "weight": 0.01,
+        "desc": "Viscous, sticky mud suitable for making handicrafts.",
+        "img": "clay.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
         },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Equippable",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"uncommon",
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Ore",
+        "rarity": "common"
+    },
+    {
+        "id": "sand",
+        "name": "Sand",
+        "weight": 0.01,
+        "desc": "Fine grained particles which can be smelted into glass.",
+        "img": "sand.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Ore",
+        "rarity": "common"
+    },
+    {
+        "id": "magnet",
+        "name": "Magnet",
+        "weight": 0.01,
+        "desc": "Black magnetic rock obtained from gathering in iron mines and used to make some fun objects.",
+        "img": "magnet.jpg",
+        "sources": {
+            "node": [
+                "iron_mine"
+            ],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Ore",
+        "rarity": "uncommon"
+    },
+    {
+        "id": "stone",
+        "name": "Stone",
+        "weight": 0.02,
+        "desc": "Commonly found rocks, but easy to make things with.",
+        "img": "stone.jpg",
+        "sources": {
+            "node": [
+                "crystal_mine",
+                "gold_mine",
+                "iron_mine",
+                "obsidian_mine",
+                "silver_mine",
+                "stone_mine"
+            ],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Ore",
+        "rarity": "common"
+    },
+    {
+        "id": "silver_ore",
+        "name": "Silver Ore",
+        "weight": 0.03,
+        "desc": "Contains the element silver. Fairly valubale",
+        "img": "silver_ore.jpg",
+        "sources": {
+            "node": [
+                "silver_mine"
+            ],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Ore",
+        "rarity": "uncommon"
+    },
+    {
+        "id": "gold_ore",
+        "name": "Gold Ore",
+        "weight": 0.035,
+        "desc": "Contains the element gold. Fairly rare.",
+        "img": "gold_ore.jpg",
+        "sources": {
+            "node": [
+                "gold_mine"
+            ],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Ore",
+        "rarity": "uncommon"
+    },
+    {
+        "id": "crystal_ore",
+        "name": "Crystal Ore",
+        "weight": 0.04,
+        "desc": "Crystal ore, glittering and translucent",
+        "img": "crystal_ore.jpg",
+        "sources": {
+            "node": [
+                "crystal_mine"
+            ],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Ore",
+        "rarity": "rare"
+    },
+    {
+        "id": "coal",
+        "name": "Coal",
+        "weight": 0.02,
+        "desc": "A black mineral used for fuel",
+        "img": "coal.jpg",
+        "sources": {
+            "node": [
+                "crystal_mine",
+                "gold_mine",
+                "iron_mine",
+                "obsidian_mine",
+                "silver_mine",
+                "stone_mine"
+            ],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Ore",
+        "rarity": "uncommon"
+    },
+    {
+        "id": "sulfur",
+        "name": "Sulfur",
+        "weight": 0.001,
+        "desc": "Very strong-smelling, flammable, and explosive.",
+        "img": "sulfur.jpg",
+        "sources": {
+            "node": [
+                "stone_mine"
+            ],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Ore",
+        "rarity": "uncommon"
+    },
+    {
+        "id": "steam_stone",
+        "name": "Steam Stone",
+        "weight": 0.02,
+        "desc": "Obtained from mining rocks that give off steam. Provides a steady flow of power.",
+        "img": "steam_stone.jpg",
+        "sources": {
+            "node": [
+                "fire_magic_mine"
+            ],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Ore",
+        "rarity": "epic"
+    },
+    {
+        "id": "ice_crystal",
+        "name": "Ice Crystal",
+        "weight": 0.02,
+        "desc": "Appear in a gelid land, excude the midnight blue. according to the experiment, this material can interaction with the steam stone.",
+        "img": "ice_crystal.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "epic"
+    },
+    {
+        "id": "crimson_jade",
+        "name": "Crimson Jade",
+        "weight": 0.03,
+        "desc": "Crystalizes from geothermal energy absorption.",
+        "img": "crimson_jade.jpg",
+        "sources": {
+            "node": [
+                "crimson_jade_ore"
+            ],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Ore",
+        "rarity": "rare"
+    },
+    {
+        "id": "emerald",
+        "name": "Emerald",
+        "weight": 0.01,
+        "desc": "A unique ore distributed in Elain Grand Desert. Has a divine green glow.",
+        "img": "emerald.jpg",
+        "sources": {
+            "node": [
+                "emerald"
+            ],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Ore",
+        "rarity": "uncommon"
+    },
+    {
+        "id": "ice_orbs",
+        "name": "Ice Orbs",
+        "weight": 0.001,
+        "desc": "It seems to have the dark soul with the cold breath, it was made by the life of the region's magic.",
+        "img": "ice_orbs.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Drop",
+        "rarity": "rare"
+    },
+    {
+        "id": "natanz_blue_orb",
+        "name": "Natanz Blue Orb",
+        "weight": 0.02,
+        "desc": "The unique blue spar of Natanz, the favorite stone of the Natanz people, they believe that blue can give people a happy state of mind.",
+        "img": "natanz_blue_orb.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "epic"
+    },
+    {
+        "id": "rune_stone",
+        "name": "Rune Stone",
+        "weight": 0.05,
+        "desc": "Born on the Sky Islands, it stores runic energy.",
+        "img": "rune_stone.jpg",
+        "sources": {
+            "node": [
+                "earth_rune_mine",
+                "flame_rune_mine",
+                "lightning_rune_mine",
+                "mountains_rune_mine",
+                "riptide_rune_mine",
+                "thunder_rune_mine",
+                "wild_arashi_rune_mine",
+                "wind_rune_mine"
+            ],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Ore",
+        "rarity": "uncommon"
+    },
+    {
+        "id": "silver_bar",
+        "name": "Silver Bar",
+        "weight": 0.025,
+        "desc": "A versatile metal alloy. Obtained by smelting silver ore in a furnace.",
+        "img": "silver_bar.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Bar",
+        "rarity": "uncommon"
+    },
+    {
+        "id": "gold_bar",
+        "name": "Gold Bar",
+        "weight": 0.03,
+        "desc": "A versatile metal alloy. Obtained by smelting gold ore in a furnace.",
+        "img": "gold_bar.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Bar",
+        "rarity": "uncommon"
+    },
+    {
+        "id": "crystal",
+        "name": "Crystal",
+        "weight": 0.035,
+        "desc": "A versatile metal alloy. Obtained by smelting crystal ore in a magic furnace.",
+        "img": "crystal.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Bar",
+        "rarity": "rare"
+    },
+    {
+        "id": "obsidian",
+        "name": "Obsidian",
+        "weight": 0.1,
+        "desc": "A versatile metal alloy. Obtained by smelting obsidian ore in a magic furnace.",
+        "img": "obsidian.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Bar",
+        "rarity": "rare"
+    },
+    {
+        "id": "ethereal_pyramid",
+        "name": "Ethereal Pyramid",
+        "weight": 0,
+        "desc": "A pure pyramid mostly used to craft Emerald Tablet.",
+        "img": "ethereal_pyramid.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "uncommon"
+    },
+    {
+        "id": "cursed_pyramid",
+        "name": "Cursed Pyramid",
+        "weight": 0,
+        "desc": "A cursed pyramid. Can be used to craft things.",
+        "img": "cursed_pyramid.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "rare"
+    },
+    {
+        "id": "coral_stone",
+        "name": "Coral Stone",
+        "weight": 0.01,
+        "desc": "Add this when making weapons. It can make iron weapons sharper.",
+        "img": "coral_stone.jpg",
+        "sources": {
+            "node": [
+                "iron_mine"
+            ],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Additives",
+        "rarity": "rare"
+    },
+    {
+        "id": "moonlight_stone",
+        "name": "Moonlight Stone",
+        "weight": 0.01,
+        "desc": "Add this when making weapons. It can make silver weapons sharper.",
+        "img": "moonlight_stone.jpg",
+        "sources": {
+            "node": [
+                "silver_mine"
+            ],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Additives",
+        "rarity": "rare"
+    },
+    {
+        "id": "ruby",
+        "name": "Ruby",
+        "weight": 0.01,
+        "desc": "Add this when making weapons. It can make gold weapons sharper.",
+        "img": "ruby.jpg",
+        "sources": {
+            "node": [
+                "gold_mine"
+            ],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Additives",
+        "rarity": "rare"
+    },
+    {
+        "id": "sapphire",
+        "name": "Sapphire",
+        "weight": 0.01,
+        "desc": "Add this when making weapons. It can make crystal weapons sharper.",
+        "img": "sapphire.jpg",
+        "sources": {
+            "node": [
+                "crystal_mine"
+            ],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Additives",
+        "rarity": "epic"
+    },
+    {
+        "id": "black_gem",
+        "name": "Black Gem",
+        "weight": 0.01,
+        "desc": "Add this when making weapons. It can make obsidian weapons sharper.",
+        "img": "black_gem.jpg",
+        "sources": {
+            "node": [
+                "obsidian_mine"
+            ],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Additives",
+        "rarity": "epic"
+    },
+    {
+        "id": "ancient_gem",
+        "name": "Ancient Gem",
+        "weight": 0.01,
+        "desc": "Add this when making weapons. It can make ancient weapons sharper.",
+        "img": "ancient_gem.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Additives",
+        "rarity": "epic"
+    },
+    {
+        "id": "fire_enchant_stone1",
+        "name": "Fire Enchant Stone 1",
+        "weight": 0.01,
+        "desc": "Possesses a magic power and has all kinds of uses. It can enhance weapons and leg armors and grant attribute bonuses. A Lv. 1 Enchant Stone can only be used when enchanting an item the first two times. \n-The enchanted weapon will increase Attack limit (1/2) \n-The enchanted leg armor will increase Defence (1/2)",
+        "img": "fire_enchant_stone1.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "EnchantStone",
+        "rarity": "epic"
+    },
+    {
+        "id": "lightning_enchant_stone1",
+        "name": "Lightning Enchant Stone 1",
+        "weight": 0.01,
+        "desc": "Possesses a magic power and has all kinds of uses. It can enhance weapons and helmets and grant attribute bonuses. A Lv. 1 Enchant Stone can only be used when enchanting an item the first two times. \n-The enchanted weapon will increase damage dealt to trees (1) \n-The enchanted helmet will increase HP (3/5)",
+        "img": "lightning_enchant_stone1.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "EnchantStone",
+        "rarity": "epic"
+    },
+    {
+        "id": "ice_enchant_stone1",
+        "name": "Ice Enchant Stone 1",
+        "weight": 0.01,
+        "desc": "Possesses a magic power and has all kinds of uses. It can enhance weapons and body armors and grant attribute bonuses. A Lv. 1 Enchant Stone can only be used when enchanting an item the first two times. \n-The enchanted weapon will increase damage dealt to ores (1) \n-The enchanted body armor will increase HP (3/5)",
+        "img": "ice_enchant_stone1.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "EnchantStone",
+        "rarity": "epic"
+    },
+    {
+        "id": "lightning_enchant_stone2",
+        "name": "Lightning Enchant Stone 2",
+        "weight": 0.01,
+        "desc": "Possesses a magic power and has all kinds of uses. It can enhance weapons and helmets and grant attribute bonuses. \n-The enchanted weapon will increase damage dealt to trees (1/2) \n-The enchanted helmet will increase HP (3/5/7)",
+        "img": "lightning_enchant_stone2.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "EnchantStone",
+        "rarity": "epic"
+    },
+    {
+        "id": "hearthstone",
+        "name": "HearthStone",
+        "weight": 0.01,
+        "desc": "This can help ypu return home quickly.",
+        "img": "hearthstone.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Useable",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "rare"
+    },
+    {
+        "id": "energy_rich_crystals",
+        "name": "Energy-rich Crystals",
+        "weight": 0.03,
+        "desc": "The crystals, infused with powerful, concentrates energy, can affect even the surrounding monsters.",
+        "img": "energy_rich_crystals.jpg",
+        "sources": {
+            "node": [
+                "energy_rich_crystal_rock"
+            ],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Ore",
+        "rarity": "rare"
+    },
+    {
+        "id": "portal_reel",
+        "name": "Portal Reel",
+        "weight": 0.001,
+        "desc": "A miracle reel, can portal to the unlock beacon. Note: This item is a bound item. It cannot be traded to another player.",
+        "img": "portal_reel.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Useable",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "epic",
+        "bound": true
+    },
+    {
+        "id": "campfire",
+        "name": "Campfire",
+        "weight": 0.1,
+        "desc": "A campfire not only brings you warmth in the cold of night but also scares of monsters and can be used to barbacue. Really usefull! Most facilites only allow placing up to 20 at a time!",
+        "img": "campfire.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Bulding",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "uncommon"
+    },
+    {
+        "id": "sleeping_bag",
+        "name": "Sleeping Bag",
+        "weight": 0.1,
+        "desc": "A portable sleeping bag that can be used as a temporary base. After genetic recombination, you'll be respawned here. Place up to 10 sleeping bags and beds at a time!",
+        "img": "sleeping_bag.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Bulding",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "uncommon"
+    },
+    {
+        "id": "boat",
+        "name": "Boat",
+        "weight": 0.3,
+        "desc": "A reliable vessel for sea voyages. Most facilites only allow placing up to 20 at a time!",
+        "img": "boat.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Bulding",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "uncommon"
+    },
+    {
+        "id": "rubber",
+        "name": "Rubber",
+        "weight": 0.01,
+        "desc": "A substance gathered from rubber trees. Bouncy and sticky.",
+        "img": "rubber.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "uncommon"
+    },
+    {
+        "id": "resin",
+        "name": "Resin",
+        "weight": 0.01,
+        "desc": "A liquid secreted from some trees. Easily found among pines and poplars.",
+        "img": "resin.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "uncommon"
+    },
+    {
+        "id": "straw",
+        "name": "Straw",
+        "weight": 0.01,
+        "desc": "A common plant, thick and sturdy. Can protect against wind and rain.",
+        "img": "straw.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "common"
+    },
+    {
+        "id": "cotton",
+        "name": "Cotton",
+        "weight": 0.01,
+        "desc": "Seed fibers from a ccotton plant which can be woven into comfortable cotton cloth. Wild cotton grows in fairly elevated regions.",
+        "img": "cotton.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "uncommon"
+    },
+    {
+        "id": "plant_fiber",
+        "name": "Plant Fiber",
+        "weight": 0.01,
+        "desc": "A substance made from plant threads, obtained from gathering weeds. Used to make linen.",
+        "img": "plant_fiber.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "common"
+    },
+    {
+        "id": "wand",
+        "name": "Wand",
+        "weight": 0.1,
+        "desc": "A conduit of magic and a wondrous weapon.",
+        "img": "wand.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Equippable",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "uncommon",
+        "durability": 500,
+        "levelLimit": null
+    },
+    {
+        "id": "the_guidebook",
+        "name": "The Guidebook",
+        "weight": 0.1,
+        "desc": "Can use magic to encounter a variety of monsters in the adventure of the magic book of analysis, the world all things are included in the guide to come.",
+        "img": "the_guidebook.jpg",
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "notes": "",
+        "category": "Equippable",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "uncommon",
         "durability": 1,
         "levelLimit": null
     },
     {
-        "id":"elemental_essence_stone_mine",
-        "name":"Elemental Essence-Stone Mine",
-        "weight":0.0,  //kg at 2 stack
-        "desc":"Used to synthesizeTransformation Potion-Stone Mine",
-        "img":"elemental_essence_stone_mine.jpg", // null for when no image
-        "sources":{
+        "id": "elemental_essence_stone_mine",
+        "name": "Elemental Essence-Stone Mine",
+        "weight": 0,
+        "desc": "Used to synthesizeTransformation Potion-Stone Mine",
+        "img": "elemental_essence_stone_mine.jpg",
+        "sources": {
             "node": [
                 "stone_mine"
             ],
-            "enemy":[
-
-            ]
+            "enemy": []
         },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"epic"
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "epic"
     },
     {
-        "id":"natanz_spar_ball",
-        "name":"Natanz Spar Ball",
-        "weight":0.001,  //kg 
-        "desc":"Natanz Spar forms this ball under the guidance of magnetism. Note: This item is a bound item, cannot trade to others.",
-        "img":"natanz_spar_ball.jpg", // null for when no image
-        "sources":{
+        "id": "natanz_spar_ball",
+        "name": "Natanz Spar Ball",
+        "weight": 0.001,
+        "desc": "Natanz Spar forms this ball under the guidance of magnetism. Note: This item is a bound item, cannot trade to others.",
+        "img": "natanz_spar_ball.jpg",
+        "sources": {
             "node": [
                 "natanz_spar"
             ],
-            "enemy":[
-
-            ]
+            "enemy": []
         },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"rare",
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "rare",
         "bound": true
     },
     {
-        "id":"the_power_of_natanz",
-        "name":"Natanz Spar Ball",
-        "weight":0.01,  //kg 
-        "desc":"A - 55 or S - 55's material, chance to increase the quality of the gun.",
-        "img":"the_power_of_natanz.jpg", // null for when no image
-        "sources":{
+        "id": "the_power_of_natanz",
+        "name": "Natanz Spar Ball",
+        "weight": 0.01,
+        "desc": "A - 55 or S - 55's material, chance to increase the quality of the gun.",
+        "img": "the_power_of_natanz.jpg",
+        "sources": {
             "node": [
                 "natanz_spar"
             ],
-            "enemy":[
-
-            ]
+            "enemy": []
         },
-        "uses":[
-            //fill later
-        ],
-        "notes":"is this Additives?",
-        "category":"Material",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"epic"
+        "uses": [],
+        "notes": "is this Additives?",
+        "category": "Material",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "epic"
     },
     {
-        "id":"stardust",
-        "name":"Stardust",
-        "weight":0.03,  //kg 
-        "desc":"Stardust accumulates and coalesces into an ore clast.",
-        "img":"stardust.jpg", // null for when no image
-        "sources":{
+        "id": "stardust",
+        "name": "Stardust",
+        "weight": 0.03,
+        "desc": "Stardust accumulates and coalesces into an ore clast.",
+        "img": "stardust.jpg",
+        "sources": {
             "node": [
                 "stardust_mine"
             ],
-            "enemy":[
-
-            ]
+            "enemy": []
         },
-        "uses":[
-            //fill later
-        ],
-        "notes":"",
-        "category":"Material",
-        "subcategory":"Ore",
-        "rarity":"rare",
+        "uses": [],
+        "notes": "",
+        "category": "Material",
+        "subcategory": "Ore",
+        "rarity": "rare",
         "bound": true
     },
     {
-        "id":"unstable_starcore",
-        "name":"Unstable Starcore",
-        "weight":0.01,  //kg 
-        "desc":"Crystal with the unstable energy. Can be used for enhanceing axe and pickaxe's damage and attack. Can be transformed into Starcore Crystal in Starfield Refining Furnace. Note: This is a time-limited and bound. After I leaving the Cloud Sea, It will disappear.",
-        "img":"unstable_starcore.jpg", // null for when no image
-        "sources":{
+        "id": "unstable_starcore",
+        "name": "Unstable Starcore",
+        "weight": 0.01,
+        "desc": "Crystal with the unstable energy. Can be used for enhanceing axe and pickaxe's damage and attack. Can be transformed into Starcore Crystal in Starfield Refining Furnace. Note: This is a time-limited and bound. After I leaving the Cloud Sea, It will disappear.",
+        "img": "unstable_starcore.jpg",
+        "sources": {
             "node": [
                 "stardust_mine"
             ],
-            "enemy":[
-
-            ]
+            "enemy": []
         },
-        "uses":[
-            //fill later
-        ],
-        "notes":"Count down after obtain 01:00:00, figure how to format this.",
-        "category":"Material",
-        "subcategory":"DetermineSubcategory",
-        "rarity":"epic",
+        "uses": [],
+        "notes": "Count down after obtain 01:00:00, figure how to format this.",
+        "category": "Material",
+        "subcategory": "DetermineSubcategory",
+        "rarity": "epic",
         "bound": true,
         "time-limited": "01:00:00"
     }
-
-
 ]
