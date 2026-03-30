@@ -1740,8 +1740,7 @@
         "rarity": "Common"
     },
     {
-        "id": "
-        ",
+        "id": "frost_pine_cone",
         "name": "Frost Pine Cone",
         "desc": "",
         "img": "frost_pine_cone.jpg",
@@ -2124,10 +2123,10 @@
         "rarity": "Common"
     },
     {
-        "id": "chilli",
-        "name": "Chilli",
+        "id": "chili",
+        "name": "Chili",
         "desc": "",
-        "img": "chilli.jpg",
+        "img": "chili.jpg",
         "notes": "",
         "category": "Plants",
         "subcategory": "Food",
@@ -2136,11 +2135,11 @@
         "drops": {
             "items": {
                 "drop1": {
-                    "id": "chilli",
+                    "id": "chili",
                     "amount": "temp"
                 },
                 "drop2": {
-                    "id": "chilli_seed",
+                    "id": "chili_seed",
                     "amount": "temp"
                 },
                 "drop3": {
@@ -2687,7 +2686,7 @@
     },
     {
         "id": "blue_devil",
-        "name": "Blue Devil",
+        "name": "Blue Devil", 
         "desc": "",
         "img": "blue_devil.jpg",
         "notes": "",
@@ -3122,5 +3121,5 @@
             "xp": -1
         },
         "rarity": "Common"
-    },
+    }
 ]
