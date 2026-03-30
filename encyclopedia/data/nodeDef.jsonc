@@ -3107,8 +3107,8 @@
         "desc": "",
         "img": "natanz_blue_orb.jpg",
         "notes": "",
-        "category": "Ore",
-        "subcategory": "determinSubCategory",
+        "category": "Other",
+        "subcategory": "NotFood",
         "health": -1,
         "tool": "pick",
         "drops": {
