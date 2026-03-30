@@ -141,343 +141,353 @@
     </style>
 </head>
 <body>
-
-<div class="container">
-    <header>
-        <h1>Gen-Station</h1>
-        <div class="mode-selector">
-            <button class="mode-btn active" id="btn-node" onclick="switchMode('node')">Node Def</button>
-            <button class="mode-btn" id="btn-item" onclick="switchMode('item')">Item Def</button>
-        </div>
-    </header>
-
-    <div class="grid">
-        <div class="card full-width">
-            <div class="row-group">
-                <div>
-                    <label>Internal Name</label>
-                    <input type="text" id="nameInput" placeholder="e.g. Damascus Steel Ore">
-                </div>
-                <div>
-                    <label>Generated ID</label>
-                    <input type="text" id="idInput" class="readonly" readonly>
-                </div>
+    <div class="container">
+        <header>
+            <h1>JSON Generator</h1>
+            <div class="mode-selector">
+                <button class="mode-btn active" id="btn-node" onclick="switchMode('node')">Node Def</button>
+                <button class="mode-btn" id="btn-item" onclick="switchMode('item')">Item Def</button>
             </div>
-            <label>Description</label>
-            <input type="text" id="descInput" placeholder="Item/Node flavor text...">
-            
-            <div class="row-group">
-                <div>
-                    <label>Image Reference</label>
-                    <input type="text" id="imgInput" class="readonly" readonly>
-                </div>
-                <div>
-                    <label>Developer Notes</label>
-                    <input type="text" id="notesInput" placeholder="Internal usage details...">
-                </div>
-            </div>
-        </div>
+        </header>
 
-        <div class="card">
-            <div id="nodeMeta">
-                <label>Node Category</label>
-                <select id="nodeCategory">
-                    <option value="Ore">Ore</option>
-                    <option value="Trees">Trees</option>
-                    <option value="Plants">Plants</option>
-                    <option value="Other">Other</option>
-                </select>
-                <label>Subcategory</label>
-                <select id="nodeSubcategory">
-                    <option value="determinSubCategory">determinSubCategory</option>
-                    <option value="Food">Food</option>
-                    <option value="NotFood">NotFood</option>
-                </select>
-                <label>Rarity</label>
-                <select id="nodeRarity">
-                    <option value="Common">Common</option>
-                    <option value="Rare">Rare</option>
-                    <option value="Extremely Rare">Extremely Rare</option>
-                </select>
-            </div>
-
-            <div id="itemMeta" class="hidden">
-                <label>Item Category</label>
-                <select id="itemCategory" onchange="toggleItemConditionals()">
-                    <option value="Material">Material</option>
-                    <option value="Food">Food</option>
-                    <option value="Equippable">Equippable</option>
-                    <option value="Useable">Useable</option>
-                    <option value="Bulding">Bulding</option>
-                </select>
-                <label>Subcategory</label>
-                <select id="itemSubcategory">
-                    <option value="Ore">Ore</option>
-                    <option value="Bar">Bar</option>
-                    <option value="Drop">Drop</option>
-                    <option value="Wood">Wood</option>
-                    <option value="BBQ">BBQ</option>
-                    <option value="DetermineSubcategory">DetermineSubcategory</option>
-                    <option value="Additives">Additives</option>
-                    <option value="EnchantStone">EnchantStone</option>
-                    <option value="Plant">Plant</option>
-                </select>
-                <label>Rarity</label>
-                <select id="itemRarity">
-                    <option value="common">common</option>
-                    <option value="uncommon">uncommon</option>
-                    <option value="rare">rare</option>
-                    <option value="epic">epic</option>
-                    <option value="legendary">legendary</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="card">
-            <div id="nodeStats">
-                <label>Tool Requirement</label>
-                <select id="nodeTool">
-                    <option value="pick">Pickaxe</option>
-                    <option value="axe">Axe</option>
-                    <option value="sword">Sword</option>
-                    <option value="hand">Hand</option>
-                </select>
+        <div class="grid">
+            <div class="card full-width">
                 <div class="row-group">
                     <div>
-                        <label>Health</label>
-                        <input type="text" id="nodeHealth" value="#?">
+                        <label>Name</label>
+                        <input type="text" id="nameInput" placeholder="e.g. Damascus Steel Ore">
                     </div>
                     <div>
-                        <label>XP Yield</label>
-                        <input type="text" id="nodeXP" value="#?">
+                        <label>Generated ID</label>
+                        <input type="text" id="idInput" class="readonly" readonly>
                     </div>
                 </div>
-            </div>
-
-            <div id="itemStats" class="hidden">
-                <div class="row-group">
-                    <div>
-                        <label>Weight</label>
-                        <input type="number" id="itemWeight" step="0.01" value="0.01">
-                    </div>
-                    <div>
-                        <label>Bound</label>
-                        <select id="itemBound">
-                            <option value="false">False</option>
-                            <option value="true">True</option>
-                        </select>
-                    </div>
-                </div>
+                <label>Description</label>
+                <input type="text" id="descInput" placeholder="Item/Node flavor text...">
                 
-                <div id="foodFields" class="hidden">
-                    <div class="row-group">
-                        <div><label>Food</label><input type="number" id="foodVal" value="0"></div>
-                        <div><label>Water</label><input type="number" id="waterVal" value="0"></div>
-                    </div>
-                </div>
-
-                <div id="equipFields" class="hidden">
-                    <div class="row-group">
-                        <div><label>Durability</label><input type="number" id="durability" value="0"></div>
-                        <div><label>Level Limit</label><input type="number" id="levelLimit" value="0"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card full-width">
-            <div id="nodeDrops">
-                <label>Loot Drops (items array)</label>
-                <div id="dropsContainer"></div>
-                <button class="btn btn-secondary" onclick="addDropRow()">+ Add Drop</button>
-            </div>
-
-            <div id="itemSources" class="hidden">
                 <div class="row-group">
                     <div>
-                        <label>Node Sources (ID array)</label>
-                        <div id="nodeSrcContainer"></div>
-                        <button class="btn btn-secondary" onclick="addSourceRow('node')">+ Add Node</button>
+                        <label>Image</label>
+                        <input type="text" id="imgInput" class="readonly" readonly>
                     </div>
                     <div>
-                        <label>Uses (String array)</label>
-                        <div id="usesContainer"></div>
-                        <button class="btn btn-secondary" onclick="addSourceRow('use')">+ Add Use</button>
+                        <label>Notes</label>
+                        <input type="text" id="notesInput" placeholder="Usage details... or fun trivia">
+                    </div>
+                    <div>
+                        <label>Tags (Comma separated)</label>
+                        <input type="text" id="tagsInput" placeholder="e.g. craftable, rare_spawn">
                     </div>
                 </div>
             </div>
+
+            <div class="card">
+                <div id="nodeMeta">
+                    <label>Node Category</label>
+                    <select id="nodeCategory">
+                        <option value="Ore">Ore</option>
+                        <option value="Trees">Trees</option>
+                        <option value="Plants">Plants</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <label>Subcategory</label>
+                    <select id="nodeSubcategory">
+                        <option value="determinSubCategory">determinSubCategory</option>
+                        <option value="Food">Food</option>
+                        <option value="NotFood">NotFood</option>
+                    </select>
+                    <label>Rarity</label>
+                    <select id="nodeRarity">
+                        <option value="Common">Common</option>
+                        <option value="Rare">Rare</option>
+                        <option value="Extremely Rare">Extremely Rare</option>
+                    </select>
+                </div>
+
+                <div id="itemMeta" class="hidden">
+                    <label>Item Category</label>
+                    <select id="itemCategory" onchange="toggleItemConditionals()">
+                        <option value="Material">Material</option>
+                        <option value="Food">Food</option>
+                        <option value="Equippable">Equippable</option>
+                        <option value="Useable">Useable</option>
+                        <option value="Bulding">Bulding</option>
+                    </select>
+                    <label>Subcategory</label>
+                    <select id="itemSubcategory">
+                        <option value="Ore">Ore</option>
+                        <option value="Bar">Bar</option>
+                        <option value="Drop">Drop</option>
+                        <option value="Wood">Wood</option>
+                        <option value="BBQ">BBQ</option>
+                        <option value="DetermineSubcategory">DetermineSubcategory</option>
+                        <option value="Additives">Additives</option>
+                        <option value="EnchantStone">EnchantStone</option>
+                        <option value="Plant">Plant</option>
+                    </select>
+                    <label>Rarity</label>
+                    <select id="itemRarity">
+                        <option value="common">common</option>
+                        <option value="uncommon">uncommon</option>
+                        <option value="rare">rare</option>
+                        <option value="epic">epic</option>
+                        <option value="legendary">legendary</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card">
+                <div id="nodeStats">
+                    <label>Tool Requirement</label>
+                    <select id="nodeTool">
+                        <option value="pick">Pickaxe</option>
+                        <option value="axe">Axe</option>
+                        <option value="sword">Sword</option>
+                        <option value="hand">Hand</option>
+                    </select>
+                    <div class="row-group">
+                        <div>
+                            <label>Health</label>
+                            <input type="text" id="nodeHealth" value="#?">
+                        </div>
+                        <div>
+                            <label>XP Yield</label>
+                            <input type="text" id="nodeXP" value="#?">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="itemStats" class="hidden">
+                    <div class="row-group">
+                        <div>
+                            <label>Weight</label>
+                            <input type="number" id="itemWeight" step="0.01" value="0.01">
+                        </div>
+                        <div>
+                            <label>Bound</label>
+                            <select id="itemBound">
+                                <option value="false">False</option>
+                                <option value="true">True</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="foodFields" class="hidden">
+                        <div class="row-group">
+                            <div><label>Food</label><input type="number" id="foodVal" value="0"></div>
+                            <div><label>Water</label><input type="number" id="waterVal" value="0"></div>
+                        </div>
+                    </div>
+
+                    <div id="equipFields" class="hidden">
+                        <div class="row-group">
+                            <div><label>Durability</label><input type="number" id="durability" value="0"></div>
+                            <div><label>Level Limit</label><input type="number" id="levelLimit" value="0"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card full-width">
+                <div id="nodeDrops">
+                    <label>Loot Drops (items array)</label>
+                    <div id="dropsContainer"></div>
+                    <button class="btn btn-secondary" onclick="addDropRow()">+ Add Drop</button>
+                </div>
+
+                <div id="itemSources" class="hidden">
+                    <div class="row-group">
+                        <div>
+                            <label>Node Sources (ID array)</label>
+                            <div id="nodeSrcContainer"></div>
+                            <button class="btn btn-secondary" onclick="addSourceRow('node')">+ Add Node</button>
+                        </div>
+                        <div>
+                            <label>Uses (String array)</label>
+                            <div id="usesContainer"></div>
+                            <button class="btn btn-secondary" onclick="addSourceRow('use')">+ Add Use</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card full-width">
+                <label>Output Preview</label>
+                <textarea id="output" readonly placeholder="JSON will appear here..."></textarea>
+            </div>
         </div>
 
-        <div class="card full-width">
-            <label>Output Preview</label>
-            <textarea id="output" readonly placeholder="JSON will appear here..."></textarea>
+        <div class="action-bar">
+            <button class="btn btn-danger" onclick="clearAll()">Clear</button>
+            <button class="btn btn-secondary" onclick="previewJSON()">Preview</button>
+            <button class="btn btn-primary" onclick="copyToClipboard()">Copy & Reset</button>
         </div>
     </div>
+    <script>
+        let currentMode = 'node';
 
-    <div class="action-bar">
-        <button class="btn btn-danger" onclick="clearAll()">Clear</button>
-        <button class="btn btn-secondary" onclick="previewJSON()">Preview</button>
-        <button class="btn btn-primary" onclick="copyToClipboard()">Copy & Reset</button>
-    </div>
-</div>
-
-<script>
-    let currentMode = 'node';
-
-    const macros = {
-        '$ee': 'elemental_essence_',
-        '$sd': '_seed',
-        '$fec': 'fire_enchant_stone_',
-        '$iec': 'ice_enchant_stone_',
-        '$p': 'pistil'
-    };
-
-    function switchMode(mode) {
-        currentMode = mode;
-        document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById(`btn-${mode}`).classList.add('active');
-
-        // Toggle UI panels
-        ['nodeMeta', 'nodeStats', 'nodeDrops'].forEach(id => document.getElementById(id).classList.toggle('hidden', mode !== 'node'));
-        ['itemMeta', 'itemStats', 'itemSources'].forEach(id => document.getElementById(id).classList.toggle('hidden', mode !== 'item'));
-        
-        clearAll();
-    }
-
-    // Auto-ID Logic
-    document.getElementById('nameInput').addEventListener('input', (e) => {
-        const id = e.target.value.trim().toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
-        document.getElementById('idInput').value = id;
-        document.getElementById('imgInput').value = id ? `${id}.jpg` : "null";
-    });
-
-    function applyMacros(val) {
-        const id = document.getElementById('idInput').value;
-        let cleaned = val.replaceAll('$id', id);
-        for (const [key, replacement] of Object.entries(macros)) {
-            cleaned = cleaned.replaceAll(key, replacement + (key === '$sd' ? id : ''));
-        }
-        return cleaned.trim().toLowerCase().replace(/[^a-z0-9_]+/g, "_");
-    }
-
-    // Dynamic Row Handlers
-    function addDropRow(valId = "", valAmt = "#?") {
-        const container = document.getElementById('dropsContainer');
-        const div = document.createElement('div');
-        div.className = 'dynamic-row';
-        div.innerHTML = `
-            <input type="text" placeholder="Drop ID ($id, $sd...)" class="d-id" value="${valId}" onchange="this.value = applyMacros(this.value)" style="margin-bottom:0; flex:2">
-            <input type="text" placeholder="Amt" class="d-amt" value="${valAmt}" style="margin-bottom:0; flex:1">
-            <button class="btn btn-danger" onclick="this.parentElement.remove()" style="padding: 12px">×</button>
-        `;
-        container.appendChild(div);
-    }
-
-    function addSourceRow(type, val = "") {
-        const container = document.getElementById(type === 'node' ? 'nodeSrcContainer' : 'usesContainer');
-        const div = document.createElement('div');
-        div.className = 'dynamic-row';
-        div.innerHTML = `
-            <input type="text" class="${type}-val" value="${val}" style="margin-bottom:0; flex:1">
-            <button class="btn btn-danger" onclick="this.parentElement.remove()" style="padding: 12px">×</button>
-        `;
-        container.appendChild(div);
-    }
-
-    function toggleItemConditionals() {
-        const cat = document.getElementById('itemCategory').value;
-        document.getElementById('foodFields').classList.toggle('hidden', cat !== 'Food');
-        document.getElementById('equipFields').classList.toggle('hidden', cat !== 'Equippable');
-    }
-
-    function buildJSON() {
-        const base = {
-            id: document.getElementById('idInput').value,
-            name: document.getElementById('nameInput').value,
-            desc: document.getElementById('descInput').value,
-            img: document.getElementById('imgInput').value === "null" ? null : document.getElementById('imgInput').value,
-            notes: document.getElementById('notesInput').value
+        const macros = {
+            '$ee': 'elemental_essence_',
+            '$sd': '_seed',
+            '$fec': 'fire_enchant_stone_',
+            '$iec': 'ice_enchant_stone_',
+            '$p': 'pistil'
         };
 
-        if (currentMode === 'node') {
-            const dropsArray = [];
-            document.querySelectorAll('#dropsContainer .dynamic-row').forEach((row) => {
-                const id = row.querySelector('.d-id').value;
-                if (id) {
-                    dropsArray.push({
-                        id: id,
-                        amount: row.querySelector('.d-amt').value
-                    });
-                }
-            });
+        function switchMode(mode) {
+            currentMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`btn-${mode}`).classList.add('active');
 
-            return {
-                ...base,
-                category: document.getElementById('nodeCategory').value,
-                subcategory: document.getElementById('nodeSubcategory').value,
-                health: document.getElementById('nodeHealth').value,
-                tool: document.getElementById('nodeTool').value,
-                drops: { 
-                    items: dropsArray, 
-                    xp: document.getElementById('nodeXP').value 
-                },
-                rarity: document.getElementById('nodeRarity').value
-            };
-        } else {
-            const item = {
-                ...base,
-                weight: Number(document.getElementById('itemWeight').value),
-                sources: { 
-                    node: Array.from(document.querySelectorAll('.node-val')).map(i => i.value).filter(v => v),
-                    enemy: [] 
-                },
-                uses: Array.from(document.querySelectorAll('.use-val')).map(i => i.value).filter(v => v),
-                category: document.getElementById('itemCategory').value,
-                subcategory: document.getElementById('itemSubcategory').value,
-                rarity: document.getElementById('itemRarity').value,
-                bound: document.getElementById('itemBound').value === 'true'
-            };
-
-            if (item.category === 'Food') {
-                item.foodStats = { food: parseInt(document.getElementById('foodVal').value), water: parseInt(document.getElementById('waterVal').value) };
-            }
-            if (item.category === 'Equippable') {
-                item.durability = parseInt(document.getElementById('durability').value);
-                item.levelLimit = parseInt(document.getElementById('levelLimit').value);
-            }
-            return item;
+            // Toggle UI panels
+            ['nodeMeta', 'nodeStats', 'nodeDrops'].forEach(id => document.getElementById(id).classList.toggle('hidden', mode !== 'node'));
+            ['itemMeta', 'itemStats', 'itemSources'].forEach(id => document.getElementById(id).classList.toggle('hidden', mode !== 'item'));
+            
+            clearAll();
         }
-    }
 
-    function previewJSON() {
-        const obj = buildJSON();
-        document.getElementById('output').value = JSON.stringify(obj, null, 4) + ",";
-    }
-
-    async function copyToClipboard() {
-        previewJSON();
-        const text = document.getElementById('output').value.replace(/,$/, "");
-        await navigator.clipboard.writeText(text);
-        clearAll();
-        document.getElementById('nameInput').focus();
-    }
-
-    function clearAll() {
-        document.querySelectorAll('input:not(.readonly)').forEach(i => {
-            if(i.id === 'nodeHealth' || i.id === 'nodeXP') i.value = "#?";
-            else if(i.type === 'number') i.value = i.defaultValue || "0";
-            else i.value = "";
+        // Auto-ID Logic
+        document.getElementById('nameInput').addEventListener('input', (e) => {
+            const id = e.target.value.trim().toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
+            document.getElementById('idInput').value = id;
+            document.getElementById('imgInput').value = id ? `${id}.jpg` : "null";
         });
-        document.querySelectorAll('.dynamic-row').forEach(r => r.remove());
-        document.getElementById('output').value = "";
-        
-        if (currentMode === 'item') {
-            toggleItemConditionals();
-        }
-    }
 
-    // Initialize
-    switchMode('node');
-</script>
+        function applyMacros(val) {
+            const id = document.getElementById('idInput').value;
+            let cleaned = val.replaceAll('$id', id);
+            for (const [key, replacement] of Object.entries(macros)) {
+                cleaned = cleaned.replaceAll(key, replacement + (key === '$sd' ? id : ''));
+            }
+            return cleaned.trim().toLowerCase().replace(/[^a-z0-9_]+/g, "_");
+        }
+
+        // Dynamic Row Handlers
+        function addDropRow(valId = "", valAmt = "#?") {
+            const container = document.getElementById('dropsContainer');
+            const div = document.createElement('div');
+            div.className = 'dynamic-row';
+            div.innerHTML = `
+                <input type="text" placeholder="Drop ID ($id, $sd...)" class="d-id" value="${valId}" onchange="this.value = applyMacros(this.value)" style="margin-bottom:0; flex:2">
+                <input type="text" placeholder="Amt" class="d-amt" value="${valAmt}" style="margin-bottom:0; flex:1">
+                <button class="btn btn-danger" onclick="this.parentElement.remove()" style="padding: 12px">×</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function addSourceRow(type, val = "") {
+            const container = document.getElementById(type === 'node' ? 'nodeSrcContainer' : 'usesContainer');
+            const div = document.createElement('div');
+            div.className = 'dynamic-row';
+            div.innerHTML = `
+                <input type="text" class="${type}-val" value="${val}" style="margin-bottom:0; flex:1">
+                <button class="btn btn-danger" onclick="this.parentElement.remove()" style="padding: 12px">×</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function toggleItemConditionals() {
+            const cat = document.getElementById('itemCategory').value;
+            document.getElementById('foodFields').classList.toggle('hidden', cat !== 'Food');
+            document.getElementById('equipFields').classList.toggle('hidden', cat !== 'Equippable');
+        }
+
+        function buildJSON() {
+            // Process tags: split by comma, trim whitespace, remove empty strings
+            const tagsRaw = document.getElementById('tagsInput').value;
+            const tagsArray = tagsRaw.split(',')
+                .map(t => t.trim().toLowerCase())
+                .filter(t => t !== "");
+
+            const base = {
+                id: document.getElementById('idInput').value,
+                name: document.getElementById('nameInput').value,
+                desc: document.getElementById('descInput').value,
+                img: document.getElementById('imgInput').value === "null" ? null : document.getElementById('imgInput').value,
+                tags: tagsArray, // <--- New Field
+                notes: document.getElementById('notesInput').value
+            };
+
+            if (currentMode === 'node') {
+                const dropsArray = [];
+                document.querySelectorAll('#dropsContainer .dynamic-row').forEach((row) => {
+                    const id = row.querySelector('.d-id').value;
+                    if (id) {
+                        dropsArray.push({
+                            id: id,
+                            amount: row.querySelector('.d-amt').value
+                        });
+                    }
+                });
+
+                return {
+                    ...base,
+                    category: document.getElementById('nodeCategory').value,
+                    subcategory: document.getElementById('nodeSubcategory').value,
+                    health: document.getElementById('nodeHealth').value,
+                    tool: document.getElementById('nodeTool').value,
+                    drops: { 
+                        items: dropsArray, 
+                        xp: document.getElementById('nodeXP').value 
+                    },
+                    rarity: document.getElementById('nodeRarity').value
+                };
+            } else {
+                const item = {
+                    ...base,
+                    weight: Number(document.getElementById('itemWeight').value),
+                    sources: { 
+                        node: Array.from(document.querySelectorAll('.node-val')).map(i => i.value).filter(v => v),
+                        enemy: [] 
+                    },
+                    uses: Array.from(document.querySelectorAll('.use-val')).map(i => i.value).filter(v => v),
+                    category: document.getElementById('itemCategory').value,
+                    subcategory: document.getElementById('itemSubcategory').value,
+                    rarity: document.getElementById('itemRarity').value,
+                    bound: document.getElementById('itemBound').value === 'true'
+                };
+
+                if (item.category === 'Food') {
+                    item.foodStats = { food: parseInt(document.getElementById('foodVal').value), water: parseInt(document.getElementById('waterVal').value) };
+                }
+                if (item.category === 'Equippable') {
+                    item.durability = parseInt(document.getElementById('durability').value);
+                    item.levelLimit = parseInt(document.getElementById('levelLimit').value);
+                }
+                return item;
+            }
+        }
+
+        function previewJSON() {
+            const obj = buildJSON();
+            document.getElementById('output').value = JSON.stringify(obj, null, 4) + ",";
+        }
+
+        async function copyToClipboard() {
+            previewJSON();
+            const text = document.getElementById('output').value.replace(/,$/, "");
+            await navigator.clipboard.writeText(text);
+            clearAll();
+            document.getElementById('nameInput').focus();
+        }
+
+        function clearAll() {
+            document.querySelectorAll('input:not(.readonly)').forEach(i => {
+                if(i.id === 'nodeHealth' || i.id === 'nodeXP') i.value = "#?";
+                else if(i.type === 'number') i.value = i.defaultValue || "0";
+                else i.value = "";
+            });
+            document.querySelectorAll('.dynamic-row').forEach(r => r.remove());
+            document.getElementById('output').value = "";
+            
+            if (currentMode === 'item') {
+                toggleItemConditionals();
+            }
+            document.getElementById('tagsInput').value = "";
+        }
+
+        // Initialize
+        switchMode('node');
+    </script>
 </body>
 </html>

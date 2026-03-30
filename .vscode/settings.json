@@ -32,16 +32,5 @@
     },
     "workbench.editor.dragToOpenWindow": false,
     "workbench.editor.tabSizing": "fit",
-    "editor.showFoldingControls": "always",
-    "editor.defaultFoldingRangeProvider": "zokugun.explicit-folding",
-    "[javascript]": {
-        "explicitFolding.rules": [
-            {
-                "begin": "{",
-                "end": "}",
-                "while": "content",
-                "foldLastLine": true 
-            }
-        ]
-    }
+    "editor.showFoldingControls": "always"
 }
