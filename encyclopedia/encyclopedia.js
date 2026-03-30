@@ -913,7 +913,7 @@ function renderInfoSection(item) {
     let desc = item.desc;
     let formattedDesc = [];
     if (desc.includes('\n')){
-        let matches = desc.matchAll("\n");
+        let matches = desc.match("\n");
         log(matches, "info");
     }
 
