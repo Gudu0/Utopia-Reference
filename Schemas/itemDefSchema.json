@@ -88,6 +88,9 @@
         "type": ["integer", "null"],
         "minimum": 0,
         "maximum": 100
+      },
+      "time-limited": {
+        "type": "string"
       }
     },
     "allOf": [

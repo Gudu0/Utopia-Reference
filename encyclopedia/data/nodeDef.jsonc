@@ -4,7 +4,7 @@
         "name": "Iron Mine",
         "desc": "Iron mine Description goes here, but there aren't any ingame I think",
         "img": "iron_mine.jpg",
-        "category": "Mine",
+        "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
             "items": {
@@ -32,14 +32,15 @@
             "xp": 400
         },
         "tool":"pick",
-        "health": 0
+        "health": -1,
+        "rarity": "Common"
     },
     {
         "id": "stone_mine",
         "name": "Stone Mine",
         "desc": "Stone mine Description goes here, but there aren't any ingame I think",
         "img": "stone_mine.jpg",
-        "category": "Mine",
+        "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
             "items": {
@@ -63,6 +64,424 @@
             "xp": 200
         },
         "tool":"pick",
-        "health": 0
+        "health": -1,
+        "rarity": "Common"
+    },
+    {
+        "id": "silver_mine",
+        "name": "Silver Mine",
+        "desc": "Silver mine Description goes here, but there aren't any ingame I think",
+        "img": "silver_mine.jpg",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "silver_ore",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "stone",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "coal",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "moonlight_stone",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "tool":"pick",
+        "health": -1,
+        "rarity": "Common"
+    },
+    {
+        "id": "gold_mine",
+        "name": "Gold Mine",
+        "desc": "Gold mine Description goes here, but there aren't any ingame I think",
+        "img": "gold_mine.jpg",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "gold_ore",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "stone",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "coal",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "ruby",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "tool":"pick",
+        "health": -1,
+        "rarity": "Rare"
+    },
+    {
+        "id": "crystal_mine",
+        "name": "Crystal Mine",
+        "desc": "Crystal mine Description goes here, but there aren't any ingame I think",
+        "img": "crystal_mine.jpg",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "crystal_ore",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "stone",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "coal",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "sapphire",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "tool":"pick",
+        "health": -1,
+        "rarity": "Rare"
+    },
+    {
+        "id": "obsidian_mine",
+        "name": "Obsidian Mine",
+        "desc": "Obsidian mine Description goes here, but there aren't any ingame I think",
+        "img": "obsidian_mine.jpg",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "obsidian_ore",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "stone",
+                    "amount": "temp"
+                },
+                "drop3": {
+                    "id": "coal",
+                    "amount": "temp"
+                },
+                "drop4": {
+                    "id": "black_gem",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "tool":"pick",
+        "health": -1,
+        "rarity": "Rare"
+    },
+    
+    {
+        "id": "fire_magic_mine",
+        "name": "Fire Magic Mine",
+        "desc": "Fire Magic mine Description goes here, but there aren't any ingame I think",
+        "img": "fire_magic_mine.jpg",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "steam_stone",
+                    "amount": "1"
+                }
+            },
+            "xp": -1
+        },
+        "tool":"pick",
+        "health": -1,
+        "rarity": "Extremely Rare"
+    },
+    {
+        "id": "natanz_spar",
+        "name": "Natanz Spar",
+        "desc": "natanz_spar Description goes here, but there aren't any ingame I think",
+        "img": "natanz_spar.jpg",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "natanz_spar_ball",
+                    "amount": "temp"
+                },
+                "drop2":{
+                    "id": "the_power_of_natanz",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "tool":"pick",
+        "health": -1,
+        "rarity": "Extremely Rare"
+    },
+    {
+        "id": "wind_rune_mine",
+        "name": "Wind Rune Mine",
+        "desc": "wind_rune_mine Description goes here, but there aren't any ingame I think",
+        "img": "wind_rune_mine.jpg",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "rune_stone",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "tool":"pick",
+        "health": -1,
+        "rarity": "Rare"
+    },
+    {
+        "id": "thunder_rune_mine",
+        "name": "Thunder Rune Mine",
+        "desc": "thunder_rune_mine Description goes here, but there aren't any ingame I think",
+        "img": "thunder_rune_mine.jpg",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "rune_stone",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "tool":"pick",
+        "health": -1,
+        "rarity": "Rare"
+    },
+    {
+        "id": "earth_rune_mine",
+        "name": "Earth Rune Mine",
+        "desc": "earth_rune_mine Description goes here, but there aren't any ingame I think",
+        "img": "earth_rune_mine.jpg",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "rune_stone",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "tool":"pick",
+        "health": -1,
+        "rarity": "Rare"
+    },
+    {
+        "id": "riptide_rune_mine",
+        "name": "Riptide Rune Mine",
+        "desc": "riptide_rune_mine Description goes here, but there aren't any ingame I think",
+        "img": "riptide_rune_mine.jpg",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "rune_stone",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "tool":"pick",
+        "health": -1,
+        "rarity": "Rare"
+    },
+    {
+        "id": "flame_rune_mine",
+        "name": "Flame Rune Mine",
+        "desc": "flame_rune_mine Description goes here, but there aren't any ingame I think",
+        "img": "flame_rune_mine.jpg",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "rune_stone",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "tool":"pick",
+        "health": -1,
+        "rarity": "Rare"
+    },
+    {
+        "id": "wild_arashi_rune_mine",
+        "name": "Wild Arashi Rune Mine",
+        "desc": "wild_arashi_rune_mine Description goes here, but there aren't any ingame I think",
+        "img": "wild_arashi_rune_mine.jpg",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "rune_stone",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "tool":"pick",
+        "health": -1,
+        "rarity": "Rare"
+    },
+    {
+        "id": "lightning_rune_mine",
+        "name": "Lighting Rune Mine",
+        "desc": "lightning_rune_mine Description goes here, but there aren't any ingame I think",
+        "img": "lightning_rune_mine.jpg",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "rune_stone",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "tool":"pick",
+        "health": -1,
+        "rarity": "Rare"
+    },
+    {
+        "id": "mountains_rune_mine",
+        "name": "Mountains Rune Mine",
+        "desc": "mountains_rune_mine Description goes here, but there aren't any ingame I think",
+        "img": "mountains_rune_mine.jpg",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "rune_stone",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "tool":"pick",
+        "health": -1,
+        "rarity": "Rare"
+    },
+    {
+        "id": "crimson_jade_ore",
+        "name": "Crimson Jade Ore",
+        "desc": "crimson_jade_ore Description goes here, but there aren't any ingame I think",
+        "img": "crimson_jade_ore.jpg",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "crimson_jade",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "tool":"pick",
+        "health": -1,
+        "rarity": "Common"
+    },
+    {
+        "id": "energy_rich_crystal_rock",
+        "name": "Energy Rich Crystal Rock",
+        "desc": "energy_rich_crystal_rock Description goes here, but there aren't any ingame I think",
+        "img": "energy_rich_crystal_rock.jpg",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "energy_rich_crystals",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "tool":"pick",
+        "health": -1,
+        "rarity": "Common"
+    },
+    {
+        "id": "stardust_mine",
+        "name": "Stardust Mine",
+        "desc": "stardust_mine Description goes here, but there aren't any ingame I think",
+        "img": "stardust_mine.jpg",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "stardust",
+                    "amount": "temp"
+                },
+                "drop2": {
+                    "id": "unstable_starcore",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "tool":"pick",
+        "health": -1,
+        "rarity": "Common"
+    },
+    {
+        "id": "emerald",
+        "name": "Emerald",
+        "desc": "emerald Description goes here, but there aren't any ingame I think",
+        "img": "emerald.jpg",
+        "category": "Ore",
+        "subcategory": "determinSubCategory",
+        "drops": {
+            "items": {
+                "drop1": {
+                    "id": "emerald",
+                    "amount": "temp"
+                }
+            },
+            "xp": -1
+        },
+        "tool":"pick",
+        "health": -1,
+        "rarity": "Common"
     }
 ]

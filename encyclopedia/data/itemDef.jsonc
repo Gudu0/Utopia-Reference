@@ -1153,5 +1153,99 @@
         "category":"Material",
         "subcategory":"DetermineSubcategory",
         "rarity":"epic"
+    },
+    {
+        "id":"natanz_spar_ball",
+        "name":"Natanz Spar Ball",
+        "weight":0.001,  //kg 
+        "desc":"Natanz Spar forms this ball under the guidance of magnetism. Note: This item is a bound item, cannot trade to others.",
+        "img":"natanz_spar_ball.jpg", // null for when no image
+        "sources":{
+            "node": [
+                "natanz_spar"
+            ],
+            "enemy":[
+
+            ]
+        },
+        "uses":[
+            //fill later
+        ],
+        "notes":"",
+        "category":"Material",
+        "subcategory":"DetermineSubcategory",
+        "rarity":"rare",
+        "bound": true
+    },
+    {
+        "id":"the_power_of_natanz",
+        "name":"Natanz Spar Ball",
+        "weight":0.01,  //kg 
+        "desc":"A - 55 or S - 55's material, chance to increase the quality of the gun.",
+        "img":"the_power_of_natanz.jpg", // null for when no image
+        "sources":{
+            "node": [
+                "natanz_spar"
+            ],
+            "enemy":[
+
+            ]
+        },
+        "uses":[
+            //fill later
+        ],
+        "notes":"is this Additives?",
+        "category":"Material",
+        "subcategory":"DetermineSubcategory",
+        "rarity":"epic"
+    },
+    {
+        "id":"stardust",
+        "name":"Stardust",
+        "weight":0.03,  //kg 
+        "desc":"Stardust accumulates and coalesces into an ore clast.",
+        "img":"stardust.jpg", // null for when no image
+        "sources":{
+            "node": [
+                "stardust_mine"
+            ],
+            "enemy":[
+
+            ]
+        },
+        "uses":[
+            //fill later
+        ],
+        "notes":"",
+        "category":"Material",
+        "subcategory":"Ore",
+        "rarity":"rare",
+        "bound": true
+    },
+    {
+        "id":"unstable_starcore",
+        "name":"Unstable Starcore",
+        "weight":0.01,  //kg 
+        "desc":"Crystal with the unstable energy. Can be used for enhanceing axe and pickaxe's damage and attack. Can be transformed into Starcore Crystal in Starfield Refining Furnace. Note: This is a time-limited and bound. After I leaving the Cloud Sea, It will disappear.",
+        "img":"unstable_starcore.jpg", // null for when no image
+        "sources":{
+            "node": [
+                "stardust_mine"
+            ],
+            "enemy":[
+
+            ]
+        },
+        "uses":[
+            //fill later
+        ],
+        "notes":"Count down after obtain 01:00:00, figure how to format this.",
+        "category":"Material",
+        "subcategory":"DetermineSubcategory",
+        "rarity":"epic",
+        "bound": true,
+        "time-limited": "01:00:00"
     }
+
+
 ]
