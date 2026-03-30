@@ -189,18 +189,10 @@ function renderNodeDetails(node) {
 
     const rows = [];
     if (node.health != null) {
-        if (node.health == -1){
-            rows.push(detailRow("Health", "Unknown"));
-        } else {
-            rows.push(detailRow("Health", String(node.health)));
-        }
+        rows.push(detailRow("Health", String(node.health)));
     }
     if (node.drops.xp != null){
-        if (node.drops.xp == -1) {
-            rows.push(detailRow("XP", "Unknown"));
-        } else {
-            rows.push(detailRow("XP", String(node.drops.xp)));
-        }
+        rows.push(detailRow("XP", String(node.drops.xp)));
     }
 
 

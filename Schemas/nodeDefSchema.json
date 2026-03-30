@@ -33,7 +33,7 @@
                 "enum": ["determinSubCategory", "Food", "NotFood"]
             },
             "health":{
-                "type": "integer"
+                "type": ["integer", "string"]
             },
             "tool":{
                 "type": "string",
