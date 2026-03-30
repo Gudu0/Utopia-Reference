@@ -911,16 +911,13 @@ function renderInfoSection(item) {
     }
 
     let desc = item.desc;
-    let formattedDesc = [];
-    if (desc.includes('\n')){
-        let matches = desc.match("\n");
-        log(matches, "info");
-    }
+    desc = str.replace(/(\n)/g, '<br>');
+    log(desc,"info");
 
     return `
         <div class="details-section">
             <h3>Overview</h3>
-            <p>${escapeHtml(item.desc || "No description yet.")}</p>
+            <p>${(item.desc || "No description yet.")}</p>
             ${rows.length ? `<div class="details-stats">${rows.join("")}</div>` : ""}
         </div>
     `;
