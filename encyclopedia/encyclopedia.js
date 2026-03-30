@@ -263,6 +263,9 @@ function renderNodeDropsSection(node) {
     `;
 }
 
+function getNodeById(nodeId) {
+    return state.tabs.nodes.all.find(node => node.id === nodeId) ?? null;
+}
 
 
 // ----- ITEM ----- \\\
@@ -284,21 +287,6 @@ function foodRow(foodStats) {
     html.push('</div>');
     html.push('</div>');
     return html.join("");
-}
-
-function renderSourcesSection(item) {
-    if (!item.sources.length) {
-        return "";
-    }
-
-    return `
-        <div class="details-section">
-            <h3>Sources</h3>
-            <ul class="details-list">
-                ${item.sources.map(source => `<li>${escapeHtml(formatEntry(source))}</li>`).join("")}
-            </ul>
-        </div>
-    `;
 }
 
 function renderUsesSection(item) {
@@ -391,6 +379,10 @@ function normalizeItem(item) {
         rarity: item.rarity ?? null,
         durability: item.durability ?? null,
         foodStats: item.foodStats ?? null,
+        sources: {
+            node: Array.isArray(item.sources?.node) ? item.sources.node : [],
+            enemy: Array.isArray(item.sources?.enemy) ? item.sources.enemy : []
+        },
     };
 }
 
@@ -470,9 +462,49 @@ function renderItemDetails(item) {
         </div>
 
         ${renderInfoSection(item)}
-        ${renderSourcesSection(item)}
+        ${renderItemSourcesSection(item)}
         ${renderUsesSection(item)}
         ${renderNotesSection(item)}
+    `;
+
+    wireDetailLinks();
+}
+
+function renderItemSourcesSection(item) {
+    const nodeIds = item.sources?.node ?? [];
+    if (!nodeIds.length) {
+        return "";
+    }
+
+    const cards = nodeIds.map(nodeId => {
+        const node = getNodeById(nodeId);
+        const nodeName = node ? node.name : nodeId;
+        const nodeImg = node?.img ?? null;
+
+        return `
+            <button
+                type="button"
+                class="item-card item-card-mini"
+                data-node-id="${escapeHtml(nodeId)}"
+                title="${escapeHtml(nodeName)}"
+            >
+                ${
+                    nodeImg
+                        ? `<img src="./data/nodeImages/${encodeURIComponent(nodeImg)}" alt="${escapeHtml(nodeName)}" />`
+                        : `<div class="item-card-placeholder" aria-hidden="true">?</div>`
+                }
+                <span>${escapeHtml(nodeName)}</span>
+            </button>
+        `;
+    });
+
+    return `
+        <div class="details-section">
+            <h3>Found In Nodes</h3>
+            <div class="details-related-grid">
+                ${cards.join("")}
+            </div>
+        </div>
     `;
 }
 
@@ -610,7 +642,7 @@ async function jumpToItem(itemId) {
 
 async function init() {
     wireEvents();
-    await loadItems();
+    await Promise.all([loadItems(), loadNodes()]);
     renderActiveTabButton();
     renderExtraFilters();
     syncSharedControlsFromTab();
@@ -905,10 +937,38 @@ function renderNotesSection(item) {
 
 function wireDetailLinks() {
     const itemLinks = els.details.querySelectorAll("[data-item-id]");
-
     for (const button of itemLinks) {
         button.addEventListener("click", async () => {
             await jumpToItem(button.dataset.itemId);
         });
     }
+
+    const nodeLinks = els.details.querySelectorAll("[data-node-id]");
+    for (const button of nodeLinks) {
+        button.addEventListener("click", async () => {
+            await jumpToNode(button.dataset.nodeId);
+        });
+    }
+}
+
+async function jumpToNode(nodeId) {
+    const nodeTab = state.tabs.nodes;
+
+    nodeTab.search = "";
+    nodeTab.category = "all";
+    nodeTab.subcategory = "all";
+    nodeTab.selectedId = nodeId;
+
+    await switchTab("nodes");
+
+    syncSharedControlsFromTab();
+    renderExtraFilters();
+    applyFiltersAndRender();
+
+    const index = nodeTab.filtered.findIndex(node => node.id === nodeId);
+    nodeTab.currentPage = index === -1 ? 1 : Math.floor(index / ITEMS_PER_PAGE) + 1;
+
+    renderGrid();
+    renderPageIndicator();
+    renderDetails();
 }

@@ -30,8 +30,21 @@
         "default": null
       },
       "sources": {
-        "type": "array",
-        "items": { "type": "string" }
+        "type": "object",
+        "properties": { 
+          "node": {
+            "type":"array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "enemy": {
+            "type":"array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
       },
       "uses": {
         "type": "array",
@@ -46,7 +59,7 @@
       },
       "subcategory": {
         "type": "string",
-        "enum": ["ore", "bar", "drop", "wood", "bbq", "determinSubcategory", "additives", "enchantStone"]
+        "enum": ["Ore", "Bar", "Drop", "Wood", "BBQ", "DetermineSubcategory", "Additives", "EnchantStone"]
       },
       "rarity": {
         "type": "string",
@@ -70,7 +83,8 @@
       },
       "levelLimit": {
         "type": ["integer", "null"],
-        "minimum": 0
+        "minimum": 0,
+        "maximum": 100
       }
     },
     "allOf": [

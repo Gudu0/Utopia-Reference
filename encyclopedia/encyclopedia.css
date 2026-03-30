@@ -482,7 +482,6 @@ html, body {
   color: var(--muted);
 }
 
-
 .details-drop-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
@@ -498,6 +497,14 @@ html, body {
   font-size: 0.72rem;
   color: var(--muted);
 }
+
+.details-related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 10px;
+}
+
+
 
 
 /* The great divide */
