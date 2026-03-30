@@ -909,15 +909,17 @@ function renderInfoSection(item) {
     if (item.foodStats != null) {
         rows.push(foodRow(item.foodStats));
     }
-
-    let desc = item.desc;
-    desc = desc.replace(/(\n)/g, '<br>');
-    log(desc,"info");
+    let desc;
+    if (item.desc){
+        desc = item.desc;
+        desc = desc.replace(/(\n)/g, '<br>');
+        log(desc,"info");
+    }
 
     return `
         <div class="details-section">
             <h3>Overview</h3>
-            <p>${(item.desc || "No description yet.")}</p>
+            <p>${(desc || "No description yet.")}</p>
             ${rows.length ? `<div class="details-stats">${rows.join("")}</div>` : ""}
         </div>
     `;
