@@ -1933,7 +1933,7 @@
         "img": "eggplant.jpg",
         "notes": "lowercase name ingame",
         "category": "Plants",
-        "subcategory": "NotFood",
+        "subcategory": "Food",
         "health": -1,
         "tool": "hand",
         "drops": {
@@ -1958,7 +1958,7 @@
         "img": "cucumber.jpg",
         "notes": "",
         "category": "Plants",
-        "subcategory": "NotFood",
+        "subcategory": "Food",
         "health": -1,
         "tool": "hand",
         "drops": {
@@ -2004,7 +2004,7 @@
         "img": "cocoa_bean.jpg",
         "notes": "",
         "category": "Plants",
-        "subcategory": "NotFood",
+        "subcategory": "Food",
         "health": -1,
         "tool": "hand",
         "drops": {
@@ -2029,7 +2029,7 @@
         "img": "soybean_sprout.jpg",
         "notes": "",
         "category": "Plants",
-        "subcategory": "NotFood",
+        "subcategory": "Food",
         "health": -1,
         "tool": "hand",
         "drops": {
@@ -2054,7 +2054,7 @@
         "img": "red_bean_sprout.jpg",
         "notes": "",
         "category": "Plants",
-        "subcategory": "NotFood",
+        "subcategory": "Food",
         "health": -1,
         "tool": "hand",
         "drops": {
@@ -2079,7 +2079,7 @@
         "img": "watermelon.jpg",
         "notes": "",
         "category": "Plants",
-        "subcategory": "NotFood",
+        "subcategory": "Food",
         "health": -1,
         "tool": "hand",
         "drops": {
@@ -2104,7 +2104,7 @@
         "img": "pumpkin.jpg",
         "notes": "",
         "category": "Plants",
-        "subcategory": "NotFood",
+        "subcategory": "Food",
         "health": -1,
         "tool": "hand",
         "drops": {
@@ -2129,7 +2129,7 @@
         "img": "chilli.jpg",
         "notes": "",
         "category": "Plants",
-        "subcategory": "NotFood",
+        "subcategory": "Food",
         "health": -1,
         "tool": "hand",
         "drops": {
@@ -2158,7 +2158,7 @@
         "img": "sugarcane.jpg",
         "notes": "",
         "category": "Plants",
-        "subcategory": "NotFood",
+        "subcategory": "Food",
         "health": -1,
         "tool": "hand",
         "drops": {
@@ -2183,7 +2183,7 @@
         "img": "grape.jpg",
         "notes": "",
         "category": "Plants",
-        "subcategory": "NotFood",
+        "subcategory": "Food",
         "health": -1,
         "tool": "hand",
         "drops": {
@@ -2554,7 +2554,7 @@
         "img": "natanz_fruit.jpg",
         "notes": "",
         "category": "Plants",
-        "subcategory": "NotFood",
+        "subcategory": "Food",
         "health": -1,
         "tool": "hand",
         "drops": {
@@ -2832,7 +2832,7 @@
         "img": "sky_fruit.jpg",
         "notes": "",
         "category": "Plants",
-        "subcategory": "NotFood",
+        "subcategory": "Food",
         "health": -1,
         "tool": "hand",
         "drops": {
