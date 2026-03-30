@@ -374,40 +374,45 @@
                 if (active.id === 'nameInput') {
                     e.preventDefault();
                     if (currentMode === 'node') {
+                        // Nodes: Name -> Drops (Skip desc)
                         focusOrCreateDrop(0);
                     } else {
-                        document.getElementById('itemWeight').focus();
+                        // Items: Name -> Desc
+                        document.getElementById('descInput').focus();
                     }
                 } 
+                // From Description (Only relevant for Items in this flow)
+                else if (active.id === 'descInput' && currentMode === 'item') {
+                    e.preventDefault();
+                    document.getElementById('itemWeight').focus();
+                }
                 // Inside Drops
                 else if (active.classList.contains('d-id') || active.classList.contains('d-amt')) {
                     e.preventDefault();
                     const rows = Array.from(document.querySelectorAll('#dropsContainer .dynamic-row'));
                     const currentRow = active.closest('.dynamic-row');
                     const index = rows.indexOf(currentRow);
-                    focusOrCreateDrop(index + 1);
+                    
+                    // If in ID field, jump to Amt. If in Amt field, jump to next row ID.
+                    if (active.classList.contains('d-id')) {
+                        currentRow.querySelector('.d-amt').focus();
+                    } else {
+                        focusOrCreateDrop(index + 1);
+                    }
                 }
             }
         });
 
+        // Helper to handle drop focus/creation
         function focusOrCreateDrop(index) {
             let rows = document.querySelectorAll('#dropsContainer .dynamic-row');
             if (index >= rows.length) {
-                addDropRow();
+                addDropRow(); // Uses your existing addDropRow function
                 rows = document.querySelectorAll('#dropsContainer .dynamic-row');
             }
             const targetInput = rows[index].querySelector('.d-id');
             targetInput.focus();
             targetInput.select();
-        }
-
-        function applyMacros(val) {
-            const id = document.getElementById('idInput').value;
-            let cleaned = val.replaceAll('$id', id);
-            for (const [key, replacement] of Object.entries(macros)) {
-                cleaned = cleaned.replaceAll(key, replacement + (key === '$sd' ? id : ''));
-            }
-            return cleaned.trim().toLowerCase().replace(/[^a-z0-9_]+/g, "_");
         }
 
         function addDropRow(valId = "", valAmt = "#?") {
