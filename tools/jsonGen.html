@@ -320,7 +320,7 @@
         </div>
 
         <div class="action-bar">
-            <button class="btn btn-danger" onclick="clearAll()">Clear</button>
+            <button class="btn btn-danger" onclick="clearAll(true)">Clear</button>
             <button class="btn btn-secondary" onclick="previewJSON()">Preview</button>
             <button class="btn btn-secondary" onclick="copyToClipboard()">Copy & Reset</button>
             <button class="btn btn-primary" onclick="copyButNoReset()">Copy</button>
@@ -344,7 +344,7 @@
             document.getElementById(`btn-${mode}`).classList.add('active');
             ['nodeMeta', 'nodeStats', 'nodeDrops'].forEach(id => document.getElementById(id).classList.toggle('hidden', mode !== 'node'));
             ['itemMeta', 'itemStats', 'itemSources'].forEach(id => document.getElementById(id).classList.toggle('hidden', mode !== 'item'));
-            clearAll();
+            clearAll(true);
         }
 
         // Global Macro Applier
@@ -412,6 +412,7 @@
             if (e.key === 'Enter' && e.shiftKey) {
                 e.preventDefault();
                 previewJSON();
+                clearAll();
                 document.getElementById('nameInput').focus();
                 window.scrollTo(0, 0);
                 return;
@@ -475,7 +476,7 @@
             container.appendChild(div);
         }
 
-// ... Keep existing addSourceRow, toggleItemConditionals, buildJSON, previewJSON, copyToClipboard, and clearAll functions ...
+        // ... Keep existing addSourceRow, toggleItemConditionals, buildJSON, previewJSON, copyToClipboard, and clearAll functions ...
         function addSourceRow(type, val = "") {
             const container = document.getElementById(type === 'node' ? 'nodeSrcContainer' : 'usesContainer');
             const div = document.createElement('div');
@@ -561,7 +562,7 @@
             previewJSON();
             const text = document.getElementById('output').value.replace(/,$/, "");
             await navigator.clipboard.writeText(text);
-            clearAll();
+            clearAll(false);
             document.getElementById('nameInput').focus();
         }
 
@@ -570,14 +571,16 @@
             await navigator.clipboard.writeText(text);
         }
 
-        function clearAll() {
+        function clearAll(output = false) {
             document.querySelectorAll('input:not(.readonly)').forEach(i => {
                 if(i.id === 'nodeHealth' || i.id === 'nodeXP') i.value = "#?";
                 else if(i.type === 'number') i.value = i.defaultValue || "0";
                 else i.value = "";
             });
             document.querySelectorAll('.dynamic-row').forEach(r => r.remove());
-            document.getElementById('output').value = "";
+            if (output){
+                document.getElementById('output').value = "";
+            }
             document.getElementById('tagsInput').value = "";
             if (currentMode === 'item') toggleItemConditionals();
         }
