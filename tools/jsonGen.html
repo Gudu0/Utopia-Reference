@@ -327,8 +327,6 @@
         </div>
     </div>
     <script>
-        // --- Replace the existing <script> section in jsonGen.html with this updated logic ---
-
         let currentMode = 'node';
 
         const macros = {
@@ -336,7 +334,8 @@
             '$sd': '_seed',
             '$fec': 'fire_enchant_stone_',
             '$iec': 'ice_enchant_stone_',
-            '$p': 'pistil'
+            '$p': 'pistil',
+            '$nm': null
         };
 
         function switchMode(mode) {
@@ -348,16 +347,68 @@
             clearAll();
         }
 
-        // Auto-ID & Navigation Logic
+        // Global Macro Applier
+        function applyMacros(val) {
+            const id = document.getElementById('idInput').value;
+            const name = document.getElementById('nameInput').value;
+            
+            // 1. Handle the universal $id first
+            let cleaned = val.replaceAll('$id', id);
+
+            // 2. Process specific macros with unique rules
+            for (const key in macros) {
+                if (!cleaned.includes(key)) continue;
+
+                let replacement = "";
+
+                switch (key) {
+                    case '$nm':
+                        replacement = name.toLowerCase;
+
+                        break;
+                    case '$sd': 
+                        // ID + seed
+                        replacement = id + macros['$sd']; 
+                        break;
+
+                    case '$p': 
+                        // pistil
+                        replacement = macros['$p']; 
+                        break;
+
+                    case '$ee':
+                    case '$fec':
+                    case '$iec':
+                        // Prefix + ID (e.g., elemental_essence_iron_ore)
+                        replacement = macros[key] + id;
+                        break;
+
+                    default:
+                        // Fallback for any standard macros added later
+                        replacement = macros[key] + id;
+                        break;
+                }
+
+                cleaned = cleaned.replaceAll(key, replacement);
+            }
+
+            return cleaned;
+        }
+
+        // Input Handlers
         document.getElementById('nameInput').addEventListener('input', (e) => {
             const id = e.target.value.trim().toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
             document.getElementById('idInput').value = id;
             document.getElementById('imgInput').value = id ? `${id}.jpg` : "null";
         });
 
+        // Run macros in Description on change
+        document.getElementById('descInput').addEventListener('change', (e) => {
+            e.target.value = applyMacros(e.target.value);
+        });
+
         // Global Keyboard Shortcuts
         document.addEventListener('keydown', (e) => {
-            // Shift + Enter: Preview and jump to top
             if (e.key === 'Enter' && e.shiftKey) {
                 e.preventDefault();
                 previewJSON();
@@ -366,34 +417,31 @@
                 return;
             }
 
-            // Enter Navigation
             if (e.key === 'Enter') {
                 const active = document.activeElement;
 
-                // From Name Input
                 if (active.id === 'nameInput') {
                     e.preventDefault();
                     if (currentMode === 'node') {
-                        // Nodes: Name -> Drops (Skip desc)
                         focusOrCreateDrop(0);
                     } else {
-                        // Items: Name -> Desc
                         document.getElementById('descInput').focus();
                     }
                 } 
-                // From Description (Only relevant for Items in this flow)
-                else if (active.id === 'descInput' && currentMode === 'item') {
-                    e.preventDefault();
-                    document.getElementById('itemWeight').focus();
+                else if (active.id === 'descInput') {
+                    // Apply macros immediately on Enter before moving focus
+                    active.value = applyMacros(active.value);
+                    if (currentMode === 'item') {
+                        e.preventDefault();
+                        document.getElementById('itemWeight').focus();
+                    }
                 }
-                // Inside Drops
                 else if (active.classList.contains('d-id') || active.classList.contains('d-amt')) {
                     e.preventDefault();
                     const rows = Array.from(document.querySelectorAll('#dropsContainer .dynamic-row'));
                     const currentRow = active.closest('.dynamic-row');
                     const index = rows.indexOf(currentRow);
                     
-                    // If in ID field, jump to Amt. If in Amt field, jump to next row ID.
                     if (active.classList.contains('d-id')) {
                         currentRow.querySelector('.d-amt').focus();
                     } else {
@@ -403,11 +451,10 @@
             }
         });
 
-        // Helper to handle drop focus/creation
         function focusOrCreateDrop(index) {
             let rows = document.querySelectorAll('#dropsContainer .dynamic-row');
             if (index >= rows.length) {
-                addDropRow(); // Uses your existing addDropRow function
+                addDropRow();
                 rows = document.querySelectorAll('#dropsContainer .dynamic-row');
             }
             const targetInput = rows[index].querySelector('.d-id');
@@ -420,13 +467,15 @@
             const div = document.createElement('div');
             div.className = 'dynamic-row';
             div.innerHTML = `
-                <input type="text" placeholder="Drop ID ($id, $sd...)" class="d-id" value="${valId}" onchange="this.value = applyMacros(this.value)" style="margin-bottom:0; flex:2">
+                <input type="text" placeholder="Drop ID ($id, $sd...)" class="d-id" value="${valId}" 
+                    onchange="this.value = applyMacros(this.value).toLowerCase().replace(/[^a-z0-9_]+/g, '_')" style="margin-bottom:0; flex:2">
                 <input type="text" placeholder="Amt" class="d-amt" value="${valAmt}" style="margin-bottom:0; flex:1">
                 <button class="btn btn-danger" onclick="this.parentElement.remove()" style="padding: 12px">×</button>
             `;
             container.appendChild(div);
         }
 
+// ... Keep existing addSourceRow, toggleItemConditionals, buildJSON, previewJSON, copyToClipboard, and clearAll functions ...
         function addSourceRow(type, val = "") {
             const container = document.getElementById(type === 'node' ? 'nodeSrcContainer' : 'usesContainer');
             const div = document.createElement('div');
