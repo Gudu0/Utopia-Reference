@@ -1126,7 +1126,7 @@
                     "amount": "#?"
                 },
                 "drop3": {
-                    "id": "lightning_enchant_stone_1",
+                    "id": "lightning_enchant_stone1",
                     "amount": "#?"
                 },
                 "drop4": {
@@ -1171,7 +1171,7 @@
                     "amount": "#?"
                 },
                 "drop5": {
-                    "id": "fire_enchant_stone_1",
+                    "id": "fire_enchant_stone1",
                     "amount": "#?"
                 }
             },
@@ -1233,7 +1233,7 @@
                     "amount": "#?"
                 },
                 "drop3": {
-                    "id": "ice_enchant_stone_1",
+                    "id": "ice_enchant_stone1",
                     "amount": "#?"
                 },
                 "drop4": {
@@ -1303,15 +1303,15 @@
                     "amount": "#?"
                 },
                 "drop3": {
-                    "id": "ice_enchant_stone_1",
+                    "id": "ice_enchant_stone1",
                     "amount": "#?"
                 },
                 "drop4": {
-                    "id": "fire_enchant_stone_1",
+                    "id": "fire_enchant_stone1",
                     "amount": "#?"
                 },
                 "drop5": {
-                    "id": "lightning_enchant_stone_1",
+                    "id": "lightning_enchant_stone1",
                     "amount": "#?"
                 },
                 "drop6": {
