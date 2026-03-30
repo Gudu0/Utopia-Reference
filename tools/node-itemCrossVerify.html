@@ -152,11 +152,12 @@
 
     <div class="controls">
         <button id="checkButton">Check</button>
-        <button id="fixImgButton">Fix Images (.jpg)</button>
+        <button id="checkImagesBtn">Verify GitHub Images</button> <button id="fixImgButton">Fix Images (.jpg)</button>
         <button id="fixSourcesButton">Fix item sources.node</button>
         <button id="fixAllButton" style="background-color: #eef;">Fix All</button>
         <button id="copyMissingBtn">Copy Missing IDs</button>
     </div>
+    <div id="imageSyncStatus" style="font-size: 12px; margin-top: 4px; color: #666;"></div>
 
     <hr>
 
@@ -311,7 +312,77 @@
             matchCount.textContent = total ? `Showing ${visible} of ${total}` : "";
         }
 
-        // --- Core logic (unchanged) ---
+        // --- Core logic ---
+
+        async function fetchGithubDir(type) {
+            const statusEl = document.getElementById("imageSyncStatus");
+            statusEl.textContent = `Fetching ${type} directory list...`;
+            
+            // Construct the API URL based on your structure
+            const url = `https://api.github.com/repos/Gudu0/Utopia-Reference/contents/encyclopedia/data/${type}Images?ref=main`;
+            
+            try {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
+                const data = await res.json();
+                // Return a Set of filenames for O(1) lookup
+                return new Set(data.map(file => file.name));
+            } catch (err) {
+                addLine(`Error fetching ${type} images: ${err.message}`, "status-err");
+                return null;
+            }
+        }
+
+        async function verifyImages() {
+            clearOutput();
+            let nodes, items;
+            try {
+                nodes = parseJsonc(nodeInput.value, "node.jsonc");
+                items = parseJsonc(itemInput.value, "item.jsonc");
+            } catch (error) { addLine(error.message); return; }
+
+            const nodeFiles = await fetchGithubDir("node");
+            const itemFiles = await fetchGithubDir("item");
+            const statusEl = document.getElementById("imageSyncStatus");
+
+            if (!nodeFiles || !itemFiles) {
+                statusEl.textContent = "Failed to fetch directory contents.";
+                return;
+            }
+
+            statusEl.textContent = "Comparing JSON vs GitHub Storage...";
+
+            // 1. Check for Missing Files (Declared in JSON but not on GitHub)
+            const checkMissing = (entries, files, label) => {
+                entries.forEach(entry => {
+                    if (entry.img && !files.has(entry.img)) {
+                        addLine(`Image Error: ${label} "${entry.id}" references "${entry.img}" but file is missing from GitHub`, "img");
+                    }
+                });
+            };
+
+            // 2. Check for Ghost Files (On GitHub but not in JSON)
+            const checkGhost = (entries, files, label) => {
+                const declaredImages = new Set(entries.map(e => e.img).filter(Boolean));
+                files.forEach(fileName => {
+                    if (!declaredImages.has(fileName)) {
+                        addLine(`Ghost File: "${fileName}" exists in GitHub ${label}Images/ but is not used in JSONC`, "info");
+                    }
+                });
+            };
+
+            checkMissing(nodes, nodeFiles, "node");
+            checkMissing(items, itemFiles, "item");
+            checkGhost(nodes, nodeFiles, "node");
+            checkGhost(items, itemFiles, "item");
+
+            addLine("Image verification complete.", "info");
+            statusEl.textContent = "Sync Check Complete.";
+            applyFilters();
+        }
+
+        // Attach the listener
+        document.getElementById("checkImagesBtn").addEventListener("click", verifyImages);
 
         function clearOutput() {
             output.innerHTML = "";
@@ -554,9 +625,7 @@
             applyFilters();
         }
 
-        // --- Global tracking for the copy button ---
-
-// --- Logic Modules ---
+        // --- Logic Modules ---
 
         function performImgFix(nodes, items) {
             let changes = fixImgs(nodes, "nodes");
