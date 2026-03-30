@@ -125,7 +125,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "tool": "pick",
         "health": "#?",
@@ -157,7 +157,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "tool": "pick",
         "health": "#?",
@@ -189,7 +189,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "tool": "pick",
         "health": "#?",
@@ -209,7 +209,7 @@
                     "amount": "1"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "tool": "pick",
         "health": "#?",
@@ -233,7 +233,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "tool": "pick",
         "health": "#?",
@@ -253,7 +253,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "tool": "pick",
         "health": "#?",
@@ -273,7 +273,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "tool": "pick",
         "health": "#?",
@@ -293,7 +293,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "tool": "pick",
         "health": "#?",
@@ -313,7 +313,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "tool": "pick",
         "health": "#?",
@@ -333,7 +333,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "tool": "pick",
         "health": "#?",
@@ -353,7 +353,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "tool": "pick",
         "health": "#?",
@@ -373,7 +373,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "tool": "pick",
         "health": "#?",
@@ -393,7 +393,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "tool": "pick",
         "health": "#?",
@@ -413,7 +413,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "tool": "pick",
         "health": "#?",
@@ -433,7 +433,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "tool": "pick",
         "health": "#?",
@@ -457,7 +457,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "tool": "pick",
         "health": "#?",
@@ -477,7 +477,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "tool": "pick",
         "health": "#?",
@@ -512,7 +512,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -553,7 +553,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -606,7 +606,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -643,7 +643,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -680,7 +680,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -721,7 +721,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -770,7 +770,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -803,7 +803,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -840,7 +840,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -873,7 +873,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -914,7 +914,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -935,7 +935,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -968,7 +968,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1005,7 +1005,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1030,7 +1030,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1055,7 +1055,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1076,7 +1076,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1101,7 +1101,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Rare"
     },
@@ -1138,7 +1138,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Extremely Rare"
     },
@@ -1175,7 +1175,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Extremely Rare"
     },
@@ -1208,7 +1208,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Extremely Rare"
     },
@@ -1245,7 +1245,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Extremely Rare"
     },
@@ -1278,7 +1278,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Extremely Rare"
     },
@@ -1323,7 +1323,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Extremely Rare"
     },
@@ -1356,7 +1356,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1377,7 +1377,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1402,7 +1402,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1431,7 +1431,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1460,7 +1460,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1485,7 +1485,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1510,7 +1510,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1535,7 +1535,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1556,7 +1556,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1581,7 +1581,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1606,7 +1606,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1631,7 +1631,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1656,7 +1656,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1681,7 +1681,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1710,7 +1710,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1735,7 +1735,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1756,7 +1756,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1785,7 +1785,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1810,7 +1810,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1843,7 +1843,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1868,7 +1868,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1897,7 +1897,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1922,7 +1922,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1947,7 +1947,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1972,7 +1972,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -1993,7 +1993,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2018,7 +2018,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2043,7 +2043,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2068,7 +2068,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2093,7 +2093,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2118,7 +2118,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2147,7 +2147,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2172,7 +2172,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2197,7 +2197,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2222,7 +2222,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2247,7 +2247,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2272,7 +2272,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2297,7 +2297,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2322,7 +2322,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2347,7 +2347,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2372,7 +2372,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2393,7 +2393,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2414,7 +2414,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2443,7 +2443,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2468,7 +2468,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2493,7 +2493,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2518,7 +2518,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2543,7 +2543,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2568,7 +2568,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Rare"
     },
@@ -2589,7 +2589,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Rare"
     },
@@ -2618,7 +2618,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Rare"
     },
@@ -2647,7 +2647,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Rare"
     },
@@ -2680,7 +2680,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Rare"
     },
@@ -2713,7 +2713,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2746,7 +2746,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2779,7 +2779,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2800,7 +2800,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2821,7 +2821,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2842,7 +2842,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2867,7 +2867,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2888,7 +2888,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2909,7 +2909,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2930,7 +2930,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -2959,7 +2959,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Extremely Rare"
     },
@@ -2984,7 +2984,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Extremely Rare"
     },
@@ -3005,7 +3005,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Extremely Rare"
     },
@@ -3026,7 +3026,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Extremely Rare"
     },
@@ -3051,7 +3051,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Extremely Rare"
     },
@@ -3072,7 +3072,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -3097,7 +3097,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     },
@@ -3118,7 +3118,7 @@
                     "amount": "#?"
                 }
             },
-            "xp": -1
+            "xp": "#?"
         },
         "rarity": "Common"
     }
