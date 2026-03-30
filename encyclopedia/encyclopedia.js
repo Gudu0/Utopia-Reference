@@ -895,7 +895,6 @@ function renderDetailsImage(element) {
     return `<div class="details-image details-image-placeholder">No Image</div>`;
 }
 
-
 function renderInfoSection(item) {
     const rows = [];
 
@@ -911,7 +910,12 @@ function renderInfoSection(item) {
         rows.push(foodRow(item.foodStats));
     }
 
-
+    let desc = item.desc;
+    let formattedDesc = [];
+    if (desc.includes('\n')){
+        let matches = desc.match(\n);
+        log(matches, "info");
+    }
 
     return `
         <div class="details-section">
