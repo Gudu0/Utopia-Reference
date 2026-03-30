@@ -338,7 +338,9 @@
             '$tnm': null,
             '$pig': null,
             '$tfmp': null,
-            '$btec': null
+            '$btec': null,
+            '$cqt': null,
+            '$ebec': null
         };
 
         function switchMode(mode) {
@@ -367,6 +369,14 @@
                 switch (key) {
                     case '$nm':
                         replacement = name.toLowerCase();
+                        break;
+
+                    case '$cqt':
+                        replacement = "Capable of quenching your thirst some.";
+                        break;
+
+                    case '$ebec': 
+                        replacement = " Even better to eat when cooked.";
                         break;
                     
                     case '$tnm':

@@ -1131,4 +1131,695 @@
         "rarity": "uncommon",
         "bound": false
     },
+    {
+        "id": "apple",
+        "name": "Apple",
+        "desc": "Rich in nutrients and capable of somewhat alleviating hunger and thirst. Better to eat it cooked.",
+        "img": "apple.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Food",
+        "subcategory": "Ore",
+        "rarity": "common",
+        "bound": false,
+        "foodStats": {
+            "food": -1,
+            "water": -1
+        }
+    },
+    {
+        "id": "honey",
+        "name": "Honey",
+        "desc": "Bzz bzz, bzz! Who likes eating honey? Try feeding it to an animal that likes it.",
+        "img": "honey.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "common",
+        "bound": false
+    },
+    {
+        "id": "silkworm",
+        "name": "Silkworm",
+        "desc": "A white pudgey worm that can be raised to obtained silk. Find them in broad-leaved trees.",
+        "img": "silkworm.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "leaf",
+        "name": "Leaf",
+        "desc": "A big tree leaf. A favorite meal of bugs.",
+        "img": "leaf.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "elemental_essence_apple_tree",
+        "name": "Elemental Essence-Apple Tree",
+        "desc": "Used to synthesize Transformation Potion-Apple Tree",
+        "img": "elemental_essence_apple_tree.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "silkworm_fancy",
+        "name": "Silkworm",
+        "desc": "The rare silkworm can be raised to obtain cloud silk. Find them in broad leaved trees.",
+        "img": "silkworm_fancy.jpg",
+        "tags": [],
+        "notes": "different id than normal silkworm: 'silkworm_fancy'",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "snow_pine_seed",
+        "name": "Snow Pine Seed",
+        "desc": "A snow pine seed. Plant it and grow a a snow pine tree.",
+        "img": "snow_pine_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "coconut",
+        "name": "Coconut",
+        "desc": "Crack it open to drink its aromatic, sweet juice. Even better to eat when cooked.",
+        "img": "coconut.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "coconut_tree_seed",
+        "name": "Coconut Tree Seed",
+        "desc": "A coconut tree seed. Plant it and harvest wheat later.",
+        "img": "coconut_tree_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "elemental_essence_coconut_tree",
+        "name": "Elemental Essence-Coconut Tree",
+        "desc": "Used to synthesize Transformation Potion-Coconut Tree",
+        "img": "elemental_essence_coconut_tree.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "rubber_tree_seed",
+        "name": "Rubber Tree Seed",
+        "desc": "A rubber tree seed. Plant it and grow a rubber tree.",
+        "img": "rubber_tree_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "fern_tree_seed",
+        "name": "Fern Tree Seed",
+        "desc": "Fern trees actually rely on spores to propagate.",
+        "img": "fern_tree_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "banana",
+        "name": "Banana",
+        "desc": "Full of starch and capable of somewhat alleviating hunger and thirst. Better to eat it cooked.",
+        "img": "banana.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "elemental_essence_banana_tree",
+        "name": "Elemental Essence-Banana Tree",
+        "desc": "Used to synthesize Transformation Potion-Banana Tree",
+        "img": "elemental_essence_banana_tree.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "bamboo_rice",
+        "name": "Bamboo Rice",
+        "desc": "Most people don't know what bamboo seeds are called, just like they don't know that this can grow bamboo.",
+        "img": "bamboo_rice.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "peach",
+        "name": "Peach",
+        "desc": "Pleasing to. the eye and palate. Capable of quenching your thirst some. Even better to eat when cooked.",
+        "img": "peach.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "peach_tree_seed",
+        "name": "Peach Tree Seed",
+        "desc": "A peach tree seed. Plant it and harvest wheat later.",
+        "img": "peach_tree_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "elemental_essence_peach_tree",
+        "name": "Elemental Essence-Peach Tree",
+        "desc": "Used to synthesize Transformation Potion-Peach Tree",
+        "img": "elemental_essence_peach_tree.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "blue_maple_seed",
+        "name": "Blue Maple Seed",
+        "desc": "Blue maple seedm planted in the nursery, senior nursery or advanced plant nursery can give blue maple.",
+        "img": "blue_maple_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "dark_purple_fruit",
+        "name": "Dark purple Fruit",
+        "desc": "What was once an apple tree has gradually changed it shape under the influence of a rune, and the fruit has turned into a strange putple color.",
+        "img": "dark_purple_fruit.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "blue_maple_seed",
+        "name": "Blue Maple Seed",
+        "desc": "Dark Purple Hibiscus seed, can get the Dark Purple Hibiscus after plant in plant nursery or advanced plant nursery.",
+        "img": "blue_maple_seed.jpg",
+        "tags": [
+            "weird"
+        ],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "strange_dark_purple_fruit",
+        "name": "Strange Dark purple Fruit",
+        "desc": "Uncommonly rare fruit of the power of a great deal of runic magic! Eat down can let the dull life get different before stimulation! ?\\nNote 1: For a limited time, please use it in time.\\nNote 2: Please ensure personal safety when using.",
+        "img": "strange_dark_purple_fruit.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false,
+        "time-limited": "00:30:00"
+    },
+    {
+        "id": "baobab_tree_seed",
+        "name": "Baobab Tree Seed",
+        "desc": "A baobab tree seed. Plant it and grow a baobab tree.",
+        "img": "baobab_tree_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "bomb_fruit",
+        "name": "Bomb Fruit",
+        "desc": "An unstable red sphere...",
+        "img": "bomb_fruit.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "dragon_blood_tree_seed",
+        "name": "Dragon Blood Tree Seed",
+        "desc": "A dragon blood tree seed. Plant it and grow a dragon blood tree.",
+        "img": "dragon_blood_tree_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "natanz_marvel_tree_seed",
+        "name": "Natanz Marvel Tree Seed",
+        "desc": "The Natanz Marvel Tree Seed, plant in advanced plant nursery can get Natanz Marvel Tree.",
+        "img": "natanz_marvel_tree_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "marvel_tree_seed",
+        "name": "Marvel Tree Seed",
+        "desc": "A marvel tree seed. Plant it and grow a marvel tree.",
+        "img": "marvel_tree_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "fairy_flower",
+        "name": "Fairy Flower",
+        "desc": "The flower of Giant Cactus. Has unique magic.",
+        "img": "fairy_flower.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.03,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "fairy_fruit",
+        "name": "Fairy Fruit",
+        "desc": "The fruit of Giant Cactus. Said to be able to drive away evil.",
+        "img": "fairy_fruit.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.03,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "osmanthus_leaf",
+        "name": "Osmanthus Leaf",
+        "desc": "Osmanthus leaf has strange power, can be made into pet feed.",
+        "img": "osmanthus_leaf.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "rare",
+        "bound": true
+    },
+    {
+        "id": "afloat_seed",
+        "name": "Afloat Seed",
+        "desc": "A seed enveloped in starlight drifts through the cosmos, seeking an opportunity to come to life.",
+        "img": "afloat_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.03,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "rare",
+        "bound": true
+    },
+    {
+        "id": "osmanthus_leaf",
+        "name": "Osmanthus Leaf",
+        "desc": "Osmanthus leaf has strange power, can be made into pet feed.",
+        "img": "osmanthus_leaf.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "rare",
+        "bound": true
+    },
+    {
+        "id": "afloat_seed",
+        "name": "Afloat Seed",
+        "desc": "A seed enveloped in starlight drifts through the cosmos, seeking an opportunity to come to life.",
+        "img": "afloat_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "rare",
+        "bound": true
+    },
+    {
+        "id": "parting_resin",
+        "name": "Parting Resin",
+        "desc": "Shimmering objects twinkle within the gelatinous substance, as if a secret Milky Way were concealed within.",
+        "img": "parting_resin.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.03,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "rare",
+        "bound": true
+    },
+    {
+        "id": "small_earthworm",
+        "name": "Small Earthworm",
+        "desc": "Comes in handy for fishing.",
+        "img": "small_earthworm.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "rare",
+        "bound": false
+    },
+    {
+        "id": "large_earthworm",
+        "name": "Large Earthworm",
+        "desc": "Comes in handy for fishing.",
+        "img": "large_earthworm.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "rare",
+        "bound": false
+    },
+    {
+        "id": "kink_earthworm",
+        "name": "Kink Earthworm",
+        "desc": "Comes in handy for fishing.",
+        "img": "kink_earthworm.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "rare",
+        "bound": false
+    },
+    {
+        "id": "elemental_essence_weeds",
+        "name": "Elemental Essence-Weeds",
+        "desc": "Used to synthesize Transformation Potion-Weeds",
+        "img": "elemental_essence_weeds.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "rare",
+        "bound": false
+    },
 ]
