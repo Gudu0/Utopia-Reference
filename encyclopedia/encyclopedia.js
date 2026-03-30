@@ -911,7 +911,7 @@ function renderInfoSection(item) {
     }
 
     let desc = item.desc;
-    desc = str.replace(/(\n)/g, '<br>');
+    desc = desc.replace(/(\n)/g, '<br>');
     log(desc,"info");
 
     return `
