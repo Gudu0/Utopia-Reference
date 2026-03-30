@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gen-Station | Unified Generator v2</title>
+    <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+ 	<script>eruda.init();</script>
     <style>
         :root {
             --bg: #0f172a;
@@ -320,10 +322,13 @@
         <div class="action-bar">
             <button class="btn btn-danger" onclick="clearAll()">Clear</button>
             <button class="btn btn-secondary" onclick="previewJSON()">Preview</button>
-            <button class="btn btn-primary" onclick="copyToClipboard()">Copy & Reset</button>
+            <button class="btn btn-secondary" onclick="copyToClipboard()">Copy & Reset</button>
+            <button class="btn btn-primary" onclick="copyButNoReset()">Copy</button>
         </div>
     </div>
     <script>
+        // --- Replace the existing <script> section in jsonGen.html with this updated logic ---
+
         let currentMode = 'node';
 
         const macros = {
@@ -338,20 +343,63 @@
             currentMode = mode;
             document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(`btn-${mode}`).classList.add('active');
-
-            // Toggle UI panels
             ['nodeMeta', 'nodeStats', 'nodeDrops'].forEach(id => document.getElementById(id).classList.toggle('hidden', mode !== 'node'));
             ['itemMeta', 'itemStats', 'itemSources'].forEach(id => document.getElementById(id).classList.toggle('hidden', mode !== 'item'));
-            
             clearAll();
         }
 
-        // Auto-ID Logic
+        // Auto-ID & Navigation Logic
         document.getElementById('nameInput').addEventListener('input', (e) => {
             const id = e.target.value.trim().toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_+|_+$/g, "");
             document.getElementById('idInput').value = id;
             document.getElementById('imgInput').value = id ? `${id}.jpg` : "null";
         });
+
+        // Global Keyboard Shortcuts
+        document.addEventListener('keydown', (e) => {
+            // Shift + Enter: Preview and jump to top
+            if (e.key === 'Enter' && e.shiftKey) {
+                e.preventDefault();
+                previewJSON();
+                document.getElementById('nameInput').focus();
+                window.scrollTo(0, 0);
+                return;
+            }
+
+            // Enter Navigation
+            if (e.key === 'Enter') {
+                const active = document.activeElement;
+
+                // From Name Input
+                if (active.id === 'nameInput') {
+                    e.preventDefault();
+                    if (currentMode === 'node') {
+                        focusOrCreateDrop(0);
+                    } else {
+                        document.getElementById('itemWeight').focus();
+                    }
+                } 
+                // Inside Drops
+                else if (active.classList.contains('d-id') || active.classList.contains('d-amt')) {
+                    e.preventDefault();
+                    const rows = Array.from(document.querySelectorAll('#dropsContainer .dynamic-row'));
+                    const currentRow = active.closest('.dynamic-row');
+                    const index = rows.indexOf(currentRow);
+                    focusOrCreateDrop(index + 1);
+                }
+            }
+        });
+
+        function focusOrCreateDrop(index) {
+            let rows = document.querySelectorAll('#dropsContainer .dynamic-row');
+            if (index >= rows.length) {
+                addDropRow();
+                rows = document.querySelectorAll('#dropsContainer .dynamic-row');
+            }
+            const targetInput = rows[index].querySelector('.d-id');
+            targetInput.focus();
+            targetInput.select();
+        }
 
         function applyMacros(val) {
             const id = document.getElementById('idInput').value;
@@ -362,7 +410,6 @@
             return cleaned.trim().toLowerCase().replace(/[^a-z0-9_]+/g, "_");
         }
 
-        // Dynamic Row Handlers
         function addDropRow(valId = "", valAmt = "#?") {
             const container = document.getElementById('dropsContainer');
             const div = document.createElement('div');
@@ -393,18 +440,15 @@
         }
 
         function buildJSON() {
-            // Process tags: split by comma, trim whitespace, remove empty strings
             const tagsRaw = document.getElementById('tagsInput').value;
-            const tagsArray = tagsRaw.split(',')
-                .map(t => t.trim().toLowerCase())
-                .filter(t => t !== "");
+            const tagsArray = tagsRaw.split(',').map(t => t.trim().toLowerCase()).filter(t => t !== "");
 
             const base = {
                 id: document.getElementById('idInput').value,
                 name: document.getElementById('nameInput').value,
                 desc: document.getElementById('descInput').value,
                 img: document.getElementById('imgInput').value === "null" ? null : document.getElementById('imgInput').value,
-                tags: tagsArray, // <--- New Field
+                tags: tagsArray,
                 notes: document.getElementById('notesInput').value
             };
 
@@ -413,10 +457,7 @@
                 document.querySelectorAll('#dropsContainer .dynamic-row').forEach((row) => {
                     const id = row.querySelector('.d-id').value;
                     if (id) {
-                        dropsArray.push({
-                            id: id,
-                            amount: row.querySelector('.d-amt').value
-                        });
+                        dropsArray.push({ id: id, amount: row.querySelector('.d-amt').value });
                     }
                 });
 
@@ -426,10 +467,7 @@
                     subcategory: document.getElementById('nodeSubcategory').value,
                     health: document.getElementById('nodeHealth').value,
                     tool: document.getElementById('nodeTool').value,
-                    drops: { 
-                        items: dropsArray, 
-                        xp: document.getElementById('nodeXP').value 
-                    },
+                    drops: { items: dropsArray, xp: document.getElementById('nodeXP').value },
                     rarity: document.getElementById('nodeRarity').value
                 };
             } else {
@@ -460,7 +498,9 @@
 
         function previewJSON() {
             const obj = buildJSON();
-            document.getElementById('output').value = JSON.stringify(obj, null, 4) + ",";
+            const out = document.getElementById('output');
+            out.value += (out.value ? "\n" : "") + JSON.stringify(obj, null, 4) + ",";
+            out.scrollTop = out.scrollHeight;
         }
 
         async function copyToClipboard() {
@@ -471,6 +511,11 @@
             document.getElementById('nameInput').focus();
         }
 
+        async function copyButNoReset() {
+            const text = document.getElementById('output').value.replace(/,$/, "");
+            await navigator.clipboard.writeText(text);
+        }
+
         function clearAll() {
             document.querySelectorAll('input:not(.readonly)').forEach(i => {
                 if(i.id === 'nodeHealth' || i.id === 'nodeXP') i.value = "#?";
@@ -479,14 +524,10 @@
             });
             document.querySelectorAll('.dynamic-row').forEach(r => r.remove());
             document.getElementById('output').value = "";
-            
-            if (currentMode === 'item') {
-                toggleItemConditionals();
-            }
             document.getElementById('tagsInput').value = "";
+            if (currentMode === 'item') toggleItemConditionals();
         }
 
-        // Initialize
         switchMode('node');
     </script>
 </body>
