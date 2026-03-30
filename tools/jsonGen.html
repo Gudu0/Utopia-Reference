@@ -337,7 +337,8 @@
             '$nm': null,
             '$tnm': null,
             '$pig': null,
-            '$tfmp': null
+            '$tfmp': null,
+            '$btec': null
         };
 
         function switchMode(mode) {
@@ -369,10 +370,13 @@
                         break;
                     
                     case '$tnm':
-                        let nmms = name.toLowerCase();
-                        replacement = nmms.replace("seed", "tree") + '.';
+                        replacement = name.toLowerCase().replace("seed", "tree") + '.';
                         break;
                     
+                    case '$btec':
+                        replacement = "Better to eat it cooked.";
+                        break;
+
                     case '$pig':
                         replacement = "Plant it and grow a";
                         break;
