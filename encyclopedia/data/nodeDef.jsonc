@@ -7,28 +7,28 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "iron_ore",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "stone",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "coal",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "magnet",
                     "amount": "#?"
                 },
-                "drop5": {
+                {
                     "id": "coral_stone",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": 400
         },
         "tool": "pick",
@@ -43,24 +43,24 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "stone",
                     "amount": "40-46"
                 },
-                "drop2": {
+                {
                     "id": "coal",
                     "amount": "0-1"
                 },
-                "drop3": {
+                {
                     "id": "sulfur",
                     "amount": "0-1"
                 },
-                "drop4": {
+                {
                     "id": "elemental_essence_stone_mine",
                     "amount": "0-1"
                 }
-            },
+            ],
             "xp": 200
         },
         "tool": "pick",
@@ -75,24 +75,24 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "silver_ore",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "stone",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "coal",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "moonlight_stone",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "tool": "pick",
@@ -107,24 +107,24 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "gold_ore",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "stone",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "coal",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "ruby",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "tool": "pick",
@@ -139,24 +139,24 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "crystal_ore",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "stone",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "coal",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "sapphire",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "tool": "pick",
@@ -171,24 +171,24 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "obsidian_ore",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "stone",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "coal",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "black_gem",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "tool": "pick",
@@ -203,12 +203,12 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "steam_stone",
                     "amount": "1"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "tool": "pick",
@@ -223,16 +223,16 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "natanz_spar_ball",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "the_power_of_natanz",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "tool": "pick",
@@ -247,12 +247,12 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "rune_stone",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "tool": "pick",
@@ -267,12 +267,12 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "rune_stone",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "tool": "pick",
@@ -287,12 +287,12 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "rune_stone",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "tool": "pick",
@@ -307,12 +307,12 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "rune_stone",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "tool": "pick",
@@ -327,12 +327,12 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "rune_stone",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "tool": "pick",
@@ -347,12 +347,12 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "rune_stone",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "tool": "pick",
@@ -367,12 +367,12 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "rune_stone",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "tool": "pick",
@@ -387,12 +387,12 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "rune_stone",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "tool": "pick",
@@ -407,12 +407,12 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "crimson_jade",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "tool": "pick",
@@ -427,12 +427,12 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "energy_rich_crystals",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "tool": "pick",
@@ -447,16 +447,16 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "stardust",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "unstable_starcore",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "tool": "pick",
@@ -471,12 +471,12 @@
         "category": "Ore",
         "subcategory": "determinSubCategory",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "emerald",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "tool": "pick",
@@ -494,24 +494,24 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "straw",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "resin",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "desert_poplar_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -527,32 +527,32 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "straw",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "cone",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "resin",
                     "amount": "#?"
                 },
-                "drop5": {
+                {
                     "id": "green_pine_seed",
                     "amount": "#?"
                 },
-                "drop6": {
+                {
                     "id": "elemental_essence_green_pine",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -568,44 +568,44 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "straw",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "apple",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "honey",
                     "amount": "#?"
                 },
-                "drop5": {
+                {
                     "id": "resin",
                     "amount": "#?"
                 },
-                "drop6": {
+                {
                     "id": "silkworm",
                     "amount": "#?"
                 },
-                "drop7": {
+                {
                     "id": "leaf",
                     "amount": "#?"
                 },
-                "drop8": {
+                {
                     "id": "elemental_essence_apple",
                     "amount": "#?"
                 },
-                "drop9": {
+                {
                     "id": "silkworm_fancy",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -621,28 +621,28 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "straw",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "cone",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "resin",
                     "amount": "#?"
                 },
-                "drop5": {
+                {
                     "id": "snow_pine_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -658,28 +658,28 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "straw",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "resin",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "silkworm",
                     "amount": "#?"
                 },
-                "drop5": {
+                {
                     "id": "silkworm_fancy",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -695,32 +695,32 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "straw",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "coconut",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "resin",
                     "amount": "#?"
                 },
-                "drop5": {
+                {
                     "id": "coconut_tree_seed",
                     "amount": "#?"
                 },
-                "drop6": {
+                {
                     "id": "elemental_essence_coconut_tree",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -736,40 +736,40 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "straw",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "resin",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "silkworm",
                     "amount": "#?"
                 },
-                "drop5": {
+                {
                     "id": "leaf",
                     "amount": "#?"
                 },
-                "drop6": {
+                {
                     "id": "rubber",
                     "amount": "#?"
                 },
-                "drop7": {
+                {
                     "id": "rubber_tree_seed",
                     "amount": "#?"
                 },
-                "drop8": {
+                {
                     "id": "silkworm_fancy",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -785,24 +785,24 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "straw",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "resin",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "fern_tree_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -818,28 +818,28 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "straw",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "resin",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "banana",
                     "amount": "#?"
                 },
-                "drop5": {
+                {
                     "id": "elemental_essence_banana_tree",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -855,24 +855,24 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "straw",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "resin",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "bamboo_rice",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -888,32 +888,32 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "straw",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "resin",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "peach",
                     "amount": "#?"
                 },
-                "drop5": {
+                {
                     "id": "peach_tree_seed",
                     "amount": "#?"
                 },
-                "drop6": {
+                {
                     "id": "elemental_essence_peach_tree",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -929,12 +929,12 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -950,24 +950,24 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "straw",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "resin",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "blue_mapple_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -983,28 +983,28 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "straw",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "dark_purple_fruit",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "blue_maple_seed",
                     "amount": "#?"
                 },
-                "drop5": {
+                {
                     "id": "strange_dark_purple_fruit",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1020,16 +1020,16 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "fairy_flower",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "fairy_fruit",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1045,16 +1045,16 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "thick_laurel_branches",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "osmanthus_leaf",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1070,12 +1070,12 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "afloat_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1091,16 +1091,16 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "parting_resin",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "unstable_starcore",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Rare"
@@ -1116,28 +1116,28 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "straw",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "lightning_enchant_stone1",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "resin",
                     "amount": "#?"
                 },
-                "drop5": {
+                {
                     "id": "baobab_tree_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Extremely Rare"
@@ -1153,28 +1153,28 @@
         "health": "#?",
         "tool": "pick",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "straw",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "resin",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "bomb_fruit",
                     "amount": "#?"
                 },
-                "drop5": {
+                {
                     "id": "fire_enchant_stone1",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Extremely Rare"
@@ -1190,24 +1190,24 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "straw",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "bomb_fruit",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "resin",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Extremely Rare"
@@ -1223,28 +1223,28 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "straw",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "ice_enchant_stone1",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "resin",
                     "amount": "#?"
                 },
-                "drop5": {
+                {
                     "id": "dragon_blood_tree_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Extremely Rare"
@@ -1260,24 +1260,24 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "straw",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "resin",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "natanz_marvel_tree_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Extremely Rare"
@@ -1293,36 +1293,36 @@
         "health": "#?",
         "tool": "axe",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wood",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "straw",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "ice_enchant_stone1",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "fire_enchant_stone1",
                     "amount": "#?"
                 },
-                "drop5": {
+                {
                     "id": "lightning_enchant_stone1",
                     "amount": "#?"
                 },
-                "drop6": {
+                {
                     "id": "resin",
                     "amount": "#?"
                 },
-                "drop7": {
+                {
                     "id": "marvel_tree_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Extremely Rare"
@@ -1338,24 +1338,24 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "clay",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "small_earthworm",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "large_earthworm",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "king_earthworm",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1371,12 +1371,12 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "sand",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1392,16 +1392,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "plant_fiber",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "elemental_essence_weeds",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1417,20 +1417,20 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "strawberry",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "strawberry_seed",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "elemental_essence_strawberry",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1446,20 +1446,20 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "blueberry",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "blueberry_seed",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "elemental_essence_blueberry",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1475,16 +1475,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "mushroom",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "mushroom_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1500,16 +1500,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "red_mushroom",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "red_mushroom_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1525,16 +1525,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "blue_mushroom",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "blue_mushroom_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1550,12 +1550,12 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "plant_fiber",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1571,16 +1571,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "onion",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "onion_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1596,16 +1596,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "pepper",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "pepper_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1621,16 +1621,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "green_pepper",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "green_pepper_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1646,16 +1646,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "taro",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "taro_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1671,16 +1671,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "orange",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "orange_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1696,20 +1696,20 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "lemon",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "lemon_grass",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "lemon_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1725,16 +1725,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "ginger",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "ginger_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1750,12 +1750,12 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "icy_south_pine_cone",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1771,20 +1771,20 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "green_flower",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "pistil",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "small_bee",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1800,20 +1800,20 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "cyan_flower",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "pistil",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "small_bee",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1829,24 +1829,24 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "red_flower",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "roselle",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "pistil",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "small_bee",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1862,16 +1862,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "mint",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "mint_seeds",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1887,20 +1887,20 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "blue_flower",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "pistil",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "small_bee",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1916,16 +1916,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "perilla",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "perilla_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1941,16 +1941,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "eggplant",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "eggplant_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1966,16 +1966,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "cucumber",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "cucumber_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -1991,12 +1991,12 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "clover",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2012,16 +2012,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "cocoa_bean",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "cocoa_bean_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2037,16 +2037,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "soybean_sprout",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "soybean_sprout_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2062,16 +2062,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "red_bean_sprout",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "red_bean_sprout_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2087,16 +2087,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "watermelon",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "watermelon_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2112,16 +2112,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "pumpkin",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "pumpkin_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2137,20 +2137,20 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "chili",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "chili_seed",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "hot_chili",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2166,16 +2166,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "sugarcane",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "sugarcane_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2191,16 +2191,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "grape",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "grape_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2216,16 +2216,16 @@
         "health": "#?",
         "tool": "pick",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "tomato",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "tomato_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2241,16 +2241,16 @@
         "health": "#?",
         "tool": "pick",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "spinach",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "spinach_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2266,16 +2266,16 @@
         "health": "#?",
         "tool": "pick",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "corn",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "corn_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2291,16 +2291,16 @@
         "health": "#?",
         "tool": "pick",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "carrot",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "carrot_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2316,16 +2316,16 @@
         "health": "#?",
         "tool": "pick",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "cotton",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "cotton_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2341,16 +2341,16 @@
         "health": "#?",
         "tool": "pick",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "wheat",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "wheat_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2366,16 +2366,16 @@
         "health": "#?",
         "tool": "pick",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "potato",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "potato_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2391,12 +2391,12 @@
         "health": "#?",
         "tool": "pick",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "natanz_stearic",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2412,12 +2412,12 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "ammonite",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2433,20 +2433,20 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "spore_ball",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "giant_mushroom_cap",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "giant_mushroom_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2462,16 +2462,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "spiritual_fire_ganoderma",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "violet_ganoderma",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2487,16 +2487,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "rippling_duckweed",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "past_wine",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2512,16 +2512,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "gushing_flower",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "earth_blossom",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2537,16 +2537,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "illusion_gold_cluster",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "rainbow_stamen",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2562,16 +2562,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "natanz_fruit",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "natanz_fruit_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Rare"
@@ -2587,12 +2587,12 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "yellow_flower",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Rare"
@@ -2608,20 +2608,20 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "orange_flower",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "pistil",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "small_bee",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Rare"
@@ -2637,20 +2637,20 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "violet_flower",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "pistil",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "small_bee",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Rare"
@@ -2666,31 +2666,31 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "green_phosphor",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "phantom_lily",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "pistil",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "small_bee",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Rare"
     },
     {
         "id": "blue_devil",
-        "name": "Blue Devil", 
+        "name": "Blue Devil",
         "desc": "",
         "img": "blue_devil.jpg",
         "notes": "",
@@ -2699,24 +2699,24 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "blue_phosphor",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "blue_devil",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "pistil",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "small_bee",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2732,24 +2732,24 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "purple_phosphor",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "mandala",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "pistil",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "small_bee",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2765,24 +2765,24 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "pink_phosphor",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "pink_flame",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "pistil",
                     "amount": "#?"
                 },
-                "drop4": {
+                {
                     "id": "small_bee",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2798,12 +2798,12 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "venus_flytrap",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2819,12 +2819,12 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "rafflesia",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2840,12 +2840,12 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "sky_fruit",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2861,16 +2861,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "date_palm",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "date_palm_flower",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2886,12 +2886,12 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "starred_flower",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2907,12 +2907,12 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "leyline_leaf",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2928,12 +2928,12 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "crystal_stone_fruit",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -2949,20 +2949,20 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "white_lotus",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "white_lotus_seed",
                     "amount": "#?"
                 },
-                "drop3": {
+                {
                     "id": "elemental_essence_white_lotus",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Extremely Rare"
@@ -2978,16 +2978,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "sunflower_seed",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "elemental_essence_sunflower",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Extremely Rare"
@@ -3003,12 +3003,12 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "natanz_sunflower_seed",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Extremely Rare"
@@ -3024,12 +3024,12 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "crystal_water_lily",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Extremely Rare"
@@ -3045,16 +3045,16 @@
         "health": "#?",
         "tool": "hand",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "frost_flower",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "ice_crystal",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Extremely Rare"
@@ -3070,12 +3070,12 @@
         "health": "#?",
         "tool": "pick",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "scent_of_foam",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -3091,16 +3091,16 @@
         "health": "#?",
         "tool": "pick",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "large_scallop",
                     "amount": "#?"
                 },
-                "drop2": {
+                {
                     "id": "scallop",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
@@ -3116,12 +3116,12 @@
         "health": "#?",
         "tool": "pick",
         "drops": {
-            "items": {
-                "drop1": {
+            "items": [
+                {
                     "id": "natanz_blue_orb",
                     "amount": "#?"
                 }
-            },
+            ],
             "xp": "#?"
         },
         "rarity": "Common"
