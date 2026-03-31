@@ -1080,9 +1080,11 @@
     {
         "id": "desert_poplar_seed",
         "name": "Desert Poplar Seed",
-        "desc": "A desert poplar seed. Plant it and grow a a desert poplar tree.",
+        "desc": "A desert poplar seed. Plant it and grow a desert poplar tree.",
         "img": "desert_poplar_seed.jpg",
-        "tags": [],
+        "tags": [
+            "seed"
+        ],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -1100,7 +1102,9 @@
         "name": "Green Pine Seed",
         "desc": "A green pine seed. Plant it and harvest wheat later.",
         "img": "green_pine_seed.jpg",
-        "tags": [],
+        "tags": [
+            "seed"
+        ],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -1118,7 +1122,9 @@
         "name": "Cone",
         "desc": "Will fill you belly, but also make you thirsty. Better to eat it cooked.",
         "img": "cone.jpg",
-        "tags": [],
+        "tags": [
+            "typo"
+        ],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -1128,8 +1134,27 @@
         "uses": [],
         "category": "Material",
         "subcategory": "Plant",
-        "rarity": "uncommon",
+        "rarity": "common",
         "bound": false
+    },
+    {
+        "id": "elemental_essence_green_pine",
+        "name": "Elemental Essence-Green Pine",
+        "desc": "Used to synthesize Transformation Potion-Green Pine.",
+        "img": "elemental_essence_green_pine.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "epic",
+        "bound": false
+
     },
     {
         "id": "apple",
@@ -1145,12 +1170,12 @@
         },
         "uses": [],
         "category": "Food",
-        "subcategory": "Ore",
+        "subcategory": "Plant",
         "rarity": "common",
         "bound": false,
         "foodStats": {
-            "food": -1,
-            "water": -1
+            "food": "#?",
+            "water": "#?"
         }
     },
     {
@@ -1176,7 +1201,9 @@
         "name": "Silkworm",
         "desc": "A white pudgey worm that can be raised to obtained silk. Find them in broad-leaved trees.",
         "img": "silkworm.jpg",
-        "tags": [],
+        "tags": [
+            "typo"
+        ],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -1222,13 +1249,13 @@
         "uses": [],
         "category": "Material",
         "subcategory": "Plant",
-        "rarity": "uncommon",
+        "rarity": "epic",
         "bound": false
     },
     {
         "id": "silkworm_fancy",
         "name": "Silkworm",
-        "desc": "The rare silkworm can be raised to obtain cloud silk. Find them in broad leaved trees.",
+        "desc": "The rare silkworm can be raised to obtain cloud silk. Find them in broad-leaved trees.",
         "img": "silkworm_fancy.jpg",
         "tags": [],
         "notes": "different id than normal silkworm: 'silkworm_fancy'",
@@ -1246,9 +1273,9 @@
     {
         "id": "snow_pine_seed",
         "name": "Snow Pine Seed",
-        "desc": "A snow pine seed. Plant it and grow a a snow pine tree.",
+        "desc": "A snow pine seed. Plant it and grow a snow pine tree.",
         "img": "snow_pine_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -1276,7 +1303,7 @@
         "uses": [],
         "category": "Material",
         "subcategory": "Plant",
-        "rarity": "uncommon",
+        "rarity": "common",
         "bound": false
     },
     {
@@ -1284,7 +1311,7 @@
         "name": "Coconut Tree Seed",
         "desc": "A coconut tree seed. Plant it and harvest wheat later.",
         "img": "coconut_tree_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -1312,7 +1339,7 @@
         "uses": [],
         "category": "Material",
         "subcategory": "Plant",
-        "rarity": "uncommon",
+        "rarity": "epic",
         "bound": false
     },
     {
@@ -1320,7 +1347,7 @@
         "name": "Rubber Tree Seed",
         "desc": "A rubber tree seed. Plant it and grow a rubber tree.",
         "img": "rubber_tree_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -1338,7 +1365,7 @@
         "name": "Fern Tree Seed",
         "desc": "Fern trees actually rely on spores to propagate.",
         "img": "fern_tree_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -1366,7 +1393,7 @@
         "uses": [],
         "category": "Material",
         "subcategory": "Plant",
-        "rarity": "uncommon",
+        "rarity": "common",
         "bound": false
     },
     {
@@ -1384,7 +1411,7 @@
         "uses": [],
         "category": "Material",
         "subcategory": "Plant",
-        "rarity": "uncommon",
+        "rarity": "epic",
         "bound": false
     },
     {
@@ -1392,7 +1419,7 @@
         "name": "Bamboo Rice",
         "desc": "Most people don't know what bamboo seeds are called, just like they don't know that this can grow bamboo.",
         "img": "bamboo_rice.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -1408,7 +1435,7 @@
     {
         "id": "peach",
         "name": "Peach",
-        "desc": "Pleasing to. the eye and palate. Capable of quenching your thirst some. Even better to eat when cooked.",
+        "desc": "Pleasing to the eye and palate. Capable of quenching your thirst some. Even better to eat when cooked.",
         "img": "peach.jpg",
         "tags": [],
         "notes": "",
@@ -1418,9 +1445,13 @@
             "enemy": []
         },
         "uses": [],
-        "category": "Material",
-        "subcategory": "Plant",
-        "rarity": "uncommon",
+        "category": "Food",
+        "subcategory": "DetermineSubcategory",
+        "foodStats": {
+            "food": "#?",
+            "water": "#?"
+        },
+        "rarity": "common",
         "bound": false
     },
     {
@@ -1428,7 +1459,7 @@
         "name": "Peach Tree Seed",
         "desc": "A peach tree seed. Plant it and harvest wheat later.",
         "img": "peach_tree_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -1456,15 +1487,15 @@
         "uses": [],
         "category": "Material",
         "subcategory": "Plant",
-        "rarity": "uncommon",
+        "rarity": "epic",
         "bound": false
     },
     {
         "id": "blue_maple_seed",
         "name": "Blue Maple Seed",
-        "desc": "Blue maple seedm planted in the nursery, senior nursery or advanced plant nursery can give blue maple.",
+        "desc": "Blue maple seed planted in the nursery, senior nursery or advanced plant nursery can get blue maple.",
         "img": "blue_maple_seed.jpg",
-        "tags": [],
+        "tags": ["seed", "typo"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -1480,7 +1511,7 @@
     {
         "id": "dark_purple_fruit",
         "name": "Dark purple Fruit",
-        "desc": "What was once an apple tree has gradually changed it shape under the influence of a rune, and the fruit has turned into a strange putple color.",
+        "desc": "What was once an apple tree has gradually changed it shape under the influence of a rune, and the fruit has turned into a strange purple color.",
         "img": "dark_purple_fruit.jpg",
         "tags": [],
         "notes": "",
@@ -1498,11 +1529,9 @@
     {
         "id": "dark_purple_hibiscus_seed",
         "name": "Blue Maple Seed",
-        "desc": "Dark Purple Hibiscus seed, can get the Dark Purple Hibiscus after plant in plant nursery or advanced plant nursery.",
+        "desc": "Dark purple Hibiscus seed, can get the Dark Purple Hibiscus after plant in plant nursery or advanced plant nursery.",
         "img": "dark_purple_hibiscus_seed.jpg",
-        "tags": [
-            "weird"
-        ],
+        "tags": ["weird", "typo", "seed"],
         "notes": "id is dark_purple_hibiscus_seed, even though its name is blue_maple_seed. decided to do this because of the desc and image and node it drops from.",
         "weight": 0.01,
         "sources": {
@@ -1518,10 +1547,10 @@
     {
         "id": "strange_dark_purple_fruit",
         "name": "Strange Dark purple Fruit",
-        "desc": "Uncommonly rare fruit of the power of a great deal of runic magic! Eat down can let the dull life get different before stimulation! ?\\nNote 1: For a limited time, please use it in time.\\nNote 2: Please ensure personal safety when using.",
+        "desc": "Uncommonly rare fruit of the power of a great deal of runic magic! Eat down can let the dull life get different before stimulation! ? \nNote 1: For a limited time, please use it in time. \nNote 2: Please ensure personal safety when using.",
         "img": "strange_dark_purple_fruit.jpg",
-        "tags": [],
-        "notes": "",
+        "tags": ["weird", "typo"],
+        "notes": "could have more desc, screenshot has desc cut off on 'using'",
         "weight": 0.01,
         "sources": {
             "node": [],
@@ -1530,8 +1559,8 @@
         "uses": [],
         "category": "Material",
         "subcategory": "Plant",
-        "rarity": "uncommon",
-        "bound": false,
+        "rarity": "epic",
+        "bound": true,
         "time-limited": "00:30:00"
     },
     {
@@ -1539,7 +1568,7 @@
         "name": "Baobab Tree Seed",
         "desc": "A baobab tree seed. Plant it and grow a baobab tree.",
         "img": "baobab_tree_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -1575,7 +1604,7 @@
         "name": "Dragon Blood Tree Seed",
         "desc": "A dragon blood tree seed. Plant it and grow a dragon blood tree.",
         "img": "dragon_blood_tree_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -1593,7 +1622,7 @@
         "name": "Natanz Marvel Tree Seed",
         "desc": "The Natanz Marvel Tree Seed, plant in advanced plant nursery can get Natanz Marvel Tree.",
         "img": "natanz_marvel_tree_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -1611,7 +1640,7 @@
         "name": "Marvel Tree Seed",
         "desc": "A marvel tree seed. Plant it and grow a marvel tree.",
         "img": "marvel_tree_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -1657,15 +1686,33 @@
         "uses": [],
         "category": "Material",
         "subcategory": "Plant",
-        "rarity": "uncommon",
+        "rarity": "rare",
         "bound": false
+    },
+    {
+        "id": "thick_laurel_branches",
+        "name": "Thick Laurel Branches",
+        "desc": "The giant laurel branches cannot be used directly. You need to pick a thin branch. Note: This is a bound item, cannot trade to others.",
+        "img": "thick_laurel_branches.jpg",
+        "tags": ["typo"],
+        "notes": "",
+        "weight": 0.001,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "rare",
+        "bound": true
     },
     {
         "id": "osmanthus_leaf",
         "name": "Osmanthus Leaf",
         "desc": "Osmanthus leaf has strange power, can be made into pet feed.",
         "img": "osmanthus_leaf.jpg",
-        "tags": [],
+        "tags": ["typo"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -1676,16 +1723,16 @@
         "category": "Material",
         "subcategory": "Plant",
         "rarity": "rare",
-        "bound": true
+        "bound": false
     },
     {
         "id": "afloat_seed",
         "name": "Afloat Seed",
         "desc": "A seed enveloped in starlight drifts through the cosmos, seeking an opportunity to come to life.",
         "img": "afloat_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
-        "weight": 0.01,
+        "weight": 0.03,
         "sources": {
             "node": [],
             "enemy": []
@@ -1693,8 +1740,8 @@
         "uses": [],
         "category": "Material",
         "subcategory": "Plant",
-        "rarity": "rare",
-        "bound": true
+        "rarity": "epic",
+        "bound": false
     },
     {
         "id": "parting_resin",
@@ -1729,7 +1776,7 @@
         "uses": [],
         "category": "Material",
         "subcategory": "Plant",
-        "rarity": "rare",
+        "rarity": "uncommon",
         "bound": false
     },
     {
@@ -1747,7 +1794,7 @@
         "uses": [],
         "category": "Material",
         "subcategory": "Plant",
-        "rarity": "rare",
+        "rarity": "uncommon",
         "bound": false
     },
     {
@@ -1783,7 +1830,7 @@
         "uses": [],
         "category": "Material",
         "subcategory": "Plant",
-        "rarity": "rare",
+        "rarity": "epic",
         "bound": false
     }
 ]

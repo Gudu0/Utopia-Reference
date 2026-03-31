@@ -75,8 +75,12 @@
         "type": "object",
         "required": ["food", "water"],
         "properties": {
-          "food": { "type": "integer" },
-          "water": { "type": "integer" }
+          "food": { 
+            "type": ["integer", "string"]
+          },
+          "water": { 
+            "type": ["integer", "string"]
+          }
         },
         "additionalProperties": false
       },
@@ -96,7 +100,7 @@
           "type": "array",
           "items": {
               "type": "string",
-              "pattern": "^[a-z0-9_]+$"
+              "enum": ["seed", "typo", "weird"]
           },
           "description": "Custom metadata tags for filtering or logic."
       }

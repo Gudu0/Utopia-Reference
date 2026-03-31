@@ -4,23 +4,34 @@
     <meta charset="UTF-8">
     <title>Node/Item JSONC & Image Checker</title>
     <style>
-        body { font-family: sans-serif; padding: 16px; max-width: 1100px; margin: 0 auto; }
-        h1, h2 { margin-bottom: 6px; }
+        body { font-family: sans-serif; padding: 16px; max-width: 1200px; margin: 0 auto; }
+        h1, h2, h3 { margin-bottom: 6px; }
         textarea { width: 100%; box-sizing: border-box; font-family: monospace; font-size: 12px; background: #fdfdfd; }
         .github-row { display: flex; gap: 8px; align-items: center; margin-bottom: 6px; flex-wrap: wrap; }
         .github-row input { flex: 1; min-width: 200px; font-family: monospace; font-size: 12px; padding: 4px 6px; border: 1px solid #ccc; border-radius: 4px; }
         .github-row button { padding: 4px 10px; cursor: pointer; }
-        .controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 8px 0; }
-        .controls button { padding: 8px 16px; cursor: pointer; font-weight: bold; }
-        .filter-bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; }
+        
+        .button-group { border: 1px solid #ccc; padding: 10px; border-radius: 6px; margin-bottom: 10px; background: #fafafa; }
+        .button-group-title { font-weight: bold; margin-bottom: 8px; font-size: 14px; text-transform: uppercase; color: #333; }
+        .controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+        .controls button { padding: 6px 12px; cursor: pointer; font-weight: bold; border: 1px solid #888; border-radius: 4px; }
+        
+        .btn-check { background: #e2f0d9; }
+        .btn-check:hover { background: #c5e0b4; }
+        .btn-fix { background: #fff2cc; }
+        .btn-fix:hover { background: #ffe699; }
+        .btn-all { background: #ddebf7; border-color: #9bc2e6 !important; }
+        
+        .filter-bar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 8px; padding-top: 10px;}
         .filter-bar label { font-weight: bold; }
         .filter-bar input[type=text] { flex: 1; min-width: 200px; padding: 4px 8px; font-size: 13px; border: 1px solid #ccc; border-radius: 4px; }
         .filter-btn { padding: 3px 10px; cursor: pointer; border: 1px solid #999; border-radius: 4px; background: #f0f0f0; font-size: 12px; }
         .filter-btn.active { background: #333; color: #fff; border-color: #333; }
+        
+        #output { max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 8px; background: #fff; }
         #output p { margin: 3px 0; font-family: monospace; font-size: 13px; border-bottom: 1px solid #eee; padding-bottom: 2px; }
         #output p.hidden { display: none; }
-        .status-ok { color: green; }
-        .status-err { color: #c00; font-weight: bold; }
+        
         .status-info { color: #555; font-style: italic; }
         #matchCount { font-size: 12px; color: #666; margin-left: 8px; }
         .grid-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
@@ -55,25 +66,36 @@
         <div>
             <h3>node.jsonc</h3>
             <textarea id="nodeInput" rows="8"></textarea>
-            <h3>Node Images (Files found)</h3>
-            <textarea id="nodeImgList" rows="5" placeholder="List of filenames..."></textarea>
+            <h3>Node Images (GitHub Directory)</h3>
+            <textarea id="nodeImgList" rows="3" placeholder="List of filenames..."></textarea>
         </div>
         <div>
             <h3>item.jsonc</h3>
             <textarea id="itemInput" rows="8"></textarea>
-            <h3>Item Images (Files found)</h3>
-            <textarea id="itemImgList" rows="5" placeholder="List of filenames..."></textarea>
+            <h3>Item Images (GitHub Directory)</h3>
+            <textarea id="itemImgList" rows="3" placeholder="List of filenames..."></textarea>
         </div>
     </div>
 
-    <div class="controls">
-        <button id="checkButton" style="background: #d4edda;">RUN COMPLETE CHECK</button>
-        <button id="fixImgBtn">Fix Image Names (.jpg)</button>
-        <button id="fixSourcesBtn">Fix item sources.node</button>
-        <button id="copyMissingBtn">Copy Missing IDs</button>
+    <div class="button-group" style="margin-top: 15px;">
+        <div class="button-group-title">Run Checks</div>
+        <div class="controls">
+            <button class="btn-check" id="checkCrossBtn">Check Sources & Drops</button>
+            <button class="btn-check" id="checkImgFormatBtn">Check Image Naming (.jpg)</button>
+            <button class="btn-check" id="checkGithubImgBtn">Verify GitHub Physical Files</button>
+            <button class="btn-all" id="checkAllBtn">RUN ALL CHECKS</button>
+        </div>
     </div>
 
-    <hr>
+    <div class="button-group">
+        <div class="button-group-title">Fix Data (Outputs below)</div>
+        <div class="controls">
+            <button class="btn-fix" id="fixSourcesBtn">Fix item sources.node</button>
+            <button class="btn-fix" id="fixImgBtn">Fix Image Names (.jpg)</button>
+            <button class="btn-all" id="fixAllBtn">FIX BOTH</button>
+            <button id="copyMissingBtn" style="margin-left: auto;">Copy Missing IDs</button>
+        </div>
+    </div>
 
     <h2>Output Log</h2>
     <div class="filter-bar">
@@ -83,8 +105,8 @@
         <button class="filter-btn" data-type="mismatch">Mismatches</button>
         <button class="filter-btn" data-type="missing">Missing IDs</button>
         <button class="filter-btn" data-type="img">Images</button>
-        <button class="filter-btn" data-type="duplicate">Duplicates</button>
         <button class="filter-btn" data-type="info">Status</button>
+        <button id="clearOutputBtn" style="margin-left:auto; padding: 2px 8px; cursor:pointer;">Clear Log</button>
         <span id="matchCount"></span>
     </div>
     <div id="output"></div>
@@ -114,7 +136,6 @@
         // --- GitHub Logic ---
         function parseGithubUrl(url) {
             const u = url.trim();
-            // Handle raw or blob or tree URLs
             const match = u.match(/github\.com\/([^/]+)\/([^/]+)\/(?:blob|tree|raw)\/([^/]+)\/(.+)$/);
             if (match) return { owner: match[1], repo: match[2], branch: match[3], filePath: match[4] };
             return null;
@@ -133,131 +154,209 @@
                 const data = await res.json();
                 
                 if (Array.isArray(data)) {
-                    // It's a directory listing
                     textarea.value = data.map(f => f.name).join("\n");
                     statusEl.textContent = `✓ Loaded ${data.length} files`;
                 } else if (data.content) {
-                    // It's a file (base64 encoded by API)
                     textarea.value = decodeURIComponent(escape(atob(data.content)));
                     statusEl.textContent = "✓ Loaded File";
                 }
             } catch (err) {
                 statusEl.textContent = "✗ Failed";
-                console.error(err);
             }
         }
 
-        // --- Listeners for Loaders ---
         document.getElementById("loadNodeBtn").addEventListener("click", () => loadFromGithub(document.getElementById("nodeUrl").value, nodeInput, document.getElementById("nodeLoadStatus")));
         document.getElementById("loadItemBtn").addEventListener("click", () => loadFromGithub(document.getElementById("itemUrl").value, itemInput, document.getElementById("itemLoadStatus")));
         document.getElementById("loadNodeImgBtn").addEventListener("click", () => loadFromGithub(document.getElementById("nodeImgUrl").value, nodeImgList, document.getElementById("nodeImgLoadStatus"), true));
         document.getElementById("loadItemImgBtn").addEventListener("click", () => loadFromGithub(document.getElementById("itemImgUrl").value, itemImgList, document.getElementById("itemImgLoadStatus"), true));
 
-        // --- Core Checker Logic ---
-        function runCheck() {
-            output.innerHTML = "";
-            lastMissingIds.clear();
-            
-            let nodes, items;
+        // --- Helper Logic ---
+        function stripComments(text) {
+            return text.replace(/\/\/.*$/gm, '');
+        }
+
+        function getParsedData() {
             try {
-                nodes = JSON.parse(stripComments(nodeInput.value));
-                items = JSON.parse(stripComments(itemInput.value));
-            } catch (e) { addLine("JSON Error: Check if files are loaded correctly.", "info"); return; }
-
-            addLine(`Loaded ${nodes.length} nodes and ${items.length} items.`, "info");
-
-            // 1. Basic ID/Img format checks
-            checkImgFormat(nodes, "Node");
-            checkImgFormat(items, "Item");
-
-            // 2. Cross-reference checks
-            checkCrossFile(nodes, items);
-
-            // 3. Physical Image Checks (The new part)
-            verifyPhysicalImages(nodes, nodeImgList.value, "Node");
-            verifyPhysicalImages(items, itemImgList.value, "Item");
-
-            addLine("Check complete.", "info");
-            applyFilters();
+                const nodes = JSON.parse(stripComments(nodeInput.value));
+                const items = JSON.parse(stripComments(itemInput.value));
+                return { nodes, items, valid: true };
+            } catch (e) {
+                addLine(`JSON Parse Error: ${e.message}`, "info");
+                return { valid: false };
+            }
         }
 
-        function verifyPhysicalImages(jsonEntries, listText, label) {
-            if (!listText.trim()) return;
-            const physicalFiles = new Set(listText.split("\n").map(s => s.trim()).filter(Boolean));
-            const declaredInJson = new Set();
-
-            jsonEntries.forEach(entry => {
-                if (entry.img) {
-                    declaredInJson.add(entry.img);
-                    if (!physicalFiles.has(entry.img)) {
-                        addLine(`Image Missing: ${label} "${entry.id}" references "${entry.img}" but file is not in GitHub folder.`, "img");
-                    }
-                }
-            });
-
-            // Ghost check
-            physicalFiles.forEach(file => {
-                if (!declaredInJson.has(file)) {
-                    addLine(`Ghost File: "${file}" exists in ${label} folder but is not used in JSON.`, "img");
-                }
-            });
-        }
-
-        // --- Helpers (Modified from your original) ---
         function addLine(text, type) {
             const p = document.createElement("p");
             p.textContent = text;
             p.dataset.type = type || "info";
             if (type === "info") p.classList.add("status-info");
-            if (text.includes("Missing") || text.includes("Error")) p.style.color = "#c00";
+            if (text.includes("Missing") || text.includes("Mismatch") || text.includes("Error")) p.style.color = "#c00";
             output.appendChild(p);
+            applyFilters();
         }
 
-        function checkImgFormat(entries, label) {
-            entries.forEach(e => {
-                const expected = `${e.id}.jpg`;
-                if (e.img !== expected) addLine(`Img Mismatch: ${label} "${e.id}" uses "${e.img}", expected "${expected}"`, "img");
-            });
+        document.getElementById("clearOutputBtn").addEventListener("click", () => {
+            output.innerHTML = "";
+            lastMissingIds.clear();
+            applyFilters();
+        });
+
+        // --- Checkers ---
+        function checkImgFormat(nodes, items) {
+            addLine("Checking Image Names...", "info");
+            const check = (entries, label) => {
+                entries.forEach(e => {
+                    const expected = `${e.id}.jpg`;
+                    if (e.img && e.img !== expected) addLine(`Img Naming: ${label} "${e.id}" uses "${e.img}", expected "${expected}"`, "img");
+                });
+            };
+            check(nodes, "Node");
+            check(items, "Item");
         }
 
-        function checkCrossFile(nodes, items) {
-            const nodeIds = new Set(nodes.map(n => n.id));
-            const itemIds = new Set(items.map(i => i.id));
+        function verifyPhysicalImages(nodes, items) {
+            addLine("Verifying GitHub Files...", "info");
+            const verify = (jsonEntries, listText, label) => {
+                if (!listText.trim()) return;
+                const physicalFiles = new Set(listText.split("\n").map(s => s.trim()).filter(Boolean));
+                const declaredInJson = new Set();
 
-            nodes.forEach(n => {
-                if (n.drops && n.drops.items) {
-                    Object.values(n.drops.items).forEach(d => {
-                        if (!itemIds.has(d.id)) {
-                            if (!lastMissingIds.has(d.id)) {
-                                addLine(`Unique Missing: Item ID "${d.id}" (referenced by node "${n.id}")`, "missing");
-                                lastMissingIds.add(d.id);
-                            }
+                jsonEntries.forEach(entry => {
+                    if (entry.img) {
+                        declaredInJson.add(entry.img);
+                        if (!physicalFiles.has(entry.img)) {
+                            addLine(`Missing in GitHub: ${label} "${entry.id}" references "${entry.img}" but file is missing.`, "img");
                         }
-                    });
-                }
-            });
+                    }
+                });
+
+                physicalFiles.forEach(file => {
+                    if (!declaredInJson.has(file)) {
+                        addLine(`Ghost File: "${file}" exists in ${label} folder but is not used in JSON.`, "img");
+                    }
+                });
+            };
+            verify(nodes, nodeImgList.value, "Node");
+            verify(items, itemImgList.value, "Item");
         }
 
-        function stripComments(text) {
-            return text.replace(/\/\/.*$/gm, '');
+        function checkCrossReferences(nodes, items) {
+            addLine("Checking Cross-References (Drops vs Sources)...", "info");
+            
+            const validNodeIds = new Set(nodes.map(n => n.id).filter(Boolean));
+            const validItemIds = new Set(items.map(i => i.id).filter(Boolean));
+
+            const nodeToDroppedItems = new Map();
+            nodes.forEach(n => {
+                if (!n.id) return;
+                const dropped = new Set();
+                if (n.drops && n.drops.items) {
+                    // Handle both Array and Object notation safely
+                    const dropList = Array.isArray(n.drops.items) ? n.drops.items : Object.values(n.drops.items);
+                    dropList.forEach(d => { if (d && d.id) dropped.add(d.id); });
+                }
+                nodeToDroppedItems.set(n.id, dropped);
+            });
+
+            const itemToSourceNodes = new Map();
+            items.forEach(i => {
+                if (!i.id) return;
+                const sources = new Set();
+                if (i.sources && Array.isArray(i.sources.node)) {
+                    i.sources.node.forEach(s => { if (typeof s === 'string') sources.add(s); });
+                }
+                itemToSourceNodes.set(i.id, sources);
+            });
+
+            // 1. Check Nodes dropping items
+            nodes.forEach(n => {
+                if (!n.id) return;
+                const dropped = nodeToDroppedItems.get(n.id);
+                dropped.forEach(itemId => {
+                    if (!validItemIds.has(itemId)) {
+                        if (!lastMissingIds.has(itemId)) {
+                            addLine(`Unique Missing: Item "${itemId}" (referenced by node "${n.id}") does not exist in item JSON.`, "missing");
+                            lastMissingIds.add(itemId);
+                        }
+                    } else {
+                        const itemSources = itemToSourceNodes.get(itemId) || new Set();
+                        if (!itemSources.has(n.id)) {
+                            addLine(`Mismatch: Node "${n.id}" drops item "${itemId}", but item "${itemId}" does not list "${n.id}" in sources.node`, "mismatch");
+                        }
+                    }
+                });
+            });
+
+            // 2. Check Items listing nodes
+            items.forEach(i => {
+                if (!i.id) return;
+                const sources = itemToSourceNodes.get(i.id);
+                sources.forEach(nodeId => {
+                    if (!validNodeIds.has(nodeId)) {
+                        if (!lastMissingIds.has(nodeId)) {
+                            addLine(`Unique Missing: Node "${nodeId}" (referenced by item "${i.id}") does not exist in node JSON.`, "missing");
+                            lastMissingIds.add(nodeId);
+                        }
+                    } else {
+                        const nodeDrops = nodeToDroppedItems.get(nodeId) || new Set();
+                        if (!nodeDrops.has(i.id)) {
+                            addLine(`Mismatch: Item "${i.id}" lists node "${nodeId}" in sources.node, but node "${nodeId}" does not drop item "${i.id}"`, "mismatch");
+                        }
+                    }
+                });
+            });
         }
 
         // --- Fixers ---
-        function runFix(type) {
-            let nodes = JSON.parse(stripComments(nodeInput.value));
-            let items = JSON.parse(stripComments(itemInput.value));
+        function runFixes(doSources, doImg) {
+            const data = getParsedData();
+            if (!data.valid) return;
+            let { nodes, items } = data;
             let changes = 0;
 
-            if (type === 'img') {
+            if (doImg) {
                 [...nodes, ...items].forEach(e => {
+                    if (!e.id) return;
                     const target = `${e.id}.jpg`;
                     if (e.img !== target) { e.img = target; changes++; }
                 });
             }
-            
+
+            if (doSources) {
+                // Build a map of what every node drops
+                const itemToDroppedBy = new Map();
+                nodes.forEach(n => {
+                    if (!n.id || !n.drops || !n.drops.items) return;
+                    const dropList = Array.isArray(n.drops.items) ? n.drops.items : Object.values(n.drops.items);
+                    dropList.forEach(d => {
+                        if (d && d.id) {
+                            if (!itemToDroppedBy.has(d.id)) itemToDroppedBy.set(d.id, new Set());
+                            itemToDroppedBy.get(d.id).add(n.id);
+                        }
+                    });
+                });
+
+                // Update items
+                items.forEach(i => {
+                    if (!i.id) return;
+                    if (!i.sources) i.sources = {};
+                    
+                    const expectedNodes = Array.from(itemToDroppedBy.get(i.id) || []).sort();
+                    const currentNodes = Array.isArray(i.sources.node) ? i.sources.node.sort() : [];
+                    
+                    const isSame = expectedNodes.length === currentNodes.length && expectedNodes.every((val, index) => val === currentNodes[index]);
+                    
+                    if (!isSame) {
+                        i.sources.node = expectedNodes;
+                        changes++;
+                    }
+                });
+            }
+
             document.getElementById("fixedNodeOutput").value = JSON.stringify(nodes, null, 4);
             document.getElementById("fixedItemOutput").value = JSON.stringify(items, null, 4);
-            alert(`Fix applied! ${changes} changes found. Results in textareas below.`);
+            addLine(`Fix applied. ${changes} changes made. Check outputs below.`, "info");
         }
 
         // --- Filtering Logic ---
@@ -276,7 +375,33 @@
             document.getElementById("matchCount").textContent = `Showing ${visible} of ${lines.length}`;
         }
 
-        // --- Filter Button Events ---
+        // --- Attach Events ---
+        document.getElementById("checkCrossBtn").addEventListener("click", () => {
+            const data = getParsedData();
+            if (data.valid) checkCrossReferences(data.nodes, data.items);
+        });
+        document.getElementById("checkImgFormatBtn").addEventListener("click", () => {
+            const data = getParsedData();
+            if (data.valid) checkImgFormat(data.nodes, data.items);
+        });
+        document.getElementById("checkGithubImgBtn").addEventListener("click", () => {
+            const data = getParsedData();
+            if (data.valid) verifyPhysicalImages(data.nodes, data.items);
+        });
+        document.getElementById("checkAllBtn").addEventListener("click", () => {
+            const data = getParsedData();
+            if (data.valid) {
+                checkCrossReferences(data.nodes, data.items);
+                checkImgFormat(data.nodes, data.items);
+                verifyPhysicalImages(data.nodes, data.items);
+                addLine("--- All checks finished ---", "info");
+            }
+        });
+
+        document.getElementById("fixSourcesBtn").addEventListener("click", () => runFixes(true, false));
+        document.getElementById("fixImgBtn").addEventListener("click", () => runFixes(false, true));
+        document.getElementById("fixAllBtn").addEventListener("click", () => runFixes(true, true));
+
         document.querySelectorAll(".filter-btn").forEach(btn => {
             btn.addEventListener("click", () => {
                 document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
@@ -284,15 +409,16 @@
                 applyFilters();
             });
         });
-
         filterText.addEventListener("input", applyFilters);
-        document.getElementById("checkButton").addEventListener("click", runCheck);
-        document.getElementById("fixImgBtn").addEventListener("click", () => runFix('img'));
+        
         document.getElementById("copyMissingBtn").addEventListener("click", () => {
+            if(lastMissingIds.size === 0) {
+                alert("No missing IDs to copy.");
+                return;
+            }
             navigator.clipboard.writeText(Array.from(lastMissingIds).join(", "));
-            alert("Copied unique missing IDs to clipboard!");
+            alert("Copied missing IDs!");
         });
-
     </script>
 </body>
 </html>
