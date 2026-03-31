@@ -339,6 +339,7 @@
         };
         const itemMacros = {
             '$nm': null,
+            '$cnm': null,
             '$tnm': null,
             '$pig': null,
             '$tfmp': null,
@@ -372,6 +373,10 @@
             switch (key) {
                 case '$nm':
                     replacement = name.toLowerCase();
+                    break;
+
+                case '$cnm': 
+                    replacement = name;
                     break;
 
                 case '$cqt':
@@ -474,7 +479,6 @@
                 previewJSON();
                 clearAll();
                 document.getElementById('nameInput').focus();
-                window.scrollTo(0, 0);
                 return;
             }
 
@@ -643,6 +647,7 @@
                 document.getElementById('output').value = "";
             }
             document.getElementById('tagsInput').value = "";
+            document.getElementById('macroList').innerHTML = "";
             if (currentMode === 'item') toggleItemConditionals();
         }
 
