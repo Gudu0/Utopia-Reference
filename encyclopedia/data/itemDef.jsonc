@@ -1685,42 +1685,6 @@
         "img": "afloat_seed.jpg",
         "tags": [],
         "notes": "",
-        "weight": 0.03,
-        "sources": {
-            "node": [],
-            "enemy": []
-        },
-        "uses": [],
-        "category": "Material",
-        "subcategory": "Plant",
-        "rarity": "rare",
-        "bound": true
-    },
-    {
-        "id": "osmanthus_leaf",
-        "name": "Osmanthus Leaf",
-        "desc": "Osmanthus leaf has strange power, can be made into pet feed.",
-        "img": "osmanthus_leaf.jpg",
-        "tags": [],
-        "notes": "",
-        "weight": 0.01,
-        "sources": {
-            "node": [],
-            "enemy": []
-        },
-        "uses": [],
-        "category": "Material",
-        "subcategory": "Plant",
-        "rarity": "rare",
-        "bound": true
-    },
-    {
-        "id": "afloat_seed",
-        "name": "Afloat Seed",
-        "desc": "A seed enveloped in starlight drifts through the cosmos, seeking an opportunity to come to life.",
-        "img": "afloat_seed.jpg",
-        "tags": [],
-        "notes": "",
         "weight": 0.01,
         "sources": {
             "node": [],
