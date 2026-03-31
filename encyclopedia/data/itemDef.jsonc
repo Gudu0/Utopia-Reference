@@ -1886,4 +1886,93 @@
         "rarity": "common",
         "bound": false
     },
+    {
+        "id": "strawberry_seed",
+        "name": "Strawberry Seed",
+        "desc": "Strawberry Seed. Plant to obtain strawberry.",
+        "img": "strawberry_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Ore",
+        "rarity": "common",
+        "bound": false
+    },
+    {
+        "id": "elemental_essence_strawberry",
+        "name": "Elemental Essence-Strawberry",
+        "desc": "Used to synthesize Transformation Potion-Strawberry",
+        "img": "elemental_essence_strawberry.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "epic",
+        "bound": false
+    },
+    {
+        "id": "blueberry",
+        "name": "Blueberry",
+        "desc": "Luscious and sweet. Capable of quenching your thirst some.  Even better to eat when cooked.",
+        "img": "blueberry.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "common",
+        "bound": false
+    },
+    {
+        "id": "blueberry_seed",
+        "name": "Blueberry Seed",
+        "desc": "Blueberry Seed, plant to obtain blueberry.",
+        "img": "blueberry_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },{
+    "id": "elemental_essence_blueberry",
+    "name": "Elemental Essence-Blueberry",
+    "desc": "Used to synthesize Transformation Potion-Blueberry",
+    "img": "elemental_essence_blueberry.jpg",
+    "tags": [],
+    "notes": "",
+    "weight": 0,
+    "sources": {
+        "node": [],
+        "enemy": []
+    },
+    "uses": [],
+    "category": "Material",
+    "subcategory": "Plant",
+    "rarity": "epic",
+    "bound": false
+},
 ]

@@ -345,7 +345,8 @@
             '$tfmp': null,
             '$btec': null,
             '$cqt': null,
-            '$ebec': null
+            '$ebec': null,
+            '$sd': null
         }
 
         function getMacros(){
@@ -374,6 +375,9 @@
                 case '$nm':
                     replacement = name.toLowerCase();
                     break;
+
+                case  '$sd':
+                    replacement = `${name}, plant to obtain ${name.toLowerCase().replace(' seed', '')}.`;
 
                 case '$cnm': 
                     replacement = name;
