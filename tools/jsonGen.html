@@ -151,7 +151,9 @@
                 <button class="mode-btn" id="btn-item" onclick="switchMode('item')">Item Def</button>
             </div>
         </header>
-
+        <div>
+            <p id="macroList"></p>
+        </div>
         <div class="grid">
             <div class="card full-width">
                 <div class="row-group">
@@ -329,11 +331,13 @@
     <script>
         let currentMode = 'node';
 
-        const macros = {
+        const nodeMacros = {
             '$ee': 'elemental_essence_',
             '$sd': '_seed',
             '$fec': 'fire_enchant_stone_',
             '$iec': 'ice_enchant_stone_',
+        };
+        const itemMacros = {
             '$nm': null,
             '$tnm': null,
             '$pig': null,
@@ -341,7 +345,83 @@
             '$btec': null,
             '$cqt': null,
             '$ebec': null
-        };
+        }
+
+        function getMacros(){
+            switch (currentMode) {
+                case 'item': return itemMacros;
+                case 'node': return nodeMacros;
+            }
+        }
+
+        function formatMacroList(){
+            macros = getMacros();
+            const id = document.getElementById('idInput').value;
+            const name = document.getElementById('nameInput').value;
+            let html = ["<span>"];
+            for (const key in macros) {
+                html.push(`${key}: `);
+                let replacement;
+                replacement = macroSwitch(key, name, id);
+                html.push(replacement + "</span><br>");
+            }
+            return html.join("");
+        }
+        
+        function macroSwitch(key, name, id){
+            switch (key) {
+                case '$nm':
+                    replacement = name.toLowerCase();
+                    break;
+
+                case '$cqt':
+                    replacement = "Capable of quenching your thirst some.";
+                    break;
+
+                case '$ebec': 
+                    replacement = " Even better to eat when cooked.";
+                    break;
+                
+                case '$tnm':
+                    replacement = name.toLowerCase().replace("seed", "tree") + '.';
+                    break;
+                
+                case '$btec':
+                    replacement = "Better to eat it cooked.";
+                    break;
+
+                case '$pig':
+                    replacement = "Plant it and grow a";
+                    break;
+
+                case '$tfmp':
+                    replacement = `Used to synthesize Transformation Potion-${name.replace("Elemental Essence-", "")}`;
+                    break;
+
+                case '$sd': 
+                    // ID + seed
+                    replacement = id + macros['$sd']; 
+                    break;
+
+                case '$p': 
+                    // pistil
+                    replacement = macros['$p']; 
+                    break;
+
+                case '$ee':
+                case '$fec':
+                case '$iec':
+                    // Prefix + ID (e.g., elemental_essence_iron_ore)
+                    replacement = macros[key] + id;
+                    break;
+
+                default:
+                    // Fallback for any standard macros added later
+                    replacement = macros[key] + id;
+                    break;
+            }
+            return replacement;
+        }
 
         function switchMode(mode) {
             currentMode = mode;
@@ -354,6 +434,7 @@
 
         // Global Macro Applier
         function applyMacros(val) {
+            macros = getMacros();
             const id = document.getElementById('idInput').value;
             const name = document.getElementById('nameInput').value;
             
@@ -366,57 +447,7 @@
 
                 let replacement = "";
 
-                switch (key) {
-                    case '$nm':
-                        replacement = name.toLowerCase();
-                        break;
-
-                    case '$cqt':
-                        replacement = "Capable of quenching your thirst some.";
-                        break;
-
-                    case '$ebec': 
-                        replacement = " Even better to eat when cooked.";
-                        break;
-                    
-                    case '$tnm':
-                        replacement = name.toLowerCase().replace("seed", "tree") + '.';
-                        break;
-                    
-                    case '$btec':
-                        replacement = "Better to eat it cooked.";
-                        break;
-
-                    case '$pig':
-                        replacement = "Plant it and grow a";
-                        break;
-
-                    case '$tfmp':
-                        replacement = `Used to synthesize Transformation Potion-${name.replace("Elemental Essence-", "")}`;
-                        break;
-
-                    case '$sd': 
-                        // ID + seed
-                        replacement = id + macros['$sd']; 
-                        break;
-
-                    case '$p': 
-                        // pistil
-                        replacement = macros['$p']; 
-                        break;
-
-                    case '$ee':
-                    case '$fec':
-                    case '$iec':
-                        // Prefix + ID (e.g., elemental_essence_iron_ore)
-                        replacement = macros[key] + id;
-                        break;
-
-                    default:
-                        // Fallback for any standard macros added later
-                        replacement = macros[key] + id;
-                        break;
-                }
+                replacement = macroSwitch(key, name, id);
 
                 cleaned = cleaned.replaceAll(key, replacement);
             }
@@ -457,6 +488,7 @@
                     } else {
                         document.getElementById('descInput').focus();
                     }
+                    document.getElementById('macroList').innerHTML = formatMacroList();
                 } 
                 else if (active.id === 'descInput') {
                     // Apply macros immediately on Enter before moving focus

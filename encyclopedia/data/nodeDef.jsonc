@@ -2,7 +2,7 @@
     {
         "id": "iron_mine",
         "name": "Iron Mine",
-        "desc": "Iron mine Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "iron_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
@@ -38,7 +38,7 @@
     {
         "id": "stone_mine",
         "name": "Stone Mine",
-        "desc": "Stone mine Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "stone_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
@@ -70,7 +70,7 @@
     {
         "id": "silver_mine",
         "name": "Silver Mine",
-        "desc": "Silver mine Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "silver_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
@@ -102,7 +102,7 @@
     {
         "id": "gold_mine",
         "name": "Gold Mine",
-        "desc": "Gold mine Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "gold_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
@@ -134,7 +134,7 @@
     {
         "id": "crystal_mine",
         "name": "Crystal Mine",
-        "desc": "Crystal mine Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "crystal_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
@@ -166,7 +166,7 @@
     {
         "id": "obsidian_mine",
         "name": "Obsidian Mine",
-        "desc": "Obsidian mine Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "obsidian_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
@@ -198,7 +198,7 @@
     {
         "id": "fire_magic_mine",
         "name": "Fire Magic Mine",
-        "desc": "Fire Magic mine Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "fire_magic_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
@@ -218,7 +218,7 @@
     {
         "id": "natanz_spar",
         "name": "Natanz Spar",
-        "desc": "natanz_spar Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "natanz_spar.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
@@ -242,7 +242,7 @@
     {
         "id": "wind_rune_mine",
         "name": "Wind Rune Mine",
-        "desc": "wind_rune_mine Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "wind_rune_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
@@ -262,7 +262,7 @@
     {
         "id": "thunder_rune_mine",
         "name": "Thunder Rune Mine",
-        "desc": "thunder_rune_mine Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "thunder_rune_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
@@ -282,7 +282,7 @@
     {
         "id": "earth_rune_mine",
         "name": "Earth Rune Mine",
-        "desc": "earth_rune_mine Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "earth_rune_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
@@ -302,7 +302,7 @@
     {
         "id": "riptide_rune_mine",
         "name": "Riptide Rune Mine",
-        "desc": "riptide_rune_mine Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "riptide_rune_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
@@ -322,7 +322,7 @@
     {
         "id": "flame_rune_mine",
         "name": "Flame Rune Mine",
-        "desc": "flame_rune_mine Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "flame_rune_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
@@ -342,7 +342,7 @@
     {
         "id": "wild_arashi_rune_mine",
         "name": "Wild Arashi Rune Mine",
-        "desc": "wild_arashi_rune_mine Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "wild_arashi_rune_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
@@ -362,7 +362,7 @@
     {
         "id": "lightning_rune_mine",
         "name": "Lighting Rune Mine",
-        "desc": "lightning_rune_mine Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "lightning_rune_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
@@ -382,7 +382,7 @@
     {
         "id": "mountains_rune_mine",
         "name": "Mountains Rune Mine",
-        "desc": "mountains_rune_mine Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "mountains_rune_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
@@ -402,7 +402,7 @@
     {
         "id": "crimson_jade_ore",
         "name": "Crimson Jade Ore",
-        "desc": "crimson_jade_ore Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "crimson_jade_ore.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
@@ -422,7 +422,7 @@
     {
         "id": "energy_rich_crystal_rock",
         "name": "Energy Rich Crystal Rock",
-        "desc": "energy_rich_crystal_rock Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "energy_rich_crystal_rock.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
@@ -442,7 +442,7 @@
     {
         "id": "stardust_mine",
         "name": "Stardust Mine",
-        "desc": "stardust_mine Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "stardust_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
@@ -466,7 +466,7 @@
     {
         "id": "emerald",
         "name": "Emerald",
-        "desc": "emerald Description goes here, but there aren't any ingame I think",
+        "desc": "",
         "img": "emerald.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
