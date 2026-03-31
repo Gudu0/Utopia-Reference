@@ -1751,10 +1751,10 @@
         "bound": false
     },
     {
-        "id": "kink_earthworm",
-        "name": "Kink Earthworm",
+        "id": "king_earthworm",
+        "name": "King Earthworm",
         "desc": "Comes in handy for fishing.",
-        "img": "kink_earthworm.jpg",
+        "img": "king_earthworm.jpg",
         "tags": [],
         "notes": "",
         "weight": 0.01,
