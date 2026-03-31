@@ -1496,14 +1496,14 @@
         "bound": false
     },
     {
-        "id": "blue_maple_seed",
+        "id": "dark_purple_hibiscus_seed",
         "name": "Blue Maple Seed",
         "desc": "Dark Purple Hibiscus seed, can get the Dark Purple Hibiscus after plant in plant nursery or advanced plant nursery.",
-        "img": "blue_maple_seed.jpg",
+        "img": "dark_purple_hibiscus_seed.jpg",
         "tags": [
             "weird"
         ],
-        "notes": "",
+        "notes": "id is dark_purple_hibiscus_seed, even though its name is blue_maple_seed. decided to do this because of the desc and image and node it drops from.",
         "weight": 0.01,
         "sources": {
             "node": [],
