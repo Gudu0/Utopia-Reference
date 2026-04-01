@@ -1871,7 +1871,7 @@
     {
         "id": "strawberry",
         "name": "Strawberry",
-        "desc": "Luscious and sweet. Capable of quenching your thirst some.  Even better to eat when cooked.",
+        "desc": "Luscious and sweet. Capable of quenching your thirst some. Even better to eat when cooked.",
         "img": "strawberry.jpg",
         "tags": [],
         "notes": "",
@@ -1925,7 +1925,7 @@
     {
         "id": "blueberry",
         "name": "Blueberry",
-        "desc": "Luscious and sweet. Capable of quenching your thirst some.  Even better to eat when cooked.",
+        "desc": "Luscious and sweet. Capable of quenching your thirst some. Even better to eat when cooked.",
         "img": "blueberry.jpg",
         "tags": [],
         "notes": "",
@@ -1957,22 +1957,727 @@
         "subcategory": "Plant",
         "rarity": "uncommon",
         "bound": false
-    },{
-    "id": "elemental_essence_blueberry",
-    "name": "Elemental Essence-Blueberry",
-    "desc": "Used to synthesize Transformation Potion-Blueberry",
-    "img": "elemental_essence_blueberry.jpg",
-    "tags": [],
-    "notes": "",
-    "weight": 0,
-    "sources": {
-        "node": [],
-        "enemy": []
     },
-    "uses": [],
-    "category": "Material",
-    "subcategory": "Plant",
-    "rarity": "epic",
-    "bound": false
-},
+    {
+        "id": "elemental_essence_blueberry",
+        "name": "Elemental Essence-Blueberry",
+        "desc": "Used to synthesize Transformation Potion-Blueberry",
+        "img": "elemental_essence_blueberry.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "epic",
+        "bound": false
+    },
+    {
+        "id": "elemental_essence_blueberry",
+        "name": "Elemental Essence-Blueberry",
+        "desc": "Used to synthesize Transformation Potion-Blueberry",
+        "img": "elemental_essence_blueberry.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Ore",
+        "rarity": "epic",
+        "bound": false
+    },
+    {
+        "id": "mushroom",
+        "name": "Mushroom",
+        "desc": "A kind of fungus, not suitable for eating raw. Cook it first, then eat it.",
+        "img": "mushroom.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "common",
+        "bound": false
+    },
+    {
+        "id": "mushroom_seed",
+        "name": "Mushroom Seed.",
+        "desc": "Mushroom Seed, plant to obtain mushroom.",
+        "img": "mushroom_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "common",
+        "bound": false
+    },
+    {
+        "id": "red_mushroom",
+        "name": "Red Mushroom",
+        "desc": "Not suitable for eating raw, but it warms up your body when you eat it. Better to eat it cooked.",
+        "img": "red_mushroom.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "common",
+        "bound": false
+    },
+    {
+        "id": "red_mushroom_seed",
+        "name": "Red Mushroom Seed",
+        "desc": "Red mushroom. Seed, plant to obtain red mushroom.",
+        "img": "red_mushroom_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "blue_mushroom",
+        "name": "Blue Mushroom",
+        "desc": "Not suitable for eating raw, but it gives you a cool, refreshing feeling when you eat it. Better to eat it cooked.",
+        "img": "blue_mushroom.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "common",
+        "bound": false
+    },
+    {
+        "id": "blue_mushroom_seed",
+        "name": "Blue Mushroom Seed",
+        "desc": "Blue mushroom Seed, plant to obtain blue mushroom.",
+        "img": "blue_mushroom_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "onion",
+        "name": "Onion",
+        "desc": "Really stings the eyes.",
+        "img": "onion.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "common",
+        "bound": false
+    },
+    {
+        "id": "onion_seed",
+        "name": "Onion Seed",
+        "desc": "Onion Seed, plant to obtain onion.",
+        "img": "onion_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "common",
+        "bound": false
+    },
+    {
+        "id": "pepper",
+        "name": "Pepper",
+        "desc": "A uniquely flavored spice.",
+        "img": "pepper.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "common",
+        "bound": false
+    },
+    {
+        "id": "pepper_seed",
+        "name": "Pepper Seed",
+        "desc": "Pepper Seed, plant to obtain pepper.",
+        "img": "pepper_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "green_pepper",
+        "name": "Green Pepper",
+        "desc": "A very common garnish.",
+        "img": "green_pepper.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "rare",
+        "bound": false
+    },
+    {
+        "id": "green_pepper_seed",
+        "name": "Green pepper Seed",
+        "desc": "Green pepper Seed, plant to obtain green pepper.",
+        "img": "green_pepper_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "taro",
+        "name": "Taro",
+        "desc": "When cooked it has delicate texture, both mellow and fragrant.",
+        "img": "taro.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "taro_seed",
+        "name": "Taro Seed",
+        "desc": "Taro Seed, plant to obtain taro.",
+        "img": "taro_seed.jpg",
+        "tags": ["seed"],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "orange",
+        "name": "Orange",
+        "desc": "Luscious and sweet. Capable of quenching your thirst some. Even better to eat when cooked.",
+        "img": "orange.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "common",
+        "bound": false
+    },
+    {
+        "id": "citrus_seed",
+        "name": "Citrus Seed",
+        "desc": "Citrus Seed, plant to obtain citrus.",
+        "img": "citrus_seed .jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "lemon",
+        "name": "Lemon",
+        "desc": "A sour tasting fruit used for cooking delicious delicacies.",
+        "img": "lemon.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "common",
+        "bound": false
+    },
+    {
+        "id": "lemongrass",
+        "name": "Lemongrass",
+        "desc": "A first-rate seasoning with a vary fragrant flavor.",
+        "img": "lemongrass.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "common",
+        "bound": false
+    },
+    {
+        "id": "lemon_lemongrass_seed",
+        "name": "Lemon/Lemongrass Seed",
+        "desc": "Lemon/Lemongrass Seed, plant to obtain lemon.",
+        "img": "lemon_lemongrass_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "ginger",
+        "name": "Ginger",
+        "desc": "A seasoning that no great chef could do without.",
+        "img": "ginger.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "common",
+        "bound": false
+    },
+    {
+        "id": "ginger_seed",
+        "name": "Ginger Seed",
+        "desc": "Ginger Seed, plant to obtain ginger.",
+        "img": "ginger_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "icy_south_pine_cone",
+        "name": "Icy South Pine Cone",
+        "desc": "Crisp sweet, note: please to not swallow with the ice shell.",
+        "img": "icy_south_pine_cone.jpg",
+        "tags": ["typo"],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "green_flower",
+        "name": "Green Flower",
+        "desc": "Green Flower, can dye your clothes or plant it in the flowerpot to enjoy.",
+        "img": "green_flower.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "rare",
+        "bound": false
+    },
+    {
+        "id": "pistil",
+        "name": "Pistil",
+        "desc": "Pistils gathered from flowers. Welcomed among small bees.",
+        "img": "pistil.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "small_bee",
+        "name": "Small bee",
+        "desc": "Adorable tiny small bees can produce honey in the hive.",
+        "img": "small_bee.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "cyan_flower",
+        "name": "Cyan Flower",
+        "desc": "Cyan Flower, can ddye your clothes or plant in the flowerpot to enjoy.",
+        "img": "cyan_flower.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "rare",
+        "bound": false
+    },
+    {
+        "id": "red_flower",
+        "name": "Red Flower",
+        "desc": "Red Flower, can ddye your clothes or plant in the flowerpot to enjoy.",
+        "img": "red_flower.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "rare",
+        "bound": false
+    },
+    {
+        "id": "roselle",
+        "name": "Roselle",
+        "desc": "Tart and delicious. Use it to make tea!",
+        "img": "roselle.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "common",
+        "bound": false
+    },
+
+    {
+        "id": "mint",
+        "name": "mint",
+        "desc": "An aromatic crop, refreshing!",
+        "img": "mint.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+
+    {
+        "id": "mint_seeds",
+        "name": "Mint Seeds",
+        "desc": "Peppermint Seeds, planted to harvest the mint.",
+        "img": "mint_seeds.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "blue_flower",
+        "name": "Blue Flower",
+        "desc": "Blue Flower, can ddye your clothes or plant in the flowerpot to enjoy.",
+        "img": "blue_flower.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "rare",
+        "bound": false
+    },
+    {
+        "id": "perilla",
+        "name": "Perilla",
+        "desc": "Fresh air, spicy taste, can be used as seasoning food.",
+        "img": "perilla.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "perilla_seed",
+        "name": "Perilla seed",
+        "desc": "Perilla seeds, planted to harvest Perilla.",
+        "img": "perilla_seed.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "eggplant",
+        "name": "eggplant",
+        "desc": "A common plant. It is not reccomended to eat too much raw.",
+        "img": "eggplant.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "common",
+        "bound": false
+    },
+    {
+        "id": "eggplant_seeds",
+        "name": "Eggplant seeds",
+        "desc": "Eggplant seeds, planted to harvest the eggplant.",
+        "img": "eggplant_seeds.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "cucumber",
+        "name": "cucumber",
+        "desc": "Fresh and delicious! It also keeps you hydrated!",
+        "img": "cucumber.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "common",
+        "bound": false
+    },
+    {
+        "id": "cucumber_seeds",
+        "name": "Cucumber seeds",
+        "desc": "Cucumber seeds, planted to harvest the cucumber.",
+        "img": "cucumber_seeds.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    },
+    {
+        "id": "clover",
+        "name": "Clover",
+        "desc": "__",
+        "img": "__.jpg",
+        "tags": [],
+        "notes": "",
+        "weight": 0.01,
+        "sources": {
+            "node": [],
+            "enemy": []
+        },
+        "uses": [],
+        "category": "Material",
+        "subcategory": "Plant",
+        "rarity": "uncommon",
+        "bound": false
+    }
 ]
