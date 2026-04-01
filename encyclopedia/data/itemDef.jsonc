@@ -2665,8 +2665,8 @@
     {
         "id": "clover",
         "name": "Clover",
-        "desc": "__",
-        "img": "__.jpg",
+        "desc": "The four-leaf clover that brings luck.",
+        "img": "clover.jpg",
         "tags": [],
         "notes": "",
         "weight": 0.01,
