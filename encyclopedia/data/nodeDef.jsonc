@@ -6,6 +6,7 @@
         "img": "iron_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -42,6 +43,7 @@
         "img": "stone_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -74,6 +76,7 @@
         "img": "silver_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -106,6 +109,7 @@
         "img": "gold_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -138,6 +142,7 @@
         "img": "crystal_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -170,6 +175,7 @@
         "img": "obsidian_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -202,6 +208,7 @@
         "img": "fire_magic_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -222,6 +229,7 @@
         "img": "natanz_spar.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -246,6 +254,7 @@
         "img": "wind_rune_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -266,6 +275,7 @@
         "img": "thunder_rune_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -286,6 +296,7 @@
         "img": "earth_rune_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -306,6 +317,7 @@
         "img": "riptide_rune_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -326,6 +338,7 @@
         "img": "flame_rune_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -346,6 +359,7 @@
         "img": "wild_arashi_rune_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -366,6 +380,7 @@
         "img": "lightning_rune_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -386,6 +401,7 @@
         "img": "mountains_rune_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -406,6 +422,7 @@
         "img": "crimson_jade_ore.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -426,6 +443,7 @@
         "img": "energy_rich_crystal_rock.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -446,6 +464,7 @@
         "img": "stardust_mine.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -470,6 +489,7 @@
         "img": "emerald.jpg",
         "category": "Ore",
         "subcategory": "determinSubCategory",
+        "tags": ["mine"],
         "drops": {
             "items": [
                 {
@@ -491,6 +511,8 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -524,6 +546,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -565,6 +588,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -618,6 +642,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -655,6 +680,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -692,6 +718,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -733,6 +760,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -782,6 +810,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -815,6 +844,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -852,6 +882,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -885,6 +916,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -926,6 +958,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -947,6 +980,7 @@
         "notes": "is mapple a mispelling of maple??",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -980,6 +1014,7 @@
         "notes": "Why is the seed name blue maple??",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -1017,6 +1052,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -1042,6 +1078,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -1067,6 +1104,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -1088,6 +1126,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -1113,6 +1152,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -1150,6 +1190,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "pick",
         "drops": {
@@ -1187,6 +1228,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -1220,6 +1262,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -1257,6 +1300,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {
@@ -1290,6 +1334,7 @@
         "notes": "",
         "category": "Trees",
         "subcategory": "determinSubCategory",
+        "tags": ["tree"],
         "health": "#?",
         "tool": "axe",
         "drops": {

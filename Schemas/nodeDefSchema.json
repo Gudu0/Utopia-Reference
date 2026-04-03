@@ -72,7 +72,7 @@
                 "type": "array",
                 "items": {
                     "type": "string",
-                    "pattern": "^[a-z0-9_]+$"
+                    "enum": ["tree", "mine", "food"]
                 },
                 "description": "Custom metadata tags for filtering or logic."
             }
