@@ -2268,7 +2268,7 @@
         "id": "citrus_seed",
         "name": "Citrus Seed",
         "desc": "Citrus Seed, plant to obtain citrus.",
-        "img": "citrus_seed .jpg",
+        "img": "citrus_seed.jpg",
         "tags": [],
         "notes": "",
         "weight": 0.01,
