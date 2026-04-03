@@ -1891,7 +1891,7 @@
         "name": "Strawberry Seed",
         "desc": "Strawberry Seed. Plant to obtain strawberry.",
         "img": "strawberry_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -1945,7 +1945,7 @@
         "name": "Blueberry Seed",
         "desc": "Blueberry Seed, plant to obtain blueberry.",
         "img": "blueberry_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -2017,7 +2017,7 @@
         "name": "Mushroom Seed.",
         "desc": "Mushroom Seed, plant to obtain mushroom.",
         "img": "mushroom_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -2053,7 +2053,7 @@
         "name": "Red Mushroom Seed",
         "desc": "Red mushroom. Seed, plant to obtain red mushroom.",
         "img": "red_mushroom_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -2089,7 +2089,7 @@
         "name": "Blue Mushroom Seed",
         "desc": "Blue mushroom Seed, plant to obtain blue mushroom.",
         "img": "blue_mushroom_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -2125,7 +2125,7 @@
         "name": "Onion Seed",
         "desc": "Onion Seed, plant to obtain onion.",
         "img": "onion_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -2161,7 +2161,7 @@
         "name": "Pepper Seed",
         "desc": "Pepper Seed, plant to obtain pepper.",
         "img": "pepper_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -2197,7 +2197,7 @@
         "name": "Green pepper Seed",
         "desc": "Green pepper Seed, plant to obtain green pepper.",
         "img": "green_pepper_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -2269,7 +2269,7 @@
         "name": "Citrus Seed",
         "desc": "Citrus Seed, plant to obtain citrus.",
         "img": "citrus_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -2323,7 +2323,7 @@
         "name": "Lemon/Lemongrass Seed",
         "desc": "Lemon/Lemongrass Seed, plant to obtain lemon.",
         "img": "lemon_lemongrass_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -2359,7 +2359,7 @@
         "name": "Ginger Seed",
         "desc": "Ginger Seed, plant to obtain ginger.",
         "img": "ginger_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
@@ -2577,7 +2577,7 @@
         "name": "Perilla seed",
         "desc": "Perilla seeds, planted to harvest Perilla.",
         "img": "perilla_seed.jpg",
-        "tags": [],
+        "tags": ["seed"],
         "notes": "",
         "weight": 0.01,
         "sources": {
