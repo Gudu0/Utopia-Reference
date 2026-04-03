@@ -2928,6 +2928,7 @@
         "notes": "",
         "category": "Plants",
         "subcategory": "NotFood",
+        "tags": ["mine"],
         "health": "#?",
         "tool": "hand",
         "drops": {
