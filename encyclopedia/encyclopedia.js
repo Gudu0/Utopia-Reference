@@ -16,8 +16,7 @@ const state = {
             currentPage: 1,
             search: "",
             sort: "name-asc",
-            category: "all",
-            subcategory: "all"
+            selectedTags: []
         },
         nodes: {
             loaded: false,
@@ -27,8 +26,7 @@ const state = {
             currentPage: 1,
             search: "",
             sort: "name-asc",
-            category: "all",
-            subcategory: "all"
+            selectedTags: []
         },
         enemies: {
             loaded: false,
@@ -38,8 +36,7 @@ const state = {
             currentPage: 1,
             search: "",
             sort: "name-asc",
-            category: "all",
-            subcategory: "all"
+            selectedTags: []
         }
     }
 };
@@ -64,75 +61,6 @@ init();
 
 
 // ------ NODE ----- \\\
-
-function populateNodeCategoryFilter() {
-    const tab = state.tabs.nodes;
-    const categoryFilter = document.getElementById("node-category-filter");
-    if (!categoryFilter) return;
-
-    const categories = [...new Set(tab.all.map(node => node.category).filter(Boolean))]
-        .sort((a, b) => a.localeCompare(b));
-
-    categoryFilter.innerHTML = `<option value="all">All Categories</option>`;
-
-    for (const category of categories) {
-        const option = document.createElement("option");
-        option.value = category;
-        option.textContent = category;
-        categoryFilter.appendChild(option);
-    }
-
-    categoryFilter.value = categories.includes(tab.category) ? tab.category : "all";
-}
-
-function populateNodeSubcategoryFilter() {
-    const tab = state.tabs.nodes;
-    const subcategoryFilter = document.getElementById("node-subcategory-filter");
-    if (!subcategoryFilter) return;
-
-    let sourceNodes = tab.all;
-    if (tab.category !== "all") {
-        sourceNodes = sourceNodes.filter(node => node.category === tab.category);
-    }
-
-    const subcategories = [...new Set(sourceNodes.map(node => node.subcategory).filter(Boolean))]
-        .sort((a, b) => a.localeCompare(b));
-
-    subcategoryFilter.innerHTML = `<option value="all">All Subcategories</option>`;
-
-    for (const subcategory of subcategories) {
-        const option = document.createElement("option");
-        option.value = subcategory;
-        option.textContent = subcategory;
-        subcategoryFilter.appendChild(option);
-    }
-
-    if (!subcategories.includes(tab.subcategory)) {
-        tab.subcategory = "all";
-    }
-
-    subcategoryFilter.value = tab.subcategory;
-}
-
-function wireNodeExtraFilters() {
-    const tab = state.tabs.nodes;
-    const categoryFilter = document.getElementById("node-category-filter");
-    const subcategoryFilter = document.getElementById("node-subcategory-filter");
-
-    categoryFilter.addEventListener("change", () => {
-        tab.category = categoryFilter.value;
-        tab.currentPage = 1;
-        tab.subcategory = "all";
-        renderExtraFilters();
-        applyFiltersAndRender();
-    });
-
-    subcategoryFilter.addEventListener("change", () => {
-        tab.subcategory = subcategoryFilter.value;
-        tab.currentPage = 1;
-        applyFiltersAndRender();
-    });
-}
 
 async function loadNodes() {
     try {
@@ -166,6 +94,7 @@ function normalizeNode(node) {
         notes: node.notes ?? "",
         category: node.category ?? "Misc",
         subcategory: node.subcategory ?? "",
+        tags: normalizeTags(node.tags),
         health: node.health ?? null,
         tool: node.tool ?? null,
         drops: node.drops ?? null
@@ -175,26 +104,21 @@ function normalizeNode(node) {
 function renderNodeDetails(node) {
     const metaPills = [];
 
-    if (node.category) {
-        metaPills.push(`<span class="meta-pill">${escapeHtml(node.category)}</span>`);
-    }
-
-    if (node.subcategory) {
-        metaPills.push(`<span class="meta-pill">${escapeHtml(capitalizeWords(node.subcategory))}</span>`);
-    }
-
     if (node.tool) {
         metaPills.push(`<span class="meta-pill">${escapeHtml(capitalizeWords(node.tool))}</span>`);
+    }
+
+    for (const tag of node.tags) {
+        metaPills.push(`<span class="meta-pill">${escapeHtml(formatTagLabel(tag))}</span>`);
     }
 
     const rows = [];
     if (node.health != null) {
         rows.push(detailRow("Health", String(node.health)));
     }
-    if (node.drops.xp != null){
+    if (node.drops?.xp != null) {
         rows.push(detailRow("XP", String(node.drops.xp)));
     }
-
 
     els.details.innerHTML = `
         <div class="details-header">
@@ -206,7 +130,7 @@ function renderNodeDetails(node) {
                 </div>
             </div>
         </div>
-        
+
         <div class="details-section">
             <h3>Overview</h3>
             <p>${escapeHtml(node.desc || "No description yet.")}</p>
@@ -265,6 +189,9 @@ function getNodeById(nodeId) {
 }
 
 
+
+
+
 // ----- ITEM ----- \\\
 
 function foodRow(foodStats) {
@@ -310,26 +237,6 @@ function renderGridImage(element) {
     return `<div class="item-card-placeholder" aria-hidden="true">?</div>`;
 }
 
-function wireItemExtraFilters() {
-    const tab = state.tabs.items;
-    const categoryFilter = document.getElementById("category-filter");
-    const subcategoryFilter = document.getElementById("subcategory-filter");
-
-    categoryFilter.addEventListener("change", () => {
-        tab.category = categoryFilter.value;
-        tab.currentPage = 1;
-        tab.subcategory = "all";
-        renderExtraFilters();
-        applyFiltersAndRender();
-    });
-
-    subcategoryFilter.addEventListener("change", () => {
-        tab.subcategory = subcategoryFilter.value;
-        tab.currentPage = 1;
-        applyFiltersAndRender();
-    });
-}
-
 async function loadItems() {
     log("about to fetch items");
     try {
@@ -368,11 +275,11 @@ function normalizeItem(item) {
         weight: item.weight ?? null,
         desc: item.desc ?? "",
         img: item.img ?? null,
-        sources: Array.isArray(item.sources) ? item.sources : [],
         uses: Array.isArray(item.uses) ? item.uses : [],
         notes: item.notes ?? "",
         category: item.category ?? "Misc",
         subcategory: item.subcategory ?? "",
+        tags: normalizeTags(item.tags),
         rarity: item.rarity ?? null,
         durability: item.durability ?? null,
         foodStats: item.foodStats ?? null,
@@ -383,68 +290,15 @@ function normalizeItem(item) {
     };
 }
 
-function populateItemCategoryFilter() {
-    const tab = state.tabs.items;
-    const categoryFilter = document.getElementById("category-filter");
-    if (!categoryFilter) return;
-
-    const categories = [...new Set(tab.all.map(item => item.category).filter(Boolean))]
-        .sort((a, b) => a.localeCompare(b));
-
-    categoryFilter.innerHTML = `<option value="all">All Categories</option>`;
-
-    for (const category of categories) {
-        const option = document.createElement("option");
-        option.value = category;
-        option.textContent = category;
-        categoryFilter.appendChild(option);
-    }
-
-    categoryFilter.value = categories.includes(tab.category) ? tab.category : "all";
-}
-
-function populateItemSubcategoryFilter() {
-    const tab = state.tabs.items;
-    const subcategoryFilter = document.getElementById("subcategory-filter");
-    if (!subcategoryFilter) return;
-
-    let sourceItems = tab.all;
-    if (tab.category !== "all") {
-        sourceItems = sourceItems.filter(item => item.category === tab.category);
-    }
-
-    const subcategories = [...new Set(sourceItems.map(item => item.subcategory).filter(Boolean))]
-        .sort((a, b) => a.localeCompare(b));
-
-    subcategoryFilter.innerHTML = `<option value="all">All Subcategories</option>`;
-
-    for (const subcategory of subcategories) {
-        const option = document.createElement("option");
-        option.value = subcategory;
-        option.textContent = subcategory;
-        subcategoryFilter.appendChild(option);
-    }
-
-    if (!subcategories.includes(tab.subcategory)) {
-        tab.subcategory = "all";
-    }
-
-    subcategoryFilter.value = tab.subcategory;
-}
-
 function renderItemDetails(item) {
     const metaPills = [];
 
-    if (item.category) {
-        metaPills.push(`<span class="meta-pill">${escapeHtml(item.category)}</span>`);
-    }
-
-    if (item.subcategory) {
-        metaPills.push(`<span class="meta-pill">${escapeHtml(capitalizeWords(item.subcategory))}</span>`);
-    }
-
     if (item.rarity) {
         metaPills.push(`<span class="meta-pill rarity-${escapeHtml(item.rarity)}">${escapeHtml(capitalizeWords(item.rarity))}</span>`);
+    }
+
+    for (const tag of item.tags) {
+        metaPills.push(`<span class="meta-pill">${escapeHtml(formatTagLabel(tag))}</span>`);
     }
 
     els.details.innerHTML = `
@@ -506,10 +360,99 @@ function renderItemSourcesSection(item) {
 }
 
 
+
+
+
 // ------ Enemy ------ \\\
 
 
+
+
+
 // ----- Helper ------- \\\
+
+function normalizeTags(tags) {
+    if (!Array.isArray(tags)) {
+        return [];
+    }
+
+    return [...new Set(
+        tags
+            .map(tag => String(tag).trim().toLowerCase())
+            .filter(Boolean)
+    )];
+}
+
+function formatTagLabel(tag) {
+    return capitalizeWords(String(tag).replaceAll("_", " "));
+}
+
+function getAvailableTags(entries) {
+    return [...new Set(entries.flatMap(entry => entry.tags ?? []))]
+        .sort((a, b) => a.localeCompare(b));
+}
+
+function renderTagFilterSection() {
+    const tab = getTabState();
+    const availableTags = getAvailableTags(tab.all);
+    const selectedCount = tab.selectedTags.length;
+
+    const tagOptionsHtml = availableTags.length
+        ? availableTags.map((tag, index) => {
+            const inputId = `tag-filter-${state.activeTab}-${index}`;
+            const checked = tab.selectedTags.includes(tag) ? "checked" : "";
+
+            return `
+                <label for="${inputId}" class="tag-filter-option">
+                    <input
+                        id="${inputId}"
+                        type="checkbox"
+                        data-tag-value="${escapeHtml(tag)}"
+                        ${checked}
+                    />
+                    <span>${escapeHtml(formatTagLabel(tag))}</span>
+                </label>
+            `;
+        }).join("")
+        : `<div class="result-count">No tags yet.</div>`;
+
+    return `
+        <div class="panel-section">
+            <h3>Tags</h3>
+            <div class="result-count">${selectedCount ? `${selectedCount} selected` : `${availableTags.length} available`}</div>
+            <div class="tag-filter-list">
+                ${tagOptionsHtml}
+            </div>
+            ${selectedCount ? `<button class="btn" id="clear-tags-btn" type="button">Clear Tags</button>` : ""}
+        </div>
+    `;
+}
+
+function wireTagFilterControls() {
+    const tagInputs = els.extraFilters.querySelectorAll("[data-tag-value]");
+
+    for (const input of tagInputs) {
+        input.addEventListener("change", () => {
+            const tab = getTabState();
+            tab.selectedTags = [...els.extraFilters.querySelectorAll("[data-tag-value]:checked")]
+                .map(checkbox => checkbox.dataset.tagValue);
+            tab.currentPage = 1;
+            renderExtraFilters();
+            applyFiltersAndRender();
+        });
+    }
+
+    const clearButton = document.getElementById("clear-tags-btn");
+    if (clearButton) {
+        clearButton.addEventListener("click", () => {
+            const tab = getTabState();
+            tab.selectedTags = [];
+            tab.currentPage = 1;
+            renderExtraFilters();
+            applyFiltersAndRender();
+        });
+    }
+}
 
 function detailRow(label, value) {
     return `
@@ -617,8 +560,7 @@ async function jumpToItem(itemId) {
     const itemTab = state.tabs.items;
 
     itemTab.search = "";
-    itemTab.category = "all";
-    itemTab.subcategory = "all";
+    itemTab.selectedTags = [];
     itemTab.selectedId = itemId;
 
     await switchTab("items");
@@ -634,6 +576,9 @@ async function jumpToItem(itemId) {
     renderPageIndicator();
     renderDetails();
 }
+
+
+
 
 // ----- Other -------- \\\
 
@@ -692,9 +637,8 @@ function applyFiltersAndRender() {
             const haystack = [
                 entry.name,
                 entry.desc,
-                entry.category,
-                entry.subcategory,
-                entry.notes
+                entry.notes,
+                ...(entry.tags ?? [])
             ]
                 .filter(Boolean)
                 .join(" ")
@@ -704,12 +648,10 @@ function applyFiltersAndRender() {
         });
     }
 
-    if (tab.category !== "all") {
-        entries = entries.filter(entry => entry.category === tab.category);
-    }
-
-    if (tab.subcategory !== "all") {
-        entries = entries.filter(entry => entry.subcategory === tab.subcategory);
+    if (tab.selectedTags.length) {
+        entries = entries.filter(entry =>
+            tab.selectedTags.every(tag => entry.tags.includes(tag))
+        );
     }
 
     sortEntries(entries, tab.sort);
@@ -753,49 +695,9 @@ function syncSharedControlsFromTab() {
 }
 
 function renderExtraFilters() {
-    if (state.activeTab === "items") {
-        els.extraFilters.innerHTML = `
-            <div class="panel-section">
-                <h3>Category</h3>
-                <select id="category-filter" class="island-select">
-                    <option value="all">All Categories</option>
-                </select>
-            </div>
-
-            <div class="panel-section">
-                <h3>Subcategory</h3>
-                <select id="subcategory-filter" class="island-select">
-                    <option value="all">All Subcategories</option>
-                </select>
-            </div>
-        `;
-
-        populateItemCategoryFilter();
-        populateItemSubcategoryFilter();
-        wireItemExtraFilters();
-        return;
-    }
-
-    if (state.activeTab === "nodes") {
-        els.extraFilters.innerHTML = `
-            <div class="panel-section">
-                <h3>Category</h3>
-                <select id="node-category-filter" class="island-select">
-                    <option value="all">All Categories</option>
-                </select>
-            </div>
-
-            <div class="panel-section">
-                <h3>Subcategory</h3>
-                <select id="node-subcategory-filter" class="island-select">
-                    <option value="all">All Subcategories</option>
-                </select>
-            </div>
-        `;
-
-        populateNodeCategoryFilter();
-        populateNodeSubcategoryFilter();
-        wireNodeExtraFilters();
+    if (state.activeTab === "items" || state.activeTab === "nodes") {
+        els.extraFilters.innerHTML = renderTagFilterSection();
+        wireTagFilterControls();
         return;
     }
 
@@ -955,8 +857,7 @@ async function jumpToNode(nodeId) {
     const nodeTab = state.tabs.nodes;
 
     nodeTab.search = "";
-    nodeTab.category = "all";
-    nodeTab.subcategory = "all";
+    nodeTab.selectedTags = [];
     nodeTab.selectedId = nodeId;
 
     await switchTab("nodes");
